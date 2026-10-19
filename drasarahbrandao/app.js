@@ -19,7 +19,6 @@
     // UTMs de orgânico: o tráfego do botão aparece no Analytics como instagram / organic / link_na_bio
     site: "https://sbadvocaciainternacional.com/?utm_source=instagram&utm_medium=organic&utm_campaign=link_na_bio&utm_content=botao_site",
     instagram: "https://www.instagram.com/sarahbrandao.adv/",
-    linkedin: "",    // ex.: "https://www.linkedin.com/in/usuario"
     maps: "",        // ex.: link de compartilhamento do Google Maps
 
     oab: "OAB/CE 58.360"
@@ -29,7 +28,6 @@
   var ALLOWED = {
     site: [/^sbadvocaciainternacional\.com$/, /^www\.sbadvocaciainternacional\.com$/],
     instagram: [/^(www\.)?instagram\.com$/],
-    linkedin: [/^([a-z]{2,3}\.)?linkedin\.com$/],
     maps: [/^maps\.app\.goo\.gl$/, /^goo\.gl$/, /^(www\.)?google\.[a-z.]+$/, /^maps\.google\.[a-z.]+$/],
     whatsapp: [/^wa\.me$/]
   };
@@ -57,7 +55,6 @@
     whatsapp: safeUrl("whatsapp", whatsappUrl()),
     site: safeUrl("site", CONFIG.site),
     instagram: safeUrl("instagram", CONFIG.instagram),
-    linkedin: safeUrl("linkedin", CONFIG.linkedin),
     maps: safeUrl("maps", CONFIG.maps)
   };
 
