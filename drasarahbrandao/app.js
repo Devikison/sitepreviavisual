@@ -13,15 +13,16 @@
 
   var CONFIG = {
     // WhatsApp: só números, com DDI e DDD. Ex.: "5511999998888"
-    whatsappNumero: "",
+    whatsappNumero: "5585998237708",
     whatsappMensagem: "Olá, Dra. Sarah! Vim pelo seu Instagram e gostaria de saber mais sobre o seu atendimento jurídico.",
 
-    site: "",        // ex.: "https://sbadvocaciainternacional.com"
-    instagram: "",   // ex.: "https://www.instagram.com/usuario"
+    // UTMs de orgânico: o tráfego do botão aparece no Analytics como instagram / organic / link_na_bio
+    site: "https://sbadvocaciainternacional.com/?utm_source=instagram&utm_medium=organic&utm_campaign=link_na_bio&utm_content=botao_site",
+    instagram: "https://www.instagram.com/sarahbrandao.adv/",
     linkedin: "",    // ex.: "https://www.linkedin.com/in/usuario"
     maps: "",        // ex.: link de compartilhamento do Google Maps
 
-    oab: ""          // ex.: "OAB/SP 000.000" (aparece no rodapé)
+    oab: "OAB/CE 58.360"
   };
 
   // Só aceita endereços https dos domínios esperados para cada botão.
