@@ -901,6 +901,16 @@ body.menu-open { overflow: hidden; }
 .svc:hover .ic { background: linear-gradient(160deg, #2BB5EE 0%, var(--blue-500) 40%, var(--navy-700) 100%); }
 .stat .ic { background: linear-gradient(160deg, rgba(0,152,218,.55), rgba(0,117,181,.35)); border-color: rgba(159,214,243,.45); color: #fff; }
 
+/* ---------- barra de rolagem personalizada (desktop) ---------- */
+html { scrollbar-width: thin; scrollbar-color: var(--blue-500) #0A1628; }
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: #0A1628; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #19A8E6, var(--blue-500) 50%, var(--blue-600)); border: 3px solid #0A1628; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #3DBDF0, #19A8E6 50%, var(--blue-500)); }
+::-webkit-scrollbar-button { display: none; height: 0; }
+textarea::-webkit-scrollbar-track, .cookie-dialog::-webkit-scrollbar-track, .mobile-menu::-webkit-scrollbar-track { background: transparent; }
+textarea::-webkit-scrollbar-thumb, .cookie-dialog::-webkit-scrollbar-thumb { border-color: transparent; }
+
 /* ---------- movimento reduzido ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
