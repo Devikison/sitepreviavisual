@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1206" height="451" viewBox="0 0 1206 451">
+<title>INOVA — Ar Condicionado</title>
+<desc>Reconstrução vetorial do logotipo, com curva vermelha corrigida. Fundo transparente e letras em curvas.</desc>
+<defs>
+<linearGradient id="azulVertical" x1="0" y1="0" x2="0.12" y2="1"><stop stop-color="#074778"/><stop offset="0.52" stop-color="#032D5A"/><stop offset="1" stop-color="#021D40"/></linearGradient>
+<linearGradient id="azulDiagonal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#00629C"/><stop offset="0.4" stop-color="#073B6D"/><stop offset="1" stop-color="#005483"/></linearGradient>
+<linearGradient id="arcoSuperior" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#042747"/><stop offset="0.54" stop-color="#07598B"/><stop offset="1" stop-color="#011C43"/></linearGradient>
+<linearGradient id="arcoInferior" x1="0" y1="0" x2="1" y2="0.6"><stop stop-color="#05619A"/><stop offset="0.5" stop-color="#004977"/><stop offset="1" stop-color="#022449"/></linearGradient>
+<linearGradient id="ondaAzul" x1="0" y1="0" x2="1" y2="0.6"><stop stop-color="#0075B5"/><stop offset="0.32" stop-color="#0098DA"/><stop offset="0.70" stop-color="#0055AC"/><stop offset="1" stop-color="#06316F"/></linearGradient>
+<linearGradient id="ondaAzulMedia" x1="0" y1="0" x2="1" y2="0.45"><stop stop-color="#033F75"/><stop offset="0.28" stop-color="#0098DD"/><stop offset="0.75" stop-color="#064599"/><stop offset="1" stop-color="#052553"/></linearGradient>
+<linearGradient id="vermelho" x1="0" y1="0" x2="1" y2="0.35"><stop stop-color="#DB0011"/><stop offset="0.35" stop-color="#EC0010"/><stop offset="0.75" stop-color="#BB0019"/><stop offset="1" stop-color="#A8000B"/></linearGradient>
+<linearGradient id="linha" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#086B9E"/><stop offset="0.3" stop-color="#053762"/><stop offset="1" stop-color="#041C3C"/></linearGradient>
+</defs>
+<g id="INOVA-simbolo">
+<path id="Letra-I" fill="url(#azulVertical)" d="M63 43 H123 V309 H63 Z"/>
+<path id="Letra-N-haste-esquerda" fill="#032449" d="M155 102 L211 157 V309 H155 Z"/>
+<path id="Letra-N-haste-direita" fill="url(#azulVertical)" d="M329 44 H389 V323 L329 264 Z"/>
+<path id="Letra-N-diagonal" fill="url(#azulDiagonal)" d="M155 36 C168 39 181 54 195 68 L389 267 V324 C379 325 365 309 355 299 L155 107 Z"/>
+<path id="Letra-O-arco-superior" fill="url(#arcoSuperior)" d="M416 118 C440 60 490 25 552 25 C630 25 686 70 698 153 C682 158 667 159 649 158 C643 107 606 69 553 70 C522 69 497 83 480 105 C456 106 435 111 416 118 Z"/>
+<path id="Letra-O-arco-inferior" fill="url(#arcoInferior)" d="M413 218 C430 212 446 210 462 210 C477 250 512 276 552 275 C582 275 610 265 632 252 C648 252 663 248 676 242 C651 289 607 318 552 318 C486 318 433 278 413 218 Z"/>
+<path id="Onda-superior-azul" fill="url(#ondaAzul)" d="M408 155 C430 125 456 107 484 115 C523 119 564 145 604 160 C641 175 682 171 714 155 C691 178 664 184 637 180 C589 176 539 146 489 139 C457 133 431 139 408 155 Z"/>
+<path id="Onda-media-vermelha-curva-corrigida" fill="url(#vermelho)" d="M405 186 C427 157 451 143 475 147 C522 151 577 185 615 190 C649 196 680 188 705 171 C693 194 669 207 638 211 C591 216 532 178 479 172 C451 168 426 174 405 186 Z"/>
+<path id="Onda-media-azul" fill="url(#ondaAzulMedia)" d="M405 186 C427 157 451 143 475 147 C522 151 577 185 615 190 C649 196 680 188 705 171 C683 190 651 201 616 198 C570 194 526 177 479 172 C451 168 426 174 405 186 Z"/>
+<path id="Onda-inferior-vermelha" fill="url(#vermelho)" d="M402 211 C424 187 448 176 474 180 C517 182 572 213 611 219 C647 225 680 214 699 196 C686 225 663 242 630 244 C584 250 527 215 480 203 C451 196 426 199 402 211 Z"/>
+<path id="Letra-V" fill="url(#azulVertical)" d="M680 44 H744 L814 194 L891 43 H955 L814 318 Z"/>
+<path id="Letra-A" fill="url(#azulVertical)" d="M858 309 L1004 41 L1146 309 H1084 L1004 156 L921 309 Z"/>
+<path id="Linha-horizontal" fill="url(#linha)" d="M66 336 H1141 C1148 336 1148 347 1141 347 H66 C59 347 59 336 66 336 Z"/>
+</g><g id="Assinatura-AR-CONDICIONADO" fill="#031F43" fill-rule="evenodd">
+<path id="Assinatura-1-A" transform="translate(75 374) scale(0.98000 0.97)" d="M0 50 L20 0 H29 L50 50 H40 L35 38 H14 L9 50 Z M17 30 H32 L24.5 11 Z"/>
+<path id="Assinatura-2-R" transform="translate(156 374) scale(1.00000 0.97)" d="M0 50 V0 H23 C36 0 42 6 42 16 C42 24 38 29 31 31 L44 50 H33 L21 33 H9 V50 Z M9 8 V25 H22 C29 25 33 22 33 16 C33 11 29 8 22 8 Z"/>
+<path id="Assinatura-3-C" transform="translate(269 374) scale(1.00000 0.97)" d="M43 7 L37 14 C33 10 29 8 24 8 C14 8 8 15 8 25 C8 35 14 42 24 42 C29 42 33 40 37 36 L43 42 C38 48 32 51 24 51 C9 51 -1 40 -1 25 C-1 10 9 -1 24 -1 C32 -1 38 2 43 7 Z"/>
+<path id="Assinatura-4-O" transform="translate(345 374) scale(1.00000 0.97)" d="M25 -1 C40 -1 50 10 50 25 C50 40 40 51 25 51 C10 51 0 40 0 25 C0 10 10 -1 25 -1 Z M25 8 C16 8 9 15 9 25 C9 35 16 42 25 42 C34 42 41 35 41 25 C41 15 34 8 25 8 Z"/>
+<path id="Assinatura-5-N" transform="translate(431 375) scale(1.00000 0.97)" d="M0 50 V0 H9 L34 34 V0 H43 V50 H35 L9 15 V50 Z"/>
+<path id="Assinatura-6-D" transform="translate(511 375) scale(1.00000 0.97)" d="M0 50 V0 H19 C35 0 45 10 45 25 C45 40 35 50 19 50 Z M9 8 V42 H19 C29 42 36 36 36 25 C36 14 29 8 19 8 Z"/>
+<path id="Assinatura-7-I" transform="translate(591 375) scale(1.00000 0.97)" d="M0 0 H9 V50 H0 Z"/>
+<path id="Assinatura-8-C" transform="translate(638 375) scale(1.02326 0.97)" d="M43 7 L37 14 C33 10 29 8 24 8 C14 8 8 15 8 25 C8 35 14 42 24 42 C29 42 33 40 37 36 L43 42 C38 48 32 51 24 51 C9 51 -1 40 -1 25 C-1 10 9 -1 24 -1 C32 -1 38 2 43 7 Z"/>
+<path id="Assinatura-9-I" transform="translate(716 375) scale(1.00000 0.97)" d="M0 0 H9 V50 H0 Z"/>
+<path id="Assinatura-10-O" transform="translate(762 374) scale(1.00000 0.97)" d="M25 -1 C40 -1 50 10 50 25 C50 40 40 51 25 51 C10 51 0 40 0 25 C0 10 10 -1 25 -1 Z M25 8 C16 8 9 15 9 25 C9 35 16 42 25 42 C34 42 41 35 41 25 C41 15 34 8 25 8 Z"/>
+<path id="Assinatura-11-N" transform="translate(847 375) scale(1.00000 0.97)" d="M0 50 V0 H9 L34 34 V0 H43 V50 H35 L9 15 V50 Z"/>
+<path id="Assinatura-12-A" transform="translate(923 375) scale(1.00000 0.97)" d="M0 50 L20 0 H29 L50 50 H40 L35 38 H14 L9 50 Z M17 30 H32 L24.5 11 Z"/>
+<path id="Assinatura-13-D" transform="translate(1005 375) scale(1.00000 0.97)" d="M0 50 V0 H19 C35 0 45 10 45 25 C45 40 35 50 19 50 Z M9 8 V42 H19 C29 42 36 36 36 25 C36 14 29 8 19 8 Z"/>
+<path id="Assinatura-14-O" transform="translate(1082 374) scale(1.00000 0.97)" d="M25 -1 C40 -1 50 10 50 25 C50 40 40 51 25 51 C10 51 0 40 0 25 C0 10 10 -1 25 -1 Z M25 8 C16 8 9 15 9 25 C9 35 16 42 25 42 C34 42 41 35 41 25 C41 15 34 8 25 8 Z"/>
+</g></svg>
