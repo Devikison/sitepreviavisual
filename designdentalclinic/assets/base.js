@@ -163,11 +163,65 @@ const Base = (() => {
     requestAnimationFrame(frame);
   }
 
+  /* FAQ <details>: abre e fecha devagar (altura + opacidade), sem salto */
+  function initDetails() {
+    document.querySelectorAll('details').forEach(d => {
+      const sum = d.querySelector('summary');
+      const body = [...d.children].find(c => c !== sum);
+      if (!sum || !body) return;
+      let anim = null;
+      const closedH = () => sum.offsetHeight + (d.offsetHeight - d.clientHeight);
+      sum.addEventListener('click', e => {
+        if (reduced) return;
+        e.preventDefault();
+        const from = d.offsetHeight;
+        anim?.cancel();
+        const opening = !d.open || d.classList.contains('is-closing');
+        d.classList.remove('is-closing');
+        if (opening) d.open = true;
+        const to = opening ? d.scrollHeight + (d.offsetHeight - d.clientHeight) : closedH();
+        if (!opening) d.classList.add('is-closing');
+        d.style.overflow = 'hidden';
+        anim = d.animate({ height: [`${from}px`, `${to}px`] }, { duration: opening ? 950 : 800, easing: 'cubic-bezier(.45,.05,.25,1)' });
+        body.animate({ opacity: opening ? [0, 1] : [1, 0], transform: opening ? ['translateY(-8px)', 'none'] : ['none', 'translateY(-8px)'] }, { duration: opening ? 950 : 600, easing: 'ease-in-out', fill: 'forwards' });
+        anim.onfinish = () => {
+          if (!opening) d.open = false;
+          d.classList.remove('is-closing');
+          d.style.overflow = ''; anim = null;
+          body.getAnimations().forEach(a => a.cancel());
+        };
+      });
+    });
+  }
+
+  /* Scroll stacking: <ol data-stack> com filhos sticky (CSS .s-card); o card coberto recua e escurece */
+  function initStack() {
+    const lists = [...document.querySelectorAll('[data-stack]')].map(s => [...s.children]);
+    if (!lists.length || reduced) return;
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      lists.forEach(list => list.forEach((el, i) => {
+        const next = list[i + 1];
+        let p = 0;
+        if (next) {
+          const r = el.getBoundingClientRect(), n = next.getBoundingClientRect();
+          p = Math.min(1, Math.max(0, (r.bottom - n.top) / r.height));
+        }
+        el.style.setProperty('--s', (1 - p * 0.06).toFixed(4));
+        el.style.setProperty('--b', (1 - p * 0.45).toFixed(3));
+      }));
+    };
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    addEventListener('resize', update);
+    update();
+  }
+
   /* Ano automático no rodapé: <span data-year></span> */
   const initYear = () => document.querySelectorAll('[data-year]').forEach(n => n.textContent = new Date().getFullYear());
 
   function init() {
-    initSmoothScroll(); initHeader(); initMenu(); initReveal(); initTilt(); initYear();
+    initSmoothScroll(); initHeader(); initMenu(); initReveal(); initTilt(); initDetails(); initStack(); initYear();
     const start = () => document.querySelectorAll('[data-marquee]').forEach(initMarquee);
     document.fonts?.ready ? document.fonts.ready.then(start) : addEventListener('load', start);
   }

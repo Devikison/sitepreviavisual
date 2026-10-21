@@ -62,7 +62,7 @@ p{margin:0;text-wrap:pretty}
 
 /* Capa */
 .cover{position:relative;height:var(--cover);overflow:hidden}
-.cover__bg{width:100%;height:100%;object-fit:cover;object-position:30% 50%;transform:scale(1.04)}
+.cover__bg{width:100%;height:100%;object-fit:cover;object-position:38% 50%;transform:scale(1.04)}
 .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,11,.15) 0%,rgba(11,11,11,.1) 45%,var(--bg) 100%)}
 .cover__logo{position:absolute;z-index:2;height:auto;top:calc(1.1rem + env(safe-area-inset-top));right:var(--pad);width:112px;opacity:.95}
 .chip{position:absolute;z-index:2;top:calc(1rem + env(safe-area-inset-top));left:var(--pad);display:inline-flex;align-items:center;gap:.45rem;padding:.45rem .85rem;border-radius:999px;font-size:.78rem;font-weight:700;letter-spacing:.04em;
@@ -104,6 +104,7 @@ p{margin:0;text-wrap:pretty}
 .lk__ico svg{width:28px;height:28px}
 .lk__thumb{width:52px;height:52px;flex:none;border-radius:999px 999px 10px 10px;overflow:hidden;border:1px solid rgba(243,226,196,.35)}
 .lk__thumb img{width:100%;height:100%;object-fit:cover}
+.lk__thumb--round{border-radius:50%;border-color:var(--gold-2)}
 .lk__txt{flex:1;min-width:0}
 .lk__txt strong{display:block;font-weight:700;font-size:1rem;line-height:1.3}
 .lk__txt small{display:block;font-size:.84rem;line-height:1.35;color:var(--ink-mute);margin-top:.15rem}
@@ -117,7 +118,7 @@ p{margin:0;text-wrap:pretty}
 .lk--main::before{background:linear-gradient(115deg,transparent 35%,rgba(210,171,122,.5) 50%,transparent 65%);animation:sweep 3.6s var(--ease) infinite}
 @keyframes sweep{0%,55%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
 .lk--main .lk__ico{background:#0b0b0b;border-color:#0b0b0b;box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
-.lk--main .lk__ico svg{color:#fafafa}
+.lk--main .lk__ico svg{color:#25D366}
 .lk--main .lk__txt small{color:#3d3d3d}
 .lk--main .lk__go{border-color:rgba(0,0,0,.25)}
 .lk--main .live{display:inline-block;width:8px;height:8px;margin-right:.4rem;border-radius:50%;background:#1f7a4d;box-shadow:0 0 0 0 rgba(31,122,77,.6);animation:live 2s infinite;vertical-align:middle}
@@ -174,14 +175,15 @@ p{margin:0;text-wrap:pretty}
   <symbol id="i-map" viewBox="0 0 48 48"><path fill="none" stroke="url(#gGold)" stroke-width="1.6" stroke-linejoin="round" d="M6 13l11-4 14 4 11-4v26l-11 4-14-4-11 4Z"/><path fill="none" stroke="url(#gGold)" stroke-width="1.1" opacity=".6" d="M17 9v26M31 13v26"/><path fill="none" stroke="url(#gGold)" stroke-width="1.8" d="M24 31s-6-5.2-6-9.6a6 6 0 0 1 12 0c0 4.4-6 9.6-6 9.6Z"/><circle cx="24" cy="21.5" r="2" fill="url(#gGold)"/></symbol>
   <symbol id="i-star" viewBox="0 0 48 48"><path fill="none" stroke="url(#gGold)" stroke-width="1.8" stroke-linejoin="round" d="m24 7 5 10.3 11.3 1.6-8.2 8 2 11.2L24 32.8 13.9 38.1l2-11.2-8.2-8L19 17.3Z"/><path fill="url(#gGold)" opacity=".35" d="m24 13 3 6.3 6.9 1-5 4.9 1.2 6.8L24 28.8l-6.1 3.2 1.2-6.8-5-4.9 6.9-1Z"/></symbol>
   <symbol id="i-implant" viewBox="0 0 48 48"><path fill="none" stroke="url(#gGold)" stroke-width="1.8" stroke-linejoin="round" d="M15 8c3-1.8 15-1.8 18 0 2 1.2 2.3 4 1.4 7-.5 1.6-1.4 2.6-2.4 3H16c-1-.4-1.9-1.4-2.4-3-.9-3-.6-5.8 1.4-7Z"/><path fill="none" stroke="url(#gGold)" stroke-width="1.8" stroke-linejoin="round" d="M18 21h12l-1.2 4H19.2Z"/><path fill="none" stroke="url(#gGold)" stroke-width="1.6" stroke-linecap="round" d="M19.5 28h9M20 31.5h8M20.8 35h6.4M21.8 38.5h4.4"/></symbol>
+  <symbol id="i-veneer" viewBox="0 0 48 48"><path fill="none" stroke="url(#gGold)" stroke-width="1.8" stroke-linejoin="round" d="M16 10c4-2 12-2 16 0 2.2 1.2 2.8 4 2.3 7.5L32 34c-.6 3.8-3.6 6-8 6s-7.4-2.2-8-6l-2.3-16.5C13.2 14 13.8 11.2 16 10Z"/><path fill="none" stroke="url(#gGold)" stroke-width="1.4" stroke-linecap="round" d="M19.5 14.5c2.8-.8 6.2-.8 9 0M18.3 20l1.6 11"/><path fill="none" stroke="url(#gGold)" stroke-width="1.1" opacity=".7" d="M10 12c1-2.5 3-4 5-4.6M38 12c-1-2.5-3-4-5-4.6"/><path fill="url(#gGold)" d="m39 27 .8 1.9 1.9.8-1.9.8L39 32.4l-.8-1.9-1.9-.8 1.9-.8Z"/></symbol>
   <symbol id="i-drag" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M8 12H3m0 0 2.5-2.5M3 12l2.5 2.5M16 12h5m0 0-2.5-2.5M21 12l-2.5 2.5"/></symbol>
 </svg>
 
-<div class="scene" aria-hidden="true"><img src="assets/ambiente-ripado.jpg" alt="" width="1920" height="1012"></div>
+<div class="scene" aria-hidden="true"><img src="assets/clinica-recepcao-real.jpg" alt="" width="1440" height="956"></div>
 
 <main class="bio">
   <header class="cover">
-    <img class="cover__bg" src="assets/ambiente-ripado.jpg" alt="Recepção da clínica com painéis ripados de madeira e luz quente" width="1920" height="1012" fetchpriority="high">
+    <img class="cover__bg" src="assets/clinica-recepcao-real.jpg" alt="Recepção da Design Dental Clinic com balcão ripado, orquídea e poltronas de couro" width="1440" height="956" fetchpriority="high">
     <span class="chip"><svg aria-hidden="true"><use href="#i-pin"/></svg>Sorocaba · SP</span>
     <img class="cover__logo" src="assets/logo-branco.png" alt="" width="1491" height="369" aria-hidden="true">
   </header>
@@ -205,7 +207,7 @@ p{margin:0;text-wrap:pretty}
       <span class="lk__go"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
     </a>
     <a class="lk rise" style="--i:6" href="https://wa.me/5515996822173?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20lentes%20de%20contato%20dental." target="_blank" rel="noopener">
-      <span class="lk__thumb"><img src="assets/sorriso-lentes.jpg" alt="" width="1100" height="734" loading="lazy"></span>
+      <span class="lk__ico"><svg aria-hidden="true"><use href="#i-veneer"/></svg></span>
       <span class="lk__txt"><strong>Lentes de contato dental</strong><small>Sorriso natural com planejamento digital</small></span>
       <span class="lk__go"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
     </a>
@@ -220,7 +222,7 @@ p{margin:0;text-wrap:pretty}
       <span class="lk__go"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
     </a>
     <a class="lk rise" style="--i:9" href="https://www.instagram.com/dr.felipegiani" target="_blank" rel="noopener">
-      <span class="lk__ico"><svg aria-hidden="true"><use href="#i-doctor"/></svg></span>
+      <span class="lk__thumb lk__thumb--round"><img src="assets/dr-felipe-avatar.jpg" alt="" width="240" height="240" loading="lazy"></span>
       <span class="lk__txt"><strong>Dr.&nbsp;Felipe Giani</strong><small>Idealizador · @dr.felipegiani</small></span>
       <span class="lk__go"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
     </a>
@@ -248,7 +250,9 @@ p{margin:0;text-wrap:pretty}
     </div>
     <div class="marquee" data-marquee data-speed="26" aria-label="Tratamentos, arraste para navegar">
       <div class="marquee__track">
-        <a class="tcard" href="https://www.sitepreviavisual.site/designdentalclinic#tratamentos"><div class="tcard__img"><img src="assets/sorriso-lentes.jpg" alt="Sorriso com lentes de contato dental" width="1100" height="734" loading="lazy"></div><p><strong>Lentes de contato</strong><span>Cor e formato sob medida</span></p></a>
+        <a class="tcard" href="https://www.sitepreviavisual.site/designdentalclinic#resultados"><div class="tcard__img"><img src="assets/resultado-2.jpg" alt="Antes e depois de um caso real da clínica" width="828" height="828" loading="lazy"></div><p><strong>Resultados reais</strong><span>Antes e depois de pacientes</span></p></a>
+        <a class="tcard" href="https://www.sitepreviavisual.site/designdentalclinic#clinica"><div class="tcard__img"><img src="assets/clinica-espera.jpg" alt="Sala de espera da clínica" width="1440" height="956" loading="lazy"></div><p><strong>A clínica</strong><span>Conforto em cada detalhe</span></p></a>
+        <a class="tcard" href="https://www.sitepreviavisual.site/designdentalclinic#tratamentos"><div class="tcard__img"><img src="assets/lentes-depois.jpg" alt="Sorriso após tratamento com lentes de contato dental" width="828" height="408" loading="lazy"></div><p><strong>Lentes de contato</strong><span>Cor e formato sob medida</span></p></a>
         <a class="tcard" href="https://www.sitepreviavisual.site/designdentalclinic#tratamentos"><div class="tcard__img"><img src="assets/implantes-modelo.jpg" alt="Dentista explicando implante com modelo de arcada" width="1100" height="733" loading="lazy"></div><p><strong>Implantes</strong><span>Dentes fixos e seguros</span></p></a>
         <a class="tcard" href="https://www.sitepreviavisual.site/designdentalclinic#tratamentos"><div class="tcard__img"><img src="assets/proteses-modelo.jpg" alt="Modelo de prótese dentária apresentado à paciente" width="1100" height="1650" loading="lazy" style="object-position:50% 30%"></div><p><strong>Próteses</strong><span>Conforto e naturalidade</span></p></a>
         <a class="tcard" href="https://www.sitepreviavisual.site/designdentalclinic#tratamentos"><div class="tcard__img"><img src="assets/consulta-paciente.jpg" alt="Paciente sorrindo durante a consulta" width="1100" height="733" loading="lazy"></div><p><strong>Clínica geral</strong><span>Prevenção e saúde bucal</span></p></a>
@@ -257,7 +261,7 @@ p{margin:0;text-wrap:pretty}
   </section>
 
   <aside class="quote" aria-label="Filosofia da clínica">
-    <p>“Cada sorriso é desenhado para o seu rosto. <em>Nunca</em> um padrão.”</p>
+    <p>Cada sorriso é desenhado para o seu rosto e <em>nunca</em> um padrão.</p>
     <small>Filosofia Design Dental Clinic</small>
   </aside>
 

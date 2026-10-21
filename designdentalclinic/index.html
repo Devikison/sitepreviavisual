@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/sorriso-closeup.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="assets/dr-felipe-retrato.jpg" fetchpriority="high">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -172,13 +172,41 @@ p{margin:0 0 1em;text-wrap:pretty;max-width:62ch;hyphens:manual}
 .menu-open .burger span{background:transparent}
 .menu-open .burger span::before{transform:rotate(45deg)}.menu-open .burger span::after{transform:rotate(-45deg)}
 @media (min-width:1080px){.nav{display:block}.header__cta{display:inline-flex}.burger{display:none}}
-.mnav{position:fixed;inset:0;z-index:55;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2rem;padding:calc(var(--header-h) + env(safe-area-inset-top)) var(--gutter) calc(2rem + env(safe-area-inset-bottom));
   background:rgba(6,6,6,.82);-webkit-backdrop-filter:blur(26px) saturate(140%);backdrop-filter:blur(26px) saturate(140%);opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility .45s}
-.menu-open .mnav{opacity:1;visibility:visible}
-.mnav ul{text-align:center;display:grid;gap:.35rem}
-.mnav a:not(.btn){display:block;font-family:var(--font-display);font-size:clamp(1.7rem,1.3rem + 2vw,2.4rem);padding:.3rem 1rem;transform:translateY(14px);opacity:0;transition:transform .6s var(--ease),opacity .6s;transition-delay:calc(var(--i) * 50ms)}
-.menu-open .mnav a:not(.btn){transform:none;opacity:1}
 body.menu-open{overflow:hidden}
+.menu-open .header{opacity:0;pointer-events:none}
+.mnav{position:fixed;inset:0;z-index:70;overflow-y:auto;overscroll-behavior:contain;padding:calc(.75rem + env(safe-area-inset-top)) .75rem calc(1rem + env(safe-area-inset-bottom));
+  background:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(210,171,122,.12),transparent 60%),rgba(6,6,6,.86);-webkit-backdrop-filter:blur(26px) saturate(140%);backdrop-filter:blur(26px) saturate(140%);
+  opacity:0;visibility:hidden;transition:opacity .5s var(--ease),visibility .5s}
+.menu-open .mnav{opacity:1;visibility:visible}
+.mnav__sheet{max-width:520px;margin:0 auto;display:grid;gap:.75rem}
+.mnav__sheet>*{opacity:0;transform:translateY(-14px) scale(.985);transition:opacity .6s var(--ease),transform .6s var(--ease);transition-delay:calc(var(--i,0) * 70ms)}
+.menu-open .mnav__sheet>*{opacity:1;transform:none}
+.mnav__bar{display:flex;align-items:center;justify-content:space-between;padding:.6rem .6rem .6rem 1.25rem;border-radius:999px}
+.mnav__bar img{height:26px;width:auto}
+.mnav__close{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.05));border:1px solid rgba(255,255,255,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.25);transition:transform .45s var(--ease)}
+.mnav__close:active{transform:scale(.94)}
+.mnav__close svg{width:20px;height:20px}
+.mnav__home{justify-self:center;display:inline-flex;align-items:center;gap:.6rem;min-height:56px;padding:0 1.6rem;border-radius:22px 6px 22px 6px;font-weight:700;
+  background:linear-gradient(180deg,rgba(210,171,122,.2),rgba(210,171,122,.06));border:1px solid rgba(210,171,122,.45);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 14px 30px -18px rgba(0,0,0,.9)}
+.mnav__home svg{width:20px;height:20px}
+.mnav__group{padding:1rem .75rem .75rem;border-radius:28px 8px 28px 8px}
+.mnav__label{margin:0 0 .75rem;text-align:center;font-size:.8rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-2);max-width:none}
+.mnav__grid{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
+.mnav__grid a{display:flex;align-items:center;justify-content:center;gap:.55rem;min-height:58px;padding:.5rem .6rem;border-radius:18px 5px 18px 5px;text-align:center;font-weight:700;font-size:.95rem;line-height:1.2;
+  background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.13);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 -1px 0 rgba(0,0,0,.3);
+  transition:transform .35s var(--ease),border-color .35s,background .35s;-webkit-tap-highlight-color:transparent}
+.mnav__grid a:active{transform:scale(.97);border-color:rgba(210,171,122,.6);background:rgba(210,171,122,.12)}
+.mnav__grid svg{width:20px;height:20px;flex:none}
+.mnav__cta{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.25rem}
+.mnav__cta .btn{width:100%;padding:0 .9rem;font-size:.95rem;--h:60px}
+.mnav__cta .btn .bubble{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none;margin-left:-.4rem}
+.mnav__cta .btn--gold .bubble{background:#0b0b0b;color:#fafafa}
+.mnav__cta .btn--glass .bubble{background:rgba(255,255,255,.12)}
+.mnav__cta .btn .bubble svg{width:18px;height:18px}
+@media (max-width:359px){.mnav__grid a{font-size:.86rem}.mnav__cta{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.mnav__sheet>*{transition:none;opacity:1;transform:none}}
+
 
 /* Hero */
 .hero{position:relative;isolation:isolate;min-height:100dvh;display:flex;flex-direction:column;justify-content:center;padding:calc(var(--header-h) + env(safe-area-inset-top) + 2rem) 0 2.5rem;overflow:hidden}
@@ -328,12 +356,11 @@ body.menu-open{overflow:hidden}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary h3{margin:0;font-size:clamp(1.05rem,1rem + .35vw,1.25rem);color:var(--ink-dark)}
 .plus{position:relative;width:38px;height:38px;flex:none;border-radius:50%;background:#0d0d0d;border:1px solid #0d0d0d;box-shadow:inset 0 1px 0 #fff,0 6px 14px -8px rgba(0,0,0,.6)}
-.plus::before,.plus::after{content:"";position:absolute;left:50%;top:50%;width:13px;height:1.5px;background:#fafafa;transform:translate(-50%,-50%);transition:transform .45s var(--ease)}
+.plus::before,.plus::after{content:"";position:absolute;left:50%;top:50%;width:13px;height:1.5px;background:#fafafa;transform:translate(-50%,-50%);transition:transform .8s var(--ease)}
 .plus::after{transform:translate(-50%,-50%) rotate(90deg)}
 details[open] .plus::after{transform:translate(-50%,-50%) rotate(0)}
 .faq__a{padding:0 1.4rem 1.35rem}
 .faq__a p{margin:0;max-width:70ch}
-details[open] .faq__a{animation:faqIn .5s var(--ease)}
 @keyframes faqIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 
 /* CTA final */
@@ -385,6 +412,43 @@ a.c-line:hover{color:var(--gold-1)}
 .to-top{background:rgba(11,11,11,.72)!important;position:fixed;z-index:50;right:max(1.45rem,calc(env(safe-area-inset-right) + .45rem));bottom:calc(max(1rem,env(safe-area-inset-bottom)) + 74px);width:48px;height:48px;border-radius:50%;display:grid;place-items:center;opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .4s,transform .4s var(--ease),visibility .4s}
 .to-top.is-on{opacity:1;visibility:visible;transform:none}
 .to-top svg{width:20px}
+
+/* Scroll stacking (Método e Diferenciais) */
+.stack{display:grid;gap:1.25rem;counter-reset:none}
+.s-card{position:sticky;top:calc(var(--header-h) + 1rem + var(--n,0) * 18px);transform:scale(var(--s,1));transform-origin:50% 0;filter:brightness(var(--b,1));
+  will-change:transform,filter;transition:transform .15s linear,filter .15s linear,border-color .5s;border-radius:32px 8px 32px 8px;overflow:hidden}
+.s-card::before{content:"";position:absolute;left:12%;right:12%;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-2),transparent);opacity:.7}
+.s-card__txt h3{margin-bottom:.4rem}
+.s-card__txt p{margin:0}
+.stack--dark .s-card{background:linear-gradient(160deg,#1d1d1d,#101010 70%);border:1px solid rgba(255,255,255,.12);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 -24px 48px -28px rgba(0,0,0,.9),0 30px 60px -30px rgba(0,0,0,.95)}
+.stack--dark .d-item.s-card{display:grid;grid-template-columns:auto 1fr;gap:1.25rem;align-items:center;padding:clamp(1.5rem,1.2rem + 1vw,2.1rem);text-align:left;min-height:clamp(150px,12vw,180px)}
+.stack--dark .d-item.s-card .ico-box{margin:0;width:72px;height:72px}
+.stack--dark .d-item.s-card .ico-box svg{width:40px;height:40px}
+.stack--dark .d-item.s-card p{margin:0;color:var(--ink-soft)}
+.stack--light{max-width:860px;margin-inline:auto}
+.stack--light .s-card{background:linear-gradient(160deg,#ffffff,#f4f4f2);border:1px solid rgba(0,0,0,.07);
+  box-shadow:inset 0 1px 0 #fff,0 -20px 44px -28px rgba(0,0,0,.28),0 26px 50px -30px rgba(0,0,0,.32)}
+.step.s-card{display:grid;grid-template-columns:auto 1fr;column-gap:clamp(1.1rem,.8rem + 1.5vw,2.25rem);align-items:center;text-align:left;padding:clamp(1.5rem,1.2rem + 1vw,2.25rem) clamp(1.4rem,1rem + 2vw,2.75rem);min-height:clamp(150px,13vw,190px)}
+.step.s-card .step__n{margin:0;font-size:clamp(2.8rem,2.1rem + 2.4vw,4.2rem);font-weight:600}
+.step.s-card p{margin:0}
+@media (max-width:767px){.stack--dark .d-item.s-card{text-align:left}.stack--dark .d-item.s-card p{margin:0}}
+@media (prefers-reduced-motion:reduce){.s-card{position:relative;top:auto;transform:none;filter:none}}
+
+/* Resultados reais */
+.results{background:var(--bg-3);border-top:1px solid var(--line)}
+.r-card{position:relative;flex:none;width:clamp(260px,72vw,360px);aspect-ratio:4/5;border-radius:var(--r-card);overflow:hidden;border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 30px 60px -30px rgba(0,0,0,.95);transition:transform .55s var(--ease),border-color .55s}
+.r-card img{width:100%;height:100%;object-fit:cover}
+.r-tag{position:absolute;left:.85rem;padding:.4rem .8rem;border-radius:999px;font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fafafa;background:rgba(11,11,11,.6);border:1px solid rgba(255,255,255,.28);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.r-tag--a{top:.85rem}
+.r-tag--d{top:calc(50% + .85rem);color:#0b0b0b;background:rgba(250,250,250,.88);border-color:rgba(210,171,122,.8)}
+@media (hover:hover) and (pointer:fine){.r-card:hover{transform:translateY(-6px);border-color:rgba(210,171,122,.6)}}
+.r-card:active{transform:scale(.985)}
+.signature img.mono{object-fit:cover;padding:0;border:2px solid var(--gold-2);background:none}
+
+/* WhatsApp sempre verde */
+svg:has(use[href="#i-wa"]){color:#25D366}
+.btn--gold svg:has(use[href="#i-wa"]),.fab svg:has(use[href="#i-wa"]){color:#11994a}
 
 /* Reveal */
 [data-reveal]{opacity:0;transform:translateY(24px);transition:opacity 1s var(--ease),transform 1s var(--ease);transition-delay:calc(var(--i,0) * 90ms)}
@@ -445,6 +509,10 @@ a.c-line:hover{color:var(--gold-1)}
   <symbol id="i-phone" viewBox="0 0 24 24"><path fill="none" stroke="url(#gGold)" stroke-width="1.7" stroke-linejoin="round" d="M6.5 3.5h3l1.5 4-2 1.5a11 11 0 0 0 6 6l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7a2 2 0 0 1 2-2.2Z"/></symbol>
   <symbol id="i-check" viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="none" stroke="url(#gDeep)" stroke-width="1.5"/><circle cx="16" cy="16" r="10.5" fill="url(#gDeep)" opacity=".12"/><path fill="none" stroke="url(#gDeep)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m10.5 16.5 3.8 3.7 7.5-8"/></symbol>
   <symbol id="i-drag" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M8 12H3m0 0 2.5-2.5M3 12l2.5 2.5M16 12h5m0 0-2.5-2.5M21 12l-2.5 2.5M12 7v10"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path fill="none" stroke="url(#gGold)" stroke-width="1.7" stroke-linejoin="round" d="M4 10.5 12 4l8 6.5V20h-5.5v-5.5h-5V20H4Z"/></symbol>
+  <symbol id="i-faq" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="url(#gGold)" stroke-width="1.7"/><path fill="none" stroke="url(#gGold)" stroke-width="1.7" stroke-linecap="round" d="M9.6 9.6a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .8-1 1.5v.4"/><circle cx="12" cy="16.6" r="1" fill="url(#gGold)"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="14.5" rx="3" fill="none" stroke="currentColor" stroke-width="1.7"/><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" d="M8 3.5v4M16 3.5v4M4 10h16"/><circle cx="12" cy="15" r="1.4" fill="currentColor"/></symbol>
 </svg>
 
 <header class="header" data-header>
@@ -454,7 +522,7 @@ a.c-line:hover{color:var(--gold-1)}
       <ul>
         <li><a href="#clinica">A clínica</a></li>
         <li><a href="#tratamentos">Tratamentos</a></li>
-        <li><a href="#metodo">Método</a></li>
+        <li><a href="#resultados">Resultados</a></li>
         <li><a href="#experiencia">Estrutura</a></li>
         <li><a href="#depoimentos">Depoimentos</a></li>
         <li><a href="#duvidas">Dúvidas</a></li>
@@ -466,24 +534,24 @@ a.c-line:hover{color:var(--gold-1)}
   </div>
 </header>
 
-<div class="mnav" id="menu-mobile">
-  <ul>
-    <li><a href="#clinica" style="--i:1">A clínica</a></li>
-    <li><a href="#tratamentos" style="--i:2">Tratamentos</a></li>
-    <li><a href="#metodo" style="--i:3">Método</a></li>
-    <li><a href="#experiencia" style="--i:4">Estrutura</a></li>
-    <li><a href="#depoimentos" style="--i:5">Depoimentos</a></li>
-    <li><a href="#duvidas" style="--i:6">Dúvidas</a></li>
-    <li><a href="#contato" style="--i:7">Contato</a></li>
-  </ul>
-  <a class="btn btn--gold" href="https://wa.me/5515996822173?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg>Agendar avaliação</a>
+<div class="mnav" id="menu-mobile" aria-label="Menu">
+  <div class="mnav__sheet">
+    <div class="mnav__bar glass" style="--i:0"><img src="assets/logo-branco.png" alt="Design Dental Clinic" width="1491" height="369"><button class="mnav__close" type="button" data-menu-close aria-label="Fechar menu"><svg aria-hidden="true"><use href="#i-x"/></svg></button></div>
+    <a class="mnav__home" href="#inicio" style="--i:1"><svg aria-hidden="true"><use href="#i-home"/></svg>Início</a>
+    <nav class="mnav__group glass" style="--i:2" aria-label="Navegação"><p class="mnav__label">Navegação</p><div class="mnav__grid"><a href="#clinica"><svg aria-hidden="true"><use href="#i-tooth"/></svg>A clínica</a><a href="#resultados"><svg aria-hidden="true"><use href="#i-smile"/></svg>Resultados</a><a href="#experiencia"><svg aria-hidden="true"><use href="#i-chair"/></svg>Estrutura</a><a href="#depoimentos"><svg aria-hidden="true"><use href="#i-star"/></svg>Depoimentos</a><a href="#duvidas"><svg aria-hidden="true"><use href="#i-faq"/></svg>Dúvidas</a><a href="#contato"><svg aria-hidden="true"><use href="#i-pin"/></svg>Contato</a></div></nav>
+    <nav class="mnav__group glass" style="--i:3" aria-label="Tratamentos"><p class="mnav__label">Tratamentos</p><div class="mnav__grid"><a href="#tratamentos"><svg aria-hidden="true"><use href="#i-veneer"/></svg>Lentes</a><a href="#tratamentos"><svg aria-hidden="true"><use href="#i-implant"/></svg>Implantes</a><a href="#tratamentos"><svg aria-hidden="true"><use href="#i-arch"/></svg>Próteses</a><a href="#tratamentos"><svg aria-hidden="true"><use href="#i-shield"/></svg>Clínica geral</a></div></nav>
+    <div class="mnav__cta" style="--i:4">
+      <a class="btn btn--gold" href="https://wa.me/5515996822173?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener"><span class="bubble"><svg aria-hidden="true"><use href="#i-cal"/></svg></span>Agendar</a>
+      <a class="btn btn--glass" href="https://www.instagram.com/design.dentalclinic" target="_blank" rel="noopener"><span class="bubble"><svg aria-hidden="true"><use href="#i-insta"/></svg></span>Instagram</a>
+    </div>
+  </div>
 </div>
 
 <main id="conteudo">
 
   <!-- HERO -->
   <section class="hero" id="inicio" aria-labelledby="h-hero">
-    <div class="hero__bg" aria-hidden="true"><img src="assets/ambiente-ripado.jpg" alt="" width="1920" height="1012" fetchpriority="high"></div>
+    <div class="hero__bg" aria-hidden="true"><img src="assets/clinica-recepcao-real.jpg" alt="" width="1440" height="956" fetchpriority="high"></div>
     <div class="glow" style="right:-10%;top:10%" aria-hidden="true"></div>
     <div class="container">
       <div class="hero__grid">
@@ -497,7 +565,7 @@ a.c-line:hover{color:var(--gold-1)}
         </div>
         <div class="hero__visual" data-reveal style="--i:2">
           <div class="arch-ring" aria-hidden="true"></div>
-          <div class="arch"><img src="assets/sorriso-closeup.jpg" alt="Close de um sorriso feminino com dentes alinhados e naturais" width="1920" height="1278" fetchpriority="high"></div>
+          <div class="arch"><img src="assets/dr-felipe-retrato.jpg" alt="Dr. Felipe Giani, idealizador da Design Dental Clinic, sorrindo no consultório" width="1100" height="1198" fetchpriority="high" style="object-position:50% 28%"></div>
           <div class="float-card glass">
             <svg class="ico" aria-hidden="true"><use href="#i-plan"/></svg>
             <p><strong>Planejamento digital</strong>Veja a simulação do sorriso antes de começar</p>
@@ -518,15 +586,15 @@ a.c-line:hover{color:var(--gold-1)}
     <div class="slats" aria-hidden="true"></div>
     <div class="container split">
       <div class="collage" data-reveal>
-        <div class="arch"><img src="assets/ambiente-ripado.jpg" alt="Recepção com painéis ripados de madeira e iluminação quente" width="1920" height="1012" loading="lazy" style="object-position:22% 50%"></div>
-        <div class="collage__small"><img src="assets/consultorio.jpg" alt="Consultório odontológico claro e moderno com cadeira e monitores" width="1100" height="733" loading="lazy"></div>
+        <div class="arch"><img src="assets/dr-felipe-consultorio.jpg" alt="Dr. Felipe Giani no consultório da clínica, ao lado do microscópio" width="1440" height="957" loading="lazy" style="object-position:22% 50%"></div>
+        <div class="collage__small"><img src="assets/clinica-espera.jpg" alt="Sala de espera com poltronas de couro e o logo da clínica" width="1440" height="956" loading="lazy"></div>
       </div>
       <div class="split__copy center-m">
         <h2 id="h-clinica" data-reveal style="--i:1">Cada sorriso nasce de um projeto <em>único</em></h2>
         <p class="lead" data-reveal style="--i:2">A Design Dental Clinic foi idealizada para quem não aceita um sorriso padronizado. Aqui, estética e função caminham juntas, do primeiro diagnóstico ao último detalhe.</p>
         <p data-reveal style="--i:3">Estudamos proporções do rosto, tom de pele, formato dos lábios e a sua rotina para desenhar um resultado harmônico, natural e duradouro. Tudo em um ambiente acolhedor, com tempo dedicado a cada paciente.</p>
         <div class="signature glass" data-reveal style="--i:4">
-          <span class="mono" aria-hidden="true">FG</span>
+          <img class="mono" src="assets/dr-felipe-avatar.jpg" alt="" width="240" height="240" loading="lazy">
           <p><strong>Dr.&nbsp;Felipe Giani</strong>Idealizador e responsável técnico · Nº&nbsp;CRO&#8209;SP</p>
         </div>
         <div class="pills" data-reveal style="--i:5">
@@ -549,7 +617,7 @@ a.c-line:hover{color:var(--gold-1)}
       </div>
       <div class="bento">
         <article class="t-card t-card--hero glass tilt shine-follow" data-tilt data-reveal>
-          <div class="t-card__media"><img src="assets/sorriso-lentes.jpg" alt="Mulher sorrindo com dentes brancos e alinhados" width="1100" height="734" loading="lazy"></div>
+          <div class="t-card__media"><img src="assets/lentes-depois.jpg" alt="Sorriso após tratamento com lentes de contato dental na clínica" width="828" height="408" loading="lazy"></div>
           <div class="t-card__body">
             <span class="pill">Carro-chefe</span>
             <h3>Lentes de contato dental</h3>
@@ -590,7 +658,7 @@ a.c-line:hover{color:var(--gold-1)}
 
   <!-- DIFERENCIAIS -->
   <section class="section diff" id="diferenciais" aria-labelledby="h-diff">
-    <div class="bg-photo" aria-hidden="true"><img src="assets/ambiente-recepcao.jpg" alt="" width="1920" height="1080" loading="lazy"></div>
+    <div class="bg-photo" aria-hidden="true"><img src="assets/clinica-consultorio.jpg" alt="" width="1353" height="900" loading="lazy"></div>
     <div class="glow" style="left:-15%;bottom:0" aria-hidden="true"></div>
     <div class="container diff__grid">
       <div class="diff__head">
@@ -598,13 +666,13 @@ a.c-line:hover{color:var(--gold-1)}
         <p class="lead" data-reveal style="--i:2">Do conforto da recepção à precisão do planejamento, tudo foi pensado para você se sentir seguro e bem cuidado.</p>
         <div class="btn-row" data-reveal style="--i:3"><a class="btn btn--glass" href="#metodo">Ver como funciona<svg aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
       </div>
-      <ul class="diff__list">
-        <li class="d-item glass tilt shine-follow" data-tilt data-reveal><div class="ico-box"><svg aria-hidden="true"><use href="#i-plan"/></svg></div><h3>Planejamento digital do sorriso</h3><p>Simulação do resultado antes do tratamento, para decidir junto com o dentista.</p></li>
-        <li class="d-item glass tilt shine-follow" data-tilt data-reveal style="--i:1"><div class="ico-box"><svg aria-hidden="true"><use href="#i-veneer"/></svg></div><h3>Estética com naturalidade</h3><p>Formato, cor e textura escolhidos para combinar com o seu rosto, sem aspecto artificial.</p></li>
-        <li class="d-item glass tilt shine-follow" data-tilt data-reveal style="--i:2"><div class="ico-box"><svg aria-hidden="true"><use href="#i-time"/></svg></div><h3>Hora marcada, sem pressa</h3><p>Agenda organizada para que cada consulta tenha o tempo e a atenção que merece.</p></li>
-        <li class="d-item glass tilt shine-follow" data-tilt data-reveal style="--i:3"><div class="ico-box"><svg aria-hidden="true"><use href="#i-gem"/></svg></div><h3>Materiais de alta performance</h3><p>Cerâmicas e componentes selecionados por resistência, brilho e longevidade.</p></li>
-        <li class="d-item glass tilt shine-follow" data-tilt data-reveal style="--i:4"><div class="ico-box"><svg aria-hidden="true"><use href="#i-chair"/></svg></div><h3>Ambiente acolhedor</h3><p>Um espaço calmo e confortável, pensado para quem tem receio de dentista.</p></li>
-        <li class="d-item glass tilt shine-follow" data-tilt data-reveal style="--i:5"><div class="ico-box"><svg aria-hidden="true"><use href="#i-shield"/></svg></div><h3>Acompanhamento contínuo</h3><p>Revisões programadas e protocolos rigorosos de biossegurança em todas as etapas.</p></li>
+      <ul class="stack stack--dark" data-stack>
+        <li class="d-item s-card" style="--n:0"><div class="ico-box"><svg aria-hidden="true"><use href="#i-plan"/></svg></div><div class="s-card__txt"><h3>Planejamento digital do sorriso</h3><p>Simulação do resultado antes do tratamento, para decidir junto com o dentista.</p></div></li>
+        <li class="d-item s-card" style="--n:1"><div class="ico-box"><svg aria-hidden="true"><use href="#i-veneer"/></svg></div><div class="s-card__txt"><h3>Estética com naturalidade</h3><p>Formato, cor e textura escolhidos para combinar com o seu rosto, sem aspecto artificial.</p></div></li>
+        <li class="d-item s-card" style="--n:2"><div class="ico-box"><svg aria-hidden="true"><use href="#i-time"/></svg></div><div class="s-card__txt"><h3>Hora marcada, sem pressa</h3><p>Agenda organizada para que cada consulta tenha o tempo e a atenção que merece.</p></div></li>
+        <li class="d-item s-card" style="--n:3"><div class="ico-box"><svg aria-hidden="true"><use href="#i-gem"/></svg></div><div class="s-card__txt"><h3>Materiais de alta performance</h3><p>Cerâmicas e componentes selecionados por resistência, brilho e longevidade.</p></div></li>
+        <li class="d-item s-card" style="--n:4"><div class="ico-box"><svg aria-hidden="true"><use href="#i-chair"/></svg></div><div class="s-card__txt"><h3>Ambiente acolhedor</h3><p>Um espaço calmo e confortável, pensado para quem tem receio de dentista.</p></div></li>
+        <li class="d-item s-card" style="--n:5"><div class="ico-box"><svg aria-hidden="true"><use href="#i-shield"/></svg></div><div class="s-card__txt"><h3>Acompanhamento contínuo</h3><p>Revisões programadas e protocolos rigorosos de biossegurança em todas as etapas.</p></div></li>
       </ul>
     </div>
   </section>
@@ -618,12 +686,12 @@ a.c-line:hover{color:var(--gold-1)}
         </div>
         <p class="lead" data-reveal style="--i:2">Um processo claro, em etapas, para você saber exatamente o que vai acontecer e quando.</p>
       </div>
-      <ol class="steps">
-        <li class="step glass" data-reveal><span class="step__n" aria-hidden="true">01</span><h3>Escuta e avaliação</h3><p>Entendemos seus desejos, histórico e queixas com exame clínico completo.</p></li>
-        <li class="step glass" data-reveal style="--i:1"><span class="step__n" aria-hidden="true">02</span><h3>Diagnóstico digital</h3><p>Fotos, escaneamento e exames para mapear cada detalhe do sorriso.</p></li>
-        <li class="step glass" data-reveal style="--i:2"><span class="step__n" aria-hidden="true">03</span><h3>Projeto do sorriso</h3><p>Simulação personalizada e plano de tratamento apresentado com transparência.</p></li>
-        <li class="step glass" data-reveal style="--i:3"><span class="step__n" aria-hidden="true">04</span><h3>Execução precisa</h3><p>Procedimentos realizados com técnica refinada e máximo conforto.</p></li>
-        <li class="step glass" data-reveal style="--i:4"><span class="step__n" aria-hidden="true">05</span><h3>Cuidado contínuo</h3><p>Revisões e orientações para manter o resultado bonito por muitos anos.</p></li>
+      <ol class="stack stack--light" data-stack>
+        <li class="step s-card" style="--n:0"><span class="step__n" aria-hidden="true">01</span><div class="s-card__txt"><h3>Escuta e avaliação</h3><p>Entendemos seus desejos, histórico e queixas com exame clínico completo.</p></div></li>
+        <li class="step s-card" style="--n:1"><span class="step__n" aria-hidden="true">02</span><div class="s-card__txt"><h3>Diagnóstico digital</h3><p>Fotos, escaneamento e exames para mapear cada detalhe do sorriso.</p></div></li>
+        <li class="step s-card" style="--n:2"><span class="step__n" aria-hidden="true">03</span><div class="s-card__txt"><h3>Projeto do sorriso</h3><p>Simulação personalizada e plano de tratamento apresentado com transparência.</p></div></li>
+        <li class="step s-card" style="--n:3"><span class="step__n" aria-hidden="true">04</span><div class="s-card__txt"><h3>Execução precisa</h3><p>Procedimentos realizados com técnica refinada e máximo conforto.</p></div></li>
+        <li class="step s-card" style="--n:4"><span class="step__n" aria-hidden="true">05</span><div class="s-card__txt"><h3>Cuidado contínuo</h3><p>Revisões e orientações para manter o resultado bonito por muitos anos.</p></div></li>
       </ol>
       <div class="method__media">
         <div class="method__img" data-reveal><img src="assets/planejamento-digital.jpg" alt="Dentista mostrando ao paciente a imagem dos dentes em um monitor" width="1100" height="733" loading="lazy"></div>
@@ -641,12 +709,11 @@ a.c-line:hover{color:var(--gold-1)}
     </div>
     <div class="marquee" data-marquee data-speed="34" aria-label="Galeria da clínica, arraste para navegar">
       <div class="marquee__track">
-        <figure class="g-item g-tall"><img src="assets/ambiente-ripado.jpg" alt="Recepção com painéis ripados de madeira e luz quente" width="1920" height="1012" loading="lazy"><figcaption class="glass">Recepção acolhedora</figcaption></figure>
-        <figure class="g-item g-wide"><img src="assets/consultorio.jpg" alt="Consultório amplo e iluminado com tecnologia odontológica" width="1100" height="733" loading="lazy"><figcaption class="glass">Consultório com tecnologia</figcaption></figure>
-        <figure class="g-item g-tall"><img src="assets/espelho-sorriso.jpg" alt="Paciente sorrindo para o espelho após atendimento" width="1100" height="733" loading="lazy" style="object-position:42% 50%"><figcaption class="glass">Cuidado em cada detalhe</figcaption></figure>
-        <figure class="g-item g-wide"><img src="assets/ambiente-recepcao.jpg" alt="Balcão de recepção iluminado e detalhes em madeira" width="1920" height="1080" loading="lazy"><figcaption class="glass">Detalhes que acolhem</figcaption></figure>
-        <figure class="g-item g-tall"><img src="assets/planejamento-digital.jpg" alt="Planejamento do tratamento exibido em monitor" width="1100" height="733" loading="lazy" style="object-position:70% 50%"><figcaption class="glass">Planejamento digital</figcaption></figure>
-        <figure class="g-item g-wide"><img src="assets/consulta-paciente.jpg" alt="Conversa entre dentista e paciente sorridente" width="1100" height="733" loading="lazy"><figcaption class="glass">Atenção individual</figcaption></figure>
+        <figure class="g-item g-tall"><img src="assets/clinica-recepcao-real.jpg" alt="Recepção da clínica com balcão ripado preto, orquídea e poltronas de couro" width="1440" height="956" loading="lazy" style="object-position:28% 50%"><figcaption class="glass">Recepção</figcaption></figure>
+        <figure class="g-item g-wide"><img src="assets/clinica-espera.jpg" alt="Sala de espera com quatro poltronas de couro caramelo e o logo Design na parede" width="1440" height="956" loading="lazy"><figcaption class="glass">Sala de espera</figcaption></figure>
+        <figure class="g-item g-tall"><img src="assets/dr-felipe-training.jpg" alt="Dr. Felipe Giani na sala do Design Dental Training" width="1100" height="1198" loading="lazy" style="object-position:22% 50%"><figcaption class="glass">Design Dental Training</figcaption></figure>
+        <figure class="g-item g-wide"><img src="assets/clinica-consultorio.jpg" alt="Consultório com microscópio, cadeira odontológica e painel ripado de madeira" width="1353" height="900" loading="lazy"><figcaption class="glass">Consultório com microscópio</figcaption></figure>
+        <figure class="g-item g-wide"><img src="assets/dr-felipe-consultorio.jpg" alt="Dr. Felipe Giani sorrindo no consultório equipado" width="1440" height="957" loading="lazy" style="object-position:30% 50%"><figcaption class="glass">Tecnologia em cada etapa</figcaption></figure>
       </div>
     </div>
     <p class="drag-hint"><svg aria-hidden="true"><use href="#i-drag"/></svg>Arraste para explorar</p>
@@ -669,9 +736,27 @@ a.c-line:hover{color:var(--gold-1)}
     </div>
   </section>
 
+  <!-- RESULTADOS -->
+  <section class="section results" id="resultados" aria-labelledby="h-res">
+    <div class="container section-head section-head--row">
+      <h2 id="h-res" data-reveal>Resultados que falam por <em>si</em></h2>
+      <p class="lead" data-reveal style="--i:1">Casos reais de pacientes da clínica. Arraste e compare o antes e o depois de cada sorriso.</p>
+    </div>
+    <div class="marquee" data-marquee data-speed="28" aria-label="Casos reais de antes e depois, arraste para navegar">
+      <div class="marquee__track">
+        <figure class="r-card"><img src="assets/resultado-1.jpg" alt="Antes e depois do sorriso de um paciente da clínica, caso real 1" width="900" height="900" loading="lazy"><span class="r-tag r-tag--a">Antes</span><span class="r-tag r-tag--d">Depois</span></figure>
+        <figure class="r-card"><img src="assets/resultado-2.jpg" alt="Antes e depois do sorriso de um paciente da clínica, caso real 2" width="828" height="828" loading="lazy"><span class="r-tag r-tag--a">Antes</span><span class="r-tag r-tag--d">Depois</span></figure>
+        <figure class="r-card"><img src="assets/resultado-3.jpg" alt="Antes e depois do sorriso de um paciente da clínica, caso real 3" width="900" height="900" loading="lazy"><span class="r-tag r-tag--a">Antes</span><span class="r-tag r-tag--d">Depois</span></figure>
+        <figure class="r-card"><img src="assets/resultado-4.jpg" alt="Antes e depois do sorriso de um paciente da clínica, caso real 4" width="900" height="1125" loading="lazy"><span class="r-tag r-tag--a">Antes</span><span class="r-tag r-tag--d">Depois</span></figure>
+        <figure class="r-card"><img src="assets/resultado-5.jpg" alt="Antes e depois do sorriso de um paciente da clínica, caso real 5" width="900" height="1125" loading="lazy"><span class="r-tag r-tag--a">Antes</span><span class="r-tag r-tag--d">Depois</span></figure>
+      </div>
+    </div>
+    <p class="note">Casos reais publicados pela clínica. Os resultados variam de acordo com cada paciente.</p>
+  </section>
+
   <!-- DEPOIMENTOS -->
   <section class="section testi" id="depoimentos" aria-labelledby="h-dep">
-    <div class="bg-photo" aria-hidden="true"><img src="assets/ambiente-ripado.jpg" alt="" width="1920" height="1012" loading="lazy"></div>
+    <div class="bg-photo" aria-hidden="true"><img src="assets/clinica-recepcao-real.jpg" alt="" width="1440" height="956" loading="lazy"></div>
     <div class="container section-head section-head--center">
       <h2 id="h-dep" data-reveal style="--i:1">Sorrisos que contam a nossa <em>história</em></h2>
     </div>
@@ -708,7 +793,7 @@ a.c-line:hover{color:var(--gold-1)}
 
   <!-- CTA FINAL -->
   <section class="section cta" id="agendar" aria-labelledby="h-cta">
-    <div class="bg-photo" aria-hidden="true"><img src="assets/ambiente-recepcao.jpg" alt="" width="1920" height="1080" loading="lazy"></div>
+    <div class="bg-photo" aria-hidden="true"><img src="assets/clinica-espera.jpg" alt="" width="1440" height="956" loading="lazy"></div>
     <div class="container">
       <div class="cta-panel glass" data-reveal>
         <h2 id="h-cta">Seu novo sorriso começa com uma <em>conversa</em></h2>
@@ -730,7 +815,7 @@ a.c-line:hover{color:var(--gold-1)}
       <div class="contact__grid">
         <div class="contact-card glass" data-reveal>
           <address>
-            <a class="c-line" href="https://wa.me/5515996822173" target="_blank" rel="noopener"><span class="ico-box"><svg aria-hidden="true" style="color:#d2ab7a"><use href="#i-wa"/></svg></span><span><small>WhatsApp</small>(15) 99682-2173</span></a>
+            <a class="c-line" href="https://wa.me/5515996822173" target="_blank" rel="noopener"><span class="ico-box"><svg aria-hidden="true"><use href="#i-wa"/></svg></span><span><small>WhatsApp</small>(15) 99682-2173</span></a>
             <a class="c-line" href="tel:+5515996822173"><span class="ico-box"><svg aria-hidden="true"><use href="#i-phone"/></svg></span><span><small>Telefone</small>(15) 99682-2173</span></a>
             <a class="c-line" href="https://www.instagram.com/design.dentalclinic" target="_blank" rel="noopener"><span class="ico-box"><svg aria-hidden="true"><use href="#i-insta"/></svg></span><span><small>Instagram</small>@design.dentalclinic</span></a>
             <div class="c-line"><span class="ico-box"><svg aria-hidden="true"><use href="#i-pin"/></svg></span><span><small>Endereço</small>Endereço completo da clínica</span></div>
@@ -755,7 +840,7 @@ a.c-line:hover{color:var(--gold-1)}
       </div>
       <div>
         <p class="footer__title">Navegação</p>
-        <ul><li><a href="#clinica">A clínica</a></li><li><a href="#tratamentos">Tratamentos</a></li><li><a href="#metodo">Método</a></li><li><a href="#duvidas">Dúvidas</a></li></ul>
+        <ul><li><a href="#clinica">A clínica</a></li><li><a href="#tratamentos">Tratamentos</a></li><li><a href="#resultados">Resultados</a></li><li><a href="#duvidas">Dúvidas</a></li></ul>
       </div>
       <div>
         <p class="footer__title">Conecte-se</p>
@@ -777,6 +862,7 @@ a.c-line:hover{color:var(--gold-1)}
 <script>
 addEventListener('DOMContentLoaded', () => {
   Base.init();
+  document.querySelector('[data-menu-close]')?.addEventListener('click', () => document.querySelector('[data-menu-toggle]').click());
   const top = document.querySelector('.to-top');
   const onScroll = () => top.classList.toggle('is-on', scrollY > 700);
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
