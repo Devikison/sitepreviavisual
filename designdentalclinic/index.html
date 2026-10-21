@@ -436,6 +436,13 @@ a.c-line:hover{color:var(--gold-1)}
   .hero .trust{margin-top:clamp(3rem,2rem + 4vw,6rem)}
 }
 @media (max-width:767px){.hero__copy .btn-row .btn{flex:1 1 100%}}
+@media (max-width:959px){
+  .hero{display:block;min-height:0;padding:0 0 clamp(1.75rem,1.2rem + 2vw,2.5rem)}
+  .hero__bg{position:relative;inset:auto;z-index:0;height:clamp(320px,56svh,540px);overflow:hidden}
+  .hero__bg img{object-position:86% 50%}
+  .hero__bg::after{background:linear-gradient(180deg,rgba(11,11,11,.6) 0%,rgba(11,11,11,0) 24%,rgba(11,11,11,0) 58%,rgba(11,11,11,.75) 86%,var(--bg) 100%)}
+  .hero__in{z-index:1;margin-top:-2.75rem}
+}
 @media (prefers-reduced-motion:reduce){.hero__bg img{animation:none}}
 
 /* Scroll stacking (Método e Diferenciais) */
