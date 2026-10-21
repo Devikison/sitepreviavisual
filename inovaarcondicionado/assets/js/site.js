@@ -399,12 +399,15 @@
       e.preventDefault();
       if (envioEmCurso || envioConcluido) return;
       if (!form.checkValidity()) { form.reportValidity(); return; }
+      /* anti-spam: o campo "website" está escondido; só um robô o preenche. Finge sucesso e não envia nada. */
+      var hp = form.querySelector('[name="website"]');
+      if (hp && hp.value) { envioConcluido = true; status.textContent = 'Pedido recebido.'; return; }
       envioEmCurso = true;
       btnLabel.textContent = 'A enviar...'; btn.disabled = true;
       status.textContent = 'A confirmar o envio...'; altWa.hidden = true;
 
       var tracking = obterTracking();
-      var val = function (n) { var el = form.querySelector('[name="' + n + '"]'); return el ? el.value.trim() : ''; };
+      var val = function (n) { var el = form.querySelector('[name="' + n + '"]'); return el ? el.value.trim().slice(0, 2000) : ''; };
       var payload = {
         nome: val('name'), telefone: val('phone'), email: val('email'), mensagem: val('message'),
         utm_source: tracking.utm_source, utm_medium: tracking.utm_medium, utm_campaign: tracking.utm_campaign,
@@ -446,8 +449,25 @@
     });
   }
 
+  /* ---------------- proteção de conteúdo ----------------
+     Dificulta copiar texto e guardar imagens (botão direito, arrastar, Ctrl+C).
+     Só faz preventDefault, nunca stopPropagation: cliques, Pixel, Google Ads,
+     formulário e UTMs continuam a funcionar. Campos de formulário ficam livres. */
+  function setupProtection() {
+    function isField(t) { return !!(t && t.closest && t.closest('input, textarea, select, [contenteditable="true"]')); }
+    document.addEventListener('contextmenu', function (e) { if (!isField(e.target)) e.preventDefault(); });
+    document.addEventListener('dragstart', function (e) { if (!isField(e.target)) e.preventDefault(); });
+    document.addEventListener('copy', function (e) { if (!isField(e.target)) e.preventDefault(); });
+    document.addEventListener('cut', function (e) { if (!isField(e.target)) e.preventDefault(); });
+    document.addEventListener('keydown', function (e) {
+      var k = (e.key || '').toLowerCase();
+      if ((e.ctrlKey || e.metaKey) && (k === 's' || k === 'u' || k === 'p')) e.preventDefault();
+    });
+  }
+
   /* ---------------- arranque ---------------- */
   function init() {
+    setupProtection();
     setupCookieUI();
     setupHeader();
     setupReveal();

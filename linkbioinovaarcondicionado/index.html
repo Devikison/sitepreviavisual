@@ -105,6 +105,11 @@
     ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #19A8E6, var(--blue-500) 50%, var(--blue-600)); border: 3px solid #020F24; border-radius: 999px; }
     ::-webkit-scrollbar-button { display: none; height: 0; }
     @media (max-width: 760px) { html { scrollbar-width: none; } ::-webkit-scrollbar { display: none; width: 0; } }
+
+    /* proteção de conteúdo: sem seleção de texto nem arrastar imagens */
+    body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+    img, svg { -webkit-user-drag: none; user-drag: none; }
+    input, textarea, select { -webkit-user-select: text; user-select: text; -webkit-touch-callout: default; }
   </style>
 </head>
 <body>
@@ -205,6 +210,16 @@
 
     var saved = read();
     if (saved === '1') loadPixel(); else if (saved === null) bar.classList.add('is-open');
+
+    /* proteção de conteúdo: só preventDefault (nunca stopPropagation), os cliques e o Pixel seguem normais */
+    function isField(t) { return !!(t && t.closest && t.closest('input, textarea, select')); }
+    ['contextmenu', 'dragstart', 'copy', 'cut'].forEach(function (ev) {
+      document.addEventListener(ev, function (e) { if (!isField(e.target)) e.preventDefault(); });
+    });
+    document.addEventListener('keydown', function (e) {
+      var k = (e.key || '').toLowerCase();
+      if ((e.ctrlKey || e.metaKey) && (k === 's' || k === 'u' || k === 'p')) e.preventDefault();
+    });
   })();
   </script>
 </body>

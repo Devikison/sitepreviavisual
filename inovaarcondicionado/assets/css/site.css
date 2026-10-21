@@ -96,10 +96,13 @@ p { margin: 0; }
 /* ---------- botões ---------- */
 /* Sistema de botões: pílula com volume (luz no topo, sombra tingida), ícone num disco,
    brilho que varre no hover e leve elevação. O mesmo em todas as páginas. */
+/* Medidas por variáveis: --h altura, --ic disco do ícone, --pad folga do lado do texto.
+   O disco fica encostado à ponta da pílula com a mesma folga em cima, em baixo e de lado. */
 .btn {
+  --h: 54px; --ic: 34px; --pad: 26px; --inset: calc((var(--h) - var(--ic)) / 2);
   position: relative; isolation: isolate; overflow: hidden;
   display: inline-flex; align-items: center; justify-content: center; gap: 12px;
-  min-height: 54px; padding: 0 26px 0 20px; border-radius: var(--r-pill);
+  min-height: var(--h); padding: 0 var(--pad); border-radius: var(--r-pill); max-width: 100%;
   font-family: var(--font-head); font-weight: 600; font-size: 1rem; letter-spacing: .01em;
   transition: transform var(--t) var(--ease), box-shadow var(--t) var(--ease), background var(--t), color var(--t), border-color var(--t);
   white-space: nowrap;
@@ -111,13 +114,29 @@ p { margin: 0; }
   transform: translateX(-120%); transition: transform .7s var(--ease);
 }
 .btn:hover::after { transform: translateX(120%); }
-.btn svg { width: 34px; height: 34px; padding: 8px; flex: none; border-radius: 50%; transition: transform var(--t) var(--ease), background var(--t); }
+.btn svg { width: var(--ic); height: var(--ic); padding: calc(var(--ic) * .24); flex: none; border-radius: 50%; transition: transform var(--t) var(--ease), background var(--t), box-shadow var(--t); }
 .btn:hover svg { transform: translateX(2px); }
-.btn:not(:has(svg)) { padding-inline: 28px; }
+.btn:has(> svg) { padding-left: var(--inset); }
+.btn.btn-trail { padding-left: var(--pad); padding-right: var(--inset); }
 .btn:active { transform: translateY(1px) scale(.985); }
-.btn-lg { min-height: 60px; padding: 0 30px 0 22px; font-size: 1.05rem; gap: 14px; }
-.btn-sm { min-height: 44px; padding: 0 18px 0 12px; font-size: .92rem; gap: 8px; }
-.btn-sm svg { width: 28px; height: 28px; padding: 6px; }
+.btn-lg { --h: 60px; --ic: 38px; --pad: 30px; font-size: 1.05rem; gap: 14px; }
+.btn-sm { --h: 44px; --ic: 30px; --pad: 18px; font-size: .92rem; gap: 8px; }
+/* ecrãs estreitos: o botão encolhe um pouco em vez de estourar */
+@media (max-width: 380px) {
+  .btn { --pad: 20px; gap: 10px; font-size: .95rem; }
+  .btn-lg { --h: 56px; --ic: 36px; --pad: 22px; font-size: 1rem; }
+}
+/* botões a toda a largura (formulário, menu, hero no telemóvel): o disco continua na ponta
+   e o texto fica ao centro do botão, equilibrado por um espaçador invisível do lado direito */
+.form-foot .btn:has(> svg), .mm-actions .btn:has(> svg) { justify-content: space-between; }
+.form-foot .btn:has(> svg)::before, .mm-actions .btn:has(> svg)::before { content: ""; order: 1; flex: none; width: calc(var(--ic) + var(--inset) - var(--pad)); }
+@media (max-width: 960px) {
+  .hero-actions .btn:has(> svg) { justify-content: space-between; }
+  .hero-actions .btn:has(> svg)::before { content: ""; order: 1; flex: none; width: calc(var(--ic) + var(--inset) - var(--pad)); }
+}
+/* logótipos de marca (Google, Maps, Instagram) ficam sempre num disco branco, também no hover */
+.btn svg:is(.ic-g, .ic-maps, .ic-ig),
+.btn:hover svg:is(.ic-g, .ic-maps, .ic-ig) { background: #fff; color: inherit; box-shadow: 0 0 0 1px rgba(3,45,90,.1), 0 2px 6px -2px rgba(3,45,90,.25); }
 
 /* primário: azul da marca com luz no topo */
 .btn-primary {
@@ -159,9 +178,6 @@ p { margin: 0; }
 .btn-wa svg { background: rgba(255,255,255,.2); }
 .btn-wa:hover { transform: translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 20px 36px -14px rgba(23,140,71,.8); }
 
-/* botões sem ícone à esquerda mas com seta à direita (Saber mais, Ver projetos): seta num disco à direita */
-.btn svg:last-child:not(:first-child) { margin-right: -8px; }
-.btn svg:first-child:not(:last-child) { margin-left: -4px; }
 .link-arrow { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-head); font-weight: 600; color: var(--blue-600); }
 .link-arrow svg { width: 18px; height: 18px; transition: transform var(--t) var(--ease); }
 .link-arrow:hover svg { transform: translateX(4px); }
@@ -247,18 +263,20 @@ p { margin: 0; }
 }
 .mobile-menu.is-open { opacity: 1; visibility: visible; transform: none; filter: none; transition: opacity .45s var(--ease), transform .45s var(--ease), filter .45s var(--ease), visibility 0s; }
 body.menu-open { overflow: hidden; }
-.mm-inner { width: min(100% - 32px, 520px); margin-inline: auto; padding: 16px 0 32px; display: grid; gap: 14px; color: #fff; }
+/* a barra do menu tem a mesma forma e posição da barra do site: o X fica onde estava o hambúrguer */
+.mm-inner { width: min(100% - 2 * var(--gutter), 520px); margin-inline: auto; padding: 10px 0 32px; display: grid; gap: 14px; color: #fff; }
 .mm-head {
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  padding: 10px 10px 10px 16px; border-radius: 18px;
+  min-height: 62px; padding: 6px 6px 6px 14px; border-radius: var(--r-pill);
   background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); box-shadow: inset 0 1px 0 rgba(255,255,255,.14);
 }
-.mm-head img { height: 40px; width: auto; }
-.mm-close { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); color: #fff; transition: background var(--t); }
-.mm-close:hover { background: var(--blue-500); }
-.mm-close svg { width: 22px; height: 22px; }
+.mm-head img { height: 36px; width: auto; }
+.mm-close { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); color: #fff; transition: background var(--t), transform var(--t); }
+.mm-close:hover { background: var(--blue-500); border-color: var(--blue-500); }
+.mm-close:active { transform: scale(.95); }
+.mm-close svg { width: 24px; height: 24px; }
 .mm-home, .mm-grid a {
-  display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 16px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 0 10px; white-space: nowrap;
   border-radius: 14px; font-family: var(--font-head); font-weight: 600; font-size: .98rem; color: #fff;
   background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
   transition: background var(--t), border-color var(--t), transform var(--t);
@@ -267,16 +285,19 @@ body.menu-open { overflow: hidden; }
 .mm-home:hover, .mm-grid a:hover { background: rgba(0,152,218,.22); border-color: rgba(159,214,243,.5); }
 .mm-home svg, .mm-grid a svg { width: 20px; height: 20px; color: #9FD6F3; flex: none; }
 .mm-home { width: max-content; margin-inline: auto; padding-inline: 28px; border-color: rgba(159,214,243,.45); background: rgba(0,152,218,.14); }
-.mm-group { padding: 16px 12px 12px; border-radius: 18px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); display: grid; gap: 12px; }
+.mm-group { padding: 16px 10px 10px; border-radius: 18px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); display: grid; gap: 12px; }
 .mm-group h2 { font-size: .78rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: #9FD6F3; text-align: center; }
-.mm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .mm-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 4px; }
-.mm-actions .btn { width: 100%; padding-inline: 10px; }
+.mm-actions .btn { width: 100%; }
+/* em telemóvel os dois botões ficam um por linha, a toda a largura, para nunca estourarem */
+@media (max-width: 479px) { .mm-actions { grid-template-columns: 1fr; } }
 .mm-foot { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; font-size: .88rem; color: #B7C7DB; margin-top: 6px; }
 .mm-foot svg { width: 16px; height: 16px; color: var(--blue-500); }
 .mm-foot a { color: #fff; font-weight: 600; }
 .mm-foot span { width: 100%; text-align: center; }
-@media (max-width: 360px) { .mm-grid, .mm-actions { grid-template-columns: 1fr; } }
+@media (max-width: 374px) { .mm-home, .mm-grid a { font-size: .9rem; } .mm-home svg, .mm-grid a svg { width: 18px; height: 18px; } }
+@media (max-width: 339px) { .mm-grid { grid-template-columns: 1fr; } }
 
 /* (linhas de vento de fundo removidas a pedido do cliente) */
 .wind { display: none; }
@@ -450,6 +471,8 @@ body.menu-open { overflow: hidden; }
 .stat strong > span { font-size: inherit; color: inherit; display: inline; margin: 0; }
 .stat > span { display: block; font-size: 1rem; color: #D6E4F2; font-weight: 600; }
 @media (max-width: 900px) { .stats .container { grid-template-columns: 1fr; } }
+/* texto em três linhas fixas: no telemóvel a letra acompanha a largura para nenhuma linha partir */
+@media (max-width: 600px) { .lead-3l { font-size: min(1.08rem, calc((100vw - 2 * var(--gutter)) / 24.5)); max-width: none; } }
 @media (max-width: 560px) { .stat-grid { grid-template-columns: 1fr; } .stat { grid-template-columns: 48px 1fr; align-items: center; column-gap: 16px; row-gap: 2px; } .stat .ic { grid-row: span 2; } }
 
 /* ---------- avaliações: carrossel contínuo arrastável ---------- */
@@ -508,6 +531,8 @@ body.menu-open { overflow: hidden; }
 .form-consent { display: flex; gap: 10px; align-items: flex-start; font-size: .95rem; color: var(--ink-2); }
 .form-consent input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--blue-500); flex: none; }
 .form-consent a { text-decoration: underline; text-underline-offset: 2px; }
+/* campo-armadilha anti-spam: fora do ecrã para pessoas, visível para robôs */
+.hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 #inova-form-status { font-size: .95rem; color: var(--ink-2); min-height: 1.4em; }
 #inova-form-status:empty { display: none; }
 .form-card .alt-wa { font-weight: 600; color: var(--blue-600); text-decoration: underline; }
@@ -910,6 +935,11 @@ html { scrollbar-width: thin; scrollbar-color: var(--blue-500) #0A1628; }
 ::-webkit-scrollbar-button { display: none; height: 0; }
 textarea::-webkit-scrollbar-track, .cookie-dialog::-webkit-scrollbar-track, .mobile-menu::-webkit-scrollbar-track { background: transparent; }
 textarea::-webkit-scrollbar-thumb, .cookie-dialog::-webkit-scrollbar-thumb { border-color: transparent; }
+
+/* ---------- proteção de conteúdo: sem seleção de texto nem arrastar imagens (formulários livres) ---------- */
+body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+img, svg { -webkit-user-drag: none; user-drag: none; }
+input, textarea, select, [contenteditable="true"] { -webkit-user-select: text; user-select: text; -webkit-touch-callout: default; }
 
 /* ---------- movimento reduzido ---------- */
 @media (prefers-reduced-motion: reduce) {
