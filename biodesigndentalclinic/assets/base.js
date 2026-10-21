@@ -163,20 +163,21 @@ const Base = (() => {
     requestAnimationFrame(frame);
   }
 
-  /* FAQ <details>: abre e fecha devagar (altura + opacidade), sem salto */
+  /* FAQ <details> em acordeão: abre e fecha devagar (altura + opacidade); abrir um fecha os irmãos abertos */
   function initDetails() {
-    document.querySelectorAll('details').forEach(d => {
+    const all = [...document.querySelectorAll('details')];
+    const toggles = new Map();
+    const siblingsOf = d => all.filter(o => o !== d && o.parentElement === d.parentElement);
+    all.forEach(d => {
       const sum = d.querySelector('summary');
       const body = [...d.children].find(c => c !== sum);
       if (!sum || !body) return;
       let anim = null;
       const closedH = () => sum.offsetHeight + (d.offsetHeight - d.clientHeight);
-      sum.addEventListener('click', e => {
-        if (reduced) return;
-        e.preventDefault();
+      const isOpen = () => d.open && !d.classList.contains('is-closing');
+      const run = opening => {
         const from = d.offsetHeight;
         anim?.cancel();
-        const opening = !d.open || d.classList.contains('is-closing');
         d.classList.remove('is-closing');
         if (opening) d.open = true;
         const to = opening ? d.scrollHeight + (d.offsetHeight - d.clientHeight) : closedH();
@@ -190,7 +191,17 @@ const Base = (() => {
           d.style.overflow = ''; anim = null;
           body.getAnimations().forEach(a => a.cancel());
         };
+      };
+      toggles.set(d, { run, isOpen });
+      sum.addEventListener('click', e => {
+        if (reduced) return;
+        e.preventDefault();
+        const opening = !isOpen();
+        if (opening) siblingsOf(d).forEach(o => toggles.get(o)?.isOpen() && toggles.get(o).run(false));
+        run(opening);
       });
+      // sem animação (reduced motion): mantém o acordeão
+      d.addEventListener('toggle', () => { if (reduced && d.open) siblingsOf(d).forEach(o => (o.open = false)); });
     });
   }
 
