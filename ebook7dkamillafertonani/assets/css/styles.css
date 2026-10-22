@@ -304,6 +304,19 @@ em.gold { color: var(--gold); }
   box-shadow: 0 -8px 30px rgba(35,74,44,.1), 0 20px 40px rgba(35,74,44,.08);
 }
 .deliv:first-child { box-shadow: 0 -8px 30px rgba(35,74,44,.08), 0 20px 40px rgba(35,74,44,.08); }
+
+/* Profundidade: --d (0 a 3) é calculado no scroll pelo main.js. Quanto mais cards por cima, mais o card recua. */
+.deliv {
+  --d: 0;
+  transform-origin: 50% 0;
+  transform: perspective(1600px) translate3d(0, calc(var(--d) * -6px), calc(var(--d) * -60px)) rotateX(calc(min(var(--d), 1) * 3deg));
+  will-change: transform;
+}
+.deliv::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 2;
+  background: linear-gradient(180deg, rgba(26,48,35,.55) 0%, rgba(26,48,35,.85) 100%);
+  opacity: calc(min(var(--d), 2.5) * .16);
+}
 .deliv__media { flex: 1 1 300px; min-width: 0; aspect-ratio: 16/10; }
 .deliv__body { flex: 1 1 320px; min-width: 0; position: relative; overflow: hidden; padding: clamp(24px, 3.4vw, 44px); display: flex; flex-direction: column; justify-content: center; gap: 14px; background: var(--card, #FFFFFF); }
 .deliv__head { display: flex; align-items: center; gap: 12px; }

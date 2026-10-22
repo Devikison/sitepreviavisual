@@ -69,6 +69,31 @@ const CHECKOUT_URL = '';
     onScroll();
   }
 
+  // Entregáveis: cada card recua conforme os seguintes sobem por cima dele
+  const cards = Array.from(document.querySelectorAll('.deliv'));
+  if (cards.length && !reduceMotion) {
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const heights = cards.map(c => c.offsetHeight);
+      const tops = cards.map(c => c.getBoundingClientRect().top);
+      cards.forEach((card, i) => {
+        let d = 0;
+        for (let j = i + 1; j < cards.length; j++) {
+          // 0 quando o próximo card ainda está abaixo; 1 quando ele chegou na posição de empilhamento
+          const gap = tops[j] - tops[i];
+          const cover = 1 - gap / heights[i];
+          d += Math.min(Math.max(cover, 0), 1);
+        }
+        card.style.setProperty('--d', Math.min(d, 3).toFixed(3));
+      });
+    };
+    const request = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+    window.addEventListener('scroll', request, { passive: true });
+    window.addEventListener('resize', request);
+    update();
+  }
+
   // FAQ: um item aberto por vez; clicar no aberto fecha
   const faqItems = Array.from(document.querySelectorAll('.faq__item'));
   faqItems.forEach(item => {
