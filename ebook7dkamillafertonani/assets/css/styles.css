@@ -39,6 +39,17 @@ a { color: var(--text); }
 h1, h2, h3 { letter-spacing: -.01em; }
 em { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: 0; }
 em.gold { color: var(--gold); }
+/* Barra de rolagem da página no padrão da marca */
+@supports (-moz-appearance: none) { html { scrollbar-width: thin; scrollbar-color: var(--green) var(--bg-alt); } }
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: var(--bg-alt); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--green) 0%, var(--green-dark) 100%);
+  border-radius: 999px; border: 3px solid var(--bg-alt);
+}
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, var(--gold-light) 0%, var(--gold) 100%); }
+::-webkit-scrollbar-corner { background: var(--bg-alt); }
+
 /* Frases de destaque: mais peso e o verde da marca, sem mudar o tamanho */
 strong { font-weight: 700; color: var(--text); }
 .glass--dark strong, .deliv--dark strong, .step--dark strong, .oferta strong, .dor__card strong { color: #FFFFFF; }
@@ -132,10 +143,10 @@ strong { font-weight: 700; color: var(--text); }
   transition: transform .6s var(--ease), box-shadow .6s var(--ease), filter .6s var(--ease);
 }
 .btn__label { text-wrap: balance; line-height: 1.25; }
-.btn__arrow { width: 42px; height: 42px; border-radius: 50%; background: #F4F1EA; color: var(--cta-ink); display: flex; align-items: center; justify-content: center; flex: none; font-size: 18px; }
+.btn__arrow { width: 42px; height: 42px; border-radius: 50%; background: #FFFFFF; color: var(--cta-ink); display: flex; align-items: center; justify-content: center; flex: none; font-size: 18px; }
 .btn--xl { min-height: 68px; padding-left: clamp(18px, 4vw, 34px); }
-.btn--block { display: flex; gap: 12px; padding: 0 16px; font-size: clamp(14px, 3.8vw, 17px); text-align: center; box-shadow: 0 14px 30px rgba(60,154,104,.42), inset 0 1px 0 rgba(255,255,255,.22); }
-.btn--block > i { font-size: 18px; flex: none; }
+.btn--block { display: flex; gap: 12px; padding: 0 10px 0 clamp(18px, 4vw, 24px); font-size: clamp(14px, 3.8vw, 17px); text-align: center; box-shadow: 0 14px 30px rgba(60,154,104,.42), inset 0 1px 0 rgba(255,255,255,.22); }
+.btn--block .btn__label { flex: 1; }
 .btn:active { transform: translateY(4px); box-shadow: 0 6px 14px rgba(35,74,44,.22); transition-duration: .15s; }
 
 .pill-btn {
