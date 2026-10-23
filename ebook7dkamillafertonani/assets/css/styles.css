@@ -39,6 +39,9 @@ a { color: var(--text); }
 h1, h2, h3 { letter-spacing: -.01em; }
 em { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: 0; }
 em.gold { color: var(--gold); }
+/* Frases de destaque: mais peso e o verde da marca, sem mudar o tamanho */
+strong { font-weight: 700; color: var(--text); }
+.glass--dark strong, .deliv--dark strong, .step--dark strong, .oferta strong, .dor__card strong { color: #FFFFFF; }
 .page { overflow-x: clip; }
 
 @keyframes marquee7d { from { transform: translateX(0); } to { transform: translateX(-50%); } }
