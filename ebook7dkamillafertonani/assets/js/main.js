@@ -1,7 +1,10 @@
-/* EBOOK 7D · Kamilla Fertonani — interações */
+/* Detox 7D · Kamilla Fertonani — interações */
 
 // Link do checkout: preencha aqui e todos os botões de compra passam a apontar para ele.
 const CHECKOUT_URL = '';
+
+// Data da próxima turma (ex.: '03/11'). Enquanto vazia, o selo de turma fica escondido.
+const PROXIMA_TURMA = '';
 
 (function () {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -9,6 +12,14 @@ const CHECKOUT_URL = '';
   // Checkout
   if (CHECKOUT_URL) {
     document.querySelectorAll('[data-checkout]').forEach(a => { a.href = CHECKOUT_URL; });
+  }
+
+  // Próxima turma
+  if (PROXIMA_TURMA) {
+    document.querySelectorAll('[data-turma]').forEach(el => {
+      el.querySelector('span').textContent = 'Próxima turma: ' + PROXIMA_TURMA;
+      el.hidden = false;
+    });
   }
 
   // Imagens que ainda não existem viram um fundo neutro com a folha da marca
