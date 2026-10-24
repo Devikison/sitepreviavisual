@@ -194,6 +194,19 @@ p{margin:0;text-wrap:pretty}
 .foot p+p{margin-top:.25rem}
 .foot a{color:var(--acc-ink);text-decoration:underline;text-underline-offset:3px}.foot a:hover{color:var(--ink)}
 
+/* desktop: own scrollbar so the wand never turns back into the system arrow */
+.mscroll{display:none}
+@media (hover:hover) and (pointer:fine){
+  html{scrollbar-width:none}
+  ::-webkit-scrollbar{width:0;height:0;display:none}
+  .mscroll{display:block;position:fixed;top:6px;right:4px;bottom:6px;width:12px;z-index:9998;border-radius:12px;background:rgba(123,63,228,.12);box-shadow:inset 0 0 0 1px rgba(123,63,228,.18);cursor:var(--wand),auto;transition:width .25s var(--ease),background .25s}
+  .mscroll:hover,.mscroll.is-drag{width:14px;background:rgba(123,63,228,.2)}
+  .mscroll[hidden]{display:none}
+  .mscroll__thumb{position:absolute;left:2px;right:2px;top:0;min-height:44px;border-radius:12px;background:linear-gradient(180deg,#ffd166,#e23d8a 55%,#7b3fe4);box-shadow:0 0 0 1.5px rgba(255,255,255,.9),0 4px 12px -4px rgba(123,63,228,.7);cursor:var(--wand),grab}
+  .mscroll.is-drag .mscroll__thumb{cursor:var(--wand),grabbing}
+  .mscroll.is-drag,.mscroll.is-drag~*{user-select:none}
+}
+
 /* sparkle trail behind the wand */
 .spark{position:fixed;z-index:9999;pointer-events:none;width:14px;height:14px;margin:-7px 0 0 -7px;line-height:14px;text-align:center;font-size:14px;animation:spark .9s ease-out forwards}
 @keyframes spark{0%{opacity:1;transform:translate(0,0) scale(1) rotate(0)}100%{opacity:0;transform:translate(var(--dx,0),var(--dy,18px)) scale(.3) rotate(140deg)}}
@@ -341,6 +354,23 @@ p{margin:0;text-wrap:pretty}
   addEventListener('resize',function(){track.innerHTML='';items.forEach(function(c){track.appendChild(c)});loop=fill();wrapX()});
   document.addEventListener('visibilitychange',function(){if(document.hidden)cancelAnimationFrame(raf);else raf=requestAnimationFrame(tick)});
   raf=requestAnimationFrame(tick);
+})();
+(function(){
+  // desktop scrollbar replacement: native scrollbars always show the system arrow
+  if(!matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+  var de=document.documentElement,bar=document.createElement('div'),th=document.createElement('div'),dragY=0,dragS=0;
+  bar.className='mscroll';bar.setAttribute('aria-hidden','true');th.className='mscroll__thumb';bar.appendChild(th);document.body.appendChild(bar);
+  function m(){var sh=de.scrollHeight,vh=innerHeight,tr=bar.clientHeight,h=Math.max(44,tr*vh/sh);return {max:sh-vh,tr:tr,h:h,room:tr-h}}
+  function draw(){var k=m();if(k.max<=0){bar.hidden=true;return}bar.hidden=false;th.style.height=k.h+'px';th.style.transform='translateY('+(k.room*scrollY/k.max)+'px)'}
+  var req=draw;
+  function go(y){scrollTo({top:y,behavior:'instant'})}
+  th.addEventListener('pointerdown',function(e){e.preventDefault();e.stopPropagation();dragY=e.clientY;dragS=scrollY;bar.classList.add('is-drag');th.setPointerCapture(e.pointerId)});
+  th.addEventListener('pointermove',function(e){if(!bar.classList.contains('is-drag'))return;var k=m();go(dragS+(e.clientY-dragY)*k.max/Math.max(k.room,1))});
+  ['pointerup','pointercancel','lostpointercapture'].forEach(function(t){th.addEventListener(t,function(){bar.classList.remove('is-drag')})});
+  bar.addEventListener('pointerdown',function(e){if(e.target!==bar)return;var k=m(),r=bar.getBoundingClientRect();go((e.clientY-r.top-k.h/2)/Math.max(k.room,1)*k.max)});
+  addEventListener('scroll',req,{passive:true});addEventListener('resize',req);
+  if(window.ResizeObserver)new ResizeObserver(req).observe(document.body);
+  req();
 })();
 (function(){
   // wand sparkle trail (mouse only, off for reduced motion)
