@@ -3,13 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<!-- CSP (DEPLOY): descomentar no publish. Mantido comentado durante a revisão de design.
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
--->
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="theme-color" content="#0b1220">
+<meta name="theme-color" content="#0a1a2e">
 
 <title>Dr. Alex Caso Rodriguez · Ortopedista Joelho e Quadril em São Paulo | Links oficiais</title>
 <meta name="description" content="Dr. Alex Caso Rodriguez, médico ortopedista especialista em joelho e quadril em São Paulo. Mais de 600 cirurgias, próteses, artroscopias e medicina regenerativa.">
@@ -33,8 +31,8 @@
 
 <style>
 :root{
-  --bg:#0b1220; --bg-3:#060b14; --ink:#ffffff; --ink-soft:#e8eaed; --ink-mute:#b8bec6;
-  --acc:#4fa3e0; --acc-2:#9fd0f5; --acc-3:#1f5f91; --acc-rgb:79,163,224;
+  --bg:#0a1a2e; --bg-3:#06111f; --ink:#ffffff; --ink-soft:#e8eaed; --ink-mute:#b8bec6;
+  --acc:#2aa6c4; --acc-2:#7fd6ea; --acc-3:#177a95; --acc-rgb:42,166,196;
   --line:rgba(255,255,255,.14);
   --font-display:"Merriweather",Georgia,serif; --font-text:"Inter Tight",system-ui,-apple-system,"Segoe UI",sans-serif;
   --disp-w:400; --disp-ls:0; --disp-tt:none;
@@ -86,12 +84,12 @@ p{margin:0;text-wrap:pretty}
   background:conic-gradient(from 210deg,#ffffff,var(--acc),var(--acc-3),#ffffff);box-shadow:0 20px 40px -16px rgba(0,0,0,.9),0 0 0 6px var(--bg)}
 .avatar__in{width:100%;height:100%;border-radius:50%;overflow:hidden;background:#000;box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
 .avatar__in img{width:100%;height:100%;object-fit:cover;object-position:50% 35%;transform:scale(1.08)}
-.verified{position:absolute;right:-2px;bottom:6px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#ffffff,#d9d9d9);border:3px solid var(--bg);box-shadow:0 6px 14px -6px rgba(0,0,0,.8)}
+.verified{position:absolute;right:-2px;bottom:6px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:#06152a;background:var(--acc-2);border:3px solid var(--bg);box-shadow:0 6px 14px -6px rgba(0,0,0,.8)}
 .verified svg{width:14px;height:14px}
 
 .ident{position:relative;padding:calc(var(--avatar) * .5 + .9rem) var(--pad) 0}
 .ident h1{font-size:clamp(1.75rem,1.45rem + 1.4vw,2.15rem);line-height:1.06;color:#fff}
-.ident h1 em{font-style:italic;color:var(--acc-2)}
+.ident h1 em{font-style:normal;color:var(--acc-2)}
 .ident .role{margin-top:.45rem;color:#fff;font-size:1.02rem;font-weight:600}
 .ident .meta{display:flex;flex-wrap:wrap;gap:.35rem .9rem;margin-top:.7rem;font-size:.88rem;color:var(--ink-soft)}
 .ident .meta span{display:inline-flex;align-items:center;gap:.4rem}
@@ -121,15 +119,15 @@ p{margin:0;text-wrap:pretty}
 .lk__go svg{width:15px;height:15px}
 .lk:hover .lk__go{transform:translateX(3px);background:rgba(var(--acc-rgb),.2)}
 
-.lk--main{min-height:84px;color:#0b0b0b;background:linear-gradient(180deg,#ffffff 0%,#f3f3f3 55%,#dcdcdc 100%);border:1px solid rgba(var(--acc-rgb),.8);
+.lk--main{min-height:84px;color:#06152a;background:linear-gradient(180deg,#8fe0f1 0%,#5cc8e2 55%,#3db3d1 100%);border:1px solid #a9ecf8;
   box-shadow:inset 0 1px 0 #fff,inset 0 -2px 0 rgba(0,0,0,.14),0 22px 40px -18px rgba(255,255,255,.3),0 0 0 5px rgba(var(--acc-rgb),.18)}
 .lk--main::before{background:linear-gradient(115deg,transparent 35%,rgba(var(--acc-rgb),.45) 50%,transparent 65%);animation:sweep 3.6s var(--ease) infinite}
 @keyframes sweep{0%,55%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
-.lk--main .lk__ico{background:#0b0b0b;border-color:#0b0b0b;box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
+.lk--main .lk__ico{background:#0a1a2e;border-color:#0a1a2e;box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
 .lk--main .lk__ico svg{color:#25D366}
-.lk--main .lk__txt strong{color:#0b0b0b}
-.lk--main .lk__txt small{color:#333;display:flex;align-items:center}
-.lk--main .lk__go{border-color:rgba(0,0,0,.3);color:#0b0b0b}
+.lk--main .lk__txt strong{color:#06152a}
+.lk--main .lk__txt small{color:#0d2740;display:flex;align-items:center}
+.lk--main .lk__go{border-color:rgba(6,21,42,.45);color:#06152a}
 
 .feature{padding:2.2rem 0 0}
 .feature__head{display:flex;align-items:end;justify-content:space-between;gap:1rem;padding:0 var(--pad) .2rem}
@@ -167,12 +165,12 @@ p{margin:0;text-wrap:pretty}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <defs><linearGradient id="gAcc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9fd0f5"/><stop offset=".55" stop-color="#4fa3e0"/><stop offset="1" stop-color="#1f5f91"/></linearGradient></defs>
+  <defs><linearGradient id="gAcc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a6e6f3"/><stop offset=".55" stop-color="#3cb8d6"/><stop offset="1" stop-color="#1b86a3"/></linearGradient></defs>
   <symbol id="i-bone" viewBox="0 0 48 48"><path fill="none" stroke="url(#gAcc)" stroke-width="1.8" stroke-linejoin="round" d="M17 6c-3 0-5 2.5-4.5 5.5.2 1.5-.6 3-2 3.6C8 16 7 18 7.5 20.5c.6 3 4 4.3 6.5 2.8L20 29.5v12.5h8V29.5l6-6.2c2.5 1.5 5.9.2 6.5-2.8.5-2.5-.5-4.5-3-5.4-1.4-.6-2.2-2.1-2-3.6.5-3-1.5-5.5-4.5-5.5-2.2 0-4 1.5-4.4 3.6L24 14l-2.6-4.4C21 7.5 19.2 6 17 6Z"/></symbol>
   <symbol id="i-syringe" viewBox="0 0 48 48"><path fill="none" stroke="url(#gAcc)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="m36 6 6 6M39 9 20 28l-6 2 2-6L35 5M13 29l-7 7 6 6 7-7M22 20l4 4M27 15l4 4"/></symbol>
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.3 20.7l4.4-1.1A8.8 8.8 0 1 0 12 3.2Z"/><path fill="currentColor" d="M9.2 7.6c.3 0 .5 0 .7.5l.8 1.9c.1.2 0 .5-.1.7l-.6.7c-.1.1-.2.3 0 .5.4.8 1 1.5 1.7 2 .5.4 1 .7 1.6.9.2.1.4 0 .5-.1l.7-.9c.2-.2.4-.2.6-.1l1.8.9c.3.1.4.3.4.5 0 .6-.3 1.4-1 1.8-.6.3-1.4.5-2.6.1a10 10 0 0 1-5.6-5c-.5-1-.6-2 .1-3 .3-.3.6-.4 1-.4Z"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M5 12h13m-5-5 5 5-5 5"/></symbol>
-  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="#0b0b0b" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="m6 12.5 4 4 8-9"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="m6 12.5 4 4 8-9"/></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="url(#gAcc)" stroke-width="1.7" d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.6" fill="none" stroke="url(#gAcc)" stroke-width="1.7"/></symbol>
   <symbol id="i-drag" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M8 12H3m0 0 2.5-2.5M3 12l2.5 2.5M16 12h5m0 0-2.5-2.5M21 12l-2.5 2.5"/></symbol>
   <symbol id="i-map" viewBox="0 0 48 48"><path fill="none" stroke="url(#gAcc)" stroke-width="1.6" stroke-linejoin="round" d="M6 13l11-4 14 4 11-4v26l-11 4-14-4-11 4Z"/><path fill="none" stroke="url(#gAcc)" stroke-width="1.1" opacity=".6" d="M17 9v26M31 13v26"/><path fill="none" stroke="url(#gAcc)" stroke-width="1.8" d="M24 31s-6-5.2-6-9.6a6 6 0 0 1 12 0c0 4.4-6 9.6-6 9.6Z"/><circle cx="24" cy="21.5" r="2" fill="url(#gAcc)"/></symbol>
@@ -190,7 +188,7 @@ p{margin:0;text-wrap:pretty}
 
 <main class="bio">
   <header class="cover">
-    <img class="cover__bg" src="assets/cover.jpg" alt="Dr. Alex Caso Rodriguez" fetchpriority="high">
+    <img class="cover__bg" src="assets/cover.jpg" alt="Infiltração no joelho com seringa" fetchpriority="high">
     <span class="chip"><svg aria-hidden="true"><use href="#i-pin"/></svg>São Paulo · SP</span>
     <span class="chip chip--r"><i class="online" aria-hidden="true"></i>Perfil oficial</span>
   </header>
@@ -201,7 +199,7 @@ p{margin:0;text-wrap:pretty}
   </div>
 
   <section class="ident" aria-labelledby="h-nome">
-    <h1 id="h-nome" class="rise" style="--i:1">Dr. Alex Caso <em>Rodriguez</em></h1>
+    <h1 id="h-nome" class="rise" style="--i:1">Dr. Alex <em>Caso</em> Rodriguez</h1>
     <p class="role rise" style="--i:2">Médico Ortopedista · Joelho e Quadril</p>
     <p class="meta rise" style="--i:3"><span><svg aria-hidden="true"><use href="#i-steth"/></svg>CRM 203062 · RQE 121052 · TEOT 17831 · São Paulo</span></p>
     <div class="pills rise" style="--i:4"><span class="pill">Próteses</span><span class="pill">Artroscopias</span><span class="pill">Medicina regenerativa</span><span class="pill">Movimento 360</span></div>
