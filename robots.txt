@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /*/ref/
+Sitemap: https://www.sitepreviavisual.site/sitemap.xml
