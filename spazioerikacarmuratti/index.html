@@ -64,9 +64,9 @@ p{margin:0;text-wrap:pretty}
     box-shadow:0 60px 120px -50px rgba(74,47,44,.45),0 0 0 1px rgba(255,255,255,.7) inset}
 }
 
-.cover{position:relative;height:var(--cover);overflow:hidden;background:var(--dark)}
+.cover{position:relative;height:var(--cover);overflow:hidden;background:var(--bg)}
 .cover__bg{width:100%;height:100%;object-fit:cover;object-position:50% 50%;transform:scale(1.04)}
-.cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.32) 0%,rgba(0,0,0,0) 38%,rgba(247,240,234,0) 62%,var(--bg) 100%)}
+.cover::after{content:"";position:absolute;inset:0 0 -2px;background:linear-gradient(180deg,rgba(0,0,0,.32) 0%,rgba(0,0,0,0) 38%,rgba(247,240,234,0) 48%,rgba(247,240,234,.35) 62%,rgba(247,240,234,.72) 76%,rgba(247,240,234,.93) 88%,var(--bg) 97%)}
 .chip{position:absolute;z-index:2;transform:translateZ(0);backface-visibility:hidden;top:calc(1rem + env(safe-area-inset-top));left:var(--pad);display:inline-flex;align-items:center;gap:.45rem;padding:.45rem .85rem;border-radius:999px;font-size:.78rem;font-weight:700;letter-spacing:.04em;color:#fff;
   background:rgba(42,28,26,.62);border:1px solid rgba(255,255,255,.25);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
 .chip svg{width:14px;height:14px}
@@ -185,7 +185,7 @@ p{margin:0;text-wrap:pretty}
 
 <main class="bio">
   <header class="cover">
-    <img class="cover__bg" src="assets/cover.jpg" alt="Antes e depois de preenchimento labial no Spazio Érika Carmuratti" fetchpriority="high">
+    <img class="cover__bg" src="assets/cover.jpg" alt="Produtos Sofiderm e Rennova Elleva X na bancada do Spazio Érika Carmuratti" fetchpriority="high">
     <span class="chip"><svg aria-hidden="true"><use href="#i-pin"/></svg>Sorocaba · SP</span>
     <span class="chip chip--r"><i class="online" aria-hidden="true"></i>Perfil oficial</span>
   </header>
