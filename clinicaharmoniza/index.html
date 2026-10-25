@@ -18,10 +18,10 @@
 <meta property="og:title" content="Clínica Médica Harmoniza · Transplante Capilar em Sorocaba | Links oficiais">
 <meta property="og:description" content="Clínica Médica Harmoniza no Parque Campolim, Sorocaba: transplante capilar e de sobrancelha com técnica FUE. Cada caso tem um caminho e tudo começa na avaliação.">
 <meta property="og:url" content="https://www.sitepreviavisual.site/clinicaharmoniza/">
-<meta property="og:image" content="https://www.sitepreviavisual.site/clinicaharmoniza/assets/og-image.jpg">
+<meta property="og:image" content="https://www.sitepreviavisual.site/clinicaharmoniza/assets/og-image.jpg?v=20261024">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="assets/avatar.jpg">
+<link rel="icon" href="assets/favicon.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -161,7 +161,7 @@ p{margin:0;text-wrap:pretty}
 @keyframes rise{to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rise{opacity:1;transform:none;animation:none}.lk--main::before,.online,.online::after{animation:none}}
 .lk,.tcard{cursor:pointer}
-</style>
+/* lux-motion */:root{--lux:cubic-bezier(.16,1,.3,1)}.lk{transition:transform .9s var(--lux),border-color .9s var(--lux),box-shadow .9s var(--lux),background-color .9s var(--lux)}.lk::before{transition:transform 1.6s var(--lux)}.lk__ico{transition:transform .9s var(--lux),border-color .9s var(--lux),box-shadow .9s var(--lux)}.lk__ico svg{transition:transform .9s var(--lux)}.lk__go{transition:transform .9s var(--lux),background-color .9s var(--lux),border-color .9s var(--lux),color .9s var(--lux)}.lk__thumb{overflow:hidden}.lk__thumb img{transition:transform 1.2s var(--lux)}.tcard{transition:transform .9s var(--lux),border-color .9s var(--lux),box-shadow .9s var(--lux)}@media (hover:hover) and (pointer:fine){.lk:hover{transform:translateY(-3px)}.lk:hover::before{transform:translateX(120%)}.lk:hover .lk__ico{transform:translateY(-1px);border-color:rgba(var(--acc-rgb),.75)}.lk:hover .lk__ico svg{transform:scale(1.08)}.lk:hover .lk__go{transform:translateX(4px)}.lk:hover .lk__thumb img{transform:scale(1.07)}.tcard:hover{transform:translateY(-5px)}}.lk:active{transform:scale(.985);transition-duration:.35s}.lk:focus-visible,.tcard:focus-visible{outline:2px solid rgba(var(--acc-rgb),.85);outline-offset:3px}@media (prefers-reduced-motion:reduce){.lk,.lk::before,.lk__ico,.lk__ico svg,.lk__go,.tcard,.lk__thumb img{transition:none}}/* /lux-motion */</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -294,5 +294,7 @@ p{margin:0;text-wrap:pretty}
   raf=requestAnimationFrame(tick);
 })();
 </script>
+
+<script id="lux-scroll">(function(){var d=document.documentElement;if(!window.matchMedia||matchMedia('(prefers-reduced-motion: reduce)').matches||!matchMedia('(hover: hover) and (pointer: fine)').matches)return;var cur=scrollY,tgt=scrollY,raf=0;function lim(v){return Math.max(0,Math.min(v,d.scrollHeight-innerHeight))}function step(){cur+=(tgt-cur)*.085;if(Math.abs(tgt-cur)<.5){cur=tgt;raf=0}else{raf=requestAnimationFrame(step)}scrollTo({top:cur,behavior:'instant'})}addEventListener('wheel',function(e){if(e.ctrlKey||e.defaultPrevented)return;var dy=e.deltaY*(e.deltaMode===1?32:e.deltaMode===2?innerHeight:1);if(!dy||(e.deltaMode===0&&Math.abs(dy)<40&&!raf))return;e.preventDefault();if(!raf){cur=tgt=scrollY}tgt=lim(tgt+dy);if(!raf)raf=requestAnimationFrame(step)},{passive:false});addEventListener('scroll',function(){if(!raf){cur=tgt=scrollY}},{passive:true});addEventListener('keydown',function(){if(raf){cancelAnimationFrame(raf);raf=0}})})();</script>
 </body>
 </html>
