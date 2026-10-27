@@ -593,7 +593,7 @@ class Component extends DCLogic {
     if (!this.reduced) this.setupSheen();
     this.lastY = window.scrollY; this.hidden = false;
     this.setupSmooth();
-    const tick = () => { this.smoothStep(); this.headerStep(); this.frame(); this.raf = requestAnimationFrame(tick); };
+    const tick = (t) => { this.smoothStep(t); this.headerStep(); this.frame(); this.raf = requestAnimationFrame(tick); };
     this.raf = requestAnimationFrame(tick);
   }
   componentDidUpdate() { this.cache = null; this.dirty = true; }
@@ -643,27 +643,33 @@ class Component extends DCLogic {
       e.preventDefault();
       let dy = e.deltaY;
       if (e.deltaMode === 1) dy *= 40; else if (e.deltaMode === 2) dy *= window.innerHeight;
-      if (!this.sm.on) { this.sm.cur = window.scrollY; this.sm.target = window.scrollY; }
+      if (!this.sm.on) { this.sm.cur = window.scrollY; this.sm.target = window.scrollY; this.sm.last = 0; }
       this.sm.target = Math.max(0, Math.min(max(), this.sm.target + dy));
-      this.sm.on = true; this.sm.ease = 0.1;
+      this.sm.on = true; this.sm.lambda = 4.2;
     };
+    // teclado, clique na barra de rolagem ou toque assumem o controle na hora
+    const stop = () => { this.sm.on = false; };
     window.addEventListener('wheel', wheel, { passive: false });
-    this.offSmooth = () => { window.removeEventListener('wheel', wheel); document.removeEventListener('click', anchor); html.style.scrollBehavior = ''; };
+    window.addEventListener('keydown', stop, { passive: true });
+    window.addEventListener('mousedown', stop, { passive: true });
+    window.addEventListener('touchstart', stop, { passive: true });
+    this.offSmooth = () => { window.removeEventListener('wheel', wheel); window.removeEventListener('keydown', stop); window.removeEventListener('mousedown', stop); window.removeEventListener('touchstart', stop); document.removeEventListener('click', anchor); html.style.scrollBehavior = ''; };
   }
   scrollToY(y) {
     const max = document.documentElement.scrollHeight - window.innerHeight;
     y = Math.max(0, Math.min(max, y));
     if (this.reduced) { window.scrollTo(0, y); return; }
     if (!this.fine) { window.scrollTo({ top: y, behavior: 'smooth' }); return; }
-    if (!this.sm.on) this.sm.cur = window.scrollY;
-    this.sm.target = y; this.sm.on = true; this.sm.ease = 0.075;
+    if (!this.sm.on) { this.sm.cur = window.scrollY; this.sm.last = 0; }
+    this.sm.target = y; this.sm.on = true; this.sm.lambda = 3.4;
   }
-  smoothStep() {
+  smoothStep(t) {
     const s = this.sm; if (!s || !s.on) return;
-    if (Math.abs(window.scrollY - s.cur) > 2) s.cur = window.scrollY;
+    const dt = s.last ? Math.min(0.064, (t - s.last) / 1000) : 1 / 60;
+    s.last = t;
     const d = s.target - s.cur;
-    if (Math.abs(d) < 0.5) { s.cur = s.target; window.scrollTo(0, s.cur); s.on = false; return; }
-    s.cur += d * s.ease;
+    if (Math.abs(d) < 0.25) { s.cur = s.target; window.scrollTo(0, s.cur); s.on = false; return; }
+    s.cur += d * (1 - Math.exp(-(s.lambda || 4.2) * dt));
     window.scrollTo(0, s.cur);
   }
   setupReveal() {
