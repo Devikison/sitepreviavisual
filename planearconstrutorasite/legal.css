@@ -59,7 +59,9 @@ a{color:var(--g-800)}a:hover{color:var(--terra)}
 /* ---------- Abertura ---------- */
 .hero{position:relative;overflow:hidden;background:linear-gradient(160deg,#084634 0%,#052A21 60%,#041F18 100%);color:#fff;padding:calc(14px + 68px + clamp(56px,9vw,104px)) var(--pad) clamp(56px,8vw,96px)}
 .hero:before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(55% 70% at 0% 0%,rgba(18,162,122,.38) 0%,rgba(18,162,122,0) 70%),radial-gradient(40% 60% at 100% 100%,rgba(95,211,168,.14) 0%,rgba(95,211,168,0) 70%)}
-.hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:22px;pointer-events:none;opacity:.5;background:linear-gradient(90deg,rgba(184,240,218,.5) 1px,transparent 1px) 0 100%/80px 22px repeat-x,linear-gradient(90deg,rgba(184,240,218,.35) 1px,transparent 1px) 0 100%/16px 8px repeat-x}
+/* Régua: a linha fica exatamente na divisa e os traços descem para a seção seguinte */
+.ruler{position:relative;height:0;z-index:3;pointer-events:none}
+.ruler:before{content:"";position:absolute;left:0;right:0;top:0;height:12px;background-image:linear-gradient(rgba(10,90,69,.38),rgba(10,90,69,.38)),repeating-linear-gradient(90deg,rgba(10,90,69,.42) 0 1px,transparent 1px 80px),repeating-linear-gradient(90deg,rgba(10,90,69,.22) 0 1px,transparent 1px 16px);background-size:100% 1px,100% 12px,100% 6px;background-position:0 0,0 0,0 0;background-repeat:no-repeat,repeat-x,repeat-x}
 .hero-in{position:relative;max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
 .crumb{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:#B8F0DA}
 .crumb a{color:#D3E9E1;text-decoration:none;border-radius:4px}.crumb a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
@@ -152,7 +154,7 @@ a{color:var(--g-800)}a:hover{color:var(--terra)}
 .cta-a{display:flex;flex-wrap:wrap;gap:12px}
 
 /* ---------- Rodapé (igual ao site) ---------- */
-.ftr{background:#fff;color:var(--body);border-top:1px solid rgba(14,42,34,.08);padding:clamp(56px,8vw,88px) var(--pad) 28px}
+.ftr{background:#fff;color:var(--body);padding:clamp(56px,8vw,88px) var(--pad) 28px}
 .ftr-top{max-width:1240px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:clamp(28px,4vw,36px)}
 .ftr-logo{display:flex;align-items:center;justify-content:center;padding:4px;border-radius:6px;transition:transform .4s var(--ease)}
 .ftr-logo:hover{transform:translateY(-2px)}
