@@ -25,21 +25,7 @@
 <meta name="twitter:description" content="Construção e reforma por administração em Sorocaba e região. Peça seu orçamento.">
 <meta name="twitter:image" content="https://www.sitepreviavisual.site/planearconstrutorasite/assets/planear-og.jpg">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"GeneralContractor","name":"Planear Construtora","description":"Construção e reforma por administração em Sorocaba e região.","url":"https://www.sitepreviavisual.site/planearconstrutorasite/","image":"https://www.sitepreviavisual.site/planearconstrutorasite/assets/planear-og.jpg","logo":"https://www.sitepreviavisual.site/planearconstrutorasite/assets/planear-logo.png","address":{"@type":"PostalAddress","streetAddress":"Rua Bernardo Guimarães, 105","addressLocality":"Sorocaba","addressRegion":"SP","addressCountry":"BR"},"areaServed":["Sorocaba","Araçoiaba da Serra"],"sameAs":["https://www.instagram.com/planearconstrutora/"]}</script>
-<script>
-/* ===== DADOS DA PLANEAR: preencha aqui quando chegarem =====
-   whatsapp: número com DDD, ex. '(15) 99999-9999'. Liga o ícone do rodapé e o envio do formulário pelo WhatsApp.
-   email:    e-mail que recebe os pedidos do formulário (FormSubmit). No 1º envio chega um e-mail de ativação: clicar em "Activate".
-   cnpj:     ex. '12.345.678/0001-90'. Vazio = não aparece no rodapé.
-   linkedin: link completo da página da empresa. Vazio = ícone escondido.
-   Sem whatsapp e sem email o formulário fica em modo demonstração (não envia nada). */
-window.PLANEAR = {
-  whatsapp: '',
-  email: '',
-  cnpj: '',
-  instagram: 'https://www.instagram.com/planearconstrutora/',
-  linkedin: ''
-};
-</script>
+<script src="planear.js"></script>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https:; style-src 'self' 'unsafe-inline' blob: https:; img-src 'self' data: blob: https:; font-src 'self' data: blob: https:; connect-src 'self' blob: https: wss:; media-src 'self' blob: https:; frame-src 'self' blob: https:; worker-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'self' https:; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
   <script data-protecao="link-bio">(function(){
@@ -538,7 +524,7 @@ window.PLANEAR = {
             </sc-if>
             <div style="display:flex;flex-direction:column;gap:14px;padding-top:4px">
               <button data-btn="1" type="submit" disabled="{{ loading }}" style="position:relative;overflow:hidden;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:6px;font-size:15px;font-weight:600;letter-spacing:.01em;text-decoration:none;cursor:pointer;white-space:nowrap;transition:background .5s cubic-bezier(.2,.7,.2,1),color .5s cubic-bezier(.2,.7,.2,1),border-color .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s cubic-bezier(.2,.7,.2,1),transform .5s cubic-bezier(.2,.7,.2,1);min-height:54px;padding:0 30px;background:linear-gradient(180deg,#0F8C69 0%,#0A6E53 100%);color:#fff;border:1px solid #086148;box-shadow:inset 0 1px 0 rgba(255,255,255,.24),inset 0 -2px 0 rgba(0,0,0,.16),0 1px 2px rgba(5,42,33,.28),0 10px 20px -12px rgba(5,42,33,.7);align-self:flex-start;min-width:170px;font-family:inherit" style-hover="background:linear-gradient(180deg,#12A07A 0%,#0B7A5C 100%);color:#fff;transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),inset 0 -2px 0 rgba(0,0,0,.16),0 2px 4px rgba(5,42,33,.25),0 18px 30px -14px rgba(5,42,33,.75)" style-active="transform:translateY(0);box-shadow:inset 0 2px 4px rgba(0,0,0,.25),0 1px 2px rgba(5,42,33,.3)"><span data-sheen="1" aria-hidden="true" style="position:absolute;top:-2px;bottom:-2px;left:0;width:55%;z-index:-1;background:linear-gradient(100deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.32) 50%,rgba(255,255,255,0) 100%);transform:translate3d(-130%,0,0) skewX(-18deg);pointer-events:none"></span>{{ submitLabel }}</button>
-              <p style="margin:0;font-size:14px;line-height:1.5;color:#3F5953">Usaremos seus dados apenas para responder ao seu contato. Veja nossa <a href="#" style="color:#0A5A45;font-weight:700;text-underline-offset:3px" style-hover="color:#A35E58">Política de Privacidade</a>.</p>
+              <p style="margin:0;font-size:14px;line-height:1.5;color:#3F5953">Usaremos seus dados apenas para responder ao seu contato. Ao enviar, você concorda com os <a href="termos-de-uso/" style="color:#0A5A45;font-weight:700;text-underline-offset:3px" style-hover="color:#A35E58">Termos de Uso</a> e a <a href="politica-de-privacidade/" style="color:#0A5A45;font-weight:700;text-underline-offset:3px" style-hover="color:#A35E58">Política de Privacidade</a>.</p>
             </div>
           </form>
         </sc-if>
@@ -570,7 +556,10 @@ window.PLANEAR = {
       <nav aria-label="Rodapé" style="display:flex;flex-wrap:wrap;justify-content:center;gap:4px clamp(16px,2.4vw,28px)">
         <a href="#servicos" style="color:#0E2A22;font-size:15px;font-weight:500;text-decoration:none;padding:8px 4px;border-radius:6px;transition:color .3s cubic-bezier(.2,.7,.2,1)" style-hover="color:#0B8763">Serviços</a>
         <a href="#contato" style="color:#0E2A22;font-size:15px;font-weight:500;text-decoration:none;padding:8px 4px;border-radius:6px;transition:color .3s cubic-bezier(.2,.7,.2,1)" style-hover="color:#0B8763">Contato</a>
-        <a href="#" style="color:#0E2A22;font-size:15px;font-weight:500;text-decoration:none;padding:8px 4px;border-radius:6px;transition:color .3s cubic-bezier(.2,.7,.2,1)" style-hover="color:#0B8763">Política de Privacidade</a>
+        <a href="politica-de-privacidade/" style="color:#0E2A22;font-size:15px;font-weight:500;text-decoration:none;padding:8px 4px;border-radius:6px;transition:color .3s cubic-bezier(.2,.7,.2,1)" style-hover="color:#0B8763">Política de Privacidade</a>
+        <a href="termos-de-uso/" style="color:#0E2A22;font-size:15px;font-weight:500;text-decoration:none;padding:8px 4px;border-radius:6px;transition:color .3s cubic-bezier(.2,.7,.2,1)" style-hover="color:#0B8763">Termos de Uso</a>
+        <a href="politica-de-cookies/" style="color:#0E2A22;font-size:15px;font-weight:500;text-decoration:none;padding:8px 4px;border-radius:6px;transition:color .3s cubic-bezier(.2,.7,.2,1)" style-hover="color:#0B8763">Política de Cookies</a>
+        <button type="button" data-cookie-prefs="1" style="color:#0E2A22;font:inherit;font-size:15px;font-weight:500;padding:8px 4px;border-radius:6px;background:none;border:0;cursor:pointer;transition:color .3s cubic-bezier(.2,.7,.2,1)" style-hover="color:#0B8763">Preferências de cookies</button>
       </nav>
     </div>
     <div aria-hidden="true" style="max-width:1240px;margin:clamp(40px,6vw,56px) auto 0;height:1px;background:linear-gradient(90deg,rgba(14,42,34,0),rgba(14,42,34,.14) 20%,rgba(14,42,34,.14) 80%,rgba(14,42,34,0))"></div>
@@ -891,7 +880,7 @@ class Component extends DCLogic {
       Nome: g('nome'), WhatsApp: g('whatsapp'), 'E-mail': g('email') || '-', 'Tipo de obra': this.state.tipo,
       Cidade: g('cidade'), 'Faixa de investimento': g('faixa'), 'Já tem projeto': this.state.projeto || '-', 'Quando quer começar': g('inicio') || '-'
     };
-    const ok = () => this.setState({ status: 'sent' });
+    const ok = () => { (window.dataLayer = window.dataLayer || []).push({ event: 'generate_lead', form_name: 'orcamento', tipo_obra: dados['Tipo de obra'], cidade: dados.Cidade }); this.setState({ status: 'sent' }); };
     const fail = () => this.setState({ status: 'error' });
     // WhatsApp abre já no clique (depois de um await o navegador bloqueia a nova aba)
     if (cfg.waNum) {
