@@ -70,11 +70,18 @@
   var ctx = tela.getContext("2d");
   var hero = voo.querySelector(".voo__hero");
   var trust = voo.querySelectorAll(".confianca__item");
-  var celular = matchMedia("(max-width: 767px)").matches;
+  /* celular e tablet em pé usam o vídeo vertical */
+  var celular = matchMedia("(max-width: 767px), (orientation: portrait) and (max-width: 1100px)").matches;
+  var meio = voo.querySelector(".voo__meio");
+  var veuDestino = voo.querySelector(".voo__veu--destino");
+  var veuMeio = voo.querySelector(".voo__veu--meio");
+  var veuJanela = voo.querySelector(".voo__veu--janela");
   var SEQ = {
-    aviao: { pasta: celular ? "aviao-m" : "aviao", total: 59, img: [] },
-    chegada: { pasta: celular ? "chegada-m" : "chegada", total: 44, img: [] }
+    janela: { pasta: celular ? "janela-m" : "janela", total: 56, img: [] },
+    egito: { pasta: celular ? "egito-m" : "egito", total: 62, img: [] }
   };
+  /* onde está a janela do avião em cada quadro (x0, y0, x1, y1 em fração do vídeo) */
+  var JANELA = celular ? [[0.111, 0.081, 1.0, 0.925], [0.122, 0.088, 1.0, 0.925], [0.133, 0.094, 1.0, 0.925], [0.133, 0.094, 1.0, 0.919], [0.144, 0.1, 1.0, 0.919], [0.156, 0.106, 1.0, 0.919], [0.167, 0.119, 1.0, 0.919], [0.178, 0.125, 1.0, 0.919], [0.178, 0.131, 1.0, 0.919], [0.189, 0.138, 1.0, 0.919], [0.2, 0.138, 1.0, 0.912], [0.2, 0.144, 1.0, 0.906], [0.2, 0.144, 1.0, 0.906], [0.211, 0.144, 1.0, 0.9], [0.211, 0.15, 1.0, 0.9], [0.211, 0.15, 1.0, 0.894], [0.2, 0.15, 1.0, 0.888], [0.2, 0.15, 1.0, 0.888], [0.2, 0.15, 1.0, 0.888], [0.2, 0.15, 1.0, 0.881], [0.211, 0.144, 1.0, 0.875], [0.211, 0.144, 1.0, 0.869], [0.211, 0.15, 1.0, 0.862], [0.211, 0.15, 1.0, 0.862], [0.211, 0.156, 1.0, 0.856], [0.222, 0.156, 1.0, 0.856], [0.222, 0.156, 1.0, 0.85], [0.222, 0.156, 1.0, 0.85], [0.233, 0.156, 1.0, 0.844], [0.244, 0.162, 1.0, 0.844], [0.244, 0.162, 1.0, 0.838], [0.256, 0.162, 1.0, 0.838], [0.267, 0.162, 1.0, 0.838], [0.278, 0.162, 1.0, 0.831], [0.289, 0.162, 1.0, 0.831], [0.289, 0.169, 1.0, 0.825], [0.289, 0.175, 1.0, 0.825], [0.289, 0.175, 1.0, 0.825], [0.278, 0.181, 1.0, 0.825], [0.278, 0.181, 1.0, 0.825], [0.256, 0.188, 1.0, 0.825], [0.256, 0.181, 1.0, 0.819], [0.256, 0.188, 1.0, 0.819], [0.256, 0.188, 1.0, 0.819], [0.256, 0.181, 1.0, 0.812], [0.256, 0.181, 1.0, 0.812], [0.244, 0.181, 1.0, 0.806], [0.233, 0.181, 1.0, 0.806], [0.233, 0.181, 0.989, 0.8], [0.233, 0.181, 0.989, 0.8], [0.222, 0.181, 0.989, 0.8], [0.233, 0.181, 0.989, 0.8], [0.233, 0.181, 0.989, 0.794], [0.233, 0.181, 0.989, 0.8], [0.233, 0.181, 0.989, 0.8], [0.233, 0.175, 0.989, 0.8]] : [[0.231, 0.078, 0.562, 0.933], [0.231, 0.078, 0.562, 0.933], [0.231, 0.089, 0.562, 0.933], [0.238, 0.089, 0.562, 0.922], [0.238, 0.1, 0.562, 0.922], [0.244, 0.1, 0.562, 0.922], [0.25, 0.111, 0.562, 0.922], [0.25, 0.122, 0.562, 0.922], [0.25, 0.122, 0.562, 0.922], [0.256, 0.133, 0.556, 0.922], [0.256, 0.133, 0.556, 0.922], [0.256, 0.133, 0.556, 0.911], [0.256, 0.133, 0.556, 0.911], [0.256, 0.144, 0.556, 0.911], [0.262, 0.144, 0.55, 0.9], [0.262, 0.144, 0.55, 0.9], [0.256, 0.144, 0.55, 0.9], [0.256, 0.144, 0.544, 0.889], [0.256, 0.144, 0.544, 0.889], [0.256, 0.144, 0.544, 0.889], [0.262, 0.144, 0.544, 0.878], [0.262, 0.144, 0.544, 0.878], [0.262, 0.144, 0.538, 0.867], [0.262, 0.144, 0.538, 0.867], [0.262, 0.144, 0.538, 0.867], [0.262, 0.156, 0.538, 0.856], [0.262, 0.156, 0.538, 0.856], [0.269, 0.156, 0.531, 0.856], [0.269, 0.156, 0.531, 0.856], [0.275, 0.156, 0.531, 0.844], [0.275, 0.156, 0.531, 0.844], [0.281, 0.156, 0.531, 0.844], [0.281, 0.156, 0.531, 0.844], [0.288, 0.156, 0.531, 0.833], [0.294, 0.167, 0.531, 0.833], [0.294, 0.167, 0.531, 0.833], [0.294, 0.167, 0.525, 0.833], [0.294, 0.167, 0.525, 0.833], [0.288, 0.178, 0.525, 0.833], [0.288, 0.178, 0.525, 0.833], [0.288, 0.178, 0.525, 0.833], [0.281, 0.178, 0.519, 0.822], [0.281, 0.178, 0.519, 0.822], [0.281, 0.178, 0.519, 0.822], [0.281, 0.178, 0.519, 0.822], [0.275, 0.178, 0.519, 0.811], [0.275, 0.178, 0.512, 0.811], [0.269, 0.178, 0.512, 0.811], [0.269, 0.178, 0.512, 0.811], [0.269, 0.178, 0.512, 0.8], [0.269, 0.178, 0.512, 0.8], [0.269, 0.178, 0.512, 0.8], [0.269, 0.178, 0.512, 0.8], [0.269, 0.178, 0.512, 0.8], [0.269, 0.178, 0.512, 0.8], [0.269, 0.178, 0.512, 0.8]];
   var alvoP = 0, atualP = 0, vooVisivel = true, ultimoDesenho = "";
 
   function src(seq, i) { return "assets/seq/" + seq.pasta + "/" + String(i).padStart(3, "0") + ".webp"; }
@@ -97,7 +104,7 @@
     /* carrega de forma espaçada primeiro (1 a cada 4), depois preenche */
     var ordem = [];
     [4, 2, 1].forEach(function (passo) {
-      ["aviao", "chegada"].forEach(function (k) {
+      ["janela", "egito"].forEach(function (k) {
         for (var i = 0; i < SEQ[k].total; i += passo) ordem.push([k, i]);
       });
     });
@@ -118,32 +125,86 @@
     tela.height = Math.round(tela.clientHeight * dpr);
     ultimoDesenho = "";
   }
-  function cobrir(im, alpha) {
-    if (!im) return;
+  /* retângulo de "cover" do vídeo na tela */
+  function caixa(im) {
     var cw = tela.width, ch = tela.height, r = Math.max(cw / im.naturalWidth, ch / im.naturalHeight);
     var w = im.naturalWidth * r, h = im.naturalHeight * r;
-    ctx.globalAlpha = alpha;
-    ctx.drawImage(im, (cw - w) / 2, (ch - h) / 2, w, h);
+    return { x: (cw - w) / 2, y: (ch - h) / 2, w: w, h: h };
   }
+  function suave(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  /* linha do tempo do topo:
+     0 a .32  a moça olha pela janela (vídeo avança)
+     .30 a .58 a janela vira portal e abre até a tela toda, já mostrando o Egito
+     .30 a 1   a câmera passa pelas paredes até as pirâmides */
   function desenhar(p) {
-    var a = clamp(p / 0.58, 0, 1);
-    var b = clamp((p - 0.42) / 0.58, 0, 1);
-    var mix = clamp((p - 0.42) / 0.16, 0, 1);
-    var ia = Math.round(a * (SEQ.aviao.total - 1));
-    var ib = Math.round(b * (SEQ.chegada.total - 1));
-    var chave = ia + ":" + ib + ":" + mix.toFixed(2);
+    var ia = Math.round(clamp(p / 0.32, 0, 1) * (SEQ.janela.total - 1));
+    var ib = Math.round(clamp((p - 0.30) / 0.70, 0, 1) * (SEQ.egito.total - 1));
+    var t = suave(clamp((p - 0.30) / 0.28, 0, 1));
+    var chave = ia + ":" + ib + ":" + t.toFixed(3);
     if (chave === ultimoDesenho) return;
     ultimoDesenho = chave;
-    if (mix < 1) cobrir(quadro(SEQ.aviao, ia), 1);
-    if (mix > 0) cobrir(quadro(SEQ.chegada, ib), mix);
+    var cw = tela.width, ch = tela.height;
+    var imA = quadro(SEQ.janela, ia), imB = quadro(SEQ.egito, ib);
+    ctx.globalAlpha = 1;
+    if (t < 1 && imA) {
+      var c = caixa(imA), j = JANELA[ia] || JANELA[JANELA.length - 1];
+      /* no computador a cena vai um pouco para a esquerda: a direita do vídeo é escura e recebe o texto */
+      if (!celular) c.x -= Math.min(cw * 0.12, Math.max(0, c.w - cw) / 2 + cw * 0.12);
+      /* centro da janela na tela */
+      var jx0 = c.x + j[0] * c.w, jy0 = c.y + j[1] * c.h, jx1 = c.x + j[2] * c.w, jy1 = c.y + j[3] * c.h;
+      var cx = (jx0 + jx1) / 2, cy = (jy0 + jy1) / 2;
+      /* a câmera aproxima da janela enquanto ela abre */
+      var z = 1 + t * 1.6;
+      ctx.save();
+      ctx.translate(cx, cy); ctx.scale(z, z); ctx.translate(-cx, -cy);
+      ctx.drawImage(imA, c.x, c.y, c.w, c.h);
+      ctx.restore();
+      if (t > 0 && imB) {
+        /* o portal: a janela aumentada cresce até ocupar a tela */
+        var px0 = lerp(cx - (cx - jx0) * z, 0, t), py0 = lerp(cy - (cy - jy0) * z, 0, t);
+        var px1 = lerp(cx + (jx1 - cx) * z, cw, t), py1 = lerp(cy + (jy1 - cy) * z, ch, t);
+        var raio = lerp(Math.min(px1 - px0, py1 - py0) * 0.32, 0, t);
+        ctx.save();
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(px0, py0, px1 - px0, py1 - py0, raio); else ctx.rect(px0, py0, px1 - px0, py1 - py0);
+        ctx.clip();
+        var cb = caixa(imB), zb = lerp(1.25, 1, t);
+        ctx.translate(cw / 2, ch / 2); ctx.scale(zb, zb); ctx.translate(-cw / 2, -ch / 2);
+        ctx.drawImage(imB, cb.x, cb.y, cb.w, cb.h);
+        ctx.restore();
+        /* moldura de luz na borda da janela */
+        ctx.save();
+        ctx.globalAlpha = 0.85 * (1 - t);
+        ctx.strokeStyle = "#F2C48D"; ctx.lineWidth = 2 * (tela.width / tela.clientWidth);
+        ctx.shadowColor = "#F2C48D"; ctx.shadowBlur = 24;
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(px0, py0, px1 - px0, py1 - py0, raio); else ctx.rect(px0, py0, px1 - px0, py1 - py0);
+        ctx.stroke();
+        ctx.restore();
+      }
+    } else if (imB) {
+      var cb2 = caixa(imB);
+      ctx.drawImage(imB, cb2.x, cb2.y, cb2.w, cb2.h);
+    }
   }
+  function faixa(p, a, b) { return clamp((p - a) / (b - a), 0, 1); }
   function camadas(p) {
-    var saida = clamp((p - 0.1) / 0.2, 0, 1);
+    var saida = faixa(p, 0.12, 0.26);
     hero.style.opacity = String(1 - saida);
-    hero.style.transform = "translate3d(0," + (-70 * saida) + "px,0)";
+    hero.style.transform = "translate3d(0," + (-60 * saida) + "px,0)";
     hero.style.visibility = saida >= 1 ? "hidden" : "visible";
-    voo.classList.toggle("is-chegada", p > 0.46);
-    trust.forEach(function (li, i) { li.classList.toggle("is-on", p > 0.52 + i * 0.06); });
+    /* frase do meio: entra com o portal e sai antes da chegada */
+    var mEnt = faixa(p, 0.36, 0.46), mSai = faixa(p, 0.56, 0.64), mo = mEnt * (1 - mSai);
+    meio.style.opacity = String(mo);
+    meio.style.transform = "translate3d(0," + (30 * (1 - mEnt) - 30 * mSai) + "px,0) scale(" + (0.96 + 0.04 * mEnt) + ")";
+    meio.style.visibility = mo <= 0 ? "hidden" : "visible";
+    veuMeio.style.opacity = String(mo);
+    veuJanela.style.opacity = String(1 - faixa(p, 0.28, 0.45));
+    veuDestino.style.opacity = String(faixa(p, 0.5, 0.66));
+    voo.classList.toggle("is-chegada", p > 0.64);
+    trust.forEach(function (li, i) { li.classList.toggle("is-on", p > 0.7 + i * 0.05); });
     voo.style.setProperty("--p", p.toFixed(3));
   }
   function progressoVoo() {
@@ -154,8 +215,8 @@
 
   if (!reduz) {
     medir();
-    carregar(SEQ.aviao, 0, function () { desenhar(atualP); voo.classList.add("is-pronto"); });
-    carregar(SEQ.chegada, 0);
+    carregar(SEQ.janela, 0, function () { desenhar(atualP); voo.classList.add("is-pronto"); });
+    carregar(SEQ.egito, 0);
     if (document.readyState === "complete") filaDeCarga();
     else window.addEventListener("load", filaDeCarga);
     window.addEventListener("resize", function () { medir(); desenhar(atualP); });

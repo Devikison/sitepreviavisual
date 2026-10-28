@@ -113,55 +113,87 @@ p { margin: 0; text-wrap: pretty; }
 }
 
 /* ---------- seções 1 e 2: o voo ---------- */
-.voo { position: relative; height: 340svh; }
-.voo__palco { position: sticky; top: 0; height: 100svh; overflow: hidden; background: var(--navy-fundo); }
+/* ---------- seções 1 e 2: pela janela ----------
+   A moça olha pela janela do avião; a janela vira portal e a câmera entra no Egito. */
+.voo { position: relative; height: 440svh; }
+.voo__palco { position: sticky; top: 0; height: 100svh; overflow: hidden; background: #05090F; }
 .voo__poster, .voo__tela { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .voo__tela { opacity: 0; }
 .voo.is-pronto .voo__tela { opacity: 1; }
 .voo.is-pronto .voo__poster { visibility: hidden; }
-.voo__veu { position: absolute; inset: 0; background:
-  linear-gradient(180deg, rgba(11, 22, 34, .62) 0%, rgba(11, 22, 34, .12) 30%, rgba(11, 22, 34, .2) 55%, rgba(11, 22, 34, .88) 100%),
-  linear-gradient(90deg, rgba(18, 34, 52, .55) 0%, rgba(18, 34, 52, 0) 60%); }
+.voo__veu { position: absolute; inset: 0; pointer-events: none; }
+/* lado direito do vídeo já é escuro: o véu só aprofunda onde fica o texto */
+.voo__veu--janela { background: linear-gradient(90deg, rgba(5, 9, 15, 0) 40%, rgba(5, 9, 15, .6) 62%, rgba(5, 9, 15, .85) 100%), linear-gradient(180deg, rgba(5, 9, 15, .5) 0%, rgba(5, 9, 15, 0) 18%, rgba(5, 9, 15, 0) 82%, rgba(5, 9, 15, .7) 100%); }
+.voo__veu--meio { opacity: 0; background: radial-gradient(ellipse 62% 42% at 50% 50%, rgba(8, 15, 25, .72), rgba(8, 15, 25, 0) 72%); }
+.voo__veu--destino { opacity: 0; background: linear-gradient(180deg, rgba(8, 15, 25, .6) 0%, rgba(8, 15, 25, 0) 24%, rgba(8, 15, 25, .15) 42%, rgba(8, 15, 25, .82) 66%, rgba(8, 15, 25, .96) 100%); }
 
-.voo__hero, .voo__chegada { position: absolute; left: 0; right: 0; margin: 0 auto; max-width: var(--largura); padding-inline: var(--margem); }
-.voo__hero { bottom: clamp(88px, 14vh, 150px); will-change: transform, opacity; }
-.voo__titulo { font-size: clamp(36px, 5.6vw, 76px); line-height: 1.02; letter-spacing: -.025em; max-width: 15.5em; max-width: min(1060px, 100%); }
-.voo__sub { margin-top: 22px; max-width: 560px; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.55; color: var(--branco); }
+/* topo: texto no escuro à direita da janela */
+.voo__hero { position: absolute; inset: 0; display: flex; align-items: center; justify-content: flex-end; max-width: var(--largura); margin: 0 auto; padding: var(--topo-h) var(--margem) 64px; will-change: transform, opacity; }
+.voo__caixa { width: min(600px, 46%); }
+.voo__titulo { font-size: clamp(38px, 3.9vw, 58px); line-height: 1.04; letter-spacing: -.025em; color: #FFFFFF; }
+.voo__sub { margin-top: 22px; font-size: clamp(17px, 1.3vw, 19px); line-height: 1.6; color: #FFFFFF; }
 .voo__acoes { margin-top: 30px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
-.voo__nota { font-size: 14px; color: var(--branco); }
+.voo__nota { font-size: 14px; color: #FFFFFF; }
 
-.voo__chegada { bottom: clamp(72px, 12vh, 130px); opacity: 0; pointer-events: none; }
-.voo.is-chegada .voo__chegada { pointer-events: auto; }
-.voo__chegada-titulo { font-size: clamp(30px, 4.2vw, 56px); max-width: 17em; opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
-.voo.is-chegada .voo__chegada { opacity: 1; }
+/* botão com brilho que atravessa no hover, como no cartão da bio */
+.btn--brilho { position: relative; overflow: hidden; isolation: isolate; }
+.btn--brilho::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, .9) 50%, transparent 70%); transform: translateX(-120%); transition: transform 1.2s var(--ease); }
+@media (hover: hover) and (pointer: fine) { .btn--brilho:hover::after { transform: translateX(120%); } }
+
+/* frase do meio, no instante em que a janela se abre */
+.voo__meio { position: absolute; left: 50%; top: 50%; width: min(92vw, 1100px); margin: 0; translate: -50% -50%; text-align: center; font-family: var(--titulo); font-weight: 600; font-size: clamp(42px, 7.4vw, 112px); line-height: 1; letter-spacing: -.03em; color: #FFFFFF; text-wrap: balance; opacity: 0; visibility: hidden; text-shadow: 0 2px 30px rgba(5, 9, 15, .45); pointer-events: none; }
+
+/* chegada */
+.voo__chegada { position: absolute; left: 0; right: 0; bottom: clamp(76px, 12vh, 130px); margin: 0 auto; max-width: var(--largura); padding-inline: var(--margem); opacity: 0; pointer-events: none; transition: opacity .6s var(--ease); }
+.voo.is-chegada .voo__chegada { opacity: 1; pointer-events: auto; }
+.voo__chegada-titulo { font-size: clamp(30px, 4vw, 56px); max-width: 16em; color: #FFFFFF; opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
 .voo.is-chegada .voo__chegada-titulo { opacity: 1; transform: none; }
-.confianca { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-.confianca__item { display: flex; flex-direction: column; gap: 10px; padding: 16px 18px 18px; border-radius: 14px; background: var(--papel); color: var(--tinta); font-size: 15px; font-weight: 500; line-height: 1.4; opacity: 0; transform: translateY(28px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.confianca { list-style: none; margin: 30px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+/* cada item é um mini cartão de embarque com picote */
+.confianca__item { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 16px 18px 18px; border-radius: 14px; background: var(--papel); color: var(--tinta); font-size: 15px; font-weight: 500; line-height: 1.4; opacity: 0; transform: translateY(28px); transition: opacity .8s var(--ease), transform .8s var(--ease), box-shadow .8s var(--ease);
+  -webkit-mask: radial-gradient(circle 8px at 0 38px, transparent 97%, #000 100%) left / 51% 100% no-repeat, radial-gradient(circle 8px at 100% 38px, transparent 97%, #000 100%) right / 51% 100% no-repeat;
+  mask: radial-gradient(circle 8px at 0 38px, transparent 97%, #000 100%) left / 51% 100% no-repeat, radial-gradient(circle 8px at 100% 38px, transparent 97%, #000 100%) right / 51% 100% no-repeat; }
+.confianca__item::after { content: ""; position: absolute; left: 14px; right: 14px; top: 38px; border-top: 1.5px dashed rgba(81, 104, 122, .35); }
 .confianca__item.is-on { opacity: 1; transform: none; }
-.confianca__cod { font-size: 11px; font-weight: 600; letter-spacing: .16em; color: #B06A1E; }
+.confianca__cod { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: .16em; color: #9A5A12; margin-bottom: 6px; }
+.confianca__cod img { width: 18px; height: auto; transition: transform 1.2s var(--ease); }
+@media (hover: hover) and (pointer: fine) {
+  .confianca__item.is-on:hover { transform: translateY(-6px); }
+  .confianca__item:hover .confianca__cod img { transform: translateX(6px); }
+}
 
-.voo__rota { position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); width: min(420px, calc(100% - 2 * var(--margem))); display: flex; align-items: center; gap: 12px; color: var(--branco); font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+/* progresso da viagem no pé da tela */
+.voo__rota { position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%); width: min(460px, calc(100% - 2 * var(--margem))); display: flex; align-items: center; gap: 12px; color: #FFFFFF; font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
 .voo__rota span:last-child { white-space: nowrap; }
 .voo__trilha { position: relative; flex: 1; height: 14px; }
-.voo__trilha::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1.5px dashed rgba(234, 228, 220, .55); }
-.voo__trilha img { position: absolute; top: 0; left: calc(var(--p, 0) * (100% - 22px)); width: 22px; height: 14px; }
+.voo__trilha::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1.5px dashed rgba(255, 255, 255, .4); }
+.voo__trilha::after { content: ""; position: absolute; left: 0; top: calc(50% - 1px); height: 2px; width: calc(var(--p, 0) * 100%); background: #F2C48D; border-radius: 2px; }
+.voo__trilha img { position: absolute; top: 0; left: calc(var(--p, 0) * (100% - 22px)); width: 22px; height: 14px; z-index: 1; }
 
 @media (max-width: 900px) {
   .confianca { grid-template-columns: 1fr 1fr; gap: 10px; }
   .confianca__item { padding: 12px 14px 14px; font-size: 14px; gap: 6px; }
 }
 @media (max-width: 767px) {
-  .voo { height: 300svh; }
-  .voo__hero { bottom: 84px; }
-  .voo__titulo { font-size: clamp(31px, 8.6vw, 40px); }
-  .voo__sub { font-size: 16px; margin-top: 16px; }
-  .voo__acoes { margin-top: 24px; }
+  .voo { height: 400svh; }
+  .voo__titulo { font-size: clamp(30px, 8.4vw, 38px); }
+  .voo__sub { font-size: 16px; margin-top: 14px; }
+  .voo__acoes { margin-top: 22px; }
   .voo__acoes .btn { width: 100%; }
   .voo__nota { font-size: 13px; }
-  .voo__chegada { bottom: 74px; }
-  .voo__chegada-titulo { font-size: 28px; }
-  .confianca { margin-top: 20px; }
+  .voo__meio { font-size: clamp(40px, 12vw, 56px); }
+  .voo__chegada { bottom: 70px; }
+  .voo__chegada-titulo { font-size: 27px; }
+  .confianca { margin-top: 18px; }
   .confianca__item { font-size: 13px; }
+  .confianca__item::after { top: 34px; }
+}
+
+/* celular e tablet em pé: a janela ocupa o meio, o texto vai embaixo sobre véu escuro */
+@media (max-width: 767px), (orientation: portrait) and (max-width: 1100px) {
+  .voo__veu--janela { background: linear-gradient(180deg, rgba(5, 9, 15, .55) 0%, rgba(5, 9, 15, 0) 12%, rgba(5, 9, 15, .05) 20%, rgba(5, 9, 15, .86) 40%, rgba(5, 9, 15, .97) 62%, rgba(5, 9, 15, .98) 100%); }
+  .voo__hero { align-items: flex-end; justify-content: flex-start; padding: var(--topo-h) var(--margem) 76px; }
+  .voo__caixa { width: min(100%, 640px); }
 }
 
 /* ---------- cartão de embarque (componente da bio) ---------- */
@@ -295,7 +327,7 @@ p { margin: 0; text-wrap: pretty; }
 .rota__base { fill: none; stroke: rgba(242, 196, 141, .28); stroke-width: 1.5; }
 .rota__fluxo { fill: none; stroke: #F2C48D; stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 1.5 11; animation: rota-fluxo 1.1s linear infinite; filter: url(#mapa-brilho); }
 @keyframes rota-fluxo { to { stroke-dashoffset: -25; } }
-.rota__aviao { fill: #FFFFFF; filter: url(#mapa-brilho); }
+.rota__aviao { filter: url(#mapa-brilho); }
 .destino-no__aro { fill: rgba(242, 196, 141, .12); stroke: rgba(242, 196, 141, .5); stroke-width: 1; transform-box: fill-box; transform-origin: center; animation: no-pulso 2.6s var(--ease) infinite; }
 .destino-no__ponto { fill: #F2C48D; filter: url(#mapa-brilho); }
 .destino-no__nome { font-family: var(--titulo); font-size: 22px; font-weight: 600; fill: #FFFFFF; }
@@ -517,7 +549,8 @@ html:not(.js) .carrossel { overflow-x: auto; }
   .js .revela { opacity: 1; translate: none; }
   .voo { height: auto; }
   .voo__palco { position: relative; height: auto; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; padding: 120px 0 48px; gap: 48px; }
-  .voo__hero, .voo__chegada { position: relative; bottom: auto; opacity: 1 !important; transform: none !important; }
+  .voo__hero, .voo__chegada { position: relative; inset: auto; bottom: auto; opacity: 1 !important; transform: none !important; }
+  .voo__meio, .voo__veu--meio, .voo__veu--destino { display: none; }
   .voo__chegada-titulo, .confianca__item { opacity: 1; transform: none; }
   .voo__rota { display: none; }
   .voo__tela { display: none; }
