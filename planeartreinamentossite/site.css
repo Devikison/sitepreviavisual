@@ -172,7 +172,7 @@ h2.sec-k{font-size:13px;line-height:1.4}
 @media (prefers-reduced-motion:reduce){.mnav,.mnav a,.burger,.burger i{transition:none!important}}
 
 /* hero capa */
-.hero{position:relative;overflow:hidden;padding:calc(86px + clamp(28px,5vh,60px)) 0 clamp(40px,6vh,72px);min-height:100dvh;display:flex;align-items:center}
+.hero{position:relative;overflow:hidden;padding:calc(86px + clamp(28px,5vh,60px)) 0 clamp(40px,6vh,72px);min-height:100svh;display:flex;align-items:center}
 .hero>.wrap{width:100%}
 .hero-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(40% 50% at 82% 40%,rgba(232,116,10,.14),transparent 70%)}
 .hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4.4fr);gap:clamp(32px,5vw,88px);align-items:end}
@@ -293,7 +293,7 @@ section:has(>.stair),.ftr{position:relative}
 /* como funciona: degraus ilustrados */
 .steps{padding:clamp(72px,10vw,128px) 0}
 .steps h2{margin-bottom:clamp(28px,4vw,48px)}
-@media (min-width:960px) and (min-height:720px){.steps{height:340vh;padding:0}.steps-pin{position:sticky;top:0;height:100dvh;display:flex;align-items:center;padding-top:76px}.steps-pin>.wrap{width:100%}.steps h2{margin-bottom:clamp(20px,3vh,40px)}}
+@media (min-width:960px) and (min-height:720px){.steps{height:340vh;padding:0}.steps-pin{position:sticky;top:0;height:100svh;display:flex;align-items:center;padding-top:76px}.steps-pin>.wrap{width:100%}.steps h2{margin-bottom:clamp(20px,3vh,40px)}}
 .mstair{display:none}
 .stairs-wrap{position:relative}
 .growth{position:absolute;left:0;right:0;bottom:120px;width:100%;height:58%;pointer-events:none;z-index:0;overflow:visible}
@@ -448,7 +448,7 @@ section:has(>.stair),.ftr{position:relative}
   .form .btn-p{align-self:center;min-width:min(100%,260px)}
   /* como funciona no celular: preso na tela, uma etapa por vez, degraus enchendo */
   .steps{height:430vh;padding:0}
-  .steps-pin{position:sticky;top:0;height:100dvh;display:flex;align-items:center;padding-top:72px;overflow:hidden}
+  .steps-pin{position:sticky;top:0;height:100svh;display:flex;align-items:center;padding-top:72px;overflow:hidden}
   .steps-pin>.wrap{width:100%}
   .steps h2{margin-bottom:14px;font-size:clamp(34px,10vw,46px)}
   .mstair{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;align-items:end;height:84px;margin-bottom:16px;padding-right:46px}
@@ -476,6 +476,31 @@ section:has(>.stair),.ftr{position:relative}
 @keyframes ilustra{from{opacity:0;transform:translate3d(0,14px,0) scale(.86)}to{opacity:1;transform:none}}
 @media (max-width:959px) and (max-height:700px){.steps h2{font-size:32px;margin-bottom:10px}.mstair{height:64px;margin-bottom:12px}.st-ill{height:100px}.st h3{font-size:22px}.st p{font-size:15px}}
 @media (max-width:640px){.btn{white-space:normal;text-align:center;line-height:1.25;padding:12px 20px}}
+/* leitura centralizada no celular: capa fixa em destaque no topo, títulos e textos de abertura no eixo;
+   conteúdo longo (cards, FAQ, formulário, etapas) continua alinhado à esquerda */
+@media (max-width:959px){
+  .hero{padding-top:calc(74px + 16px)}
+  .hero-grid{gap:26px}
+  .cover-frame img{aspect-ratio:4/3;object-position:50% 45%}
+  .hero-txt{align-items:center;text-align:center;gap:20px}
+  .hero h1{max-width:16ch}
+  .lead{max-width:44ch}
+  .cta{flex-direction:column;align-items:stretch;width:100%;gap:12px}
+  .cta .btn{width:100%}
+  .proof{width:100%}
+  .proof li{justify-content:center;text-align:center}
+  .proof li:before{left:50%;transform:translateX(-50%)}
+  .fw-k{justify-content:center;text-align:center}
+  .stack-head h2,.change h2,.steps h2,.faq h2{text-align:center}
+  .case-txt,.team-txt,.contact-txt{text-align:center}
+  .case-txt p{max-width:24ch;margin:0 auto}
+  .quote:before{margin:0 auto}
+  .sig{align-items:center}
+  .contact-txt{align-items:center}
+  .support{padding:14px 0 0;border-left:0;position:relative}
+  .support:before{content:"";position:absolute;left:50%;top:0;width:40px;height:2px;margin-left:-20px;background:var(--orange)}
+  .where-txt{align-items:center;text-align:center}
+}
 @media (prefers-reduced-motion:reduce){.js .stairs .st.on,.js .stairs .st.on .st-ill svg{animation:none}}
 
 /* hover lento e elegante nos cards */
