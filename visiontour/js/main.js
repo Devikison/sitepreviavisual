@@ -223,20 +223,35 @@
   /* ---------- mapa: de qual capital você sai ---------- */
   var sel = document.querySelector("[data-saida]");
   var mapa = document.querySelector("[data-mapa]");
-  var rota = document.getElementById("mapa-rota");
   var btnSaida = document.querySelector("[data-saida-btn]");
+  var selG = mapa.querySelector(".mapa__sel"), selNome = mapa.querySelector(".sel__nome");
+  var DEST = [[735, 92], [760, 206], [735, 320]];
+  /* no celular os nomes ficam maiores, então os destinos chegam mais para dentro */
+  if (matchMedia("(max-width: 767px)").matches) {
+    DEST = [[600, 80], [625, 200], [600, 320]];
+    mapa.querySelectorAll(".destino-no").forEach(function (g, i) { g.setAttribute("transform", "translate(" + DEST[i][0] + " " + DEST[i][1] + ")"); });
+  }
+  var bases = [0, 1, 2].map(function (i) { return document.getElementById("rota-" + i); });
+  var fluxos = [0, 1, 2].map(function (i) { return mapa.querySelector('[data-fluxo="' + i + '"]'); });
   function escolher(cod) {
     var op = sel.querySelector('option[value="' + cod + '"]');
     if (!op) return;
     sel.value = cod;
     var x = +op.dataset.x, y = +op.dataset.y, nome = op.textContent;
     mapa.querySelectorAll(".mapa__caps circle").forEach(function (c) { c.classList.toggle("is-on", c.dataset.iata === cod); });
-    var ex = 640, ey = -40, cx = (x + ex) / 2 + 40, cy = Math.min(y, ey) - 30 + (y - ey) * 0.15;
-    rota.setAttribute("d", "M" + x + " " + y + " Q" + cx + " " + cy + " " + ex + " " + ey);
-    if (!reduz && rota.animate) {
-      var L = rota.getTotalLength();
-      rota.animate([{ strokeDashoffset: L }, { strokeDashoffset: 0 }], { duration: 1200, easing: "cubic-bezier(.16,1,.3,1)" });
-    }
+    selG.setAttribute("transform", "translate(" + x + " " + y + ")");
+    selNome.textContent = nome;
+    selNome.setAttribute("text-anchor", x > 470 ? "end" : x < 120 ? "start" : "middle");
+    DEST.forEach(function (d, i) {
+      var cx = (x + d[0]) / 2, cy = Math.min(y, d[1]) - 70 - i * 10;
+      var path = "M" + x + " " + y + " Q" + cx + " " + cy + " " + d[0] + " " + d[1];
+      bases[i].setAttribute("d", path); fluxos[i].setAttribute("d", path);
+      if (!reduz && bases[i].animate) {
+        var L = bases[i].getTotalLength();
+        fluxos[i].animate([{ opacity: 0 }, { opacity: 0, offset: .6 }, { opacity: 1 }], { duration: 1300 + i * 150, easing: "ease-out" });
+        bases[i].animate([{ strokeDasharray: L + " " + L, strokeDashoffset: L }, { strokeDasharray: L + " " + L, strokeDashoffset: 0 }], { duration: 1100 + i * 150, easing: "cubic-bezier(.16,1,.3,1)" });
+      }
+    });
     document.querySelector("[data-saida-cod]").textContent = cod;
     document.querySelector("[data-saida-nome]").textContent = nome;
     atualizaWhats(btnSaida, "Oi, Sarah! Moro perto de " + nome + " e quero planejar uma viagem saindo daí.");
