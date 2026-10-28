@@ -745,3 +745,4 @@ html:not(.js) .carrossel { overflow-x: auto; }
   .confianca__cod { font-size: 13px; }
 }
 
+.duas-linhas span { display: block; }
