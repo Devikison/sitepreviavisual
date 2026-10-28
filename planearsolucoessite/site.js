@@ -142,13 +142,16 @@
   });
   function scale(el, v) { el.style.transform = (el.getAttribute('data-axis') === 'y' ? 'scaleY(' : 'scaleX(') + v.toFixed(4) + ')'; }
   function paintScrub(g) {
-    var p = g.cur, n = g.n, s = g.follow ? p * (n - 1) + 0.001 : p * n;
+    var p = g.cur, n = g.n, s = g.follow && !g.pinned ? p * (n - 1) + 0.001 : p * n;
     var desk = window.innerWidth >= 960;
     if (g.x) {
       if (desk) {
         var pv = g.x.parentNode, ps = getComputedStyle(pv);
         var w = Math.max(0, g.x.scrollWidth - (pv.clientWidth - parseFloat(ps.paddingLeft) - parseFloat(ps.paddingRight)));
-        g.x.style.transform = 'translate3d(' + (-w * p).toFixed(1) + 'px,0,0)';
+        // cada item chega alinhado à esquerda no meio da sua fatia, junto com a troca da etapa atual
+        var it = g.x.children, f = Math.max(0, Math.min(it.length - 1, p * n - 0.5)), i0 = Math.floor(f), i1 = Math.min(it.length - 1, i0 + 1);
+        var x = it.length ? it[i0].offsetLeft + (it[i1].offsetLeft - it[i0].offsetLeft) * (f - i0) - it[0].offsetLeft : w * p;
+        g.x.style.transform = 'translate3d(' + (-Math.min(w, x)).toFixed(1) + 'px,0,0)';
       } else g.x.style.transform = '';
     }
     g.fills.forEach(function (e) { scale(e, reduced ? 1 : cl(s - (+e.getAttribute('data-fill')))); });
@@ -199,10 +202,13 @@
       });
       scrubs.forEach(function (g) {
         var r = g.s.getBoundingClientRect();
-        if (g.follow && g.ons.length > 1) {
+        g.pinned = g.mode === 'pin' && g.s.offsetHeight > vh * 1.3;
+        if (g.pinned) g.k = cl(-r.top / ((g.s.offsetHeight - vh) || 1));
+        else if (g.follow && g.ons.length > 1) {
           var a = g.ons[0].getBoundingClientRect(), z = g.ons[g.ons.length - 1].getBoundingClientRect();
-          g.k = cl((vh * 0.55 - a.top - 30) / ((z.top - a.top) || 1));
-        } else if (g.mode === 'pin' && g.s.offsetHeight > vh * 1.3) g.k = cl(-r.top / ((g.s.offsetHeight - vh) || 1));
+          // itens empilhados: a etapa atual é a que passou do meio da tela; lado a lado: avança enquanto o bloco sobe na tela
+          g.k = z.top > a.top + 40 ? cl((vh * 0.55 - a.top - 30) / (z.top - a.top)) : cl((vh * 0.8 - Math.min(a.top, z.top)) / (vh * 0.55));
+        }
         else if (g.mode === 'pin') g.k = cl((vh * 0.85 - r.top) / ((r.height + vh * 0.15) || 1));
         else if (g.mode === 'enter') g.k = cl((vh * 0.9 - r.top) / (vh * 0.6));
         else g.k = cl((vh * 0.85 - r.top) / ((r.height + vh * 0.15) || 1));
