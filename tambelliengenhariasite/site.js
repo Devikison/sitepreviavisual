@@ -114,12 +114,22 @@
       if (desk) {
         if (g.head) g.head.style.top = (hb + 32) + 'px';
         g.cards.forEach(function (o) { o.c.style.top = o.top0 + 'px'; });
-        return;
+      } else {
+        var ht = Math.round(hb + 8);
+        if (g.head) g.head.style.top = ht + 'px';
+        var base = ht + (g.head ? g.head.offsetHeight : 0) + 14;
+        g.cards.forEach(function (o, i) { o.c.style.top = (base + i * 12) + 'px'; });
       }
-      var ht = Math.round(hb + 8);
-      if (g.head) g.head.style.top = ht + 'px';
-      var base = ht + (g.head ? g.head.offsetHeight : 0) + 14;
-      g.cards.forEach(function (o, i) { o.c.style.top = (base + i * 12) + 'px'; });
+      // a pilha sai inteira junto: cada card ganha margem embaixo até o fim do último,
+      // e o card seguinte devolve essa margem em cima para o fluxo não mudar
+      var n = g.cards.length;
+      if (!n) return;
+      var last = g.cards[n - 1].c, end = parseFloat(last.style.top) + last.offsetHeight;
+      g.cards.forEach(function (o, i) {
+        var mb = i < n - 1 ? Math.max(0, Math.round(end - parseFloat(o.c.style.top) - o.c.offsetHeight)) : 0;
+        o.c.style.marginBottom = mb + 'px';
+        if (i < n - 1) g.cards[i + 1].c.style.marginTop = -mb + 'px';
+      });
     });
   }
 
@@ -225,6 +235,34 @@
     });
   }
   function tick(t) { smoothStep(t); headerStep(); frame(); requestAnimationFrame(tick); }
+
+  /* ---------- Números que contam ao aparecer ----------
+     [data-count] anima cada número do texto; data-from="1990" ou "0,0" diz de onde cada um parte */
+  var counts = $$('[data-count]');
+  if (counts.length && !reduced && 'IntersectionObserver' in window) {
+    counts.forEach(function (el) {
+      var txt = el.textContent, from = (el.getAttribute('data-from') || '').split(',');
+      var parts = txt.split(/(\d+)/), nums = [];
+      parts.forEach(function (p, i) { if (/^\d+$/.test(p)) nums.push({ i: i, to: +p, from: +(from[nums.length] || 0) }); });
+      el.style.minWidth = el.offsetWidth + 'px';
+      var draw = function (t) {
+        nums.forEach(function (n) { parts[n.i] = Math.round(n.from + (n.to - n.from) * t); });
+        el.textContent = parts.join('');
+      };
+      draw(0);
+      var co = new IntersectionObserver(function (en) {
+        if (!en[0].isIntersecting) return;
+        co.disconnect();
+        var t0 = performance.now(), dur = 2600;
+        (function step(now) {
+          var k = Math.min(1, (now - t0) / dur);
+          draw(1 - Math.pow(1 - k, 4));
+          if (k < 1) requestAnimationFrame(step); else { el.textContent = txt; el.style.minWidth = ''; }
+        })(t0);
+      }, { threshold: 0.6 });
+      co.observe(el);
+    });
+  }
 
   /* ---------- Reflexo nos botões ---------- */
   $$('.btn').forEach(function (b) {
