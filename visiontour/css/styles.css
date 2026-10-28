@@ -33,7 +33,9 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--topo-h) + 16px); overflow-x: clip; scrollbar-width: auto; scrollbar-color: #E4DBCD #0B1622; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--topo-h) + 16px); overflow-x: clip; }
+/* Firefox não lê ::-webkit-scrollbar; no Chrome essa regra anularia a barra em relevo */
+@supports (-moz-appearance: none) { html { scrollbar-color: #E4DBCD #0B1622; } }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 body { margin: 0; background: var(--navy); color: var(--branco); font-family: var(--texto); font-size: 17px; line-height: 1.6; font-weight: 400; overflow-x: clip; -webkit-font-smoothing: antialiased; }
