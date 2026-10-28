@@ -437,11 +437,24 @@
     b.classList.add("btn--vt");
     if (ioBtn && !reduz) ioBtn.observe(b); else b.classList.add("is-visto");
     var timer = null;
-    b.addEventListener("click", function () {
+    var indo = false;
+    b.addEventListener("click", function (e) {
+      var url = b.href, externo = /^https?:/.test(b.getAttribute("href") || "") || /wa\.me/.test(url);
+      if (indo) { e.preventDefault(); return; }
       clearTimeout(timer);
       b.classList.remove("is-decolando"); void b.offsetWidth;
       b.classList.add("is-decolando");
       timer = setTimeout(function () { b.classList.remove("is-decolando"); }, 2600);
+      /* o WhatsApp só abre depois de dar tempo de ler "Boa viagem!" */
+      if (!externo || reduz) return;
+      e.preventDefault(); indo = true;
+      setTimeout(function () {
+        indo = false;
+        var toque = matchMedia("(pointer: coarse)").matches;
+        if (toque) { location.href = url; return; }
+        var w = window.open(url, "_blank", "noopener");
+        if (!w) location.href = url;   /* navegador bloqueou a nova aba: abre na mesma */
+      }, 1500);
     });
   });
 
