@@ -474,7 +474,7 @@ html:not(.js) .carrossel { overflow-x: auto; }
 .duvida summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; padding: 18px 22px; font-family: var(--titulo); font-size: clamp(18px, 1.6vw, 21px); font-weight: 500; line-height: 1.3; color: var(--branco); }
 .duvida summary::-webkit-details-marker { display: none; }
 .duvida summary::after { content: ""; flex: none; width: 12px; height: 12px; border-right: 2px solid #F2C48D; border-bottom: 2px solid #F2C48D; rotate: 45deg; translate: 0 -3px; transition: rotate .5s var(--ease), translate .5s var(--ease); }
-.duvida[open] summary::after { rotate: 225deg; translate: 0 3px; }
+.duvida[open]:not(.is-fechando) summary::after { rotate: 225deg; translate: 0 3px; }
 .duvida p { padding: 0 22px 22px; max-width: 40em; }
 @media (max-width: 900px) { .duvidas__grade { grid-template-columns: 1fr; } }
 
@@ -570,15 +570,15 @@ html:not(.js) .carrossel { overflow-x: auto; }
 
 /* ---------- cenas: foto de fundo que fica parada enquanto a seção passa (janela) ---------- */
 .cena { isolation: isolate; }
-.cena__fundo { position: absolute; inset: 0; z-index: -1; clip-path: inset(0); overflow: hidden; background: var(--navy-fundo); }
+.cena__fundo { position: absolute; inset: -1px 0; z-index: -1; clip-path: inset(0); overflow: hidden; background: var(--navy-fundo); }
 .cena__fundo img { position: fixed; inset: 0; width: 100%; height: 100lvh; object-fit: cover; }
 .cena__fundo::after { content: ""; position: absolute; inset: 0; }
 /* véus: o texto sempre sobre tom escuro, contraste AA garantido */
 .cena--europa { padding-bottom: var(--entre-secoes); margin-top: var(--entre-secoes); }
-.cena--europa .cena__fundo::after { background: linear-gradient(180deg, rgba(18, 34, 52, .96) 0%, rgba(11, 22, 34, .62) 22%, rgba(11, 22, 34, .62) 78%, rgba(18, 34, 52, .96) 100%); }
-.cena--tailandia .cena__fundo::after { background: linear-gradient(180deg, rgba(18, 34, 52, .9) 0%, rgba(11, 22, 34, 0) 22%, rgba(11, 22, 34, 0) 60%, rgba(11, 22, 34, .55) 100%); }
+.cena--europa .cena__fundo::after { background: linear-gradient(180deg, #122234 0%, rgba(18, 34, 52, .9) 6%, rgba(11, 22, 34, .62) 22%, rgba(11, 22, 34, .62) 78%, rgba(18, 34, 52, .9) 94%, #122234 100%); }
+.cena--tailandia .cena__fundo::after { background: linear-gradient(180deg, #122234 0%, rgba(18, 34, 52, .75) 7%, rgba(11, 22, 34, 0) 22%, rgba(11, 22, 34, 0) 60%, rgba(11, 22, 34, .55) 100%); }
 .cena--paris { margin-top: var(--entre-secoes); }
-.cena--paris .cena__fundo::after { background: linear-gradient(180deg, rgba(18, 34, 52, .96) 0%, rgba(11, 22, 34, .55) 25%, rgba(11, 22, 34, .55) 100%), linear-gradient(90deg, rgba(11, 22, 34, .75) 0%, rgba(11, 22, 34, .2) 60%); }
+.cena--paris .cena__fundo::after { background: linear-gradient(180deg, #122234 0%, rgba(18, 34, 52, .9) 7%, rgba(11, 22, 34, .55) 25%, rgba(11, 22, 34, .55) 100%), linear-gradient(90deg, rgba(11, 22, 34, .75) 0%, rgba(11, 22, 34, .2) 60%); }
 .cena--paris .final__texto { padding: clamp(24px, 3vw, 40px); border-radius: 22px; background: rgba(11, 22, 34, .5); -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%); box-shadow: inset 0 0 0 1px rgba(234, 228, 220, .12); }
 /* imersão: a foto aproxima devagar enquanto a seção atravessa a tela */
 @supports (animation-timeline: view()) {
@@ -595,7 +595,7 @@ html:not(.js) .carrossel { overflow-x: auto; }
 }
 
 /* ---------- botão "embarque" (adaptado de Uiverse.io, marcelodolza) ----------
-   Moldura em relevo, contorno de luz dourada girando no hover, letras em onda
+   Moldura em relevo, letras em onda
    e o aviãozinho da Vision Tour que decola ao clicar. O JS monta as peças. */
 .btn--vt { --vt-1: #FFFFFF; --vt-2: #ECE5DA; --vt-txt: #122234; --vt-acc: #9A5A12; --vt-luz: #F2C48D; --vt-rastro: rgba(18, 34, 52, .45); --raio-btn: 14px;
   position: relative; isolation: isolate; overflow: visible; background: transparent; color: var(--vt-txt); border-radius: var(--raio-btn); min-height: 56px; padding: 14px 26px;
@@ -609,15 +609,10 @@ html:not(.js) .carrossel { overflow-x: auto; }
 @media (hover: hover) and (pointer: fine) {
   .btn--vt:hover { transform: scale(1.02); box-shadow: 0 0 1px 2px rgba(255, 255, 255, .3), 0 15px 30px rgba(5, 9, 15, .35), 0 10px 3px -3px rgba(5, 9, 15, .05); }
   .btn--vt:hover::after { transform: scale(1.04, 1.1); box-shadow: inset 0 -1px 3px 0 rgba(255, 255, 255, .9); }
-  .btn--vt:hover .btn__contorno { opacity: 1; }
-  .btn--vt:hover .btn__contorno::before { animation-play-state: running; }
   .btn--vt:hover .btn__estado--ir .btn__letras span { animation: vt-onda .5s ease forwards calc(var(--i) * .02s); }
   .btn--vt:hover .btn__estado--ir .btn__ico { transform: rotate(-20deg) scale(1.1); }
 }
 .btn--vt:active { transform: scale(.99); }
-.btn__contorno { position: absolute; inset: -2px -3px; z-index: 1; border-radius: inherit; overflow: hidden; opacity: 0; transition: opacity .4s ease; }
-.btn__contorno::before { content: ""; position: absolute; inset: -100%; background: conic-gradient(from 180deg, transparent 60%, var(--vt-luz) 80%, transparent 100%); animation: vt-gira 2.4s linear infinite paused; }
-@keyframes vt-gira { to { transform: rotate(360deg); } }
 
 .btn__estado { position: relative; z-index: 3; display: inline-flex; align-items: center; gap: 12px; }
 .btn__letras { display: inline-flex; }
@@ -656,7 +651,20 @@ html:not(.js) .carrossel { overflow-x: auto; }
 
 /* hover dos cartões de embarque: subida curta e lenta, na ida e na volta.
    (a classe .revela também define transition, então o movimento é declarado aqui junto) */
-.bilhete, .js .bilhete.revela { --suave: cubic-bezier(.33, .1, .25, 1);
-  transition: opacity .9s var(--ease), translate .9s var(--ease), transform 1.4s var(--suave), filter 1.4s var(--suave); transition-delay: var(--d, 0s), var(--d, 0s), 0s, 0s; }
-.bilhete .bilhete__ir { transition: background-color 1.2s var(--suave), color 1.2s var(--suave), transform 1.4s var(--suave); }
-.bilhete .trilha img { transition: left 2s var(--suave); }
+.bilhete, .js .bilhete.revela { --suave: cubic-bezier(.25, .46, .45, .94);
+  transition: opacity .9s var(--ease), translate .9s var(--ease), transform .6s var(--suave), filter .6s var(--suave); transition-delay: var(--d, 0s), var(--d, 0s), 0s, 0s; }
+.bilhete .bilhete__ir { transition: background-color .5s var(--suave), color .5s var(--suave), transform .6s var(--suave); }
+.bilhete .trilha img { transition: left .9s var(--suave); }
+.bilhete .bilhete__papel::before { transition: transform 1s var(--suave), opacity .6s var(--suave); }
+
+/* botões que precisam caber numa linha */
+.bilhete__chamada { white-space: nowrap; }
+.flutuante span { white-space: nowrap; }
+@media (max-width: 900px) { .bilhete__chamada { white-space: nowrap !important; font-size: 14px; padding-inline: 14px; } }
+@media (max-width: 1100px) and (min-width: 901px) { .topo__menu { gap: 18px; } .topo__menu > a:not(.btn) { font-size: 14px; } }
+
+/* perguntas frequentes: abre e fecha devagar */
+.duvida__corpo { overflow: hidden; }
+
+/* bordas das seções com foto: a foto se dissolve no fundo, sem fio de emenda */
+.cena__fundo { -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 90px, #000 calc(100% - 90px), transparent 100%); mask-image: linear-gradient(180deg, transparent 0, #000 90px, #000 calc(100% - 90px), transparent 100%); }
