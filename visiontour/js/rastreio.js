@@ -9,7 +9,7 @@
 
   var CONFIG = {
     whatsapp: "5585994366957", // (85) 99436-6957, conferir com a Sarah
-    msgPadrao: "Oi, Sarah! Vim pelo site da Vision Tour e quero planejar uma viagem.",
+    msgPadrao: "Olá, Vision Tour! Vim pelo site da Vision Tour e quero planejar uma viagem.",
     links: {
       // CHAVE: "url"  -> usado por <a data-link="CHAVE">
       instagram: "https://www.instagram.com/visiontourofc/",

@@ -120,7 +120,7 @@
   }
 
   function medir() {
-    var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
     tela.width = Math.round(tela.clientWidth * dpr);
     tela.height = Math.round(tela.clientHeight * dpr);
     ultimoDesenho = "";
@@ -142,6 +142,7 @@
     var ia = Math.round(clamp(p / 0.32, 0, 1) * (SEQ.janela.total - 1));
     var ib = Math.round(clamp((p - 0.30) / 0.70, 0, 1) * (SEQ.egito.total - 1));
     var t = suave(clamp((p - 0.30) / 0.28, 0, 1));
+    ctx.imageSmoothingQuality = "high";
     var chave = ia + ":" + ib + ":" + t.toFixed(3);
     if (chave === ultimoDesenho) return;
     ultimoDesenho = chave;
@@ -156,21 +157,24 @@
       var jx0 = c.x + j[0] * c.w, jy0 = c.y + j[1] * c.h, jx1 = c.x + j[2] * c.w, jy1 = c.y + j[3] * c.h;
       var cx = (jx0 + jx1) / 2, cy = (jy0 + jy1) / 2;
       /* a câmera aproxima da janela enquanto ela abre */
-      var z = 1 + t * 1.6;
+      var z = 1 + t * (celular ? 0.3 : 0.9);
       ctx.save();
       ctx.translate(cx, cy); ctx.scale(z, z); ctx.translate(-cx, -cy);
       ctx.drawImage(imA, c.x, c.y, c.w, c.h);
       ctx.restore();
       if (t > 0 && imB) {
         /* o portal: a janela aumentada cresce até ocupar a tela */
-        var px0 = lerp(cx - (cx - jx0) * z, 0, t), py0 = lerp(cy - (cy - jy0) * z, 0, t);
-        var px1 = lerp(cx + (jx1 - cx) * z, cw, t), py1 = lerp(cy + (jy1 - cy) * z, ch, t);
+        /* a janela de partida fica sempre inteira dentro da tela (no celular ela encosta na borda) */
+        var mg = cw * 0.06;
+        var s0 = clamp(cx - (cx - jx0) * z, mg, cw - mg), s1 = clamp(cy - (cy - jy0) * z, mg, ch - mg);
+        var s2 = clamp(cx + (jx1 - cx) * z, mg, cw - mg), s3 = clamp(cy + (jy1 - cy) * z, mg, ch - mg);
+        var px0 = lerp(s0, 0, t), py0 = lerp(s1, 0, t), px1 = lerp(s2, cw, t), py1 = lerp(s3, ch, t);
         var raio = lerp(Math.min(px1 - px0, py1 - py0) * 0.32, 0, t);
         ctx.save();
         ctx.beginPath();
         if (ctx.roundRect) ctx.roundRect(px0, py0, px1 - px0, py1 - py0, raio); else ctx.rect(px0, py0, px1 - px0, py1 - py0);
         ctx.clip();
-        var cb = caixa(imB), zb = lerp(1.25, 1, t);
+        var cb = caixa(imB), zb = lerp(1.12, 1, t);
         ctx.translate(cw / 2, ch / 2); ctx.scale(zb, zb); ctx.translate(-cw / 2, -ch / 2);
         ctx.drawImage(imB, cb.x, cb.y, cb.w, cb.h);
         ctx.restore();
@@ -243,7 +247,7 @@
   function barra() {
     var y = window.scrollY;
     topo.classList.toggle("is-solido", y > voo.offsetHeight - window.innerHeight * 0.6);
-    flutuante.classList.toggle("is-on", y > window.innerHeight * 0.7);
+    flutuante.classList.toggle("is-on", y > voo.offsetHeight - window.innerHeight * 0.5);
   }
 
   /* ---------- laço único de quadro ---------- */
@@ -315,7 +319,7 @@
     });
     document.querySelector("[data-saida-cod]").textContent = cod;
     document.querySelector("[data-saida-nome]").textContent = nome;
-    atualizaWhats(btnSaida, "Oi, Sarah! Moro perto de " + nome + " e quero planejar uma viagem saindo daí.");
+    atualizaWhats(btnSaida, "Olá, Vision Tour! Moro perto de " + nome + " e quero planejar uma viagem saindo daí.");
   }
   sel.addEventListener("change", function () { escolher(sel.value); });
   mapa.querySelectorAll(".mapa__caps circle").forEach(function (c) {
@@ -332,7 +336,7 @@
     var v = sonho.value.trim();
     saidaSonho.textContent = v || "Seu lugar da lista";
     codSonho.textContent = v ? v.normalize("NFD").replace(/[^A-Za-z]/g, "").slice(0, 3).toUpperCase() || "Destino" : "Destino";
-    atualizaWhats(btnSonho, v ? "Oi, Sarah! O lugar que está há anos na minha lista é " + v + ". Quero planejar essa viagem." : "Oi, Sarah! Quero planejar uma viagem.");
+    atualizaWhats(btnSonho, v ? "Olá, Vision Tour! O lugar que está há anos na minha lista é " + v + ". Quero planejar essa viagem." : "Olá, Vision Tour! Quero planejar uma viagem.");
   });
   sonho.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); btnSonho.click(); } });
 
@@ -422,7 +426,6 @@
     var aviao = b.classList.contains("btn--escuro") ? "plane-cream" : "plane-navy";
     b.setAttribute("aria-label", txt);
     b.innerHTML =
-      '<span class="btn__contorno" aria-hidden="true"></span>' +
       '<span class="btn__estado btn__estado--ir" aria-hidden="true"><span class="btn__ico"><img src="assets/' + aviao + '.svg" alt="" width="24" height="14"></span><span class="btn__letras">' + letras(txt) + "</span></span>" +
       '<span class="btn__estado btn__estado--ok" aria-hidden="true"><span class="btn__ico">' + CHECK + '</span><span class="btn__letras">' + letras("Boa viagem!") + "</span></span>";
     b.classList.add("btn--vt");
@@ -433,6 +436,29 @@
       b.classList.remove("is-decolando"); void b.offsetWidth;
       b.classList.add("is-decolando");
       timer = setTimeout(function () { b.classList.remove("is-decolando"); }, 2600);
+    });
+  });
+
+  /* ---------- perguntas frequentes: abrir e fechar suave ---------- */
+  document.querySelectorAll(".duvida").forEach(function (d) {
+    var sum = d.querySelector("summary"), p = d.querySelector("p");
+    var corpo = document.createElement("div"); corpo.className = "duvida__corpo";
+    d.insertBefore(corpo, p); corpo.appendChild(p);
+    var anim = null, EASE = "cubic-bezier(.4, 0, .2, 1)";
+    sum.addEventListener("click", function (e) {
+      if (reduz || !corpo.animate) return;
+      e.preventDefault();
+      if (anim) anim.cancel();
+      if (!d.open) {
+        d.open = true;
+        var h = corpo.scrollHeight;
+        anim = corpo.animate([{ height: "0px", opacity: 0 }, { height: h + "px", opacity: 1 }], { duration: 480, easing: EASE });
+      } else {
+        d.classList.add("is-fechando");
+        anim = corpo.animate([{ height: corpo.offsetHeight + "px", opacity: 1 }, { height: "0px", opacity: 0 }], { duration: 400, easing: EASE });
+        anim.onfinish = function () { d.open = false; d.classList.remove("is-fechando"); };
+      }
+      anim.addEventListener("finish", function () { anim = null; });
     });
   });
 })();
