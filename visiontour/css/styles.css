@@ -547,13 +547,24 @@ html:not(.js) .carrossel { overflow-x: auto; }
 .rodape__base { margin-top: 56px; padding-top: 24px; border-top: 1px solid rgba(234, 228, 220, .14); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; font-size: 13px; color: var(--branco); }
 .rodape__base a { color: var(--branco); display: inline-block; padding: 6px 0; }
 @media (max-width: 900px) { .rodape__colunas { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 480px) { .rodape__colunas { grid-template-columns: 1fr; gap: 22px; } .rodape { padding-bottom: 104px; } }
+@media (max-width: 480px) { .rodape__colunas { grid-template-columns: 1fr; gap: 22px; } .rodape { padding-bottom: 84px; } }
 
-/* ---------- WhatsApp flutuante (celular) ---------- */
-.flutuante { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 40; display: none; align-items: center; gap: 10px; min-height: 52px; padding: 12px 20px 12px 16px; border-radius: 999px; background: #25D366; color: #06331A; font-weight: 600; font-size: 15px; text-decoration: none; box-shadow: 0 10px 24px -8px rgba(7, 14, 24, .6); transform: translateY(140%); transition: transform .7s var(--ease); }
-.flutuante .ico { width: 22px; height: 22px; }
-.flutuante.is-on { transform: none; }
-@media (max-width: 900px) { .flutuante { display: inline-flex; } }
+/* ---------- WhatsApp flutuante: bolinha verde com o mesmo relevo dos botões do site ---------- */
+.flutuante { --vt-1: #4BE38A; --vt-2: #1DA851; --tam: 64px; position: fixed; right: 24px; bottom: calc(24px + env(safe-area-inset-bottom)); z-index: 40;
+  width: var(--tam); height: var(--tam); border-radius: 50%; display: grid; place-items: center; color: #FFFFFF; text-decoration: none; isolation: isolate;
+  box-shadow: 0 .5px .5px 1px rgba(255, 255, 255, .2), 0 10px 20px rgba(5, 9, 15, .35), 0 4px 5px rgba(5, 9, 15, .1);
+  opacity: 0; transform: translateY(24px) scale(.8); pointer-events: none; transition: opacity .5s var(--ease), transform .5s var(--ease), box-shadow .3s ease; }
+.flutuante::after { content: ""; position: absolute; inset: 0; z-index: 0; border-radius: 50%; border: 2.5px solid transparent;
+  background: linear-gradient(var(--vt-1), var(--vt-2)) padding-box, linear-gradient(to bottom, rgba(0, 0, 0, .05), rgba(0, 0, 0, .4)) border-box; transition: transform .4s ease, box-shadow .4s ease; }
+.flutuante::before { content: ""; position: absolute; inset: 6px; z-index: 1; border-radius: 50%; background: linear-gradient(to top, var(--vt-1), var(--vt-2)); filter: blur(.5px); opacity: .9; }
+.flutuante__ico { position: relative; z-index: 2; width: 52%; height: 52%; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3)); }
+.flutuante.is-on { opacity: 1; transform: none; pointer-events: auto; }
+@media (hover: hover) and (pointer: fine) {
+  .flutuante.is-on:hover { transform: scale(1.05); box-shadow: 0 0 1px 2px rgba(255, 255, 255, .3), 0 15px 30px rgba(5, 9, 15, .4); }
+  .flutuante:hover::after { transform: scale(1.06); box-shadow: inset 0 -1px 3px rgba(255, 255, 255, .9); }
+}
+.flutuante:active { transform: scale(.97); }
+@media (max-width: 767px) { .flutuante { --tam: 52px; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); } }
 
 /* ---------- notas de prévia (somem na publicação final) ---------- */
 .previa-nota { font-size: 13px !important; line-height: 1.5; color: #F2C48D !important; padding: 10px 14px; border-radius: 10px; background: rgba(242, 196, 141, .1); }
@@ -688,7 +699,6 @@ html:not(.js) .carrossel { overflow-x: auto; }
 
 /* botões que precisam caber numa linha */
 .bilhete__chamada { white-space: nowrap; }
-.flutuante span { white-space: nowrap; }
 @media (max-width: 900px) { .bilhete__chamada { white-space: nowrap !important; font-size: 14px; padding-inline: 14px; } }
 @media (max-width: 1100px) and (min-width: 901px) { .topo__menu { gap: 18px; } .topo__menu > a:not(.btn) { font-size: 14px; } }
 
