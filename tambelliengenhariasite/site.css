@@ -174,6 +174,8 @@ h2.eyebrow{font-size:16px;margin-bottom:18px}
 .h-tag img{width:34px;height:auto;padding:5px;background:#fff}
 .hero h1{max-width:21ch;font-size:clamp(40px,4.8vw,80px);line-height:.95;text-transform:uppercase;text-shadow:0 10px 30px rgba(0,0,0,.4)}
 .hero h1 em{font-style:normal;color:#F0302F}
+.bk{display:none}
+@media (min-width:1200px){.bk{display:inline}.hero h1,.hero .lead{max-width:none}}
 .lead{margin:0;max-width:60ch;color:#fff;font-size:clamp(17px,1.35vw,20px);text-shadow:0 2px 14px rgba(0,0,0,.5)}
 .cta{display:flex;flex-wrap:wrap;gap:12px}
 .rail{border-top:1px solid var(--line2);background:linear-gradient(180deg,rgba(17,19,22,.7),rgba(17,19,22,.95));backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
