@@ -59,7 +59,7 @@
       <a href="#contato">Contato</a>
     </nav>
     <a class="btn btn-p btn-sm hdr-cta" href="#contato" data-btn="cta-topo"><span>Quero falar com um correspondente</span></a>
-    <button class="burger" type="button" aria-expanded="false" aria-controls="menu-mobile" aria-label="Abrir menu"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 14L12 4l10 10"/></svg></button>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="menu-mobile" aria-label="Abrir menu"><i></i><i></i></button>
   </div>
   <nav class="mnav" id="menu-mobile" aria-label="Principal">
     <a href="#inicio">Início</a>
@@ -101,7 +101,7 @@
   <section id="para-quem" class="forwho blue" aria-labelledby="h-pq">
     <div class="wrap">
       <div class="fw-head" data-reveal="0">
-        <h2 id="h-pq">Para quem é</h2>
+        <h2 id="h-pq" class="fw-title"><span class="fw-mark" aria-hidden="true"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 14L12 4l10 10"/></svg></span><span class="fw-hl">Para quem é</span></h2>
       </div>
       <div class="tabs" data-tabs data-reveal="100">
         <div class="tablist" role="tablist" aria-label="Perfis"><button type="button" role="tab" id="tab0" aria-controls="pan0" aria-selected="true" tabindex="0"><span class="t-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4v18"/><path d="M12 21V9l7 3v9"/><path d="M8 8.5v.01M8 11.5v.01M8 14.5v.01M8 17.5v.01M15.5 14v.01M15.5 17v.01"/></svg></span><span>Construtoras</span></button><button type="button" role="tab" id="tab1" aria-controls="pan1" aria-selected="false" tabindex="-1"><span class="t-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l4-4 3 1 2-2 5 0 4 4"/><path d="M3 11l5 5c1 1 2 1 3 0l1-1"/><path d="M21 11l-5 5"/><path d="M10 8l4 4c.8.8.8 2 0 2.8-.8.8-2 .8-2.8 0L9 12.6"/></svg></span><span>Corretores e imobiliárias</span></button><button type="button" role="tab" id="tab2" aria-controls="pan2" aria-selected="false" tabindex="-1"><span class="t-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9"/><path d="M17 6l3 3"/><path d="M15 8l2 2"/></svg></span><span>Quem vai comprar</span></button></div>
@@ -122,10 +122,11 @@
     </div>
   </section>
 
-  <section id="servicos" class="svc" data-stack aria-labelledby="h-svc">
+  <section id="servicos" class="svc" data-stack="depth" aria-labelledby="h-svc">
     <div class="wrap stack-in">
       <div class="stack-head">
         <h2 id="h-svc">Serviços</h2>
+        <ol class="idx" aria-hidden="true"><li data-idx class="on"><span class="ix-n">01</span><span>Para construtoras</span></li><li data-idx><span class="ix-n">02</span><span>Para corretores e imobiliárias</span></li><li data-idx><span class="ix-n">03</span><span>Para quem vai comprar</span></li></ol>
       </div>
       <div class="cards">
         <article class="card c-light" id="svc0" data-top="108">
@@ -162,7 +163,7 @@
     <div class="wrap">
       <h2 id="h-why" data-reveal="0">Como <em>trabalhamos</em></h2>
       <div class="bento">
-        <article class="b-big" data-reveal="0"><span class="b-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><img class="b-sym" src="assets/symbol.png" alt="" width="200" height="200" loading="lazy"><h3>Agilidade de verdade</h3><p>Retorno rápido em cada etapa, para a venda não esfriar esperando o financiamento.</p></article>
+        <article class="b-big" data-reveal="0"><span class="b-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="b-sym" aria-hidden="true"><img src="assets/symbol.png" alt="" width="60" height="60" loading="lazy"></span><h3>Agilidade de verdade</h3><p>Retorno rápido em cada etapa, para a venda não esfriar esperando o financiamento.</p></article>
         <article class="b-sm" data-reveal="100"><span class="b-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><div><h3>Uma pessoa acompanhando</h3><p>Você sabe com quem falar e em que pé está cada processo.</p></div></article>
         <article class="b-sm b-alt" data-reveal="180"><span class="b-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4v18"/><path d="M12 21V9l7 3v9"/><path d="M8 8.5v.01M8 11.5v.01M8 14.5v.01M8 17.5v.01M15.5 14v.01M15.5 17v.01"/></svg></span><div><h3>Experiência com construtoras</h3><p>Conhecemos a rotina de quem constrói e vende pelo programa, e falamos a mesma língua da sua equipe comercial.</p></div></article>
       </div>
@@ -178,6 +179,7 @@
           <li data-on="0"><span class="node" aria-hidden="true"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 3l10 10 10-10"/></svg></span><div><span class="sn">Etapa 1</span><h3>Primeiro contato</h3><p>Entendemos seu perfil (construtora, corretor ou comprador) e a situação da venda.</p></div></li><li data-on="1"><span class="node" aria-hidden="true"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 3l10 10 10-10"/></svg></span><div><span class="sn">Etapa 2</span><h3>Análise e documentos</h3><p>Orientamos a documentação e encaminhamos a análise de crédito.</p></div></li><li data-on="2"><span class="node" aria-hidden="true"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 3l10 10 10-10"/></svg></span><div><span class="sn">Etapa 3</span><h3>Acompanhamento</h3><p>Cuidamos das etapas de avaliação, contrato e assinatura, com retorno a cada avanço.</p></div></li><li data-on="3"><span class="node" aria-hidden="true"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 3l10 10 10-10"/></svg></span><div><span class="sn">Etapa 4</span><h3>Registro</h3><p>Acompanhamos até a conclusão do processo.</p></div></li>
         </ol>
         <div class="panel-wrap">
+          <p class="pw-t" aria-hidden="true">Como funciona</p>
           <div class="panel" aria-hidden="true">
             <div class="panel-h"><span class="ph-dot"><img src="assets/symbol.png" alt="" width="28" height="28" loading="lazy"></span><span>Financiamento acompanhado</span><span class="ph-tabs"><span data-cur="0">01</span><span data-cur="1">02</span><span data-cur="2">03</span><span data-cur="3">04</span></span></div>
             <div class="scenes"><div class="scene" data-cur="0"><svg viewBox="0 0 480 360" aria-hidden="true">
@@ -242,6 +244,7 @@
   <g class="pp" style="--i:6"><rect x="58" y="226" width="12" height="12" rx="3" fill="#F08424" transform="rotate(20 64 232)"/></g><g class="pp" style="--i:7"><circle cx="438" cy="236" r="6" fill="url(#sol4-bb)"/></g><g class="pp" style="--i:6"><path d="M176 64l9-8 9 8" fill="none" stroke="#F08424" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></g><g class="pp" style="--i:7"><circle cx="300" cy="70" r="4.5" fill="#F08424"/></g>
   <g class="d" style="--i:8"><rect x="154.4" y="314" width="171.1" height="28" rx="14" fill="#141B58"/><rect x="154.4" y="310" width="171.1" height="28" rx="14" fill="url(#sol4-bl)"/><text class="tc tc-w" x="240" y="329" text-anchor="middle" style="font-size:14px">Processo concluído</text></g>
 </svg></div></div>
+            <div class="psteps"><div class="ps" data-cur="0"><span class="ps-n"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 3l10 10 10-10"/></svg>Etapa 1 de 4</span><h3>Primeiro contato</h3><p>Entendemos seu perfil (construtora, corretor ou comprador) e a situação da venda.</p></div><div class="ps" data-cur="1"><span class="ps-n"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 3l10 10 10-10"/></svg>Etapa 2 de 4</span><h3>Análise e documentos</h3><p>Orientamos a documentação e encaminhamos a análise de crédito.</p></div><div class="ps" data-cur="2"><span class="ps-n"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 3l10 10 10-10"/></svg>Etapa 3 de 4</span><h3>Acompanhamento</h3><p>Cuidamos das etapas de avaliação, contrato e assinatura, com retorno a cada avanço.</p></div><div class="ps" data-cur="3"><span class="ps-n"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 3l10 10 10-10"/></svg>Etapa 4 de 4</span><h3>Registro</h3><p>Acompanhamos até a conclusão do processo.</p></div></div>
             <div class="panel-bar"><i data-bar></i></div>
           </div>
         </div>

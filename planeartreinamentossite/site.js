@@ -104,7 +104,7 @@
 
   /* ---------- Cards empilhados (position: sticky + escala/sombra) ---------- */
   var stacks = $$('[data-stack]').map(function (s) {
-    return { s: s, head: $('.stack-head', s), hy: 0, idx: $$('[data-idx]', s), active: -1,
+    return { s: s, head: $('.stack-head', s), hy: 0, idx: $$('[data-idx]', s), active: -1, depth: s.getAttribute('data-stack') === 'depth',
       cards: $$('.card', s).map(function (c) { return { c: c, shade: $('.shade', c), top0: parseFloat(c.getAttribute('data-top')) || 110 }; }) };
   });
   function layoutStacks() {
@@ -113,13 +113,30 @@
     stacks.forEach(function (g) {
       if (desk) {
         if (g.head) g.head.style.top = (hb + 32) + 'px';
-        g.cards.forEach(function (o) { o.c.style.top = o.top0 + 'px'; });
-        return;
+        // profundidade: todos na mesma altura, com folga em cima para os de trás aparecerem
+        var dt = Math.max(g.cards.length ? g.cards[0].top0 : 110, hb + 72);
+        g.cards.forEach(function (o) { o.c.style.top = (g.depth ? dt : o.top0) + 'px'; });
+      } else {
+        var ht = Math.round(hb + 8);
+        if (g.head) g.head.style.top = ht + 'px';
+        var base = ht + (g.head ? g.head.offsetHeight : 0) + 14;
+        g.cards.forEach(function (o, i) { o.c.style.top = (base + (g.depth ? 36 : i * 12)) + 'px'; });
       }
-      var ht = Math.round(hb + 8);
-      if (g.head) g.head.style.top = ht + 'px';
-      var base = ht + (g.head ? g.head.offsetHeight : 0) + 14;
-      g.cards.forEach(function (o, i) { o.c.style.top = (base + i * 12) + 'px'; });
+      // a pilha sai inteira junto: cada card ganha margem embaixo até o fim do último,
+      // e o card seguinte devolve essa margem em cima para o fluxo não mudar
+      var n = g.cards.length;
+      if (!n) return;
+      // todos os cards com a altura do mais alto, para encaixarem um sobre o outro sem degrau
+      g.cards.forEach(function (o) { o.c.style.height = ''; });
+      var hmax = 0;
+      g.cards.forEach(function (o) { hmax = Math.max(hmax, o.c.offsetHeight); });
+      g.cards.forEach(function (o) { o.c.style.height = hmax + 'px'; });
+      var last = g.cards[n - 1].c, end = parseFloat(last.style.top) + last.offsetHeight;
+      g.cards.forEach(function (o, i) {
+        var mb = i < n - 1 ? Math.max(0, Math.round(end - parseFloat(o.c.style.top) - o.c.offsetHeight)) : 0;
+        o.c.style.marginBottom = mb + 'px';
+        if (i < n - 1) g.cards[i + 1].c.style.marginTop = -mb + 'px';
+      });
     });
   }
 
@@ -179,6 +196,24 @@
         if (!(sr.bottom > 0 && sr.top < vh)) return;
         var rects = g.cards.map(function (o) { return o.c.getBoundingClientRect(); });
         var active = 0;
+        if (g.depth) {
+          // quanto cada card já cobriu o anterior (posição sem o deslocamento que aplicamos)
+          var tops = rects.map(function (r, i) { return r.top - (g.cards[i].ty || 0); });
+          var cov = g.cards.map(function (o, i) { return i ? cl(1 - (tops[i] - tops[i - 1]) / (o.c.offsetHeight || 1)) : 0; });
+          g.cards.forEach(function (o, i) {
+            var d = 0;
+            for (var j = i + 1; j < cov.length; j++) d += cov[j];
+            if (i && cov[i] > 0.5) active = i;
+            if (reduced) return;
+            var ty = -Math.min(d, 3) * 18, sc = 1 - Math.min(d, 4) * 0.055;
+            var op = d > 2.6 ? Math.max(0, 1 - (d - 2.6) / 0.9) : 1;
+            o.ty = ty;
+            o.c.style.transform = 'translate3d(0,' + ty.toFixed(1) + 'px,0) scale(' + sc.toFixed(4) + ')';
+            o.c.style.opacity = op.toFixed(3);
+            o.c.style.filter = d > 0.05 ? 'saturate(' + (1 - Math.min(d, 2) * 0.25).toFixed(3) + ')' : '';
+            if (o.shade) o.shade.style.opacity = Math.min(0.78, d * 0.32).toFixed(3);
+          });
+        } else
         g.cards.forEach(function (o, i) {
           var next = rects[i + 1], t = 0;
           if (next) t = cl(1 - (next.top - rects[i].top) / rects[i].height);
@@ -225,6 +260,34 @@
     });
   }
   function tick(t) { smoothStep(t); headerStep(); frame(); requestAnimationFrame(tick); }
+
+  /* ---------- Números que contam ao aparecer ----------
+     [data-count] anima cada número do texto; data-from="1990" ou "0,0" diz de onde cada um parte */
+  var counts = $$('[data-count]');
+  if (counts.length && !reduced && 'IntersectionObserver' in window) {
+    counts.forEach(function (el) {
+      var txt = el.textContent, from = (el.getAttribute('data-from') || '').split(',');
+      var parts = txt.split(/(\d+)/), nums = [];
+      parts.forEach(function (p, i) { if (/^\d+$/.test(p)) nums.push({ i: i, to: +p, from: +(from[nums.length] || 0) }); });
+      el.style.minWidth = el.offsetWidth + 'px';
+      var draw = function (t) {
+        nums.forEach(function (n) { parts[n.i] = Math.round(n.from + (n.to - n.from) * t); });
+        el.textContent = parts.join('');
+      };
+      draw(0);
+      var co = new IntersectionObserver(function (en) {
+        if (!en[0].isIntersecting) return;
+        co.disconnect();
+        var t0 = performance.now(), dur = 2600;
+        (function step(now) {
+          var k = Math.min(1, (now - t0) / dur);
+          draw(1 - Math.pow(1 - k, 4));
+          if (k < 1) requestAnimationFrame(step); else { el.textContent = txt; el.style.minWidth = ''; }
+        })(t0);
+      }, { threshold: 0.6 });
+      co.observe(el);
+    });
+  }
 
   /* ---------- Reflexo nos botões ---------- */
   $$('.btn').forEach(function (b) {
