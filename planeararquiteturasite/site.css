@@ -207,11 +207,9 @@ h2{font-size:clamp(32px,4vw,52px);line-height:1.04}
 section:has(>.axis),.ftr{position:relative}
 .axis{position:absolute;z-index:6;left:0;right:0;top:-20px;height:40px;margin:0 auto;max-width:1280px}
 .axis:before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:repeating-linear-gradient(90deg,var(--line2) 0 26px,transparent 26px 32px,var(--line2) 32px 35px,transparent 35px 41px)}
-.axis span{position:absolute;left:clamp(16px,6vw,96px);top:0;width:40px;height:40px;border-radius:50%;border:1px solid var(--navy);background:radial-gradient(circle at 35% 30%,#fff,#E6ECF4);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:14px;color:var(--navy);box-shadow:0 0 0 5px var(--paper),0 0 0 6px var(--line),0 8px 16px -8px rgba(15,27,45,.5)}
-.axis span:after{content:"";position:absolute;right:-5px;top:50%;width:8px;height:8px;margin-top:-4px;border-radius:50%;background:var(--red);box-shadow:0 0 0 3px var(--paper)}
-.axis-d:before{background:repeating-linear-gradient(90deg,rgba(207,224,247,.35) 0 26px,transparent 26px 32px,rgba(207,224,247,.35) 32px 35px,transparent 35px 41px)}
-.axis-d span{border-color:rgba(207,224,247,.6);background:radial-gradient(circle at 35% 30%,#23518F,#0F2B52);color:#fff;box-shadow:0 0 0 5px var(--navy2),0 0 0 6px rgba(207,224,247,.25),0 8px 16px -8px rgba(0,0,0,.6)}
-.axis-d span:after{box-shadow:0 0 0 3px var(--navy2)}
+.axis span{position:absolute;left:50%;top:-12px;width:64px;height:64px;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#fff,#EEF2F7);border:1px solid var(--navy);box-shadow:0 0 0 6px var(--paper),0 0 0 7px var(--line2),0 14px 26px -12px rgba(15,27,45,.55)}
+.axis span img{width:36px;height:auto;display:block}
+.axis-d span{border-color:rgba(207,224,247,.7);box-shadow:0 0 0 6px var(--navy2),0 0 0 7px rgba(207,224,247,.3),0 14px 26px -12px rgba(0,0,0,.7)}
 
 /* para quem: ficha técnica em bloco de planta */
 .forwho{padding:clamp(28px,4vw,56px) 0 clamp(64px,9vw,120px)}
@@ -361,7 +359,9 @@ section:has(>.axis),.ftr{position:relative}
 
 /* quem conduz */
 .team{padding:clamp(40px,6vw,80px) 0 clamp(64px,9vw,120px)}
-.team-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,80px);align-items:start}
+.team-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(32px,5vw,80px);align-items:center}
+.team-ph .person{margin:0;width:100%;max-width:420px}
+.team-txt .spec{margin-top:clamp(24px,3vw,36px)}
 .team h2{margin-bottom:18px}
 .team p{color:var(--body);margin:0;max-width:44ch}
 .person{margin:32px 0 0;width:min(100%,360px);background:linear-gradient(180deg,#fff,var(--sheet));border:1px solid var(--line2);padding:12px;box-shadow:inset 0 1px 0 #fff,0 2px 4px rgba(15,27,45,.06),0 34px 60px -34px rgba(15,27,45,.55)}
