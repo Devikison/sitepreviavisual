@@ -224,7 +224,7 @@ h2.eyebrow{font-size:16px;margin-bottom:18px}
 .idx li.on:after{transform:scaleX(1)}
 @media (max-width:959px){.idx{display:none}}
 .cards{flex:999 1 640px;gap:22px}
-@media (min-width:960px){.svc .cards{padding-bottom:max(48px,calc(100dvh - 620px))}}
+@media (min-width:960px){.svc .cards{padding-bottom:clamp(70px,16vh,150px)}}
 .tcard{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);backface-visibility:hidden;min-height:clamp(340px,42vh,420px);background:linear-gradient(160deg,#20242A 0%,#171A1E 100%);border:1px solid var(--line);border-top:0;box-shadow:var(--sh)}
 .tcard:before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:linear-gradient(90deg,var(--red) 0 70%,var(--navy2) 70% 100%);z-index:1}
 .tcard .shade{background:#000}

@@ -104,7 +104,7 @@
 
   /* ---------- Cards empilhados (position: sticky + escala/sombra) ---------- */
   var stacks = $$('[data-stack]').map(function (s) {
-    return { s: s, head: $('.stack-head', s), hy: 0, idx: $$('[data-idx]', s), active: -1,
+    return { s: s, head: $('.stack-head', s), hy: 0, idx: $$('[data-idx]', s), active: -1, depth: s.getAttribute('data-stack') === 'depth',
       cards: $$('.card', s).map(function (c) { return { c: c, shade: $('.shade', c), top0: parseFloat(c.getAttribute('data-top')) || 110 }; }) };
   });
   function layoutStacks() {
@@ -113,12 +113,14 @@
     stacks.forEach(function (g) {
       if (desk) {
         if (g.head) g.head.style.top = (hb + 32) + 'px';
-        g.cards.forEach(function (o) { o.c.style.top = o.top0 + 'px'; });
+        // profundidade: todos na mesma altura, com folga em cima para os de trás aparecerem
+        var dt = Math.max(g.cards.length ? g.cards[0].top0 : 110, hb + 72);
+        g.cards.forEach(function (o) { o.c.style.top = (g.depth ? dt : o.top0) + 'px'; });
       } else {
         var ht = Math.round(hb + 8);
         if (g.head) g.head.style.top = ht + 'px';
         var base = ht + (g.head ? g.head.offsetHeight : 0) + 14;
-        g.cards.forEach(function (o, i) { o.c.style.top = (base + i * 12) + 'px'; });
+        g.cards.forEach(function (o, i) { o.c.style.top = (base + (g.depth ? 36 : i * 12)) + 'px'; });
       }
       // a pilha sai inteira junto: cada card ganha margem embaixo até o fim do último,
       // e o card seguinte devolve essa margem em cima para o fluxo não mudar
@@ -194,6 +196,24 @@
         if (!(sr.bottom > 0 && sr.top < vh)) return;
         var rects = g.cards.map(function (o) { return o.c.getBoundingClientRect(); });
         var active = 0;
+        if (g.depth) {
+          // quanto cada card já cobriu o anterior (posição sem o deslocamento que aplicamos)
+          var tops = rects.map(function (r, i) { return r.top - (g.cards[i].ty || 0); });
+          var cov = g.cards.map(function (o, i) { return i ? cl(1 - (tops[i] - tops[i - 1]) / (o.c.offsetHeight || 1)) : 0; });
+          g.cards.forEach(function (o, i) {
+            var d = 0;
+            for (var j = i + 1; j < cov.length; j++) d += cov[j];
+            if (i && cov[i] > 0.5) active = i;
+            if (reduced) return;
+            var ty = -Math.min(d, 3) * 18, sc = 1 - Math.min(d, 4) * 0.055;
+            var op = d > 2.6 ? Math.max(0, 1 - (d - 2.6) / 0.9) : 1;
+            o.ty = ty;
+            o.c.style.transform = 'translate3d(0,' + ty.toFixed(1) + 'px,0) scale(' + sc.toFixed(4) + ')';
+            o.c.style.opacity = op.toFixed(3);
+            o.c.style.filter = d > 0.05 ? 'saturate(' + (1 - Math.min(d, 2) * 0.25).toFixed(3) + ')' : '';
+            if (o.shade) o.shade.style.opacity = Math.min(0.78, d * 0.32).toFixed(3);
+          });
+        } else
         g.cards.forEach(function (o, i) {
           var next = rects[i + 1], t = 0;
           if (next) t = cl(1 - (next.top - rects[i].top) / rects[i].height);
