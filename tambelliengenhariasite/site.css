@@ -246,7 +246,7 @@ h2.eyebrow{font-size:16px;margin-bottom:18px}
 .why{padding:clamp(56px,8vw,110px) 0}
 .why-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:clamp(28px,4vw,52px)}
 .why h2{max-width:16ch}
-.why-sym{flex:none;width:clamp(96px,10vw,150px);height:auto;padding:12px 16px;background:#fff;box-shadow:0 24px 44px -20px rgba(0,0,0,.9);transform:rotate(-3deg)}
+.why-sym{flex:none;width:clamp(96px,10vw,150px);height:auto;padding:12px 16px;background:#fff;box-shadow:0 24px 44px -20px rgba(0,0,0,.9)}
 .reasons{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
 .rs{display:grid;grid-template-columns:clamp(70px,6.4vw,104px) 64px minmax(0,1.1fr) minmax(0,1fr);gap:clamp(16px,2.4vw,34px);align-items:center;padding:clamp(22px,2.6vw,34px) clamp(20px,2.6vw,36px);background:linear-gradient(160deg,#20242A,#16191D);border:1px solid var(--line);border-left:4px solid #E5252A;box-shadow:var(--sh);transition:transform .5s var(--e),border-color .5s var(--e)}
 .rs:hover{transform:translateX(6px);border-color:var(--line2);border-left-color:#E5252A}
@@ -268,6 +268,8 @@ h2.eyebrow{font-size:16px;margin-bottom:18px}
 .wv-bl i{flex:1;height:var(--h);background:linear-gradient(180deg,#2B5CB0,#15428A);box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
 .wv-bl i:last-child{background:linear-gradient(180deg,#E83A3A,#B51414)}
 .wv-lab{display:flex;justify-content:space-between;font-size:14px}
+.wv,.wv *{min-width:0}
+@media (min-width:960px){.wv{height:auto;min-height:140px}.wv-path{flex-direction:column;align-items:stretch;text-align:center}.wv-path span{padding:8px 10px}.wv-path i{flex:none;width:2px;height:10px;min-width:0;margin:0 auto;background:#E5252A}.wv-bar b{font-size:14px;padding:9px 10px}}
 
 /* caso real: faixa vermelha */
 .case{position:relative;overflow:hidden;padding:clamp(56px,8vw,104px) 0;background:radial-gradient(60% 90% at 100% 0%,rgba(255,255,255,.18),transparent 60%),linear-gradient(160deg,#E02A2A 0%,#C01010 55%,#8E0909 100%);color:#fff}
@@ -283,6 +285,7 @@ h2.eyebrow{font-size:16px;margin-bottom:18px}
 /* como funciona: viga + painel técnico */
 .steps{position:relative;background:linear-gradient(180deg,#14171A,#0F1114);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 @media (min-width:960px){.steps{height:340vh}.steps-pin{position:sticky;top:0;height:100dvh;display:flex;align-items:center;padding-top:60px}}
+@media (prefers-reduced-motion:reduce){.cols li.on{animation:none}}
 .steps-pin .wrap{width:100%}
 .steps-top{display:flex;flex-wrap:wrap;align-items:end;gap:20px 48px;margin-bottom:clamp(22px,3vh,36px)}
 .steps-top h2{flex:none}
@@ -453,11 +456,28 @@ h2.eyebrow{font-size:16px;margin-bottom:18px}
   .nope{grid-template-columns:48px 1fr;padding:22px}
   .nope-x{width:48px;height:48px}
   .why-sym{width:84px}
-  .steps{padding:64px 0}
-  .viga,.cols{display:none}
-  .sc-cap{display:block}
-  .scenes{min-height:0}
-  .scenes .scene+.scene{border-top:1px solid var(--line)}
+  /* como funciona no celular: também preso na tela, contando a história conforme rola */
+  .steps{height:430vh}
+  .steps-pin{position:sticky;top:0;height:100dvh;display:flex;align-items:center;padding-top:64px;overflow:hidden}
+  .steps-top{gap:12px;margin-bottom:14px}
+  .steps-top h2{font-size:clamp(36px,10vw,48px)}
+  .viga{flex:1 1 100%;grid-template-columns:repeat(4,1fr 10px);padding-bottom:0}
+  .pil{width:10px;height:24px}
+  .seg{height:9px}
+  .steps-grid{gap:12px}
+  .cols{gap:0}
+  .js .cols li:not(.on){display:none}
+  .cols li{padding:14px 16px;grid-template-columns:44px 1fr;gap:10px}
+  .cols li.on{padding-left:22px;animation:passo .7s var(--e)}
+  .cols h3{font-size:24px}
+  .cols p{font-size:15px;line-height:1.5}
+  .s-n{font-size:34px}
+  .dash-h{padding:8px 12px;font-size:13px}
+  .scenes{flex:none;min-height:0;aspect-ratio:600/340}
+  .scene{position:absolute}
+}
+@keyframes passo{from{opacity:0;transform:translate3d(0,14px,0)}to{opacity:1;transform:none}}
+@media (max-width:959px) and (max-height:700px){.steps-top h2{font-size:34px}.cols p{font-size:14px}.steps-top{margin-bottom:8px}
   .form .btn-p{align-self:stretch}
 }
 @media (max-width:640px){.btn{white-space:normal;text-align:center;line-height:1.2;padding:12px 18px}}
