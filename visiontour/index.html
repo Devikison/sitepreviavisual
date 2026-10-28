@@ -261,14 +261,20 @@
       <p class="duas-linhas"><span>Não temos centenas de destinos no catálogo.</span> <span>Temos os que a gente conhece, testa e sabe montar bem.</span></p>
     </div>
 
-    <table class="painel revela" aria-label="Painel de embarques">
-      <thead><tr><th scope="col">Destino</th><th scope="col">Noites</th><th scope="col">Portão</th><th scope="col">Situação</th></tr></thead>
-      <tbody>
-        <tr><td>Europa sob medida</td><td>[7] a [10]</td><td>VT 04.1</td><td><span class="painel__ok">Embarque aberto</span></td></tr>
-        <tr><td>Egito</td><td>[10]</td><td>VT 04.2</td><td><span class="painel__ok">Embarque aberto</span></td></tr>
-        <tr><td>Tailândia</td><td>[12]</td><td>VT 04.3</td><td><span class="painel__ok">Embarque aberto</span></td></tr>
-      </tbody>
-    </table>
+    <div class="painel revela">
+      <div class="painel__cab">
+        <span class="painel__titulo"><img src="assets/plane-cream.svg" alt="" width="30" height="18"><span><strong>Partidas</strong><span>Departures</span></span></span>
+        <span class="painel__hora" aria-label="Horário de Fortaleza"><span class="rot">Fortaleza</span><strong data-relogio>--:--</strong></span>
+      </div>
+      <table class="painel__tabela" aria-label="Painel de embarques">
+        <thead><tr><th scope="col">Destino</th><th scope="col">Noites</th><th scope="col">Portão</th><th scope="col">Situação</th></tr></thead>
+        <tbody>
+          <tr><td><span class="flap-txt" data-flap>Europa sob medida</span></td><td><span class="flap-txt flap-txt--ambar" data-flap>[7] a [10]</span></td><td><span class="flap-txt flap-txt--ambar" data-flap>VT 04.1</span></td><td><span class="painel__ok">Embarque aberto</span></td></tr>
+          <tr><td><span class="flap-txt" data-flap>Egito</span></td><td><span class="flap-txt flap-txt--ambar" data-flap>[10]</span></td><td><span class="flap-txt flap-txt--ambar" data-flap>VT 04.2</span></td><td><span class="painel__ok">Embarque aberto</span></td></tr>
+          <tr><td><span class="flap-txt" data-flap>Tailândia</span></td><td><span class="flap-txt flap-txt--ambar" data-flap>[12]</span></td><td><span class="flap-txt flap-txt--ambar" data-flap>VT 04.3</span></td><td><span class="painel__ok">Embarque aberto</span></td></tr>
+        </tbody>
+      </table>
+    </div>
 
     <div class="pilha">
       <article class="destino" style="--i:0">
