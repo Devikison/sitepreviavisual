@@ -97,7 +97,7 @@ window.PLANEAR = {
 
   /* ---------- Banner de cookies (canto inferior esquerdo) ---------- */
   var css = '' +
-    '.pc-ck{position:fixed;left:clamp(12px,2vw,24px);bottom:clamp(12px,2vw,24px);z-index:90;width:min(372px,calc(100vw - 24px));font-family:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;color:#121526;background:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.95);border-radius:16px;box-shadow:inset 0 1px 0 #FFFFFF,0 24px 50px -24px rgba(10,14,37,.55),0 2px 8px -4px rgba(10,14,37,.2);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);padding:16px 16px 14px;opacity:0;transform:translate3d(0,14px,0);transition:opacity .5s cubic-bezier(.2,.7,.2,1),transform .5s cubic-bezier(.2,.7,.2,1);user-select:none}' +
+    '.pc-ck{position:fixed;left:clamp(12px,2vw,24px);bottom:clamp(12px,2vw,24px);z-index:90;width:min(372px,calc(100vw - 24px));font-family:"Onest","Helvetica Neue",Helvetica,Arial,sans-serif;color:#121526;background:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.95);border-radius:16px;box-shadow:inset 0 1px 0 #FFFFFF,0 24px 50px -24px rgba(10,14,37,.55),0 2px 8px -4px rgba(10,14,37,.2);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);padding:16px 16px 14px;opacity:0;transform:translate3d(0,14px,0);transition:opacity .5s cubic-bezier(.2,.7,.2,1),transform .5s cubic-bezier(.2,.7,.2,1);user-select:none}' +
     '.pc-ck.pc-in{opacity:1;transform:none}' +
     '.pc-ck p{margin:0;font-size:14px;line-height:1.5;color:#424556}' +
     '.pc-ck p a{color:#141D50;font-weight:700;text-underline-offset:3px}.pc-ck p a:hover{color:#A37B58}' +

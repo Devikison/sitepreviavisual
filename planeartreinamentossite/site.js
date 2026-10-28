@@ -1,6 +1,7 @@
-/* Sites institucionais do grupo Planear/Tambelli: comportamento da página.
-   Toda animação de rolagem acontece num único requestAnimationFrame e só
-   mexe em transform e opacity. */
+/* Sites institucionais do grupo Planear/Tambelli: motor comum.
+   Cada site tem o próprio layout e CSS; aqui ficam só os comportamentos.
+   Toda animação de rolagem roda num único requestAnimationFrame e só mexe
+   em transform e opacity (ou troca de classe). */
 (function () {
   var doc = document.documentElement;
   doc.classList.add('js');
@@ -9,6 +10,26 @@
   var C = window.SITE || {};
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
+  var cl = function (x) { return Math.min(1, Math.max(0, x)); };
+
+  /* ---------- Repasse de UTM (WhatsApp e formulário) ---------- */
+  var utm = {};
+  try {
+    var q = new URLSearchParams(location.search);
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid'].forEach(function (k) { if (q.get(k)) utm[k] = q.get(k); });
+    if (Object.keys(utm).length) sessionStorage.setItem('site_utm', JSON.stringify(utm));
+    else utm = JSON.parse(sessionStorage.getItem('site_utm') || '{}');
+  } catch (e) { utm = {}; }
+  var utmLine = function () {
+    var o = [utm.utm_source, utm.utm_medium, utm.utm_campaign].filter(Boolean).join(' / ');
+    return o ? '\n\n(origem: ' + o + ')' : '';
+  };
+  window.addEventListener('load', function () {
+    if (!utmLine()) return;
+    $$('a[href*="wa.me/"]').forEach(function (a) {
+      try { var u = new URL(a.href); u.searchParams.set('text', (u.searchParams.get('text') || '') + utmLine()); a.href = u.toString(); } catch (e) {}
+    });
+  });
 
   /* ---------- Menu mobile ---------- */
   var hdr = $('.hdr'), burger = $('.burger'), mnav = $('#menu-mobile');
@@ -39,7 +60,7 @@
     var t = id ? document.getElementById(id) : null;
     if (!t && id) return;
     e.preventDefault();
-    scrollToY(t ? t.getBoundingClientRect().top + window.scrollY - (id === 'inicio' ? 0 : 96) : 0);
+    scrollToY(t ? t.getBoundingClientRect().top + window.scrollY - (id === 'inicio' ? 0 : 88) : 0);
     if (t) { t.setAttribute('tabindex', '-1'); t.focus({ preventScroll: true }); }
   });
   if (fine && !reduced) {
@@ -76,21 +97,22 @@
     var y = window.scrollY, d = y - lastY;
     if (Math.abs(d) < 4) return;
     lastY = y;
-    var hide = d > 0 && y > 140 && !(mnav && mnav.classList.contains('is-open'));
+    hdr.classList.toggle('is-scrolled', y > 24);
+    var hide = d > 0 && y > 160 && !(mnav && mnav.classList.contains('is-open'));
     if (hide !== hidden) { hidden = hide; hdr.classList.toggle('is-hidden', hide); }
   }
 
-  /* ---------- Cards empilhados ---------- */
+  /* ---------- Cards empilhados (position: sticky + escala/sombra) ---------- */
   var stacks = $$('[data-stack]').map(function (s) {
-    return { s: s, head: $('.stack-head', s), hy: 0, idx: $$('.idx li', s), active: -1,
-      cards: $$('.card', s).map(function (c) { return { c: c, shade: $('.shade', c), top0: parseFloat(c.getAttribute('data-top')) || 120 }; }) };
+    return { s: s, head: $('.stack-head', s), hy: 0, idx: $$('[data-idx]', s), active: -1,
+      cards: $$('.card', s).map(function (c) { return { c: c, shade: $('.shade', c), top0: parseFloat(c.getAttribute('data-top')) || 110 }; }) };
   });
   function layoutStacks() {
     var desk = window.innerWidth >= 960;
-    var hb = hdr ? hdr.offsetTop + hdr.offsetHeight : 82;
+    var hb = hdr ? hdr.offsetTop + hdr.offsetHeight : 76;
     stacks.forEach(function (g) {
       if (desk) {
-        if (g.head) g.head.style.top = '120px';
+        if (g.head) g.head.style.top = (hb + 32) + 'px';
         g.cards.forEach(function (o) { o.c.style.top = o.top0 + 'px'; });
         return;
       }
@@ -101,59 +123,38 @@
     });
   }
 
-  /* ---------- Como funciona ---------- */
-  var st = $('[data-steps]');
-  var S = st ? {
-    stext: $$('.stext', st), scenes: $$('[data-scene]', st), sfill: $('.sbar i', st),
-    tabs: $$('[data-tab]', st).map(function (e) { return { e: e, fill: $('[data-tabfill]', e) }; }),
-    kel: $$('[data-k]', st).map(function (e) { var p = e.getAttribute('data-k').split(','); return { e: e, sc: +p[0], a: +p[1], b: +p[2], t: p[3], last: -1 }; }),
-    cur: 0, target: 0, init: false, visible: false, active: -1
-  } : null;
-  var cl = function (x) { return Math.min(1, Math.max(0, x)); };
-  var ease = function (x) { return x * x * (3 - 2 * x); };
-  function paintSteps(p) {
-    var n = 4, s = p * n;
-    S.stext.forEach(function (e, i) {
-      var o;
-      if (i === 0 && s < 0.5) o = 1; else if (i === n - 1 && s > n - 0.5) o = 1;
-      else o = cl((0.5 - Math.abs(s - i - 0.5)) / 0.18);
-      o = ease(o);
-      var y = (s - i - 0.5) * -28;
-      e.style.opacity = o.toFixed(3);
-      e.style.transform = reduced ? 'none' : 'translate3d(0,' + Math.max(-30, Math.min(30, y)).toFixed(1) + 'px,0)';
-      e.style.pointerEvents = o > 0.5 ? 'auto' : 'none';
-    });
-    S.scenes.forEach(function (e, i) {
-      var o;
-      if (i === 0 && s < 0.5) o = 1; else if (i === n - 1 && s > n - 0.5) o = 1;
-      else o = cl(1.6 - Math.abs(s - i - 0.5) * 2.4);
-      e.style.opacity = ease(o).toFixed(3);
-    });
-    S.kel.forEach(function (k) {
-      var l = cl((s - k.sc + 0.1) / 0.75);
-      var t = reduced ? 1 : ease(cl((l - k.a) / (k.b - k.a)));
-      t = Math.round(t * 1000) / 1000;
-      if (t === k.last) return;
-      k.last = t;
-      var x = k.e.style;
-      if (k.t === 'sx') x.transform = 'scaleX(' + t + ')';
-      else if (k.t === 'sy') x.transform = 'scaleY(' + t + ')';
-      else if (k.t === 'fade') { x.opacity = t; x.transform = 'translate3d(0,' + ((1 - t) * 14).toFixed(1) + 'px,0)'; }
-      else if (k.t === 'drop') { x.opacity = t; x.transform = 'translate3d(0,' + ((1 - t) * -60).toFixed(1) + 'px,0)'; }
-      else if (k.t === 'pop') { x.opacity = t; x.transform = 'scale(' + (0.5 + t * 0.5).toFixed(3) + ')'; }
-      else if (k.t === 'sweep') { x.transform = 'translate3d(' + (t * 100).toFixed(2) + '%,0,0)'; x.opacity = t <= 0 || t >= 1 ? 0 : (1 - ease(cl((t - 0.85) / 0.15))).toFixed(3); }
-    });
-    var at = Math.min(n - 1, Math.floor(s));
-    S.tabs.forEach(function (o, i) { if (o.fill) o.fill.style.transform = 'scaleX(' + cl(s - i).toFixed(3) + ')'; });
-    if (at !== S.active) {
-      S.active = at;
-      S.tabs.forEach(function (o, i) { o.e.style.opacity = i === at ? 1 : 0.55; o.e.style.background = i === at ? 'rgba(255,255,255,.08)' : 'transparent'; });
+  /* ---------- Efeitos ligados à rolagem ----------
+     [data-scrub="pin|pass"] calcula o progresso p (0 a 1) da seção.
+       pin:  seção alta com conteúdo grudado; p vai de 0 a 1 enquanto ela passa.
+       pass: p vai de 0 (topo a 85% da tela) a 1 (fim da seção chega a 70% da tela).
+       enter: p vai de 0 a 1 logo na entrada (topo de 90% a 30% da tela).
+     Filhos:
+       [data-x]                 trilho horizontal que anda conforme p
+       [data-fill="i"]          escala 0 a 1 na fatia i (data-axis="x|y")
+       [data-on="i"]            ganha .on quando a fatia i começa
+       [data-cur="i"]           ganha .on só enquanto a fatia i é a atual
+       [data-bar]               escala igual a p (data-axis)               */
+  var scrubs = $$('[data-scrub]').map(function (s) {
+    return { s: s, mode: s.getAttribute('data-scrub'), n: +s.getAttribute('data-n') || 4,
+      x: $('[data-x]', s), fills: $$('[data-fill]', s), ons: $$('[data-on]', s), curs: $$('[data-cur]', s), bars: $$('[data-bar]', s),
+      p: -1, cur: 0, k: 0 };
+  });
+  function scale(el, v) { el.style.transform = (el.getAttribute('data-axis') === 'y' ? 'scaleY(' : 'scaleX(') + v.toFixed(4) + ')'; }
+  function paintScrub(g) {
+    var p = g.cur, n = g.n, s = p * n;
+    var desk = window.innerWidth >= 960;
+    if (g.x) {
+      if (desk) {
+        var w = g.x.scrollWidth - g.x.parentNode.clientWidth;
+        g.x.style.transform = 'translate3d(' + (-w * p).toFixed(1) + 'px,0,0)';
+      } else g.x.style.transform = '';
     }
-    if (S.sfill) S.sfill.style.transform = 'scaleY(' + p.toFixed(4) + ')';
+    g.fills.forEach(function (e) { scale(e, reduced ? 1 : cl(s - (+e.getAttribute('data-fill')))); });
+    g.bars.forEach(function (e) { scale(e, reduced ? 1 : p); });
+    var at = Math.min(n - 1, Math.floor(s));
+    g.ons.forEach(function (e) { e.classList.toggle('on', reduced || s >= +e.getAttribute('data-on')); });
+    g.curs.forEach(function (e) { e.classList.toggle('on', +e.getAttribute('data-cur') === at); });
   }
-
-  /* ---------- Contato: fundo com parallax ---------- */
-  var pq = $('.contact'), pbg = pq && $('.contact-bg img', pq), psh = pq && $('.pshade', pq);
 
   /* ---------- Loop único ---------- */
   var dirty = true;
@@ -168,14 +169,6 @@
     var vh = window.innerHeight;
     if (dirty) {
       dirty = false;
-      if (pq && pbg && !reduced) {
-        var pr = pq.getBoundingClientRect();
-        if (pr.bottom > 0 && pr.top < vh) {
-          var t = cl((vh - pr.top) / (pr.height + vh));
-          pbg.style.transform = 'translate3d(0,' + ((0.5 - t) * 40).toFixed(1) + 'px,0) scale(' + (1.12 - t * 0.1).toFixed(4) + ')';
-          if (psh) psh.style.opacity = (Math.max(0, t - 0.75) * 2.4).toFixed(3);
-        }
-      }
       stacks.forEach(function (g) {
         var sr = g.s.getBoundingClientRect();
         if (!(sr.bottom > 0 && sr.top < vh)) return;
@@ -187,7 +180,7 @@
           if (next && t > 0.5) active = i + 1;
           if (!reduced) {
             o.c.style.transform = 'scale(' + (1 - t * 0.06).toFixed(4) + ') translateZ(0)';
-            if (o.shade) o.shade.style.opacity = (t * 0.4).toFixed(3);
+            if (o.shade) o.shade.style.opacity = (t * 0.45).toFixed(3);
           }
         });
         // o título acompanha o último card quando ele começa a sair da tela
@@ -202,16 +195,23 @@
           g.idx.forEach(function (li, i) { li.classList.toggle('on', i === active); });
         }
       });
-      if (S) {
-        var r = st.getBoundingClientRect();
-        S.target = cl(-r.top / ((st.offsetHeight - vh) || 1));
-        S.visible = r.bottom > 0 && r.top < vh;
-      }
+      scrubs.forEach(function (g) {
+        var r = g.s.getBoundingClientRect();
+        if (g.mode === 'pin' && g.s.offsetHeight > vh * 1.3) g.k = cl(-r.top / ((g.s.offsetHeight - vh) || 1));
+        else if (g.mode === 'pin') g.k = cl((vh * 0.85 - r.top) / ((r.height + vh * 0.15) || 1));
+        else if (g.mode === 'enter') g.k = cl((vh * 0.9 - r.top) / (vh * 0.6));
+        else g.k = cl((vh * 0.85 - r.top) / ((r.height + vh * 0.15) || 1));
+        g.vis = r.bottom > 0 && r.top < vh;
+      });
     }
-    if (S && (S.visible || Math.abs(S.target - S.cur) > 0.0005)) {
-      var k = reduced ? 1 : 0.14, dd = S.target - S.cur;
-      if (Math.abs(dd) > 0.0003 || !S.init) { S.init = true; S.cur += dd * k; paintSteps(S.cur); }
-    }
+    scrubs.forEach(function (g) {
+      var d = g.k - g.cur;
+      if (Math.abs(d) < 0.0004 && g.p >= 0) return;
+      g.cur += reduced ? d : d * 0.16;
+      if (Math.abs(g.k - g.cur) < 0.0004) g.cur = g.k;
+      g.p = g.cur;
+      paintScrub(g);
+    });
   }
   function tick(t) { smoothStep(t); headerStep(); frame(); requestAnimationFrame(tick); }
 
@@ -231,20 +231,22 @@
     rev.forEach(function (e) { io.observe(e); });
   }
 
-  /* ---------- Inclinação sutil dos cards ---------- */
-  if (fine && !reduced) {
-    var tel = null, rx = 0, ry = 0, pend = false;
-    var paintTilt = function () { pend = false; if (tel) tel.style.transform = 'perspective(900px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateZ(0)'; };
-    document.addEventListener('pointermove', function (e) {
-      var t = e.target.closest && e.target.closest('[data-tilt]');
-      if (t !== tel) { if (tel) tel.style.transform = ''; tel = t; }
-      if (!tel) return;
-      var r = tel.getBoundingClientRect();
-      ry = (((e.clientX - r.left) / r.width) - 0.5) * 6;
-      rx = -(((e.clientY - r.top) / r.height) - 0.5) * 6;
-      if (!pend) { pend = true; requestAnimationFrame(paintTilt); }
-    }, { passive: true });
-  }
+  /* ---------- Abas (Para quem é) ---------- */
+  $$('[data-tabs]').forEach(function (box) {
+    var tabs = $$('[role="tab"]', box), panels = $$('[role="tabpanel"]', box);
+    function pick(i, focus) {
+      tabs.forEach(function (t, j) { t.setAttribute('aria-selected', String(i === j)); t.tabIndex = i === j ? 0 : -1; });
+      panels.forEach(function (p, j) { p.hidden = i !== j; });
+      if (focus) tabs[i].focus();
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { pick(i); });
+      t.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight') pick((i + 1) % tabs.length, true);
+        if (e.key === 'ArrowLeft') pick((i - 1 + tabs.length) % tabs.length, true);
+      });
+    });
+  });
 
   /* ---------- Dúvidas ---------- */
   $$('.qa').forEach(function (q) {
@@ -302,11 +304,11 @@
       var bad2 = function () { if (btn) { btn.disabled = false; if (btnLabel) btnLabel.textContent = 'Enviar'; } if (fail) fail.hidden = false; };
       if (btn) { btn.disabled = true; if (btnLabel) btnLabel.textContent = 'Enviando…'; }
       if (wa) {
-        var txt = (C.waIntro || 'Olá! Vim pelo site.') + '\n\n' + Object.keys(dados).map(function (k) { return '*' + k + ':* ' + dados[k]; }).join('\n');
+        var txt = (C.waIntro || 'Olá! Vim pelo site.') + '\n\n' + Object.keys(dados).map(function (k) { return '*' + k + ':* ' + dados[k]; }).join('\n') + utmLine();
         window.open('https://wa.me/' + wa + '?text=' + encodeURIComponent(txt), '_blank', 'noopener');
       }
       if (email) {
-        var body = Object.assign({}, dados, { _subject: 'Novo contato pelo site ' + (C.name || '') + ': ' + (dados.Nome || ''), _template: 'table', _captcha: 'false' });
+        var body = Object.assign({}, dados, utm, { _subject: 'Novo contato pelo site ' + (C.name || '') + ': ' + (dados.Nome || ''), _template: 'table', _captcha: 'false' });
         if (g('email')) body._replyto = g('email');
         fetch('https://formsubmit.co/ajax/' + encodeURIComponent(email), { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(body) })
           .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { (r.ok && String(j.success) !== 'false') || wa ? ok() : bad2(); }); })
@@ -319,7 +321,6 @@
     });
   }
 
-  /* ---------- Rodapé e dados da empresa ---------- */
   var yr = $('[data-year]'); if (yr) yr.textContent = new Date().getFullYear();
 
   layoutStacks();
