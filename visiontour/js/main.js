@@ -334,7 +334,7 @@
   var codSonho = document.querySelector("[data-sonho-cod]");
   sonho.addEventListener("input", function () {
     var v = sonho.value.trim();
-    saidaSonho.textContent = v || "Seu lugar da lista";
+    if (v) saidaSonho.textContent = v; else saidaSonho.innerHTML = "Seu lugar<br>da lista";
     codSonho.textContent = v ? v.normalize("NFD").replace(/[^A-Za-z]/g, "").slice(0, 3).toUpperCase() || "Destino" : "Destino";
     atualizaWhats(btnSonho, v ? "Olá, Vision Tour! O lugar que está há anos na minha lista é " + v + ". Quero planejar essa viagem." : "Olá, Vision Tour! Quero planejar uma viagem.");
   });
