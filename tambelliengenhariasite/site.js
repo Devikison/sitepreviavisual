@@ -124,6 +124,11 @@
       // e o card seguinte devolve essa margem em cima para o fluxo não mudar
       var n = g.cards.length;
       if (!n) return;
+      // todos os cards com a altura do mais alto, para encaixarem um sobre o outro sem degrau
+      g.cards.forEach(function (o) { o.c.style.height = ''; });
+      var hmax = 0;
+      g.cards.forEach(function (o) { hmax = Math.max(hmax, o.c.offsetHeight); });
+      g.cards.forEach(function (o) { o.c.style.height = hmax + 'px'; });
       var last = g.cards[n - 1].c, end = parseFloat(last.style.top) + last.offsetHeight;
       g.cards.forEach(function (o, i) {
         var mb = i < n - 1 ? Math.max(0, Math.round(end - parseFloat(o.c.style.top) - o.c.offsetHeight)) : 0;
