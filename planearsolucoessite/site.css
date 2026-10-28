@@ -311,6 +311,8 @@ svg{flex:none}
 .rail p{margin:0;color:#fff;transition:color .5s}
 .rail li.on p{color:var(--body)}
 .panel-wrap{position:sticky;top:120px}
+/* espaço depois da última etapa: ela sobe até a altura de leitura com o painel ainda preso */
+@media (min-width:960px){.rail{padding-bottom:calc(40vh + 210px)}.rail-line{bottom:calc(40vh + 210px + 128px)!important}}
 .panel{border-radius:36px;background:linear-gradient(160deg,#FFFFFF 0%,#EEF0FA 100%);box-shadow:inset 0 1px 0 #fff,0 2px 4px rgba(0,0,0,.2),0 60px 100px -40px rgba(0,0,0,.8);overflow:hidden}
 .panel-h{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);font-size:14px;font-weight:600;color:var(--ink)}
 .ph-dot{width:40px;height:40px;border-radius:50%;background:#fff;box-shadow:0 0 0 1px var(--line),0 6px 12px -6px rgba(14,19,71,.4);display:flex;align-items:center;justify-content:center}
