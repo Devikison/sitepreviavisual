@@ -592,16 +592,39 @@ html:not(.js) .carrossel { overflow-x: auto; }
 }
 
 /* ---------- rodapé ---------- */
-.rodape { background: var(--navy-fundo); padding: clamp(64px, 8vw, 110px) 0 calc(28px + env(safe-area-inset-bottom)); font-size: 15px; }
-.rodape__logo { width: min(100%, 420px); height: auto; }
-.rodape__colunas { margin-top: 56px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
-.rodape__tit { font-weight: 600; color: var(--branco); margin-bottom: 8px; }
-.rodape a { color: var(--branco); text-underline-offset: 4px; }
-.rodape__colunas a { display: inline-block; padding: 4px 0; }
-.rodape__base { margin-top: 56px; padding-top: 24px; border-top: 1px solid rgba(234, 228, 220, .14); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; font-size: 13px; color: var(--branco); }
-.rodape__base a { color: var(--branco); display: inline-block; padding: 6px 0; }
-@media (max-width: 900px) { .rodape__colunas { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 480px) { .rodape__colunas { grid-template-columns: 1fr; gap: 22px; } .rodape { padding-bottom: 84px; } }
+.rodape { background: var(--navy-fundo); padding: clamp(64px, 8vw, 104px) 0 calc(104px + env(safe-area-inset-bottom)); font-size: 15px; line-height: 1.5; color: #FFFFFF; }
+.rodape ul { list-style: none; margin: 0; padding: 0; }
+.rodape__topo { display: grid; gap: clamp(40px, 5vw, 64px); }
+.rodape__marca { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; padding-bottom: clamp(32px, 4vw, 48px); border-bottom: 1px solid rgba(255, 255, 255, .1); }
+.rodape__logo { width: 100%; max-width: 260px; height: auto; display: block; }
+.rodape__frase { margin: 0; text-align: right; font-size: 15px; line-height: 1.55; color: #FFFFFF; opacity: .85; max-width: 26em; }
+.rodape__colunas { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; }
+.rodape__tit { margin: 0 0 16px; font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #F2C48D; }
+.rodape__col ul { display: grid; gap: 10px; }
+.rodape__col li { font-size: 15px; line-height: 1.45; }
+@media (min-width: 1025px) { .rodape__col li { white-space: nowrap; } }
+.rodape a { color: #FFFFFF; text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .4s ease, color .3s ease; }
+@media (hover: hover) { .rodape a:hover { background-size: 100% 1px; color: #F2C48D; } }
+.rodape__base { margin-top: clamp(48px, 6vw, 72px); padding-top: 24px; border-top: 1px solid rgba(255, 255, 255, .1); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 32px; font-size: 13px; color: #FFFFFF; }
+.rodape__base p { opacity: .8; }
+.rodape__legal { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+.rodape__legal a { display: inline-block; padding: 6px 0; }
+/* tablet: logo em cima, 2 colunas */
+@media (max-width: 1024px) {
+  .rodape__colunas { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 36px; }
+}
+/* celular: tudo centralizado */
+@media (max-width: 600px) {
+  .rodape { text-align: center; padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+  .rodape__marca { flex-direction: column; align-items: center; }
+  .rodape__frase { text-align: center; margin-top: 4px; }
+  .rodape__logo { max-width: 210px; }
+  .rodape__frase { margin-inline: auto; }
+  .rodape__colunas { grid-template-columns: 1fr; row-gap: 32px; }
+  .rodape__col ul { justify-items: center; }
+  .rodape__base { flex-direction: column; justify-content: center; text-align: center; }
+  .rodape__legal { justify-content: center; gap: 4px 20px; }
+}
 
 /* ---------- WhatsApp flutuante: bolinha verde com o mesmo relevo dos botões do site ---------- */
 .flutuante { --vt-1: #4BE38A; --vt-2: #1DA851; --tam: 64px; position: fixed; right: 24px; bottom: calc(24px + env(safe-area-inset-bottom)); z-index: 40;
