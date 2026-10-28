@@ -15,20 +15,19 @@ Extensão do link na bio aprovado (`/biovisiontour`): mesma paleta, fontes, logo
 | Cadastur, noites dos roteiros, prazo de 24 horas | procurar por `[` no `index.html` |
 | E-mail das políticas | procurar `[EMAIL_DE_CONTATO]` nas pastas `politica-de-*` |
 
-## Scrollytelling (seções 1 e 2)
+## Scrollytelling (seções 1 e 2): "pela janela"
 
-O vídeo do topo virou sequência de quadros em `assets/seq/` e avança com a rolagem (`js/main.js`, bloco "voo").
+A moça olha pela janela do avião; ao rolar, a janela vira um portal que abre até a tela toda e a câmera entra no Egito até as pirâmides (`js/main.js`, bloco "voo").
 
-- `aviao/` e `chegada/`: computador (1280 e 1120 px)
-- `aviao-m/` e `chegada-m/`: celular (vertical)
+- `janela/` e `egito/`: computador (vídeos horizontais)
+- `janela-m/` e `egito-m/`: celular e tablet em pé (vídeos verticais)
+- `JANELA` em `js/main.js`: posição da janela em cada quadro, usada para o portal sair exatamente dela. Se trocar o vídeo da janela, gerar de novo essa lista.
 
-Para trocar o vídeo, gerar de novo os quadros com ffmpeg:
+Para trocar um vídeo, gerar os quadros com ffmpeg e ajustar o `total` em `SEQ`:
 
 ```bash
-ffmpeg -i video.mp4 -vf "fps=5,scale=1280:-2" -c:v libwebp -quality 62 -start_number 0 assets/seq/aviao/%03d.webp
+ffmpeg -i video.mp4 -vf "fps=10,scale=1280:-2" -c:v libwebp -quality 60 -start_number 0 assets/seq/janela/%03d.webp
 ```
-
-e ajustar o `total` de quadros em `js/main.js` (objeto `SEQ`).
 
 ## Antes de publicar de verdade
 
