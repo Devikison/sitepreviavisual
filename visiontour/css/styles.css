@@ -229,18 +229,18 @@ p { margin: 0; text-wrap: pretty; }
 .barras--escuras { background: repeating-linear-gradient(90deg, var(--navy) 0 2px, transparent 2px 4px, var(--navy) 4px 5px, transparent 5px 8px, var(--navy) 8px 11px, transparent 11px 12px); }
 .barras--longas { width: 150px; height: 34px; }
 @media (hover: hover) and (pointer: fine) {
-  .bilhete:hover { transform: translateY(-6px); filter: drop-shadow(0 28px 34px rgba(7, 14, 24, .55)); }
+  .bilhete:hover { transform: translateY(-3px); filter: drop-shadow(0 24px 30px rgba(7, 14, 24, .48)); }
   .bilhete:hover .bilhete__papel::before { transform: skewX(-14deg) translateX(420%); opacity: 1; }
   .bilhete:hover .trilha img { left: calc(100% - 22px); }
   .bilhete:hover .bilhete__ir { background: var(--creme); color: var(--stub); transform: translateX(3px); }
 }
-.bilhete:active { transform: translateY(-2px) scale(.99); }
+.bilhete:active { transform: translateY(-1px) scale(.995); }
 .bilhete:focus-visible { outline-offset: 6px; border-radius: var(--raio); }
 
 /* ---------- seção 3: motivos ---------- */
 .motivos__grade { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
 .motivos__grade .bilhete:nth-child(even) { transform: translateY(40px); }
-@media (hover: hover) and (pointer: fine) { .motivos__grade .bilhete:nth-child(even):hover { transform: translateY(34px); } }
+@media (hover: hover) and (pointer: fine) { .motivos__grade .bilhete:nth-child(even):hover { transform: translateY(37px); } }
 .motivos__grade .bilhete__corpo { min-height: 250px; }
 @media (max-width: 767px) {
   .motivos__grade { grid-template-columns: 1fr; gap: 16px; }
@@ -653,3 +653,10 @@ html:not(.js) .carrossel { overflow-x: auto; }
   .btn--vt .btn__letras span, .btn--vt .btn__ico img, .btn--vt .btn__ico svg { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
   .btn--vt.is-decolando .btn__estado--ir { visibility: hidden; }
 }
+
+/* hover dos cartões de embarque: subida curta e lenta, na ida e na volta.
+   (a classe .revela também define transition, então o movimento é declarado aqui junto) */
+.bilhete, .js .bilhete.revela { --suave: cubic-bezier(.33, .1, .25, 1);
+  transition: opacity .9s var(--ease), translate .9s var(--ease), transform 1.4s var(--suave), filter 1.4s var(--suave); transition-delay: var(--d, 0s), var(--d, 0s), 0s, 0s; }
+.bilhete .bilhete__ir { transition: background-color 1.2s var(--suave), color 1.2s var(--suave), transform 1.4s var(--suave); }
+.bilhete .trilha img { transition: left 2s var(--suave); }
