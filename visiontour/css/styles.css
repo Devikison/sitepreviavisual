@@ -33,7 +33,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--topo-h) + 16px); overflow-x: clip; scrollbar-width: thin; scrollbar-color: var(--ardosia) var(--navy-fundo); }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--topo-h) + 16px); overflow-x: clip; scrollbar-width: auto; scrollbar-color: #E4DBCD #0B1622; }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 body { margin: 0; background: var(--navy); color: var(--branco); font-family: var(--texto); font-size: 17px; line-height: 1.6; font-weight: 400; overflow-x: clip; -webkit-font-smoothing: antialiased; }
@@ -43,9 +43,13 @@ a { color: inherit; }
 h1, h2, h3 { font-family: var(--titulo); font-weight: 600; line-height: 1.08; letter-spacing: -.015em; margin: 0; text-wrap: balance; color: var(--branco); }
 p { margin: 0; text-wrap: pretty; }
 ::selection { background: var(--creme); color: var(--navy); }
-::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: var(--navy-fundo); }
-::-webkit-scrollbar-thumb { background: var(--ardosia); border: 2px solid var(--navy-fundo); border-radius: 10px; }
+/* barra de rolagem no estilo dos botões: trilho navy e alça creme em relevo */
+::-webkit-scrollbar { width: 14px; }
+::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+::-webkit-scrollbar-track { background: linear-gradient(90deg, #08101A, #0B1622); box-shadow: inset 1px 0 0 rgba(255, 255, 255, .05); }
+::-webkit-scrollbar-thumb { border-radius: 14px; border: 3px solid #0B1622; background: linear-gradient(90deg, #FFFFFF, #E4DBCD); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9), inset 0 -2px 3px rgba(18, 34, 52, .25); min-height: 60px; }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(90deg, #F7D9B2, #E3B47C); }
+::-webkit-scrollbar-thumb:active { background: linear-gradient(90deg, #F2C48D, #D9A465); }
 :focus-visible { outline: 2px solid var(--creme); outline-offset: 4px; border-radius: 6px; }
 
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -278,12 +282,32 @@ p { margin: 0; text-wrap: pretty; }
 }
 
 /* ---------- seção 4: destinos ---------- */
-.painel { width: 100%; border-collapse: collapse; margin-bottom: 40px; border-radius: var(--raio); overflow: hidden; font-size: 15px; background: rgba(234, 228, 220, .06); -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%); box-shadow: inset 0 0 0 1px rgba(234, 228, 220, .12); }
-.painel th { text-align: left; padding: 16px 22px; font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--branco); background: rgba(11, 22, 34, .5); }
-.painel td { padding: 18px 22px; font-family: var(--titulo); font-size: clamp(16px, 1.6vw, 21px); font-weight: 500; color: var(--branco); border-top: 1px solid rgba(234, 228, 220, .08); font-variant-numeric: tabular-nums; }
-.painel td:first-child { color: var(--branco); }
-.painel__ok { display: inline-flex; align-items: center; gap: 8px; font-family: var(--texto); font-size: 13px; font-weight: 600; color: #6BE39A; }
-.painel__ok::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; animation: pisca 2.4s ease-in-out infinite; }
+/* painel de partidas de aeroporto: placas que giram (split-flap) */
+.painel { margin-bottom: 40px; border-radius: 18px; overflow: hidden; background: linear-gradient(180deg, #0C1520, #08101A); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08), 0 24px 50px -24px rgba(0, 0, 0, .8); }
+.painel__cab { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 22px; background: #F2C48D; color: #0B1622; }
+.painel__titulo { display: inline-flex; align-items: center; gap: 14px; }
+.painel__titulo img { width: 30px; height: auto; filter: brightness(0) saturate(100%); opacity: .85; }
+.painel__titulo > span { display: flex; align-items: baseline; gap: 10px; }
+.painel__titulo strong { font-family: var(--titulo); font-size: clamp(20px, 2vw, 26px); font-weight: 600; letter-spacing: -.01em; }
+.painel__titulo > span > span { font-size: 13px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; opacity: .75; }
+.painel__hora { display: inline-flex; align-items: baseline; gap: 10px; }
+.painel__hora .rot { color: #0B1622; opacity: .75; }
+.painel__hora strong { font-family: var(--titulo); font-size: clamp(20px, 2vw, 26px); font-weight: 600; font-variant-numeric: tabular-nums; }
+.painel__tabela { width: 100%; border-collapse: collapse; }
+.painel th { text-align: left; padding: 14px 22px 10px; font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #FFFFFF; opacity: .7; }
+.painel td { padding: 12px 22px; vertical-align: middle; border-top: 1px solid rgba(255, 255, 255, .06); }
+.painel tbody tr { transition: background-color .4s ease; }
+@media (hover: hover) { .painel tbody tr:hover { background: rgba(255, 255, 255, .03); } }
+/* cada letra é uma plaquinha com a dobra no meio */
+.flap-txt { display: inline-flex; flex-wrap: wrap; gap: 6px .5em; font-family: var(--texto); font-size: clamp(14px, 1.35vw, 18px); font-weight: 600; column-gap: .9em !important; color: #FFFFFF; text-transform: uppercase; font-variant-numeric: tabular-nums; }
+.flap-txt--ambar { color: #F2C48D; }
+.flap { position: relative; display: inline-grid; place-items: center; min-width: 1.05em; height: 1.6em; padding: 0 .08em; border-radius: 4px; background: linear-gradient(180deg, #1D2938 0 49%, #151F2B 51% 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06), 0 1px 2px rgba(0, 0, 0, .5); line-height: 1; }
+.flap::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(0, 0, 0, .65); }
+.flap-palavra { display: inline-flex; gap: 3px; white-space: nowrap; }
+.flap.is-girando { animation: flap-gira .07s linear; }
+@keyframes flap-gira { 0% { transform: scaleY(1); } 50% { transform: scaleY(.2); } 100% { transform: scaleY(1); } }
+.painel__ok { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: rgba(37, 211, 102, .12); box-shadow: inset 0 0 0 1px rgba(107, 227, 154, .35); font-family: var(--texto); font-size: 13px; font-weight: 600; color: #6BE39A; white-space: nowrap; }
+.painel__ok::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; box-shadow: 0 0 8px currentColor; animation: pisca 2.4s ease-in-out infinite; }
 @keyframes pisca { 50% { opacity: .3; } }
 
 .pilha { display: grid; gap: 28px; }
@@ -321,7 +345,11 @@ p { margin: 0; text-wrap: pretty; }
   .destino .barras { display: none; }
 }
 @media (max-width: 560px) {
-  .painel th, .painel td { padding: 14px 14px; }
+  .painel th, .painel td { padding: 12px 14px; }
+  .painel__cab { padding: 12px 14px; }
+  .painel__titulo > span > span { display: none; }
+  .flap-txt { font-size: 13px; gap: 6px .7em; }
+  .flap-palavra { gap: 2px; }
   .painel th:nth-child(4), .painel td:nth-child(4) { display: none; }
   .vaga { font-size: 12px; }
   .outro-destino .btn { width: 100%; }

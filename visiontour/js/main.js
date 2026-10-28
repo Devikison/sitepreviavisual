@@ -491,4 +491,39 @@
       if (d.open && !d.classList.contains("is-fechando")) fecharDuvida(d); else abrirDuvida(d);
     });
   });
+
+  /* ---------- painel de partidas: relógio de Fortaleza e placas que giram ---------- */
+  var relogio = document.querySelector("[data-relogio]");
+  function hora() {
+    try { relogio.textContent = new Intl.DateTimeFormat("pt-BR", { hour: "2-digit", minute: "2-digit", timeZone: "America/Fortaleza" }).format(new Date()); } catch (e) {}
+  }
+  if (relogio) { hora(); setInterval(hora, 15000); }
+  var CHARS = "ABCDEFGHIJKLMNOPRSTUVZ0123456789";
+  var flaps = [];
+  document.querySelectorAll("[data-flap]").forEach(function (el) {
+    var txt = el.textContent;
+    el.setAttribute("aria-label", txt);
+    /* cada palavra fica inteira na mesma linha */
+    el.innerHTML = txt.split(" ").map(function (pal) {
+      return '<span class="flap-palavra" aria-hidden="true">' + Array.prototype.map.call(pal, function (ch) { return '<span class="flap">' + ch + "</span>"; }).join("") + "</span>";
+    }).join("");
+    el.querySelectorAll(".flap:not(.flap--vazio)").forEach(function (f) { flaps.push(f); });
+  });
+  function girar(f, atraso) {
+    var final = f.textContent, n = 6 + Math.floor(Math.random() * 6), i = 0;
+    setTimeout(function passo() {
+      f.classList.remove("is-girando"); void f.offsetWidth; f.classList.add("is-girando");
+      f.textContent = i < n ? CHARS[Math.floor(Math.random() * CHARS.length)] : final;
+      if (i++ < n) setTimeout(passo, 70);
+    }, atraso);
+  }
+  var painel = document.querySelector(".painel");
+  if (painel && !reduz && "IntersectionObserver" in window) {
+    var ioP = new IntersectionObserver(function (en) {
+      if (!en[0].isIntersecting) return;
+      ioP.disconnect();
+      flaps.forEach(function (f, i) { girar(f, 200 + (i % 18) * 35); });
+    }, { threshold: 0.4 });
+    ioP.observe(painel);
+  }
 })();
