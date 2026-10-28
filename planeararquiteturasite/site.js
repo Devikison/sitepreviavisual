@@ -133,19 +133,21 @@
        [data-fill="i"]          escala 0 a 1 na fatia i (data-axis="x|y")
        [data-on="i"]            ganha .on quando a fatia i começa
        [data-cur="i"]           ganha .on só enquanto a fatia i é a atual
-       [data-bar]               escala igual a p (data-axis)               */
+       [data-bar]               escala igual a p (data-axis)
+     [data-follow]: p segue os itens [data-on] pela tela (etapa atual = a que passou do meio). */
   var scrubs = $$('[data-scrub]').map(function (s) {
     return { s: s, mode: s.getAttribute('data-scrub'), n: +s.getAttribute('data-n') || 4,
       x: $('[data-x]', s), fills: $$('[data-fill]', s), ons: $$('[data-on]', s), curs: $$('[data-cur]', s), bars: $$('[data-bar]', s),
-      p: -1, cur: 0, k: 0 };
+      p: -1, cur: 0, k: 0, follow: s.hasAttribute('data-follow') };
   });
   function scale(el, v) { el.style.transform = (el.getAttribute('data-axis') === 'y' ? 'scaleY(' : 'scaleX(') + v.toFixed(4) + ')'; }
   function paintScrub(g) {
-    var p = g.cur, n = g.n, s = p * n;
+    var p = g.cur, n = g.n, s = g.follow ? p * (n - 1) + 0.001 : p * n;
     var desk = window.innerWidth >= 960;
     if (g.x) {
       if (desk) {
-        var w = g.x.scrollWidth - g.x.parentNode.clientWidth;
+        var pv = g.x.parentNode, ps = getComputedStyle(pv);
+        var w = Math.max(0, g.x.scrollWidth - (pv.clientWidth - parseFloat(ps.paddingLeft) - parseFloat(ps.paddingRight)));
         g.x.style.transform = 'translate3d(' + (-w * p).toFixed(1) + 'px,0,0)';
       } else g.x.style.transform = '';
     }
@@ -197,7 +199,10 @@
       });
       scrubs.forEach(function (g) {
         var r = g.s.getBoundingClientRect();
-        if (g.mode === 'pin' && g.s.offsetHeight > vh * 1.3) g.k = cl(-r.top / ((g.s.offsetHeight - vh) || 1));
+        if (g.follow && g.ons.length > 1) {
+          var a = g.ons[0].getBoundingClientRect(), z = g.ons[g.ons.length - 1].getBoundingClientRect();
+          g.k = cl((vh * 0.55 - a.top - 30) / ((z.top - a.top) || 1));
+        } else if (g.mode === 'pin' && g.s.offsetHeight > vh * 1.3) g.k = cl(-r.top / ((g.s.offsetHeight - vh) || 1));
         else if (g.mode === 'pin') g.k = cl((vh * 0.85 - r.top) / ((r.height + vh * 0.15) || 1));
         else if (g.mode === 'enter') g.k = cl((vh * 0.9 - r.top) / (vh * 0.6));
         else g.k = cl((vh * 0.85 - r.top) / ((r.height + vh * 0.15) || 1));
