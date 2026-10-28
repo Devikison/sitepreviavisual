@@ -149,18 +149,37 @@ p { margin: 0; text-wrap: pretty; }
 .voo__chegada-titulo { font-size: clamp(30px, 4vw, 56px); max-width: 16em; color: #FFFFFF; opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
 .voo.is-chegada .voo__chegada-titulo { opacity: 1; transform: none; }
 .confianca { list-style: none; margin: 30px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-/* cada item é um mini cartão de embarque com picote */
-.confianca__item { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 16px 18px 18px; border-radius: 14px; background: var(--papel); color: var(--tinta); font-size: 15px; font-weight: 500; line-height: 1.4; opacity: 0; transform: translateY(28px); transition: opacity .8s var(--ease), transform .8s var(--ease), box-shadow .8s var(--ease);
-  -webkit-mask: radial-gradient(circle 8px at 0 38px, transparent 97%, #000 100%) left / 51% 100% no-repeat, radial-gradient(circle 8px at 100% 38px, transparent 97%, #000 100%) right / 51% 100% no-repeat;
-  mask: radial-gradient(circle 8px at 0 38px, transparent 97%, #000 100%) left / 51% 100% no-repeat, radial-gradient(circle 8px at 100% 38px, transparent 97%, #000 100%) right / 51% 100% no-repeat; }
-.confianca__item::after { content: ""; position: absolute; left: 14px; right: 14px; top: 38px; border-top: 1.5px dashed rgba(81, 104, 122, .35); }
+/* cada item é um mini cartão de embarque: papel, picote e canhoto colorido com o código */
+.confianca__item { --stub: #7E4A1B; --stub2: #4F2C0E; --ico: #A55F14; --corte: 66px; position: relative; display: flex; min-height: 96px; border-radius: 16px; overflow: hidden; color: var(--tinta);
+  filter: drop-shadow(0 14px 22px rgba(3, 7, 12, .5)); opacity: 0; transform: translateY(28px);
+  transition: opacity .8s var(--ease), transform .8s var(--ease);
+  -webkit-mask: radial-gradient(circle 9px at calc(100% - var(--corte)) 0, transparent 97%, #000 100%) top / 100% 51% no-repeat, radial-gradient(circle 9px at calc(100% - var(--corte)) 100%, transparent 97%, #000 100%) bottom / 100% 51% no-repeat;
+  mask: radial-gradient(circle 9px at calc(100% - var(--corte)) 0, transparent 97%, #000 100%) top / 100% 51% no-repeat, radial-gradient(circle 9px at calc(100% - var(--corte)) 100%, transparent 97%, #000 100%) bottom / 100% 51% no-repeat; }
+.confianca--azul { --stub: #1F4C78; --stub2: #122F4D; --ico: #2C6AA6; }
+.confianca--verde { --stub: #0F4A39; --stub2: #082E23; --ico: #0E7F3C; }
+.confianca--coral { --stub: #7A3328; --stub2: #4A1D16; --ico: #A8432C; }
 .confianca__item.is-on { opacity: 1; transform: none; }
-.confianca__cod { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: .16em; color: #9A5A12; margin-bottom: 6px; }
-.confianca__cod img { width: 18px; height: auto; transition: transform 1.2s var(--ease); }
+.confianca__papel { position: relative; flex: 1; min-width: 0; display: flex; align-items: center; gap: 14px; padding: 16px 16px 16px 16px; background: linear-gradient(180deg, #FAF7F2, #F1ECE4); overflow: hidden; }
+.confianca__papel::after { content: ""; position: absolute; right: 0; top: 12px; bottom: 12px; border-right: 2px dashed rgba(81, 104, 122, .4); }
+/* brilho que atravessa o cartão quando ele entra e no hover */
+.confianca__papel::before { content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 45%; background: linear-gradient(105deg, transparent, rgba(255, 255, 255, .9), transparent); transform: skewX(-14deg); pointer-events: none; }
+.confianca__item.is-on .confianca__papel::before { animation: confianca-brilho 1.4s var(--ease) both; animation-delay: .25s; }
+@keyframes confianca-brilho { from { transform: skewX(-14deg) translateX(0); } to { transform: skewX(-14deg) translateX(480%); } }
+.confianca__ico { flex: none; width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; color: var(--ico); background: #FFFFFF; box-shadow: 0 1px 2px rgba(18, 34, 52, .08), 0 6px 14px -6px rgba(18, 34, 52, .25); transition: transform .6s cubic-bezier(.25, .46, .45, .94); }
+.confianca__ico svg { width: 22px; height: 22px; fill: color-mix(in srgb, currentColor 10%, transparent); stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.confianca__txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.confianca__txt strong { font-family: var(--titulo); font-size: 18px; font-weight: 600; line-height: 1.15; color: var(--tinta); }
+.confianca__txt span { font-size: 13.5px; line-height: 1.35; color: var(--tinta-2); }
+.confianca__canhoto { flex: 0 0 var(--corte); display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 8px; padding: 12px 6px; background: linear-gradient(165deg, var(--stub), var(--stub2)); color: #FFFFFF; }
+.confianca__cod { font-family: var(--titulo); font-size: 15px; font-weight: 600; letter-spacing: .04em; white-space: nowrap; }
+.barras--mini { width: 40px; height: 20px; }
 @media (hover: hover) and (pointer: fine) {
-  .confianca__item.is-on:hover { transform: translateY(-6px); }
-  .confianca__item:hover .confianca__cod img { transform: translateX(6px); }
+  .confianca__item.is-on { transition: opacity .8s var(--ease), transform .6s cubic-bezier(.25, .46, .45, .94), filter .6s cubic-bezier(.25, .46, .45, .94); }
+  .confianca__item.is-on:hover { transform: translateY(-3px); filter: drop-shadow(0 20px 26px rgba(3, 7, 12, .55)); }
+  .confianca__item:hover .confianca__ico { transform: rotate(-6deg) scale(1.06); }
+  .confianca__item:hover .confianca__papel::before { animation: confianca-brilho 1.1s var(--ease) both; }
 }
+
 
 /* progresso da viagem no pé da tela */
 .voo__rota { position: absolute; left: 50%; bottom: 24px; transform: translateX(-50%); width: min(460px, calc(100% - 2 * var(--margem))); display: flex; align-items: center; gap: 12px; color: #FFFFFF; font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
@@ -172,7 +191,14 @@ p { margin: 0; text-wrap: pretty; }
 
 @media (max-width: 900px) {
   .confianca { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .confianca__item { padding: 12px 14px 14px; font-size: 14px; gap: 6px; }
+  .confianca__item { --corte: 52px; min-height: 0; }
+  .confianca__papel { padding: 12px; gap: 10px; }
+  .confianca__ico { width: 36px; height: 36px; border-radius: 10px; }
+  .confianca__ico svg { width: 19px; height: 19px; }
+  .confianca__txt strong { font-size: 15px; }
+  .confianca__txt span { font-size: 12px; }
+  .confianca__cod { font-size: 12px; }
+  .barras--mini { width: 30px; height: 16px; }
 }
 @media (max-width: 767px) {
   .voo { height: 400svh; }
@@ -185,8 +211,6 @@ p { margin: 0; text-wrap: pretty; }
   .voo__chegada { bottom: 70px; }
   .voo__chegada-titulo { font-size: 27px; }
   .confianca { margin-top: 18px; }
-  .confianca__item { font-size: 13px; }
-  .confianca__item::after { top: 34px; }
 }
 
 /* celular e tablet em pé: a janela ocupa o meio, o texto vai embaixo sobre véu escuro */
@@ -707,3 +731,17 @@ html:not(.js) .carrossel { overflow-x: auto; }
 
 /* bordas das seções com foto: a foto se dissolve no fundo, sem fio de emenda */
 .cena__fundo { -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 90px, #000 calc(100% - 90px), transparent 100%); mask-image: linear-gradient(180deg, transparent 0, #000 90px, #000 calc(100% - 90px), transparent 100%); }
+
+/* celular: os 4 cartões viram tiras de embarque empilhadas */
+@media (max-width: 767px) {
+  .confianca { grid-template-columns: 1fr; gap: 8px; margin-top: 16px; }
+  .confianca__item { --corte: 58px; }
+  .confianca__papel { padding: 9px 12px; gap: 12px; }
+  .confianca__ico { width: 34px; height: 34px; }
+  .confianca__txt strong { font-size: 15px; }
+  .confianca__txt span { font-size: 12.5px; }
+  .confianca__canhoto { flex-direction: row; justify-content: center; padding: 6px; }
+  .confianca__canhoto .barras--mini { display: none; }
+  .confianca__cod { font-size: 13px; }
+}
+
