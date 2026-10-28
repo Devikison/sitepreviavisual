@@ -405,4 +405,34 @@
     montar(); car.classList.add("is-pronto");
     requestAnimationFrame(passo);
   });
+
+  /* ---------- botão "embarque": letras, aviãozinho e decolagem ---------- */
+  var CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.3l2.7 2.7L16.2 9.5"/></svg>';
+  function letras(txt) {
+    return Array.prototype.map.call(txt, function (ch, i) {
+      return '<span style="--i:' + i + '">' + (ch === " " ? "&nbsp;" : ch.replace(/[<>&]/g, "")) + "</span>";
+    }).join("");
+  }
+  var ioBtn = "IntersectionObserver" in window ? new IntersectionObserver(function (en) {
+    en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("is-visto"); ioBtn.unobserve(e.target); } });
+  }, { threshold: 0.6 }) : null;
+  document.querySelectorAll("a.btn--claro, a.btn--escuro").forEach(function (b) {
+    if (b.closest(".consent")) return;
+    var txt = b.textContent.replace(/\s+/g, " ").trim();
+    var aviao = b.classList.contains("btn--escuro") ? "plane-cream" : "plane-navy";
+    b.setAttribute("aria-label", txt);
+    b.innerHTML =
+      '<span class="btn__contorno" aria-hidden="true"></span>' +
+      '<span class="btn__estado btn__estado--ir" aria-hidden="true"><span class="btn__ico"><img src="assets/' + aviao + '.svg" alt="" width="24" height="14"></span><span class="btn__letras">' + letras(txt) + "</span></span>" +
+      '<span class="btn__estado btn__estado--ok" aria-hidden="true"><span class="btn__ico">' + CHECK + '</span><span class="btn__letras">' + letras("Boa viagem!") + "</span></span>";
+    b.classList.add("btn--vt");
+    if (ioBtn && !reduz) ioBtn.observe(b); else b.classList.add("is-visto");
+    var timer = null;
+    b.addEventListener("click", function () {
+      clearTimeout(timer);
+      b.classList.remove("is-decolando"); void b.offsetWidth;
+      b.classList.add("is-decolando");
+      timer = setTimeout(function () { b.classList.remove("is-decolando"); }, 2600);
+    });
+  });
 })();

@@ -593,3 +593,63 @@ html:not(.js) .carrossel { overflow-x: auto; }
 @media (prefers-reduced-motion: reduce) {
   .cena__fundo img { position: absolute; height: 100%; animation: none !important; transform: none; }
 }
+
+/* ---------- botão "embarque" (adaptado de Uiverse.io, marcelodolza) ----------
+   Moldura em relevo, contorno de luz dourada girando no hover, letras em onda
+   e o aviãozinho da Vision Tour que decola ao clicar. O JS monta as peças. */
+.btn--vt { --vt-1: #FFFFFF; --vt-2: #ECE5DA; --vt-txt: #122234; --vt-acc: #9A5A12; --vt-luz: #F2C48D; --vt-rastro: rgba(18, 34, 52, .45); --raio-btn: 14px;
+  position: relative; isolation: isolate; overflow: visible; background: transparent; color: var(--vt-txt); border-radius: var(--raio-btn); min-height: 56px; padding: 14px 26px;
+  box-shadow: 0 .5px .5px 1px rgba(255, 255, 255, .2), 0 10px 20px rgba(5, 9, 15, .28), 0 4px 5px rgba(5, 9, 15, .08); transition: transform .3s ease, box-shadow .3s ease; }
+.btn--vt.btn--escuro { --vt-1: #24476B; --vt-2: #122234; --vt-txt: #FFFFFF; --vt-acc: #F2C48D; --vt-rastro: rgba(242, 196, 141, .8); text-shadow: 0 1px 1px rgba(0, 0, 0, .3); }
+.btn--vt.btn--grande { min-height: 64px; padding: 18px 32px; font-size: 17px; }
+.btn--vt.topo__acao { min-height: 48px; padding: 10px 20px; font-size: 15px; }
+.btn--vt::after { content: ""; position: absolute; inset: 0; z-index: 0; border-radius: var(--raio-btn); border: 2.5px solid transparent;
+  background: linear-gradient(var(--vt-1), var(--vt-2)) padding-box, linear-gradient(to bottom, rgba(0, 0, 0, .08), rgba(0, 0, 0, .4)) border-box; transition: transform .4s ease, box-shadow .4s ease; }
+.btn--vt::before { content: ""; position: absolute; inset: 6px 6px 5px; z-index: 2; border-radius: 30px; background: linear-gradient(to top, var(--vt-1), var(--vt-2)); filter: blur(.5px); opacity: .9; }
+@media (hover: hover) and (pointer: fine) {
+  .btn--vt:hover { transform: scale(1.02); box-shadow: 0 0 1px 2px rgba(255, 255, 255, .3), 0 15px 30px rgba(5, 9, 15, .35), 0 10px 3px -3px rgba(5, 9, 15, .05); }
+  .btn--vt:hover::after { transform: scale(1.04, 1.1); box-shadow: inset 0 -1px 3px 0 rgba(255, 255, 255, .9); }
+  .btn--vt:hover .btn__contorno { opacity: 1; }
+  .btn--vt:hover .btn__contorno::before { animation-play-state: running; }
+  .btn--vt:hover .btn__estado--ir .btn__letras span { animation: vt-onda .5s ease forwards calc(var(--i) * .02s); }
+  .btn--vt:hover .btn__estado--ir .btn__ico { transform: rotate(-20deg) scale(1.1); }
+}
+.btn--vt:active { transform: scale(.99); }
+.btn__contorno { position: absolute; inset: -2px -3px; z-index: 1; border-radius: inherit; overflow: hidden; opacity: 0; transition: opacity .4s ease; }
+.btn__contorno::before { content: ""; position: absolute; inset: -100%; background: conic-gradient(from 180deg, transparent 60%, var(--vt-luz) 80%, transparent 100%); animation: vt-gira 2.4s linear infinite paused; }
+@keyframes vt-gira { to { transform: rotate(360deg); } }
+
+.btn__estado { position: relative; z-index: 3; display: inline-flex; align-items: center; gap: 12px; }
+.btn__letras { display: inline-flex; }
+.btn__letras span { display: block; white-space: pre; }
+.btn__ico { position: relative; display: grid; place-items: center; width: 24px; height: 24px; flex: none; transition: transform .3s ease; }
+.btn__ico img { width: 24px; height: auto; }
+.btn__ico svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+/* rastro do avião */
+.btn__estado--ir .btn__ico::before { content: ""; position: absolute; top: 50%; right: 60%; height: 2px; width: 0; background: linear-gradient(to left, var(--vt-rastro), transparent); }
+.btn__estado--ok { position: absolute; inset: 0; justify-content: center; visibility: hidden; }
+
+/* letras entram quando o botão aparece na tela */
+.btn--vt.is-visto .btn__estado--ir .btn__letras span { animation: vt-desce .8s ease both calc(var(--i) * .03s); }
+.btn--vt.is-visto .btn__estado--ir .btn__ico img { animation: vt-pousa .7s ease both; }
+
+/* decolagem ao clicar */
+.btn--vt.is-decolando .btn__estado--ir .btn__ico img { animation: vt-decola .8s linear forwards; }
+.btn--vt.is-decolando .btn__estado--ir .btn__ico::before { animation: vt-rastro .8s linear forwards; }
+.btn--vt.is-decolando .btn__estado--ir .btn__letras span { animation: vt-some .6s ease forwards calc(var(--i) * .03s); }
+.btn--vt.is-decolando .btn__estado--ok { visibility: visible; }
+.btn--vt.is-decolando .btn__estado--ok .btn__letras span { opacity: 0; animation: vt-desce .8s ease forwards calc(.5s + var(--i) * .06s); }
+.btn--vt.is-decolando .btn__estado--ok .btn__ico svg { opacity: 0; animation: vt-aparece 1.2s ease forwards .7s; }
+
+@keyframes vt-onda { 30% { transform: translateY(4px); } 50% { transform: translateY(-3px); color: var(--vt-acc); } 100% { transform: none; } }
+@keyframes vt-desce { 0% { opacity: 0; transform: translate(5px, -20px) rotate(-90deg); color: var(--vt-acc); filter: blur(5px); } 30% { opacity: 1; transform: translateY(4px); filter: blur(0); } 50% { opacity: 1; transform: translateY(-3px); } 100% { opacity: 1; transform: none; } }
+@keyframes vt-some { to { opacity: 0; transform: translate(5px, 20px); color: var(--vt-acc); filter: blur(5px); } }
+@keyframes vt-pousa { 0% { transform: translate(-50px, 24px) rotate(-30deg) scale(1.8); opacity: 0; filter: blur(3px); } 100% { transform: none; opacity: 1; filter: blur(0); } }
+@keyframes vt-decola { 0% { opacity: 1; } 60% { opacity: 1; transform: translate(70px, -10px) rotate(-12deg) scale(1.6); } 100% { opacity: 0; transform: translate(170px, -26px) rotate(-12deg) scale(.4); } }
+@keyframes vt-rastro { 0% { width: 0; opacity: 1; } 10% { width: 16px; } 60% { width: 80px; opacity: .8; } 100% { width: 170px; opacity: 0; } }
+@keyframes vt-aparece { 0% { opacity: 0; transform: scale(3) rotate(-40deg); color: var(--vt-acc); filter: blur(4px); } 30% { opacity: 1; transform: scale(.6); filter: blur(1px); } 50% { opacity: 1; transform: scale(1.2); filter: blur(0); } 100% { opacity: 1; transform: scale(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn--vt .btn__letras span, .btn--vt .btn__ico img, .btn--vt .btn__ico svg { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
+  .btn--vt.is-decolando .btn__estado--ir { visibility: hidden; }
+}
