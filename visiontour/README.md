@@ -32,7 +32,7 @@ ffmpeg -i video.mp4 -vf "fps=10,scale=1280:-2" -c:v libwebp -quality 60 -start_n
 ## Antes de publicar de verdade
 
 1. Esconder as notas de prévia: apagar os elementos `.previa-nota`.
-2. Seção de depoimentos (`#depoimentos`): trocar `data-previa` por `hidden` até existir depoimento real.
+2. Seção de depoimentos (`#depoimentos`, malas na esteira): trocar os colchetes de cada `.etiqueta-mala` pelos depoimentos reais e apagar as malas que sobrarem; sem depoimento real, trocar `data-previa` por `hidden`.
 3. Mapa: deixar no `<select id="saida">` e no SVG só as capitais que a operadora confirmar.
 4. Trocar as fotos pendentes (blocos `.vaga`) pelas fotos reais, em WebP, com `width` e `height`.
 5. Domínio final: atualizar `canonical`, `og:url`, `og:image`, `sitemap.xml`, `robots.txt` e os caminhos `/visiontour/` do `404.html` e do `consent.js`.
