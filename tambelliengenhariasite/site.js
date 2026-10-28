@@ -241,8 +241,8 @@
         if (g.pinned) g.k = cl(-r.top / ((g.s.offsetHeight - vh) || 1));
         else if (g.follow && g.ons.length > 1) {
           var a = g.ons[0].getBoundingClientRect(), z = g.ons[g.ons.length - 1].getBoundingClientRect();
-          // itens empilhados: a etapa atual é a que passou do meio da tela; lado a lado: avança enquanto o bloco sobe na tela
-          g.k = z.top > a.top + 40 ? cl((vh * 0.55 - a.top - 30) / (z.top - a.top)) : cl((vh * 0.8 - Math.min(a.top, z.top)) / (vh * 0.55));
+          // itens empilhados: a etapa atual é a que subiu até a altura de leitura (36% da tela); lado a lado: avança enquanto o bloco sobe na tela
+          g.k = z.top > a.top + 40 ? cl((vh * 0.36 - a.top - 30) / (z.top - a.top)) : cl((vh * 0.8 - Math.min(a.top, z.top)) / (vh * 0.55));
         }
         else if (g.mode === 'pin') g.k = cl((vh * 0.85 - r.top) / ((r.height + vh * 0.15) || 1));
         else if (g.mode === 'enter') g.k = cl((vh * 0.9 - r.top) / (vh * 0.6));
