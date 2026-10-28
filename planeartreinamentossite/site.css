@@ -243,28 +243,9 @@ section:has(>.stair),.ftr{position:relative}
 .st-card{padding:18px;border-radius:10px;background:linear-gradient(160deg,#FFFDFB,#F3EAE2);color:var(--ink);box-shadow:inset 0 1px 0 #fff,0 30px 50px -30px rgba(0,0,0,.75);transition:opacity .7s var(--e),transform .7s var(--e)}
 .js .st-card:not(.on){opacity:.35;transform:translate3d(0,16px,0)}
 .st-card.on{opacity:1;transform:none}
-.st-ill{height:84px;margin-bottom:10px;border-radius:8px;background:linear-gradient(180deg,#F7EEE6,#EFE2D7);display:flex;align-items:center;justify-content:center}
-.st-ill svg{height:72px;width:auto;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.st-ill .b1{fill:#5C3634;stroke:#5C3634;stroke-width:2}
-.st-ill .b2{fill:#E8740A;stroke:#E8740A;stroke-width:2}
-.st-ill .tl{stroke:#D9C4B6;stroke-width:4}
-.st-ill .tlw{stroke:rgba(255,255,255,.75);stroke-width:4}
-.st-ill .pp1{fill:#fff;stroke:#C9B3A6;stroke-width:2}
-.st-ill .clip{fill:#5C3634}
-.st-ill .ck{stroke:#2FA36B;stroke-width:3}
-.st-ill .gauge{stroke:#E8740A;stroke-width:6}
-.st-ill .needle{stroke:#5C3634;stroke-width:3}
-.st-ill .hub{fill:#5C3634}
-.st-ill .hd{stroke:#C9B3A6;stroke-width:2}
-.st-ill .dt{fill:#E8740A}
-.st-ill .line{stroke:#C9B3A6;stroke-width:3}
-.st-ill .node{fill:#5C3634}.st-ill .node2{fill:#E8740A}.st-ill .node3{fill:#fff;stroke:#E8740A;stroke-width:3}
-.st-ill .bd{fill:#fff;stroke:#5C3634;stroke-width:3}
-.st-ill .win{stroke:#E8740A;stroke-width:3}
-.st-ill .flagp{stroke:#5C3634;stroke-width:3}
-.st-ill .flag{fill:#E8740A;stroke:#C85E04;stroke-width:1.5}
-.st-ill .ground{stroke:#C9B3A6;stroke-width:3}
-.st-ill .arrow{stroke:#2FA36B;stroke-width:3}
+.st-ill{height:108px;margin-bottom:10px;border-radius:8px;background:radial-gradient(120% 90% at 50% 0%,#FBF5EF,#EFE2D7 70%,#E8D8CB);box-shadow:inset 0 1px 0 #fff,inset 0 -1px 0 rgba(92,54,52,.08);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.st-ill svg{height:98px;width:auto;max-width:100%;overflow:visible;transition:transform .9s var(--e) .15s}
+@media (min-width:960px){.js .st-card:not(.on) .st-ill svg{transform:translate3d(0,8px,0) scale(.94)}}
 .st-n{color:var(--orange-t)}
 .st h3{font-size:clamp(20px,1.8vw,26px);line-height:1.1;margin:4px 0 6px;color:var(--ink)}
 .st p{margin:0;font-size:15px;color:var(--body)}

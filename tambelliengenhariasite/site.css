@@ -268,8 +268,10 @@ h2.eyebrow{font-size:16px;margin-bottom:18px}
 .scene .fil{fill:#3B6FC6}
 .scene .gtrk{stroke:#2A2F35;stroke-width:16}
 .scene .gred{stroke:var(--red);stroke-width:16;stroke-dasharray:1}
-.scene .needle-g{transform-box:view-box;transform-origin:500px 250px;transform:rotate(-120deg);transition:transform 1.4s cubic-bezier(.34,1.56,.64,1) .5s}
-.scene.on .needle-g{transform:rotate(0)}
+.scene .needle-g{transform-box:view-box;transform-origin:482px 222px;transition:transform 1.4s cubic-bezier(.34,1.56,.64,1) .5s}
+.js .scene:not(.on) .needle-g{transform:rotate(-120deg)}
+@media (max-width:959px){.js .scenes.stack-m .scene .needle-g{transform:none}}
+@media (prefers-reduced-motion:reduce){.js .scene .needle-g{transform:none}}
 .scene .needle{stroke:#fff;stroke-width:4}
 .scene .hub{fill:#fff}
 .scene .barb{fill:#2B5CB0}

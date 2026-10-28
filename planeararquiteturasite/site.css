@@ -265,6 +265,7 @@ section:has(>.axis),.ftr{position:relative}
 .plate-draw .tag{fill:rgba(255,77,87,.15);stroke:#FF4D57}
 .plate-draw .tx{stroke:none;fill:var(--bptx);font-family:var(--mono);font-size:11px;letter-spacing:.08em}
 .plate-draw .tx.big{font-size:20px;letter-spacing:.24em;fill:#fff}
+.plate-draw .txb{stroke:none;fill:#0F2B52;font-family:var(--mono);font-size:9px;font-weight:500;letter-spacing:.08em}
 .plate-draw .txr{stroke:none;fill:#FF4D57;font-family:var(--mono);font-size:14px;letter-spacing:.12em}
 .plate-draw .gc{stroke:#3DDC97;stroke-width:2.2;fill:rgba(61,220,151,.08)}
 .plate-draw .gc2{stroke:#3DDC97;stroke-width:3.4}

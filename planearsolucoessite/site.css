@@ -258,35 +258,10 @@ svg{flex:none}
 .ph-tabs span.on{background:var(--blue);color:#fff}
 .scenes{aspect-ratio:4/3}
 .scene svg{overflow:visible}
-.scene .house{fill:#fff;stroke:var(--blue);stroke-width:3;stroke-linejoin:round}
-.scene .roof-o{fill:none;stroke:var(--orange);stroke-width:14;stroke-linecap:round;stroke-linejoin:round}
-.scene .roof-o.big{stroke-width:18}
-.scene .door{fill:var(--tint);stroke:var(--blue);stroke-width:3}
-.scene .door-o{fill:var(--orange);stroke:var(--orange-d);stroke-width:2}
-.scene .win{fill:var(--tint);stroke:var(--blue);stroke-width:2.5}
-.scene .dash{fill:none;stroke:var(--blue);stroke-width:2.5;stroke-dasharray:1;stroke-linecap:round;opacity:.5}
-.scene .pin{fill:#fff;stroke:var(--line);stroke-width:1}
-.scene .pin-o{fill:var(--orange);stroke:none}
-.scene .ico{fill:none;stroke:var(--blue);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.scene .ico-d{stroke:var(--ink)}
-.scene .lb{fill:var(--ink);font-family:'Onest',sans-serif;font-size:15px;font-weight:600}
-.scene .lb-w{fill:#fff;font-family:'Onest',sans-serif;font-size:14px;font-weight:600}
-.scene .doc{fill:#fff;stroke:var(--line);stroke-width:1.5}
-.scene .tl{fill:none;stroke:#D5DAF0;stroke-width:8;stroke-linecap:round}
-.scene .tl2{fill:none;stroke:var(--blue);stroke-width:5;stroke-linecap:round;opacity:.5}
-.scene .tag-o{fill:var(--orange)}
-.scene .tag-b{fill:var(--blue)}
-.scene .ok{fill:#E7F7EF;stroke:#2FA36B;stroke-width:2}
-.scene .ok-w{fill:#fff;stroke:#fff}
-.scene .ck{fill:none;stroke:#2FA36B;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.scene .ck-o{stroke:var(--orange-d)}
-.scene .ck-w{fill:none;stroke:#fff;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
-.scene .lens{fill:rgba(233,236,248,.6);stroke:var(--blue);stroke-width:6}
-.scene .lens-h{stroke:var(--blue);stroke-width:12;stroke-linecap:round}
-.scene .sig{fill:none;stroke:var(--blue);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.scene .card{fill:#fff;stroke:var(--line)}
-.scene .card-o{fill:var(--orange);stroke:none}
-.scene .seal{fill:#2FA36B}
+.scene .tc{fill:var(--ink);font-family:'Onest',sans-serif;font-weight:600}
+.scene .tc-w{fill:#fff}
+.scene .ln{fill:none;stroke:#A9B3E6;stroke-width:3;stroke-linecap:round}
+.scene .sig{fill:none;stroke:#2E3DA3;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
 .panel-bar{height:6px;background:var(--tint)}
 .panel-bar i{display:block;height:100%;background:linear-gradient(90deg,#FFA04A,#E57113)}
 
