@@ -259,4 +259,74 @@
     atualizaWhats(btnSonho, v ? "Oi, Sarah! O lugar que está há anos na minha lista é " + v + ". Quero planejar essa viagem." : "Oi, Sarah! Quero planejar uma viagem.");
   });
   sonho.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); btnSonho.click(); } });
+
+  /* ---------- carrossel contínuo com arrasto ---------- */
+  document.querySelectorAll("[data-carrossel]").forEach(function (car) {
+    var trilho = car.querySelector(".carrossel__trilho");
+    var originais = Array.prototype.slice.call(trilho.children);
+    var VEL = reduz ? 0 : 0.026;            /* px por ms: bem devagar */
+    var setW = 0, x = 0, impulso = 0, fator = 1, alvoFator = 1;
+    var arrastando = false, inicioX = 0, baseX = 0, ultX = 0, ultT = 0, velArrasto = 0;
+    var visivel = false, tAnt = 0;
+
+    function montar() {
+      trilho.querySelectorAll("[data-clone]").forEach(function (c) { c.remove(); });
+      var gap = parseFloat(getComputedStyle(trilho).columnGap) || 0;
+      setW = originais.reduce(function (s, el) { return s + el.offsetWidth + gap; }, 0);
+      var copias = Math.max(1, Math.ceil((car.offsetWidth + setW) / setW));
+      for (var c = 0; c < copias; c++) {
+        originais.forEach(function (el) {
+          var k = el.cloneNode(true);
+          k.setAttribute("data-clone", ""); k.setAttribute("aria-hidden", "true");
+          trilho.appendChild(k);
+        });
+      }
+    }
+    function prender() { x = ((x % setW) - setW) % setW; }
+    function aplicar() { trilho.style.transform = "translate3d(" + x.toFixed(2) + "px,0,0)"; }
+
+    function passo(t) {
+      var dt = Math.min(t - (tAnt || t), 50); tAnt = t;
+      if (visivel && !arrastando && setW) {
+        fator += (alvoFator - fator) * 0.05;
+        x -= (VEL * fator + impulso) * dt;
+        impulso *= Math.pow(0.94, dt / 16.7);
+        if (Math.abs(impulso) < 0.001) impulso = 0;
+        prender(); aplicar();
+      }
+      requestAnimationFrame(passo);
+    }
+
+    car.addEventListener("pointerdown", function (e) {
+      if (e.button !== 0) return;
+      arrastando = true; car.classList.add("is-arrastando");
+      inicioX = e.clientX; baseX = x; ultX = e.clientX; ultT = e.timeStamp; velArrasto = 0; impulso = 0;
+      car.setPointerCapture(e.pointerId);
+    });
+    car.addEventListener("pointermove", function (e) {
+      if (!arrastando) return;
+      x = baseX + (e.clientX - inicioX);
+      var dt = e.timeStamp - ultT;
+      if (dt > 0) velArrasto = velArrasto * 0.6 + ((e.clientX - ultX) / dt) * 0.4;
+      ultX = e.clientX; ultT = e.timeStamp;
+      prender(); aplicar();
+    });
+    function soltar() {
+      if (!arrastando) return;
+      arrastando = false; car.classList.remove("is-arrastando");
+      impulso = clamp(-velArrasto, -3, 3);   /* o arrasto continua com inércia e volta ao ritmo lento */
+    }
+    car.addEventListener("pointerup", soltar);
+    car.addEventListener("pointercancel", soltar);
+    car.addEventListener("lostpointercapture", soltar);
+    car.addEventListener("dragstart", function (e) { e.preventDefault(); });
+    car.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") alvoFator = 0.35; });
+    car.addEventListener("pointerleave", function () { alvoFator = 1; });
+
+    new IntersectionObserver(function (en) { visivel = en[0].isIntersecting; }).observe(car);
+    var larg = window.innerWidth;
+    window.addEventListener("resize", function () { if (window.innerWidth !== larg) { larg = window.innerWidth; montar(); prender(); aplicar(); } });
+    montar(); car.classList.add("is-pronto");
+    requestAnimationFrame(passo);
+  });
 })();
