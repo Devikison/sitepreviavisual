@@ -215,6 +215,30 @@
   }
   function tick(t) { smoothStep(t); headerStep(); frame(); requestAnimationFrame(tick); }
 
+  /* ---------- Reflexo nos botões ---------- */
+  $$('.btn').forEach(function (b) {
+    if (b.querySelector('.sheen')) return;
+    var s = document.createElement('span'); s.className = 'sheen'; s.setAttribute('aria-hidden', 'true');
+    b.insertBefore(s, b.firstChild);
+  });
+
+  /* ---------- Parallax suave em imagens de fundo ---------- */
+  var plx = $$('[data-parallax]');
+  if (plx.length && !reduced) {
+    var plxStep = function () {
+      var vh = window.innerHeight;
+      plx.forEach(function (el) {
+        var host = el.parentNode.getBoundingClientRect();
+        if (host.bottom < 0 || host.top > vh) return;
+        var t = cl((vh - host.top) / (host.height + vh));
+        var amt = +el.getAttribute('data-parallax') || 40;
+        el.style.transform = 'translate3d(0,' + ((0.5 - t) * amt).toFixed(1) + 'px,0) scale(1.08)';
+      });
+    };
+    window.addEventListener('scroll', function () { requestAnimationFrame(plxStep); }, { passive: true });
+    plxStep();
+  }
+
   /* ---------- Revelar ao rolar ---------- */
   var rev = $$('[data-reveal]');
   if (reduced || !('IntersectionObserver' in window)) rev.forEach(function (e) { e.classList.add('in'); });

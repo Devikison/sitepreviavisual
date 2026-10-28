@@ -74,6 +74,7 @@
 
 <main id="conteudo">
   <section id="inicio" class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
     <div class="wrap hero-grid">
       <div class="hero-txt">
         <p class="pill"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 14L12 4l10 10"/></svg>Financiamento imobiliário em Sorocaba</p>
@@ -90,27 +91,32 @@
         <div class="house">
           <picture><source media="(max-width: 959px)" srcset="assets/hero-mobile.webp"><img src="assets/hero-desktop.webp" alt="Atendimento de financiamento com clientes à mesa" width="1672" height="941" fetchpriority="high" decoding="async"></picture>
         </div>
+        <div class="float f1" aria-hidden="true"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 14l2 2 4-4"/></svg></span>Documentação organizada</div>
+        <div class="float f2" aria-hidden="true"><span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span>Uma pessoa acompanhando</div>
       </div>
     </div>
   </section>
-  <div class="roofs" aria-hidden="true"><i></i><svg viewBox="0 0 96 28"><path class="b" d="M4 24L18 10l14 14"/><path class="o" d="M30 22L48 4l18 18"/><path class="b" d="M64 24l14-14 14 14"/></svg><i></i></div>
+  <div class="roofs" aria-hidden="true"><i></i><span class="badge"><img src="assets/symbol.png" alt="" width="60" height="60" loading="lazy"></span><i></i></div>
 
-  <section id="para-quem" class="forwho" aria-labelledby="h-pq">
+  <section id="para-quem" class="forwho blue" aria-labelledby="h-pq">
     <div class="wrap">
       <div class="fw-head" data-reveal="0">
         <h2 id="h-pq">Para quem é</h2>
       </div>
       <div class="tabs" data-tabs data-reveal="100">
-        <div class="tablist" role="tablist" aria-label="Perfis"><button type="button" role="tab" id="tab0" aria-controls="pan0" aria-selected="true" tabindex="0"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4v18"/><path d="M12 21V9l7 3v9"/><path d="M8 8.5v.01M8 11.5v.01M8 14.5v.01M8 17.5v.01M15.5 14v.01M15.5 17v.01"/></svg><span>Construtoras</span></button><button type="button" role="tab" id="tab1" aria-controls="pan1" aria-selected="false" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l4-4 3 1 2-2 5 0 4 4"/><path d="M3 11l5 5c1 1 2 1 3 0l1-1"/><path d="M21 11l-5 5"/><path d="M10 8l4 4c.8.8.8 2 0 2.8-.8.8-2 .8-2.8 0L9 12.6"/></svg><span>Corretores e imobiliárias</span></button><button type="button" role="tab" id="tab2" aria-controls="pan2" aria-selected="false" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9"/><path d="M17 6l3 3"/><path d="M15 8l2 2"/></svg><span>Quem vai comprar</span></button></div>
+        <div class="tablist" role="tablist" aria-label="Perfis"><button type="button" role="tab" id="tab0" aria-controls="pan0" aria-selected="true" tabindex="0"><span class="t-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4v18"/><path d="M12 21V9l7 3v9"/><path d="M8 8.5v.01M8 11.5v.01M8 14.5v.01M8 17.5v.01M15.5 14v.01M15.5 17v.01"/></svg></span><span>Construtoras</span></button><button type="button" role="tab" id="tab1" aria-controls="pan1" aria-selected="false" tabindex="-1"><span class="t-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l4-4 3 1 2-2 5 0 4 4"/><path d="M3 11l5 5c1 1 2 1 3 0l1-1"/><path d="M21 11l-5 5"/><path d="M10 8l4 4c.8.8.8 2 0 2.8-.8.8-2 .8-2.8 0L9 12.6"/></svg></span><span>Corretores e imobiliárias</span></button><button type="button" role="tab" id="tab2" aria-controls="pan2" aria-selected="false" tabindex="-1"><span class="t-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9"/><path d="M17 6l3 3"/><path d="M15 8l2 2"/></svg></span><span>Quem vai comprar</span></button></div>
         <div class="pan" role="tabpanel" id="pan0" aria-labelledby="tab0">
+          <span class="pan-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4v18"/><path d="M12 21V9l7 3v9"/><path d="M8 8.5v.01M8 11.5v.01M8 14.5v.01M8 17.5v.01M15.5 14v.01M15.5 17v.01"/></svg></span>
           <p>Para construtoras que vendem pelo Minha Casa Minha Vida e precisam de quem tire o financiamento do comprador do papel.</p>
-          <a class="more" href="#svc0">Ver como ajudamos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" aria-hidden="true"><path d="M4 12h15M13.5 6.5L19 12l-5.5 5.5"/></svg></a>
+          <a class="btn btn-w" href="#svc0" data-btn="perfil-0"><span>Ver como ajudamos</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" aria-hidden="true"><path d="M4 12h15M13.5 6.5L19 12l-5.5 5.5"/></svg></a>
         </div><div class="pan" role="tabpanel" id="pan1" aria-labelledby="tab1" hidden>
+          <span class="pan-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l4-4 3 1 2-2 5 0 4 4"/><path d="M3 11l5 5c1 1 2 1 3 0l1-1"/><path d="M21 11l-5 5"/><path d="M10 8l4 4c.8.8.8 2 0 2.8-.8.8-2 .8-2.8 0L9 12.6"/></svg></span>
           <p>Para corretores e imobiliárias que querem um parceiro que não deixe o cliente travado.</p>
-          <a class="more" href="#svc1">Ver como ajudamos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" aria-hidden="true"><path d="M4 12h15M13.5 6.5L19 12l-5.5 5.5"/></svg></a>
+          <a class="btn btn-w" href="#svc1" data-btn="perfil-1"><span>Ver como ajudamos</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" aria-hidden="true"><path d="M4 12h15M13.5 6.5L19 12l-5.5 5.5"/></svg></a>
         </div><div class="pan" role="tabpanel" id="pan2" aria-labelledby="tab2" hidden>
+          <span class="pan-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9"/><path d="M17 6l3 3"/><path d="M15 8l2 2"/></svg></span>
           <p>Para quem está comprando o imóvel e quer orientação.</p>
-          <a class="more" href="#svc2">Ver como ajudamos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" aria-hidden="true"><path d="M4 12h15M13.5 6.5L19 12l-5.5 5.5"/></svg></a>
+          <a class="btn btn-w" href="#svc2" data-btn="perfil-2"><span>Ver como ajudamos</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" aria-hidden="true"><path d="M4 12h15M13.5 6.5L19 12l-5.5 5.5"/></svg></a>
         </div>
       </div>
     </div>
@@ -123,7 +129,7 @@
       </div>
       <div class="cards">
         <article class="card c-light" id="svc0" data-top="108">
-          <div class="c-img"><img src="assets/planear-svc-residencial.webp" alt="" width="1200" height="896" loading="lazy" decoding="async"></div>
+          <div class="c-img"><img src="assets/planear-svc-residencial.webp" alt="" width="1200" height="896" loading="lazy" decoding="async"><span class="c-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4v18"/><path d="M12 21V9l7 3v9"/><path d="M8 8.5v.01M8 11.5v.01M8 14.5v.01M8 17.5v.01M15.5 14v.01M15.5 17v.01"/></svg></span></div>
           <div class="c-txt">
             <span class="c-tag"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 14L12 4l10 10"/></svg>Minha Casa Minha Vida</span>
             <h3>Para construtoras</h3>
@@ -131,7 +137,7 @@
           </div>
           <div class="shade" aria-hidden="true"></div>
         </article><article class="card c-blue" id="svc1" data-top="130">
-          <div class="c-img"><img src="assets/planear-svc-reforma.webp" alt="" width="1200" height="896" loading="lazy" decoding="async"></div>
+          <div class="c-img"><img src="assets/planear-svc-reforma.webp" alt="" width="1200" height="896" loading="lazy" decoding="async"><span class="c-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l4-4 3 1 2-2 5 0 4 4"/><path d="M3 11l5 5c1 1 2 1 3 0l1-1"/><path d="M21 11l-5 5"/><path d="M10 8l4 4c.8.8.8 2 0 2.8-.8.8-2 .8-2.8 0L9 12.6"/></svg></span></div>
           <div class="c-txt">
             <span class="c-tag"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 14L12 4l10 10"/></svg>Parceria</span>
             <h3>Para corretores e imobiliárias</h3>
@@ -139,7 +145,7 @@
           </div>
           <div class="shade" aria-hidden="true"></div>
         </article><article class="card c-ink" id="svc2" data-top="152">
-          <div class="c-img"><img src="assets/planear-svc-comercial.webp" alt="" width="1200" height="896" loading="lazy" decoding="async"></div>
+          <div class="c-img"><img src="assets/planear-svc-comercial.webp" alt="" width="1200" height="896" loading="lazy" decoding="async"><span class="c-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9"/><path d="M17 6l3 3"/><path d="M15 8l2 2"/></svg></span></div>
           <div class="c-txt">
             <span class="c-tag"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 14L12 4l10 10"/></svg>Financiamento imobiliário</span>
             <h3>Para quem vai comprar</h3>
@@ -150,31 +156,71 @@
       </div>
     </div>
   </section>
-  <div class="roofs" aria-hidden="true"><i></i><svg viewBox="0 0 96 28"><path class="b" d="M4 24L18 10l14 14"/><path class="o" d="M30 22L48 4l18 18"/><path class="b" d="M64 24l14-14 14 14"/></svg><i></i></div>
+  <div class="roofs" aria-hidden="true"><i></i><span class="badge"><img src="assets/symbol.png" alt="" width="60" height="60" loading="lazy"></span><i></i></div>
 
   <section class="why" aria-labelledby="h-why">
     <div class="wrap">
       <h2 id="h-why" data-reveal="0">Como <em>trabalhamos</em></h2>
       <div class="bento">
-        <article class="b-big" data-reveal="0"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h3>Agilidade de verdade</h3><p>Retorno rápido em cada etapa, para a venda não esfriar esperando o financiamento.</p></article>
-        <article class="b-sm" data-reveal="100"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><div><h3>Uma pessoa acompanhando</h3><p>Você sabe com quem falar e em que pé está cada processo.</p></div></article>
-        <article class="b-sm b-alt" data-reveal="180"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4v18"/><path d="M12 21V9l7 3v9"/><path d="M8 8.5v.01M8 11.5v.01M8 14.5v.01M8 17.5v.01M15.5 14v.01M15.5 17v.01"/></svg><div><h3>Experiência com construtoras</h3><p>Conhecemos a rotina de quem constrói e vende pelo programa, e falamos a mesma língua da sua equipe comercial.</p></div></article>
+        <article class="b-big" data-reveal="0"><span class="b-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><img class="b-sym" src="assets/symbol.png" alt="" width="200" height="200" loading="lazy"><h3>Agilidade de verdade</h3><p>Retorno rápido em cada etapa, para a venda não esfriar esperando o financiamento.</p></article>
+        <article class="b-sm" data-reveal="100"><span class="b-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><div><h3>Uma pessoa acompanhando</h3><p>Você sabe com quem falar e em que pé está cada processo.</p></div></article>
+        <article class="b-sm b-alt" data-reveal="180"><span class="b-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4v18"/><path d="M12 21V9l7 3v9"/><path d="M8 8.5v.01M8 11.5v.01M8 14.5v.01M8 17.5v.01M15.5 14v.01M15.5 17v.01"/></svg></span><div><h3>Experiência com construtoras</h3><p>Conhecemos a rotina de quem constrói e vende pelo programa, e falamos a mesma língua da sua equipe comercial.</p></div></article>
       </div>
     </div>
   </section>
 
-  <section id="como-funciona" class="steps" data-scrub="pass" data-n="4" aria-labelledby="h-steps">
-    <div class="wrap steps-grid">
-      <div class="steps-head">
-        <h2 id="h-steps">Como funciona</h2>
+  <section id="como-funciona" class="steps deep" data-scrub="pass" data-n="4" aria-labelledby="h-steps">
+    <div class="wrap">
+      <h2 id="h-steps" data-reveal="0">Como funciona</h2>
+      <div class="steps-grid">
+        <ol class="rail">
+          <i class="rail-line" aria-hidden="true"><i data-bar data-axis="y"></i></i>
+          <li data-on="0"><span class="node" aria-hidden="true"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 14L12 4l10 10"/></svg></span><div><span class="sn">Etapa 1</span><h3>Primeiro contato</h3><p>Entendemos seu perfil (construtora, corretor ou comprador) e a situação da venda.</p></div></li><li data-on="1"><span class="node" aria-hidden="true"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 14L12 4l10 10"/></svg></span><div><span class="sn">Etapa 2</span><h3>Análise e documentos</h3><p>Orientamos a documentação e encaminhamos a análise de crédito.</p></div></li><li data-on="2"><span class="node" aria-hidden="true"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 14L12 4l10 10"/></svg></span><div><span class="sn">Etapa 3</span><h3>Acompanhamento</h3><p>Cuidamos das etapas de avaliação, contrato e assinatura, com retorno a cada avanço.</p></div></li><li data-on="3"><span class="node" aria-hidden="true"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 14L12 4l10 10"/></svg></span><div><span class="sn">Etapa 4</span><h3>Registro</h3><p>Acompanhamos até a conclusão do processo.</p></div></li>
+        </ol>
+        <div class="panel-wrap">
+          <div class="panel" aria-hidden="true">
+            <div class="panel-h"><span class="ph-dot"><img src="assets/symbol.png" alt="" width="28" height="28" loading="lazy"></span><span>Financiamento acompanhado</span><span class="ph-tabs"><span data-cur="0">01</span><span data-cur="1">02</span><span data-cur="2">03</span><span data-cur="3">04</span></span></div>
+            <div class="scenes"><div class="scene" data-cur="0"><svg viewBox="0 0 480 360" aria-hidden="true">
+  <defs><filter id="s1" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#0E1347" flood-opacity=".22"/></filter></defs>
+  <g class="pp" style="--i:0"><path class="roof-o" d="M150 176L240 100l90 76"/><path class="house" filter="url(#s1)" d="M170 178L240 118L310 178V280H170Z"/><path class="door" d="M226 280v-48h28v48"/><path class="win" d="M188 196h26v24h-26zM266 196h26v24h-26z"/></g>
+  <path class="dash dw" style="--i:2" pathLength="1" d="M100 96C130 120 150 140 172 160"/>
+  <path class="dash dw" style="--i:3" pathLength="1" d="M380 96C350 120 330 140 310 160"/>
+  <path class="dash dw" style="--i:4" pathLength="1" d="M240 330V292"/>
+  <g class="pp" style="--i:3"><circle class="pin" cx="84" cy="80" r="34" filter="url(#s1)"/><g transform="translate(66 62) scale(1.5)" class="ico"><path d="M3 21h18"/><path d="M5 21V7l7-4v18"/><path d="M12 21V9l7 3v9"/></g><text class="lb" x="84" y="134" text-anchor="middle">Construtora</text></g>
+  <g class="pp" style="--i:4"><circle class="pin" cx="396" cy="80" r="34" filter="url(#s1)"/><g transform="translate(378 62) scale(1.5)" class="ico"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c1-3.5 3.5-5.5 6.5-5.5s5.5 2 6.5 5.5"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8"/></g><text class="lb" x="396" y="134" text-anchor="middle">Corretor</text></g>
+  <g class="pp" style="--i:5"><circle class="pin pin-o" cx="240" cy="330" r="26" filter="url(#s1)"/><g transform="translate(226 316) scale(1.15)" class="ico ico-d"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/></g></g>
+  <text class="lb d" style="--i:6" x="300" y="336">Comprador</text>
+</svg></div><div class="scene" data-cur="1"><svg viewBox="0 0 480 360" aria-hidden="true">
+  <defs><filter id="s2" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#0E1347" flood-opacity=".22"/></filter></defs>
+  <g class="d" style="--i:0"><rect class="doc" x="96" y="70" width="190" height="240" rx="16" filter="url(#s2)" transform="rotate(-6 191 190)"/></g>
+  <g class="d" style="--i:1"><rect class="doc" x="128" y="56" width="190" height="240" rx="16" filter="url(#s2)"/><path class="tl" d="M152 96h110M152 120h140M152 144h90M152 186h120M152 210h80"/><rect class="tag-o" x="152" y="240" width="96" height="26" rx="13"/><text class="lb-w" x="200" y="258" text-anchor="middle">Cadastro</text></g>
+  <g class="pp" style="--i:3"><circle class="ok" cx="300" cy="96" r="14"/><path class="ck" d="M293 96l5 5 9-10"/></g>
+  <g class="pp" style="--i:4"><circle class="ok" cx="300" cy="144" r="14"/><path class="ck" d="M293 144l5 5 9-10"/></g>
+  <g class="pp" style="--i:5"><circle class="ok" cx="300" cy="192" r="14"/><path class="ck" d="M293 192l5 5 9-10"/></g>
+  <g class="pp" style="--i:6"><circle class="lens" cx="350" cy="250" r="44" filter="url(#s2)"/><path class="lens-h" d="M382 282l34 34"/><path class="tl2" d="M330 244h40M330 258h28"/></g>
+  <text class="lb d" style="--i:7" x="300" y="336">Análise de crédito</text>
+</svg></div><div class="scene" data-cur="2"><svg viewBox="0 0 480 360" aria-hidden="true">
+  <defs><filter id="s3" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#0E1347" flood-opacity=".22"/></filter></defs>
+  <g class="d" style="--i:0"><rect class="doc" x="70" y="40" width="220" height="280" rx="18" filter="url(#s3)"/><path class="tl" d="M98 84h120M98 108h160M98 132h140M98 156h150M98 180h100"/><path class="tl" d="M98 262h160"/></g>
+  <path class="sig dw" style="--i:2" pathLength="1" d="M104 254c14-22 24-22 28-6s10 20 22-2 22-18 28 0 16 10 30-6"/>
+  <g class="d" style="--i:3"><rect class="card" x="316" y="56" width="128" height="62" rx="16" filter="url(#s3)"/><circle class="ok" cx="342" cy="87" r="12"/><path class="ck" d="M336 87l4 4 8-9"/><text class="lb" x="362" y="92">Avaliação</text></g>
+  <g class="d" style="--i:4"><rect class="card" x="316" y="134" width="128" height="62" rx="16" filter="url(#s3)"/><circle class="ok" cx="342" cy="165" r="12"/><path class="ck" d="M336 165l4 4 8-9"/><text class="lb" x="362" y="170">Contrato</text></g>
+  <g class="d" style="--i:5"><rect class="card card-o" x="316" y="212" width="128" height="62" rx="16" filter="url(#s3)"/><circle class="ok ok-w" cx="342" cy="243" r="12"/><path class="ck ck-o" d="M336 243l4 4 8-9"/><text class="lb-w" x="362" y="248">Assinatura</text></g>
+  <path class="dash dw" style="--i:6" pathLength="1" d="M380 118v16M380 196v16"/>
+</svg></div><div class="scene" data-cur="3"><svg viewBox="0 0 480 360" aria-hidden="true">
+  <defs><filter id="s4" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#0E1347" flood-opacity=".22"/></filter><radialGradient id="glow4"><stop offset="0" stop-color="#F08424" stop-opacity=".35"/><stop offset="1" stop-color="#F08424" stop-opacity="0"/></radialGradient></defs>
+  <circle class="d" style="--i:0" cx="240" cy="190" r="150" fill="url(#glow4)"/>
+  <g class="pp" style="--i:1"><path class="roof-o big" d="M120 176L240 72l120 104"/><path class="house" filter="url(#s4)" d="M146 178L240 96L334 178V304H146Z"/><path class="door-o" d="M220 304v-62h40v62"/><path class="win" d="M170 196h34v30h-34zM276 196h34v30h-34z"/></g>
+  <g class="pp" style="--i:3"><circle class="seal" cx="344" cy="104" r="40" filter="url(#s4)"/><path class="ck-w" d="M326 104l12 12 22-24"/></g>
+  <g class="d" style="--i:4"><rect class="tag-b" x="150" y="316" width="180" height="32" rx="16"/><text class="lb-w" x="240" y="337" text-anchor="middle">Processo concluído</text></g>
+</svg></div></div>
+            <div class="panel-bar"><i data-bar></i></div>
+          </div>
+        </div>
       </div>
-      <ol class="rail">
-        <i class="rail-line" aria-hidden="true"><i data-bar data-axis="y"></i></i>
-        <li data-on="0"><span class="node" aria-hidden="true"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 14L12 4l10 10"/></svg></span><div><span class="sn">Etapa 1</span><h3>Primeiro contato</h3><p>Entendemos seu perfil (construtora, corretor ou comprador) e a situação da venda.</p></div></li><li data-on="1"><span class="node" aria-hidden="true"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 14L12 4l10 10"/></svg></span><div><span class="sn">Etapa 2</span><h3>Análise e documentos</h3><p>Orientamos a documentação e encaminhamos a análise de crédito.</p></div></li><li data-on="2"><span class="node" aria-hidden="true"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 14L12 4l10 10"/></svg></span><div><span class="sn">Etapa 3</span><h3>Acompanhamento</h3><p>Cuidamos das etapas de avaliação, contrato e assinatura, com retorno a cada avanço.</p></div></li><li data-on="3"><span class="node" aria-hidden="true"><svg viewBox="0 0 24 16" aria-hidden="true"><path d="M2 14L12 4l10 10"/></svg></span><div><span class="sn">Etapa 4</span><h3>Registro</h3><p>Acompanhamos até a conclusão do processo.</p></div></li>
-      </ol>
     </div>
   </section>
-  <div class="roofs" aria-hidden="true"><i></i><svg viewBox="0 0 96 28"><path class="b" d="M4 24L18 10l14 14"/><path class="o" d="M30 22L48 4l18 18"/><path class="b" d="M64 24l14-14 14 14"/></svg><i></i></div>
+  <div class="roofs" aria-hidden="true"><i></i><span class="badge"><img src="assets/symbol.png" alt="" width="60" height="60" loading="lazy"></span><i></i></div>
 
   <section class="team" aria-labelledby="h-team">
     <div class="wrap">
@@ -183,7 +229,7 @@
           <h2 id="h-team">Quem conduz<br>o atendimento</h2>
           <p>Atendimento conduzido pela equipe da Planear Soluções e Negócios.</p>
         </div>
-        <ul class="team-list"><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><h3>Uma pessoa por processo</h3><p>Você sabe com quem falar em cada etapa.</p></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><h3>Retorno rápido</h3><p>Para a venda não esfriar esperando o financiamento.</p></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4v18"/><path d="M12 21V9l7 3v9"/><path d="M8 8.5v.01M8 11.5v.01M8 14.5v.01M8 17.5v.01M15.5 14v.01M15.5 17v.01"/></svg><h3>Relacionamento com construtoras</h3><p>Falamos a mesma língua da sua equipe comercial.</p></li></ul>
+        <ul class="team-list"><li><span class="tl-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><h3>Uma pessoa por processo</h3><p>Você sabe com quem falar em cada etapa.</p></li><li><span class="tl-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h3>Retorno rápido</h3><p>Para a venda não esfriar esperando o financiamento.</p></li><li><span class="tl-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4v18"/><path d="M12 21V9l7 3v9"/><path d="M8 8.5v.01M8 11.5v.01M8 14.5v.01M8 17.5v.01M15.5 14v.01M15.5 17v.01"/></svg></span><h3>Relacionamento com construtoras</h3><p>Falamos a mesma língua da sua equipe comercial.</p></li></ul>
       </div>
     </div>
   </section>
@@ -197,7 +243,8 @@
 
   <section id="contato" class="contact" aria-labelledby="h-contato">
     <div class="wrap">
-      <div class="panel" data-reveal="0">
+      <div class="panel-c" data-reveal="0">
+        <img class="pc-bg" data-parallax="40" src="assets/contato-bg.webp" alt="" width="1600" height="900" loading="lazy" decoding="async">
         <svg class="panel-roof" viewBox="0 0 400 140" aria-hidden="true"><path d="M10 130L200 14l190 116"/></svg>
         <div class="contact-txt">
           <h2 id="h-contato">Como podemos ajudar?</h2>
@@ -233,7 +280,7 @@
 </main>
 
 <footer class="ftr">
-  <div class="roofs" aria-hidden="true"><i></i><svg viewBox="0 0 96 28"><path class="b" d="M4 24L18 10l14 14"/><path class="o" d="M30 22L48 4l18 18"/><path class="b" d="M64 24l14-14 14 14"/></svg><i></i></div>
+  <div class="roofs roofs-d" aria-hidden="true"><i></i><span class="badge"><img src="assets/symbol.png" alt="" width="60" height="60" loading="lazy"></span><i></i></div>
   <div class="wrap ftr-in">
     <a class="ftr-logo" href="#inicio" aria-label="Planear Soluções e Negócios, voltar ao início"><img src="assets/logo-h.png" alt="Planear Soluções e Negócios" width="300" height="62" loading="lazy"></a>
     <nav class="ftr-nav" aria-label="Rodapé">
