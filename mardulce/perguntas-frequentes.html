@@ -29,6 +29,7 @@
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Como faço uma marcação?", "acceptedAnswer": {"@type": "Answer", "text": "Pelo WhatsApp, diretamente com a Dulce. Indica o serviço, o salão que preferes e os dias que te dão mais jeito."}}, {"@type": "Question", "name": "Quanto tempo devo reservar?", "acceptedAnswer": {"@type": "Answer", "text": "Serviços de cor e luz podem ocupar uma manhã ou uma tarde. Indicamos-te a duração prevista no momento da marcação."}}]}</script>
   <script src="js/consent.js" defer></script>
   <script src="js/rastreio.js" defer></script>
+  <script src="js/lenis.min.js" defer></script>
   <script src="js/main.js" defer></script>
 </head>
 <body class="revisao" ontouchstart="">
@@ -39,7 +40,7 @@
     <a class="topo__logo" href="index.html" aria-label="MarDulce Cabeleireiros, página inicial">
       <img src="assets/img/logo.webp" alt="MarDulce Cabeleireiros" width="800" height="243">
     </a>
-    <nav class="menu" id="menu" aria-label="Menu principal">
+    <nav class="menu" id="menu" aria-label="Menu principal" data-lenis-prevent>
       <ul><li><a href="index.html">Início</a></li><li><a href="sobre.html">A Dulce</a></li><li><a href="servicos.html">Serviços</a></li><li><a href="balayage.html">Balayage</a></li><li><a href="formacao.html">Formação</a></li><li><a href="saloes.html">Salões</a></li><li><a href="galeria.html">Galeria</a></li><li><a href="perguntas-frequentes.html" aria-current="page">Perguntas</a></li><li><a href="contactos.html">Contactos</a></li></ul>
       <div class="menu__rodape">
         <a class="btn btn--ouro" href="https://wa.me/351917469576?text=Ol%C3%A1%20Dulce%21%20Vim%20pelo%20site%20e%20gostaria%20de%20fazer%20uma%20marca%C3%A7%C3%A3o." data-wa data-wa-msg="Olá Dulce! Vim pelo site e gostaria de fazer uma marcação." data-btn="menu-marcar" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M186.68,146.63l-32-16a6,6,0,0,0-6,.38L133,141.46A42.49,42.49,0,0,1,114.54,123L125,107.33a6,6,0,0,0,.38-6l-16-32A6,6,0,0,0,104,66a38,38,0,0,0-38,38,86.1,86.1,0,0,0,86,86,38,38,0,0,0,38-38A6,6,0,0,0,186.68,146.63ZM152,178a74.09,74.09,0,0,1-74-74,26,26,0,0,1,22.42-25.75l12.66,25.32-10.39,15.58a6,6,0,0,0-.54,5.63,54.43,54.43,0,0,0,29.07,29.07,6,6,0,0,0,5.63-.54l15.58-10.39,25.32,12.66A26,26,0,0,1,152,178ZM128,26A102,102,0,0,0,38.35,176.69L26.73,211.56a14,14,0,0,0,17.71,17.71l34.87-11.62A102,102,0,1,0,128,26Zm0,192a90,90,0,0,1-45.06-12.08,6.09,6.09,0,0,0-3-.81,6.2,6.2,0,0,0-1.9.31L40.65,217.88a2,2,0,0,1-2.53-2.53L50.58,178a6,6,0,0,0-.5-4.91A90,90,0,1,1,128,218Z"/></svg><span>Fazer marcação</span></a>
@@ -53,7 +54,7 @@
 <main id="conteudo">
 
 
-<section class="cab">
+<section class="cab tom-areia">
   <div class="cab__in">
     <div class="cab__txt">
       <p class="rotulo">Perguntas frequentes</p>
@@ -62,13 +63,13 @@
     </div>
   </div>
 </section>
-<section class="faq">
+<section class="faq tom-pele-brilho">
   <div class="faq__in faq__in--larga">
     <div class="faq__lista"><details class="faq__item"><summary>Como faço uma marcação?<span class="faq__mais" aria-hidden="true"></span></summary><div><p>Pelo WhatsApp, diretamente com a Dulce. Indica o serviço, o salão que preferes e os dias que te dão mais jeito. </p></div></details><details class="faq__item"><summary>Preciso de uma avaliação antes da cor?<span class="faq__mais" aria-hidden="true"></span></summary><div><p>Para mudanças grandes, como passar de morena a loira, recomendamos uma avaliação prévia. Podes começar por enviar uma fotografia pelo WhatsApp. <span class="conf" tabindex="0" data-nota="Confirmar se a avaliação é presencial, por foto ou ambas, e se é gratuita">A confirmar</span></p></div></details><details class="faq__item"><summary>Quanto custa um balayage?<span class="faq__mais" aria-hidden="true"></span></summary><div><p>O valor depende do comprimento, da densidade e da cor de partida. Damos-te um orçamento depois do diagnóstico. <span class="conf" tabindex="0" data-nota="Mostrar valor a partir de?">A confirmar</span></p></div></details><details class="faq__item"><summary>O alisamento vegan tem formol?<span class="faq__mais" aria-hidden="true"></span></summary><div><p>Usamos uma fórmula de origem vegetal. Confirmamos todos os detalhes do produto na avaliação. <span class="conf" tabindex="0" data-nota="Marca do alisamento e confirmação de que é sem formol">A confirmar</span></p></div></details><details class="faq__item"><summary>Quanto tempo devo reservar?<span class="faq__mais" aria-hidden="true"></span></summary><div><p>Serviços de cor e luz podem ocupar uma manhã ou uma tarde. Indicamos-te a duração prevista no momento da marcação. </p></div></details><details class="faq__item"><summary>Posso desmarcar ou alterar a marcação?<span class="faq__mais" aria-hidden="true"></span></summary><div><p>Sim, pedimos apenas que nos avises com antecedência para podermos oferecer o horário a outra cliente. <span class="conf" tabindex="0" data-nota="Política de cancelamento: antecedência mínima e se há sinal">A confirmar</span></p></div></details><details class="faq__item"><summary>Que formas de pagamento aceitam?<span class="faq__mais" aria-hidden="true"></span></summary><div><p>Informação a confirmar com o salão. <span class="conf" tabindex="0" data-nota="Métodos de pagamento">A confirmar</span></p></div></details><details class="faq__item"><summary>Fazem penteados para noivas?<span class="faq__mais" aria-hidden="true"></span></summary><div><p>Informação a confirmar com o salão. <span class="conf" tabindex="0" data-nota="Confirmar se faz noivas e cerimónias, e se se desloca">A confirmar</span></p></div></details></div>
   </div>
 </section>
 
-<section class="final">
+<section class="final tom-champanhe">
   <div class="divisor" aria-hidden="true"><span></span><img class="divisor__m" src="assets/img/monograma.webp" alt="" width="107" height="96" loading="lazy"><span></span></div>
   <div class="final__in">
     <p class="italico final__eyebrow">A tua história tem todo o valor.</p>

@@ -5,6 +5,19 @@
   doc.classList.add("js");
   var reduz = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  // Rolagem suave (Lenis local). Desligada para quem pede menos movimento
+  var lenis = null;
+  if (!reduz && window.Lenis) {
+    lenis = new window.Lenis({ duration: 1.35, easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }, smoothWheel: true, wheelMultiplier: .9 });
+    (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest('a[href^="#"]');
+      if (!a || a.getAttribute("href").length < 2) return;
+      var alvo = document.querySelector(a.getAttribute("href"));
+      if (alvo) { e.preventDefault(); lenis.scrollTo(alvo, { offset: -100 }); }
+    });
+  }
+
   // Ano no rodapé
   document.querySelectorAll("[data-ano]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 
@@ -24,6 +37,7 @@
     if (!burger) return;
     burger.setAttribute("aria-expanded", "false"); burger.setAttribute("aria-label", "Abrir menu");
     menu.classList.remove("is-aberto"); document.body.classList.remove("menu-aberto");
+    if (lenis) lenis.start();
   }
   if (burger && menu) {
     burger.addEventListener("click", function () {
@@ -32,6 +46,7 @@
       burger.setAttribute("aria-label", abrir ? "Fechar menu" : "Abrir menu");
       menu.classList.toggle("is-aberto", abrir);
       document.body.classList.toggle("menu-aberto", abrir);
+      if (lenis) { if (abrir) lenis.stop(); else lenis.start(); }
     });
     menu.addEventListener("click", function (e) { if (e.target.closest("a")) fechar(); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") fechar(); });

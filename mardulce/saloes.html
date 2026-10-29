@@ -28,6 +28,7 @@
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://www.mardulce.pt/#org", "name": "MarDulce Cabeleireiros e Formação", "url": "https://www.mardulce.pt/", "logo": "https://www.mardulce.pt/assets/img/logo.webp", "sameAs": ["https://www.instagram.com/mardulce_cabeleireira/", "https://www.tiktok.com/@mardulce_cabeleireiros"]}, {"@type": "HairSalon", "name": "MarDulce Cabeleireiros Felgueiras", "parentOrganization": {"@id": "https://www.mardulce.pt/#org"}, "image": "https://www.mardulce.pt/assets/favicon/og.jpg", "telephone": "+351917469576", "priceRange": "€€€", "address": {"@type": "PostalAddress", "streetAddress": "Rua do Empresário, Lagares", "addressLocality": "Felgueiras", "addressCountry": "PT"}, "geo": {"@type": "GeoCoordinates", "latitude": 41.3690358, "longitude": -8.2214127}, "hasMap": "https://maps.app.goo.gl/7Q53Jmb5KAVrB41J7"}, {"@type": "HairSalon", "name": "MarDulce Cabeleireiros Fafe", "parentOrganization": {"@id": "https://www.mardulce.pt/#org"}, "image": "https://www.mardulce.pt/assets/favicon/og.jpg", "telephone": "+351917469576", "priceRange": "€€€", "address": {"@type": "PostalAddress", "streetAddress": "Rua Ferreira de Castro, 52", "postalCode": "4820-259", "addressLocality": "Fafe", "addressCountry": "PT"}, "geo": {"@type": "GeoCoordinates", "latitude": 41.4508407, "longitude": -8.1699415}, "hasMap": "https://maps.app.goo.gl/STKfQPxFcvuEcpb66"}]}</script>
   <script src="js/consent.js" defer></script>
   <script src="js/rastreio.js" defer></script>
+  <script src="js/lenis.min.js" defer></script>
   <script src="js/main.js" defer></script>
 </head>
 <body class="revisao" ontouchstart="">
@@ -38,7 +39,7 @@
     <a class="topo__logo" href="index.html" aria-label="MarDulce Cabeleireiros, página inicial">
       <img src="assets/img/logo.webp" alt="MarDulce Cabeleireiros" width="800" height="243">
     </a>
-    <nav class="menu" id="menu" aria-label="Menu principal">
+    <nav class="menu" id="menu" aria-label="Menu principal" data-lenis-prevent>
       <ul><li><a href="index.html">Início</a></li><li><a href="sobre.html">A Dulce</a></li><li><a href="servicos.html">Serviços</a></li><li><a href="balayage.html">Balayage</a></li><li><a href="formacao.html">Formação</a></li><li><a href="saloes.html" aria-current="page">Salões</a></li><li><a href="galeria.html">Galeria</a></li><li><a href="perguntas-frequentes.html">Perguntas</a></li><li><a href="contactos.html">Contactos</a></li></ul>
       <div class="menu__rodape">
         <a class="btn btn--ouro" href="https://wa.me/351917469576?text=Ol%C3%A1%20Dulce%21%20Vim%20pelo%20site%20e%20gostaria%20de%20fazer%20uma%20marca%C3%A7%C3%A3o." data-wa data-wa-msg="Olá Dulce! Vim pelo site e gostaria de fazer uma marcação." data-btn="menu-marcar" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M186.68,146.63l-32-16a6,6,0,0,0-6,.38L133,141.46A42.49,42.49,0,0,1,114.54,123L125,107.33a6,6,0,0,0,.38-6l-16-32A6,6,0,0,0,104,66a38,38,0,0,0-38,38,86.1,86.1,0,0,0,86,86,38,38,0,0,0,38-38A6,6,0,0,0,186.68,146.63ZM152,178a74.09,74.09,0,0,1-74-74,26,26,0,0,1,22.42-25.75l12.66,25.32-10.39,15.58a6,6,0,0,0-.54,5.63,54.43,54.43,0,0,0,29.07,29.07,6,6,0,0,0,5.63-.54l15.58-10.39,25.32,12.66A26,26,0,0,1,152,178ZM128,26A102,102,0,0,0,38.35,176.69L26.73,211.56a14,14,0,0,0,17.71,17.71l34.87-11.62A102,102,0,1,0,128,26Zm0,192a90,90,0,0,1-45.06-12.08,6.09,6.09,0,0,0-3-.81,6.2,6.2,0,0,0-1.9.31L40.65,217.88a2,2,0,0,1-2.53-2.53L50.58,178a6,6,0,0,0-.5-4.91A90,90,0,1,1,128,218Z"/></svg><span>Fazer marcação</span></a>
@@ -52,7 +53,7 @@
 <main id="conteudo">
 
 
-<section class="cab">
+<section class="cab tom-areia">
   <div class="cab__in">
     <div class="cab__txt">
       <p class="rotulo">Os nossos salões</p>
@@ -62,7 +63,7 @@
   </div>
 </section>
 
-<section class="salao" id="felgueiras">
+<section class="salao tom-pele-brilho" id="felgueiras">
   <div class="salao__in">
     <div class="salao__img" data-revelar><figure class="arco arco--duplo"><div class="arco__moldura"><img src="assets/img/salao-espelhos.webp" alt="Salão MarDulce com espelhos em arco dourados" width="900" height="941" fetchpriority="high" style="object-position:center"></div></figure></div>
     <div class="salao__txt" data-revelar>
@@ -82,9 +83,9 @@
 </section>
 <div class="divisor" aria-hidden="true"><span></span><img class="divisor__m" src="assets/img/monograma.webp" alt="" width="107" height="96" loading="lazy"><span></span></div>
 
-<section class="salao salao--inv" id="fafe">
+<section class="salao salao--inv tom-escuro" id="fafe">
   <div class="salao__in">
-    <div class="salao__img" data-revelar><figure class="arco arco--vazio arco--duplo"><div class="arco__moldura"><div class="arco__falta"><svg class="ico" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M196.89,130.94,144.4,111.6,125.06,59.11a13.92,13.92,0,0,0-26.12,0L79.6,111.6,27.11,130.94a13.92,13.92,0,0,0,0,26.12L79.6,176.4l19.34,52.49a13.92,13.92,0,0,0,26.12,0L144.4,176.4l52.49-19.34a13.92,13.92,0,0,0,0-26.12Zm-4.15,14.86-55.08,20.3a6,6,0,0,0-3.56,3.56l-20.3,55.08a1.92,1.92,0,0,1-3.6,0L89.9,169.66a6,6,0,0,0-3.56-3.56L31.26,145.8a1.92,1.92,0,0,1,0-3.6l55.08-20.3a6,6,0,0,0,3.56-3.56l20.3-55.08a1.92,1.92,0,0,1,3.6,0l20.3,55.08a6,6,0,0,0,3.56,3.56l55.08,20.3a1.92,1.92,0,0,1,0,3.6ZM146,40a6,6,0,0,1,6-6h18V16a6,6,0,0,1,12,0V34h18a6,6,0,0,1,0,12H182V64a6,6,0,0,1-12,0V46H152A6,6,0,0,1,146,40ZM246,88a6,6,0,0,1-6,6H230v10a6,6,0,0,1-12,0V94H208a6,6,0,0,1,0-12h10V72a6,6,0,0,1,12,0V82h10A6,6,0,0,1,246,88Z"/></svg><p>Fotografia do salão de Fafe</p><span class="conf" tabindex="0" data-nota="Fotografias do salão de Fafe">A confirmar</span></div></div></figure></div>
+    <div class="salao__img" data-revelar><figure class="arco arco--vazio arco--duplo arco--escuro"><div class="arco__moldura"><div class="arco__falta"><svg class="ico" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M196.89,130.94,144.4,111.6,125.06,59.11a13.92,13.92,0,0,0-26.12,0L79.6,111.6,27.11,130.94a13.92,13.92,0,0,0,0,26.12L79.6,176.4l19.34,52.49a13.92,13.92,0,0,0,26.12,0L144.4,176.4l52.49-19.34a13.92,13.92,0,0,0,0-26.12Zm-4.15,14.86-55.08,20.3a6,6,0,0,0-3.56,3.56l-20.3,55.08a1.92,1.92,0,0,1-3.6,0L89.9,169.66a6,6,0,0,0-3.56-3.56L31.26,145.8a1.92,1.92,0,0,1,0-3.6l55.08-20.3a6,6,0,0,0,3.56-3.56l20.3-55.08a1.92,1.92,0,0,1,3.6,0l20.3,55.08a6,6,0,0,0,3.56,3.56l55.08,20.3a1.92,1.92,0,0,1,0,3.6ZM146,40a6,6,0,0,1,6-6h18V16a6,6,0,0,1,12,0V34h18a6,6,0,0,1,0,12H182V64a6,6,0,0,1-12,0V46H152A6,6,0,0,1,146,40ZM246,88a6,6,0,0,1-6,6H230v10a6,6,0,0,1-12,0V94H208a6,6,0,0,1,0-12h10V72a6,6,0,0,1,12,0V82h10A6,6,0,0,1,246,88Z"/></svg><p>Fotografia do salão de Fafe</p><span class="conf" tabindex="0" data-nota="Fotografias do salão de Fafe">A confirmar</span></div></div></figure></div>
     <div class="salao__txt" data-revelar>
       <p class="rotulo">Salão</p>
       <h2>Fafe</h2>
@@ -101,7 +102,7 @@
   </div>
 </section>
 
-<section class="detalhes">
+<section class="detalhes tom-areia">
   <div class="detalhes__in">
     <p class="rotulo">No salão</p>
     <h2>Pensado para o teu conforto</h2>
@@ -113,7 +114,7 @@
   </div>
 </section>
 
-<section class="final">
+<section class="final tom-champanhe">
   <div class="divisor" aria-hidden="true"><span></span><img class="divisor__m" src="assets/img/monograma.webp" alt="" width="107" height="96" loading="lazy"><span></span></div>
   <div class="final__in">
     <p class="italico final__eyebrow">A tua história tem todo o valor.</p>

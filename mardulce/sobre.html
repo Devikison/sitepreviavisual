@@ -28,6 +28,7 @@
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://www.mardulce.pt/#org", "name": "MarDulce Cabeleireiros e Formação", "url": "https://www.mardulce.pt/", "logo": "https://www.mardulce.pt/assets/img/logo.webp", "sameAs": ["https://www.instagram.com/mardulce_cabeleireira/", "https://www.tiktok.com/@mardulce_cabeleireiros"]}, {"@type": "HairSalon", "name": "MarDulce Cabeleireiros Felgueiras", "parentOrganization": {"@id": "https://www.mardulce.pt/#org"}, "image": "https://www.mardulce.pt/assets/favicon/og.jpg", "telephone": "+351917469576", "priceRange": "€€€", "address": {"@type": "PostalAddress", "streetAddress": "Rua do Empresário, Lagares", "addressLocality": "Felgueiras", "addressCountry": "PT"}, "geo": {"@type": "GeoCoordinates", "latitude": 41.3690358, "longitude": -8.2214127}, "hasMap": "https://maps.app.goo.gl/7Q53Jmb5KAVrB41J7"}, {"@type": "HairSalon", "name": "MarDulce Cabeleireiros Fafe", "parentOrganization": {"@id": "https://www.mardulce.pt/#org"}, "image": "https://www.mardulce.pt/assets/favicon/og.jpg", "telephone": "+351917469576", "priceRange": "€€€", "address": {"@type": "PostalAddress", "streetAddress": "Rua Ferreira de Castro, 52", "postalCode": "4820-259", "addressLocality": "Fafe", "addressCountry": "PT"}, "geo": {"@type": "GeoCoordinates", "latitude": 41.4508407, "longitude": -8.1699415}, "hasMap": "https://maps.app.goo.gl/STKfQPxFcvuEcpb66"}]}</script>
   <script src="js/consent.js" defer></script>
   <script src="js/rastreio.js" defer></script>
+  <script src="js/lenis.min.js" defer></script>
   <script src="js/main.js" defer></script>
 </head>
 <body class="revisao" ontouchstart="">
@@ -38,7 +39,7 @@
     <a class="topo__logo" href="index.html" aria-label="MarDulce Cabeleireiros, página inicial">
       <img src="assets/img/logo.webp" alt="MarDulce Cabeleireiros" width="800" height="243">
     </a>
-    <nav class="menu" id="menu" aria-label="Menu principal">
+    <nav class="menu" id="menu" aria-label="Menu principal" data-lenis-prevent>
       <ul><li><a href="index.html">Início</a></li><li><a href="sobre.html" aria-current="page">A Dulce</a></li><li><a href="servicos.html">Serviços</a></li><li><a href="balayage.html">Balayage</a></li><li><a href="formacao.html">Formação</a></li><li><a href="saloes.html">Salões</a></li><li><a href="galeria.html">Galeria</a></li><li><a href="perguntas-frequentes.html">Perguntas</a></li><li><a href="contactos.html">Contactos</a></li></ul>
       <div class="menu__rodape">
         <a class="btn btn--ouro" href="https://wa.me/351917469576?text=Ol%C3%A1%20Dulce%21%20Vim%20pelo%20site%20e%20gostaria%20de%20fazer%20uma%20marca%C3%A7%C3%A3o." data-wa data-wa-msg="Olá Dulce! Vim pelo site e gostaria de fazer uma marcação." data-btn="menu-marcar" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M186.68,146.63l-32-16a6,6,0,0,0-6,.38L133,141.46A42.49,42.49,0,0,1,114.54,123L125,107.33a6,6,0,0,0,.38-6l-16-32A6,6,0,0,0,104,66a38,38,0,0,0-38,38,86.1,86.1,0,0,0,86,86,38,38,0,0,0,38-38A6,6,0,0,0,186.68,146.63ZM152,178a74.09,74.09,0,0,1-74-74,26,26,0,0,1,22.42-25.75l12.66,25.32-10.39,15.58a6,6,0,0,0-.54,5.63,54.43,54.43,0,0,0,29.07,29.07,6,6,0,0,0,5.63-.54l15.58-10.39,25.32,12.66A26,26,0,0,1,152,178ZM128,26A102,102,0,0,0,38.35,176.69L26.73,211.56a14,14,0,0,0,17.71,17.71l34.87-11.62A102,102,0,1,0,128,26Zm0,192a90,90,0,0,1-45.06-12.08,6.09,6.09,0,0,0-3-.81,6.2,6.2,0,0,0-1.9.31L40.65,217.88a2,2,0,0,1-2.53-2.53L50.58,178a6,6,0,0,0-.5-4.91A90,90,0,1,1,128,218Z"/></svg><span>Fazer marcação</span></a>
@@ -52,13 +53,13 @@
 <main id="conteudo">
 
 
-<section class="cab cab--img">
+<section class="cab tom-areia cab--img">
   <div class="cab__in">
     <div class="cab__txt">
       <p class="rotulo">A Dulce</p>
       <h1>Uma vida dedicada ao cabelo</h1>
       <p class="cab__sub">Mais de vinte anos a transformar cabelos e a ouvir as histórias de quem se senta na nossa cadeira.</p>
-    </div><div class="cab__img"><figure class="arco arco--duplo"><div class="arco__moldura"><img src="assets/img/dulce-retrato.webp" alt="Retrato da Dulce" width="700" height="1138" fetchpriority="high" style="object-position:center 20%"></div></figure></div>
+    </div><div class="cab__img"><figure class="arco arco--duplo"><div class="arco__moldura"><img src="assets/img/dulce-retrato.webp" alt="Retrato da Dulce" width="701" height="1140" fetchpriority="high" style="object-position:center 20%"></div></figure></div>
   </div>
 </section>
 
@@ -75,7 +76,7 @@
   </div>
 </section>
 
-<section class="numeros">
+<section class="numeros tom-escuro">
   <div class="numeros__in">
     <div class="numero" data-revelar><strong>+20</strong><span>anos de profissão</span></div>
     <div class="numero" data-revelar><strong>2</strong><span>salões, Felgueiras e Fafe</span></div>
@@ -85,7 +86,7 @@
 
 <div class="divisor" aria-hidden="true"><span></span><img class="divisor__m" src="assets/img/monograma.webp" alt="" width="107" height="96" loading="lazy"><span></span></div>
 
-<section class="valores">
+<section class="valores tom-areia">
   <div class="valores__in">
     <div class="valores__cab">
       <p class="rotulo">Aquilo em que acreditamos</p>
@@ -100,7 +101,7 @@
   </div>
 </section>
 
-<section class="equipa">
+<section class="equipa tom-pele-brilho">
   <div class="equipa__in">
     <p class="rotulo">A equipa</p>
     <h2>Quem cuida de ti</h2>
@@ -113,7 +114,7 @@
   </div>
 </section>
 
-<section class="final">
+<section class="final tom-champanhe">
   <div class="divisor" aria-hidden="true"><span></span><img class="divisor__m" src="assets/img/monograma.webp" alt="" width="107" height="96" loading="lazy"><span></span></div>
   <div class="final__in">
     <p class="italico final__eyebrow">A tua história tem todo o valor.</p>
