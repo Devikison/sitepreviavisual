@@ -739,19 +739,19 @@ ul, ol, dl, dd { margin: 0; padding: 0; list-style: none; }
 
 /* ---------- Faixa contínua de serviços (abaixo do hero) ---------- */
 .faixa {
-  position: relative; overflow: hidden; padding: 1.7rem 0;
+  position: relative; overflow: hidden; padding: .85rem 0;
   background: linear-gradient(180deg, #43352C, var(--cacau-fundo-2));
   border-block: 1px solid rgba(233, 207, 142, .28);
 }
 .faixa__trilho { display: flex; width: max-content; animation: faixa 60s linear infinite; }
 .faixa:hover .faixa__trilho { animation-play-state: paused; }
-.faixa__grupo { display: flex; align-items: center; gap: clamp(1.6rem, 3vw, 2.8rem); padding-right: clamp(1.6rem, 3vw, 2.8rem); margin: 0; }
-.faixa__item { font: 500 clamp(1.3rem, 2.2vw, 2rem)/1 var(--f-titulo); letter-spacing: .12em; text-transform: uppercase; color: var(--ouro-brilho); white-space: nowrap; }
-.faixa__item--it { font: italic 400 clamp(1.45rem, 2.4vw, 2.2rem)/1 var(--f-italico); letter-spacing: .01em; text-transform: none; color: #D9BB86; }
-.faixa__sep img { width: auto; height: clamp(20px, 2vw, 26px); opacity: .85; }
+.faixa__grupo { display: flex; align-items: center; gap: clamp(1.1rem, 2vw, 1.8rem); padding-right: clamp(1.1rem, 2vw, 1.8rem); margin: 0; }
+.faixa__item { font: 500 clamp(.92rem, 1.1vw, 1.08rem)/1 var(--f-titulo); letter-spacing: .16em; text-transform: uppercase; color: var(--ouro-brilho); white-space: nowrap; }
+.faixa__item--it { font: italic 400 clamp(1.02rem, 1.25vw, 1.22rem)/1 var(--f-italico); letter-spacing: .01em; text-transform: none; color: #D9BB86; }
+.faixa__sep img { width: auto; height: clamp(12px, 1.1vw, 15px); opacity: .8; }
 @keyframes faixa { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) {
   .faixa__trilho { animation: none; }
   .faixa { overflow-x: auto; }
 }
-@media (max-width: 767px) { .faixa { padding: 1.25rem 0; } .faixa__trilho { animation-duration: 42s; } }
+@media (max-width: 767px) { .faixa { padding: .7rem 0; } .faixa__trilho { animation-duration: 40s; } }
