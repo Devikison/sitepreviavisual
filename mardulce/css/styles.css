@@ -730,3 +730,8 @@ ul, ol, dl, dd { margin: 0; padding: 0; list-style: none; }
   .menu ul a { padding: .78rem .2rem; font-size: 1.12rem; }
   .menu__rodape { gap: var(--s-2); }
 }
+
+/* Listas com ícone: o ícone fica sempre ao lado do texto, mesmo quando o texto quebra */
+.salao__info li, .curso__info li { flex-wrap: nowrap; align-items: flex-start; }
+.salao__info li > span, .curso__info li > span { flex: 1; min-width: 0; }
+.salao__info .ico, .curso__info .ico { margin-top: .3em; }
