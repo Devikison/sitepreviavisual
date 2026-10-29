@@ -123,31 +123,41 @@
     });
   }
 
-  // Perguntas (details): abrir e fechar com altura animada
+  // Perguntas (details): acordeão com altura animada; abrir uma fecha a que estava aberta
+  var animar = !reduz && Element.prototype.animate;
+  function abrir(d) {
+    var corpo = d.querySelector(".faq__corpo"), atual = corpo.offsetHeight, aFechar = d.classList.contains("fechando");
+    if (d._anim) d._anim.cancel();
+    d.classList.remove("fechando");
+    d.open = true;
+    if (!animar) return;
+    d._anim = corpo.animate(
+      [{ height: (aFechar ? atual : 0) + "px", opacity: aFechar ? 1 : 0 }, { height: corpo.scrollHeight + "px", opacity: 1 }],
+      { duration: 750, easing: "cubic-bezier(.19, 1, .22, 1)" }
+    );
+    d._anim.onfinish = function () { d._anim = null; };
+  }
+  function fechar(d) {
+    if (!d.open || d.classList.contains("fechando")) return;
+    var corpo = d.querySelector(".faq__corpo"), atual = corpo.offsetHeight;
+    if (d._anim) d._anim.cancel();
+    if (!animar) { d.open = false; return; }
+    d.classList.add("fechando");
+    d._anim = corpo.animate(
+      [{ height: atual + "px", opacity: 1 }, { height: "0px", opacity: 0 }],
+      { duration: 600, easing: "cubic-bezier(.65, 0, .35, 1)" }
+    );
+    d._anim.onfinish = function () { d.open = false; d.classList.remove("fechando"); d._anim = null; };
+  }
   document.querySelectorAll("details.faq__item").forEach(function (d) {
-    var sum = d.querySelector("summary"), corpo = d.querySelector(".faq__corpo"), anim = null;
-    if (!sum || !corpo || reduz || !corpo.animate) return;
+    var sum = d.querySelector("summary");
+    if (!sum || !d.querySelector(".faq__corpo")) return;
     sum.addEventListener("click", function (e) {
       e.preventDefault();
-      var atual = corpo.offsetHeight;
-      if (anim) anim.cancel();
-      var aFechar = d.classList.contains("fechando");
-      if (!d.open || aFechar) {
-        d.classList.remove("fechando");
-        d.open = true;
-        anim = corpo.animate(
-          [{ height: (aFechar ? atual : 0) + "px", opacity: aFechar ? 1 : 0 }, { height: corpo.scrollHeight + "px", opacity: 1 }],
-          { duration: 750, easing: "cubic-bezier(.19, 1, .22, 1)" }
-        );
-        anim.onfinish = function () { anim = null; };
-      } else {
-        d.classList.add("fechando");
-        anim = corpo.animate(
-          [{ height: atual + "px", opacity: 1 }, { height: "0px", opacity: 0 }],
-          { duration: 600, easing: "cubic-bezier(.65, 0, .35, 1)" }
-        );
-        anim.onfinish = function () { d.open = false; d.classList.remove("fechando"); anim = null; };
-      }
+      if (d.open && !d.classList.contains("fechando")) { fechar(d); return; }
+      var lista = d.closest(".faq__lista") || document;
+      lista.querySelectorAll("details.faq__item[open]").forEach(function (outro) { if (outro !== d) fechar(outro); });
+      abrir(d);
     });
   });
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.mardulce.pt/sitemap.xml
+Sitemap: https://www.sitepreviavisual.site/mardulce/sitemap.xml
