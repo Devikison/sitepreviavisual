@@ -798,3 +798,9 @@ ul, ol, dl, dd { margin: 0; padding: 0; list-style: none; }
   }
   .menu-aberto .rolagem { opacity: 0; }
 }
+
+/* No telemóvel fica só o indicador dourado: esconde a barra nativa do navegador */
+@media (hover: none) and (pointer: coarse) {
+  html, body { scrollbar-width: none; -ms-overflow-style: none; }
+  html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; width: 0; height: 0; }
+}
