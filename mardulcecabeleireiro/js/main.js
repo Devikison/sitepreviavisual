@@ -18,6 +18,19 @@
     });
   }
 
+  // Indicador de rolagem dourado (telemóvel): só usa JS onde não há animação por rolagem em CSS
+  var rolagem = document.querySelector(".rolagem");
+  if (rolagem && !(window.CSS && CSS.supports("animation-timeline: scroll()"))) {
+    var pedido = false;
+    var atualizar = function () {
+      pedido = false;
+      var max = document.documentElement.scrollHeight - innerHeight;
+      rolagem.style.setProperty("--progresso", max > 0 ? Math.min(1, scrollY / max) : 0);
+    };
+    addEventListener("scroll", function () { if (!pedido) { pedido = true; requestAnimationFrame(atualizar); } }, { passive: true });
+    atualizar();
+  }
+
   // Ano no rodapé
   document.querySelectorAll("[data-ano]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 

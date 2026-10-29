@@ -321,7 +321,7 @@ ul, ol, dl, dd { margin: 0; padding: 0; list-style: none; }
   .hero { display: block; min-height: 0; padding-top: 74px; }
   .hero::before { display: none; }
   .hero__img { position: relative; display: block; height: 50vh; height: 50svh; min-height: 320px; max-height: 470px; overflow: hidden; }
-  .hero__img img { object-position: 50% 0; animation: none; }
+  .hero__img img { object-position: 50% 13%; animation: none; }
   .hero__img::after { content: ""; position: absolute; inset: auto 0 0; height: 32%; background: linear-gradient(180deg, rgba(250, 246, 240, 0), var(--pele)); pointer-events: none; }
   .hero__txt { margin-top: 0; padding: var(--s-2) var(--gutter) var(--s-5); text-align: center; }
   .hero__txt > * { margin-left: auto; margin-right: auto; }
@@ -775,4 +775,26 @@ ul, ol, dl, dd { margin: 0; padding: 0; list-style: none; }
 /* Firefox (não suporta o degradê, usa as cores da marca) */
 @supports not selector(::-webkit-scrollbar) {
   html { scrollbar-color: #C5A070 #F1E6D6; }
+}
+
+/* ---------- Indicador de rolagem dourado no telemóvel ----------
+   No telemóvel a barra nativa é flutuante e não aceita cor; este indicador faz o papel dela. */
+.rolagem { display: none; }
+@media (hover: none) and (pointer: coarse) {
+  .rolagem {
+    display: block; position: fixed; z-index: 55; top: 86px; bottom: 14px; right: 3px; width: 4px; border-radius: 99px;
+    background: rgba(197, 160, 112, .18); pointer-events: none;
+  }
+  .rolagem__pega {
+    position: absolute; left: 0; right: 0; top: 0; height: 56px; border-radius: 99px;
+    background: linear-gradient(180deg, #BE9660, #F2DEAA 45%, #CDA76E 70%, #A67C42);
+    box-shadow: 0 0 0 1px rgba(122, 86, 38, .35), 0 2px 6px rgba(122, 86, 38, .35);
+    transform: translateY(calc(var(--progresso, 0) * (100cqh - 56px)));
+  }
+  .rolagem { container-type: size; }
+  @supports (animation-timeline: scroll()) {
+    .rolagem__pega { transform: none; animation: rolagem-pega linear both; animation-timeline: scroll(root block); }
+    @keyframes rolagem-pega { from { top: 0; } to { top: calc(100% - 56px); } }
+  }
+  .menu-aberto .rolagem { opacity: 0; }
 }
