@@ -736,3 +736,25 @@ ul, ol, dl, dd { margin: 0; padding: 0; list-style: none; }
 .salao__info li, .curso__info li { flex-wrap: nowrap; align-items: flex-start; }
 .salao__info li > span, .curso__info li > span { flex: 1; min-width: 0; }
 .salao__info .ico, .curso__info .ico { margin-top: .3em; }
+
+/* ---------- Faixa contínua de serviços (abaixo do hero) ---------- */
+.faixa {
+  position: relative; overflow: hidden; padding: 1.7rem 0;
+  background: linear-gradient(180deg, #43352C, var(--cacau-fundo-2));
+  border-block: 1px solid rgba(233, 207, 142, .28);
+}
+.faixa::before, .faixa::after { content: ""; position: absolute; top: 0; bottom: 0; z-index: 1; width: clamp(40px, 8vw, 140px); pointer-events: none; }
+.faixa::before { left: 0; background: linear-gradient(90deg, var(--cacau-fundo-2), rgba(46, 36, 32, 0)); }
+.faixa::after { right: 0; background: linear-gradient(270deg, var(--cacau-fundo-2), rgba(46, 36, 32, 0)); }
+.faixa__trilho { display: flex; width: max-content; animation: faixa 60s linear infinite; }
+.faixa:hover .faixa__trilho { animation-play-state: paused; }
+.faixa__grupo { display: flex; align-items: center; gap: clamp(1.6rem, 3vw, 2.8rem); padding-right: clamp(1.6rem, 3vw, 2.8rem); margin: 0; }
+.faixa__item { font: 500 clamp(1.3rem, 2.2vw, 2rem)/1 var(--f-titulo); letter-spacing: .12em; text-transform: uppercase; color: var(--ouro-brilho); white-space: nowrap; }
+.faixa__item--it { font: italic 400 clamp(1.45rem, 2.4vw, 2.2rem)/1 var(--f-italico); letter-spacing: .01em; text-transform: none; color: #D9BB86; }
+.faixa__sep img { width: auto; height: clamp(20px, 2vw, 26px); opacity: .85; }
+@keyframes faixa { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .faixa__trilho { animation: none; }
+  .faixa { overflow-x: auto; }
+}
+@media (max-width: 767px) { .faixa { padding: 1.25rem 0; } .faixa__trilho { animation-duration: 42s; } }
