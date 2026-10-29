@@ -743,9 +743,6 @@ ul, ol, dl, dd { margin: 0; padding: 0; list-style: none; }
   background: linear-gradient(180deg, #43352C, var(--cacau-fundo-2));
   border-block: 1px solid rgba(233, 207, 142, .28);
 }
-.faixa::before, .faixa::after { content: ""; position: absolute; top: 0; bottom: 0; z-index: 1; width: clamp(40px, 8vw, 140px); pointer-events: none; }
-.faixa::before { left: 0; background: linear-gradient(90deg, var(--cacau-fundo-2), rgba(46, 36, 32, 0)); }
-.faixa::after { right: 0; background: linear-gradient(270deg, var(--cacau-fundo-2), rgba(46, 36, 32, 0)); }
 .faixa__trilho { display: flex; width: max-content; animation: faixa 60s linear infinite; }
 .faixa:hover .faixa__trilho { animation-play-state: paused; }
 .faixa__grupo { display: flex; align-items: center; gap: clamp(1.6rem, 3vw, 2.8rem); padding-right: clamp(1.6rem, 3vw, 2.8rem); margin: 0; }
