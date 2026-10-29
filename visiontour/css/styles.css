@@ -454,12 +454,18 @@ p { margin: 0; text-wrap: pretty; }
 .zoom__acoes { position: fixed; left: 0; right: 0; bottom: 0; height: var(--zoom-barra); display: flex; align-items: center; justify-content: center; gap: clamp(12px, 3vw, 24px); pointer-events: none; }
 .zoom__acoes > * { pointer-events: auto; }
 .zoom__conta { min-width: 64px; text-align: center; font-size: 14px; font-weight: 600; letter-spacing: .08em; color: var(--creme); font-variant-numeric: tabular-nums; }
-.zoom__fechar { position: fixed; top: clamp(12px, 2.5vw, 24px); right: clamp(12px, 2.5vw, 24px); display: grid; place-items: center; width: 48px; height: 48px; border: 0; border-radius: 12px; background: var(--creme); color: var(--navy); cursor: pointer; transition: transform .6s var(--ease), background-color .3s; }
-.zoom__fechar .ico { width: 22px; height: 22px; }
-@media (hover: hover) and (pointer: fine) { .zoom__fechar:hover { background: var(--branco); transform: rotate(90deg); } }
+/* os botões da polaroid ampliada usam o mesmo botão em relevo do site (.btn--vt), sem a decolagem */
+.btn--vt.zoom__fechar { position: fixed; top: clamp(12px, 2.5vw, 24px); right: clamp(12px, 2.5vw, 24px); width: 56px; min-height: 56px; padding: 0; }
+.zoom__fechar .btn__ico svg { width: 22px; height: 22px; }
+.zoom__nav .btn__ico svg { width: 18px; height: 18px; stroke-width: 2.2; }
+@media (hover: hover) and (pointer: fine) {
+  .btn--vt.zoom__nav--ant:hover .btn__estado--ir .btn__ico { transform: translateX(-4px); }
+  .btn--vt.zoom__nav--prox:hover .btn__estado--ir .btn__ico { transform: translateX(4px); }
+  .btn--vt.zoom__fechar:hover .btn__estado--ir .btn__ico { transform: rotate(90deg); }
+}
 @media (max-width: 600px) {
   .zoom__polaroid { width: 100%; rotate: 0deg; }
-  .zoom__acoes .btn { padding-inline: 16px; }
+  .zoom__acoes .btn--vt { padding-inline: 18px; }
 }
 @media (prefers-reduced-motion: reduce) { .zoom[open] .zoom__polaroid, .zoom__polaroid.is-trocando { animation: none; } }
 html.zoom-aberto { overflow: hidden; }
