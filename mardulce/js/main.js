@@ -123,6 +123,34 @@
     });
   }
 
+  // Perguntas (details): abrir e fechar com altura animada
+  document.querySelectorAll("details.faq__item").forEach(function (d) {
+    var sum = d.querySelector("summary"), corpo = d.querySelector(".faq__corpo"), anim = null;
+    if (!sum || !corpo || reduz || !corpo.animate) return;
+    sum.addEventListener("click", function (e) {
+      e.preventDefault();
+      var atual = corpo.offsetHeight;
+      if (anim) anim.cancel();
+      var aFechar = d.classList.contains("fechando");
+      if (!d.open || aFechar) {
+        d.classList.remove("fechando");
+        d.open = true;
+        anim = corpo.animate(
+          [{ height: (aFechar ? atual : 0) + "px", opacity: aFechar ? 1 : 0 }, { height: corpo.scrollHeight + "px", opacity: 1 }],
+          { duration: 750, easing: "cubic-bezier(.19, 1, .22, 1)" }
+        );
+        anim.onfinish = function () { anim = null; };
+      } else {
+        d.classList.add("fechando");
+        anim = corpo.animate(
+          [{ height: atual + "px", opacity: 1 }, { height: "0px", opacity: 0 }],
+          { duration: 600, easing: "cubic-bezier(.65, 0, .35, 1)" }
+        );
+        anim.onfinish = function () { d.open = false; d.classList.remove("fechando"); anim = null; };
+      }
+    });
+  });
+
   // Aviso do modo revisão
   var aviso = document.querySelector("[data-revisao]");
   var fecharAviso = document.querySelector("[data-revisao-fechar]");
