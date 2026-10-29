@@ -38,7 +38,7 @@ html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--topo-h) + 
 @supports (-moz-appearance: none) { html { scrollbar-color: #E4DBCD #0B1622; } }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
-body { margin: 0; background: var(--navy); color: var(--branco); font-family: var(--texto); font-size: 17px; line-height: 1.6; font-weight: 400; overflow-x: clip; -webkit-font-smoothing: antialiased; }
+body { margin: 0; background: var(--navy); color: var(--branco); font-family: var(--texto); font-size: 17px; line-height: 1.6; font-weight: 500; overflow-x: clip; -webkit-font-smoothing: antialiased; }
 img, svg, canvas { display: block; max-width: 100%; }
 img { height: auto; }
 a { color: inherit; }
@@ -369,6 +369,9 @@ p { margin: 0; text-wrap: pretty; }
 .saida__cartao strong { font-family: var(--titulo); font-size: 34px; line-height: 1.1; font-weight: 500; color: #F2C48D; }
 .saida__cartao span:not(.rot):not(.trilha) { font-size: 13px; color: var(--branco); }
 .saida .btn { justify-self: start; }
+.saida__tipo { justify-self: start; display: inline-flex; align-items: center; gap: 12px; padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(242, 196, 141, .4); }
+.saida__tipo .rot { color: var(--branco); }
+.saida__tipo strong { font-size: 14px; font-weight: 600; color: #F2C48D; }
 .brasil__mapa { position: relative; }
 .mapa__svg { width: 100%; height: auto; overflow: visible; }
 .mapa__uf path { stroke: rgba(159, 176, 192, .38); stroke-width: .9; stroke-linejoin: round; transition: fill-opacity .6s var(--ease); }
