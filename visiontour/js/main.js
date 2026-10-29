@@ -345,8 +345,10 @@
     var trilho = car.querySelector(".carrossel__trilho");
     var originais = Array.prototype.slice.call(trilho.children);
     var VEL = reduz ? 0 : 0.026;            /* px por ms: bem devagar */
+    var SENTIDO = car.getAttribute("data-direcao") === "direita" ? -1 : 1;
     var setW = 0, x = 0, impulso = 0, fator = 1, alvoFator = 1;
     var arrastando = false, inicioX = 0, baseX = 0, ultX = 0, ultT = 0, velArrasto = 0;
+    var tocada = null, moveu = 0;           /* polaroid tocada: abre se o dedo/mouse quase não andou */
     var visivel = false, tAnt = 0;
 
     function montar() {
@@ -358,6 +360,7 @@
         originais.forEach(function (el) {
           var k = el.cloneNode(true);
           k.setAttribute("data-clone", ""); k.setAttribute("aria-hidden", "true");
+          if (k.matches("button")) k.tabIndex = -1;
           trilho.appendChild(k);
         });
       }
@@ -375,7 +378,7 @@
       var dt = Math.min(t - (tAnt || t), 50); tAnt = t;
       if (visivel && !arrastando && setW) {
         fator += (alvoFator - fator) * 0.05;
-        x -= (VEL * fator + impulso) * dt;
+        x -= (VEL * fator * SENTIDO + impulso) * dt;
         impulso *= Math.pow(0.94, dt / 16.7);
         if (Math.abs(impulso) < 0.001) impulso = 0;
         prender(); aplicar();
@@ -387,11 +390,13 @@
       if (e.button !== 0) return;
       arrastando = true; car.classList.add("is-arrastando");
       inicioX = e.clientX; baseX = x; ultX = e.clientX; ultT = e.timeStamp; velArrasto = 0; impulso = 0;
+      tocada = e.target.closest("[data-foto]"); moveu = 0;
       car.setPointerCapture(e.pointerId);
     });
     car.addEventListener("pointermove", function (e) {
       if (!arrastando) return;
       x = baseX + (e.clientX - inicioX);
+      moveu = Math.max(moveu, Math.abs(e.clientX - inicioX));
       var dt = e.timeStamp - ultT;
       if (dt > 0) velArrasto = velArrasto * 0.6 + ((e.clientX - ultX) / dt) * 0.4;
       ultX = e.clientX; ultT = e.timeStamp;
@@ -402,8 +407,12 @@
       arrastando = false; car.classList.remove("is-arrastando");
       impulso = clamp(-velArrasto, -3, 3);   /* o arrasto continua com inércia e volta ao ritmo lento */
     }
-    car.addEventListener("pointerup", soltar);
-    car.addEventListener("pointercancel", soltar);
+    car.addEventListener("pointerup", function () {
+      var abrir = arrastando && tocada && moveu < 8 ? tocada : null;
+      soltar(); tocada = null;
+      if (abrir) { impulso = 0; abrir.dispatchEvent(new CustomEvent("abrir-foto", { bubbles: true })); }
+    });
+    car.addEventListener("pointercancel", function () { tocada = null; soltar(); });
     car.addEventListener("lostpointercapture", soltar);
     car.addEventListener("dragstart", function (e) { e.preventDefault(); });
     car.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") alvoFator = 0.35; });
@@ -415,6 +424,76 @@
     montar(); car.classList.add("is-pronto");
     requestAnimationFrame(passo);
   });
+
+  /* ---------- álbum: polaroid ampliada com anterior / próxima ---------- */
+  var zoom = document.querySelector("[data-zoom]");
+  var albumDados = document.getElementById("album-dados");
+  if (zoom && albumDados && zoom.showModal) {
+    var fotos = JSON.parse(albumDados.textContent);
+    var zPol = zoom.querySelector("[data-zoom-polaroid]");
+    var zImg = zoom.querySelector("[data-zoom-img]");
+    var zLugar = zoom.querySelector("[data-zoom-lugar]");
+    var zTexto = zoom.querySelector("[data-zoom-texto]");
+    var zConta = zoom.querySelector("[data-zoom-conta]");
+    var atual = 0, voltarPara = null;
+
+    function mostrar(i, lado) {
+      atual = (i + fotos.length) % fotos.length;
+      var f = fotos[atual];
+      zPol.style.setProperty("--prop", (f.w / f.h).toFixed(4));
+      zImg.src = f.src; zImg.alt = f.alt; zImg.width = f.w; zImg.height = f.h;
+      zLugar.textContent = f.lugar; zTexto.textContent = f.texto;
+      zConta.textContent = (atual + 1) + " / " + fotos.length;
+      if (lado) {
+        zPol.classList.remove("is-trocando"); void zPol.offsetWidth;
+        zPol.style.setProperty("--lado", lado); zPol.classList.add("is-trocando");
+      }
+      /* já pede a próxima e a anterior, para a troca ser instantânea */
+      [atual + 1, atual - 1].forEach(function (j) { new Image().src = fotos[(j + fotos.length) % fotos.length].src; });
+    }
+    function abrir(i, origem) {
+      voltarPara = origem || null;
+      mostrar(i);
+      zoom.showModal();
+      document.documentElement.classList.add("zoom-aberto");
+      if (lenis) lenis.stop();
+    }
+    zoom.addEventListener("close", function () {
+      document.documentElement.classList.remove("zoom-aberto");
+      if (lenis) lenis.start();
+      /* o foco volta para a polaroid original (o clone do carrossel não recebe foco) */
+      if (voltarPara) {
+        var alvo = document.querySelector('[data-foto="' + voltarPara.getAttribute("data-foto") + '"]:not([data-clone])');
+        if (alvo) alvo.focus({ preventScroll: true });
+      }
+    });
+
+    document.addEventListener("abrir-foto", function (e) { abrir(+e.target.getAttribute("data-foto"), e.target); });
+    /* teclado (Enter/Espaço): o clique do mouse e o toque já são tratados no carrossel */
+    document.addEventListener("click", function (e) {
+      var b = e.target.closest && e.target.closest("[data-foto]");
+      if (b && e.detail === 0) abrir(+b.getAttribute("data-foto"), b);
+    });
+
+    zoom.querySelector("[data-zoom-ant]").addEventListener("click", function () { mostrar(atual - 1, -1); });
+    zoom.querySelector("[data-zoom-prox]").addEventListener("click", function () { mostrar(atual + 1, 1); });
+    zoom.querySelector("[data-zoom-fechar]").addEventListener("click", function () { zoom.close(); });
+    zoom.addEventListener("click", function (e) { if (e.target === zoom) zoom.close(); });
+    zoom.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { e.preventDefault(); mostrar(atual + 1, 1); }
+      if (e.key === "ArrowLeft") { e.preventDefault(); mostrar(atual - 1, -1); }
+    });
+
+    /* deslizar o dedo na polaroid troca a foto */
+    var zX = null;
+    zPol.addEventListener("pointerdown", function (e) { zX = e.clientX; });
+    zPol.addEventListener("pointerup", function (e) {
+      if (zX === null) return;
+      var d = e.clientX - zX; zX = null;
+      if (Math.abs(d) > 50) mostrar(atual + (d < 0 ? 1 : -1), d < 0 ? 1 : -1);
+    });
+    zPol.addEventListener("pointercancel", function () { zX = null; });
+  }
 
   /* ---------- botão "embarque": letras, aviãozinho e decolagem ---------- */
   var CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.3l2.7 2.7L16.2 9.5"/></svg>';

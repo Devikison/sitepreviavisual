@@ -410,16 +410,59 @@ p { margin: 0; text-wrap: pretty; }
   .saida .btn { width: 100%; }
 }
 
-/* ---------- seção 6: sobre ---------- */
-.sobre__grade { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
-.passaporte { margin: 0; padding: 16px 16px 20px; border-radius: 20px; background: rgba(234, 228, 220, .06); -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%); box-shadow: inset 0 0 0 1px rgba(234, 228, 220, .12); }
-.vaga--retrato { position: relative; aspect-ratio: 4 / 5; border-radius: 12px; overflow: hidden; }
-.passaporte__dados { display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; gap: 12px; padding: 18px 6px 0; font-size: 15px; color: var(--branco); }
-.passaporte__dados > span { display: flex; flex-direction: column; gap: 2px; }
-.passaporte__dados .rot { color: var(--branco); font-size: 10px; }
-.sobre__texto { display: grid; gap: 20px; justify-items: start; }
-.sobre__texto h2 { margin-bottom: 4px; }
-.sobre__texto p:not(.previa-nota) { font-size: clamp(17px, 1.4vw, 19px); max-width: 34em; }
+/* ---------- seção 6: álbum de polaroids ----------
+   Duas fileiras em sentidos opostos (mesma mecânica do carrossel contínuo).
+   Clicar numa foto abre a polaroid ampliada (.zoom). */
+.album .cabeca { margin-bottom: 0; }
+.album__fila { margin-top: clamp(28px, 4vw, 48px); padding-block: 26px 30px; }
+.album__fila + .album__fila { margin-top: 0; }
+.album__fila .carrossel__trilho { gap: clamp(22px, 2.6vw, 36px); padding-inline: 18px; }
+.polaroid { --giro: -2.2deg; position: relative; flex: 0 0 clamp(220px, 21vw, 290px); display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 12px 12px 16px; border: 0; border-radius: 4px; background: #FBF8F3; color: var(--tinta); font: inherit; text-align: center; cursor: pointer; rotate: var(--giro);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .7) inset, 0 18px 34px -14px rgba(0, 0, 0, .65), 0 4px 10px rgba(0, 0, 0, .25);
+  transition: rotate .7s var(--ease), translate .7s var(--ease), box-shadow .7s var(--ease); }
+.polaroid:nth-child(4n+2) { --giro: 1.8deg; }
+.polaroid:nth-child(4n+3) { --giro: -1deg; }
+.polaroid:nth-child(4n) { --giro: 2.6deg; }
+/* fita adesiva no topo */
+.polaroid::before { content: ""; position: absolute; top: -11px; left: 50%; width: 74px; height: 22px; translate: -50% 0; rotate: calc(var(--giro) * -1.6); background: rgba(242, 196, 141, .55); box-shadow: 0 1px 2px rgba(0, 0, 0, .12); -webkit-mask: linear-gradient(90deg, transparent 0 3px, #000 3px calc(100% - 3px), transparent calc(100% - 3px)); }
+.polaroid img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 2px; background: var(--navy-claro); filter: saturate(1.05) contrast(1.02); }
+.polaroid__legenda { font-family: var(--titulo); font-size: 17px; font-weight: 600; line-height: 1.25; color: var(--tinta); }
+@media (hover: hover) and (pointer: fine) {
+  .carrossel:not(.is-arrastando) .polaroid:hover { rotate: 0deg; translate: 0 -8px; box-shadow: 0 1px 0 rgba(255, 255, 255, .7) inset, 0 28px 44px -16px rgba(0, 0, 0, .7), 0 6px 14px rgba(0, 0, 0, .25); }
+}
+.polaroid:focus-visible { outline: 2px solid var(--creme); outline-offset: 6px; }
+@media (max-width: 767px) {
+  .polaroid { flex-basis: 62vw; }
+  .polaroid__legenda { font-size: 15px; }
+}
+
+/* polaroid ampliada */
+.zoom { width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; padding: clamp(16px, 4vw, 40px); border: 0; background: transparent; color: var(--tinta); overflow: auto; overscroll-behavior: contain; }
+.zoom[open] { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(18px, 3vh, 28px); }
+.zoom::backdrop { background: rgba(8, 16, 26, .82); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.zoom__polaroid { margin: 0; width: min(100%, 980px, calc((100dvh - 230px) * var(--prop, 1.5) + 36px)); padding: clamp(12px, 1.6vw, 18px) clamp(12px, 1.6vw, 18px) clamp(18px, 2.4vw, 26px); border-radius: 4px; background: #FBF8F3; rotate: -1.2deg; touch-action: pan-y; user-select: none; -webkit-user-select: none;
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .8), 0 8px 20px rgba(0, 0, 0, .3); }
+.zoom[open] .zoom__polaroid { animation: zoom-entra .6s var(--ease) both; }
+.zoom__polaroid.is-trocando { animation: zoom-troca .45s var(--ease) both; }
+@keyframes zoom-entra { from { opacity: 0; transform: translateY(24px) scale(.94) rotate(-3deg); } }
+@keyframes zoom-troca { from { opacity: .2; transform: translateX(calc(var(--lado, 1) * 28px)); } }
+.zoom__foto { aspect-ratio: var(--prop, 1.5); border-radius: 2px; overflow: hidden; background: var(--navy-claro); }
+.zoom__foto img { display: block; width: 100%; height: 100%; object-fit: cover; pointer-events: none; -webkit-user-drag: none; user-select: none; }
+.zoom figcaption { display: grid; gap: 4px; padding: clamp(14px, 2vw, 20px) 6px 0; text-align: center; }
+.zoom figcaption strong { font-family: var(--titulo); font-size: clamp(20px, 2.4vw, 28px); font-weight: 600; line-height: 1.15; }
+.zoom figcaption span { font-size: clamp(14px, 1.3vw, 16px); color: var(--tinta-2); max-width: 46em; margin-inline: auto; }
+.zoom__acoes { display: flex; align-items: center; gap: clamp(12px, 3vw, 24px); }
+.zoom__conta { min-width: 64px; text-align: center; font-size: 14px; font-weight: 600; letter-spacing: .08em; color: var(--creme); font-variant-numeric: tabular-nums; }
+.zoom__fechar { position: fixed; top: clamp(12px, 2.5vw, 24px); right: clamp(12px, 2.5vw, 24px); display: grid; place-items: center; width: 48px; height: 48px; border: 0; border-radius: 12px; background: var(--creme); color: var(--navy); cursor: pointer; transition: transform .6s var(--ease), background-color .3s; }
+.zoom__fechar .ico { width: 22px; height: 22px; }
+@media (hover: hover) and (pointer: fine) { .zoom__fechar:hover { background: var(--branco); transform: rotate(90deg); } }
+@media (max-width: 600px) {
+  .zoom__polaroid { width: 100%; rotate: 0deg; }
+  .zoom__acoes .btn { padding-inline: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .zoom[open] .zoom__polaroid, .zoom__polaroid.is-trocando { animation: none; } }
+html.zoom-aberto { overflow: hidden; }
+
 /* carrossel contínuo: anda devagar sozinho e responde ao arrasto (mouse e toque) */
 .carrossel { position: relative; margin-top: clamp(48px, 6vw, 80px); padding-block: 12px; overflow: hidden; cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none;
   -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%); }
@@ -430,12 +473,6 @@ p { margin: 0; text-wrap: pretty; }
 @media (hover: hover) and (pointer: fine) { .carrossel:not(.is-arrastando) .vaga--carrossel:hover { transform: translateY(-6px); } }
 html:not(.js) .carrossel { overflow-x: auto; }
 @media (max-width: 767px) { .vaga--carrossel { flex-basis: 74vw; } .carrossel { -webkit-mask-image: none; mask-image: none; } }
-@media (max-width: 900px) {
-  .sobre__grade { grid-template-columns: 1fr; }
-  .passaporte { max-width: 420px; rotate: 0deg; }
-  .sobre__texto .btn { width: 100%; }
-}
-@media (max-width: 480px) { .passaporte__dados { grid-template-columns: 1fr 1fr; } .passaporte__dados > span:last-child { display: none; } }
 
 /* ---------- seção 7: trajeto ---------- */
 .trajeto__mapa { position: relative; }
