@@ -292,8 +292,9 @@ ul, ol, dl, dd { margin: 0; padding: 0; list-style: none; }
 .hero__img, .hero__img img { position: absolute; inset: 0; width: 100%; height: 100%; }
 @media (min-width: 768px) {
   /* a foto começa abaixo da barra superior para a cabeça não ficar atrás do menu */
-  .hero__img { inset: 96px 0 0; height: auto; }
-  .hero__img::after { content: ""; position: absolute; inset: 0 0 auto; height: 110px; background: linear-gradient(180deg, var(--pele), rgba(250, 246, 240, 0)); }
+  .hero__img { inset: 96px 0 0; height: auto; overflow: hidden; }
+  .hero__img::after { content: ""; position: absolute; inset: 0 0 auto; z-index: 1; height: 34px; background: linear-gradient(180deg, rgba(250, 246, 240, .9), rgba(250, 246, 240, 0)); pointer-events: none; }
+  .hero__img img { object-position: 70% 0%; }
 }
 .so-pc { display: none; }
 @media (min-width: 1024px) { .so-pc { display: inline; } }
