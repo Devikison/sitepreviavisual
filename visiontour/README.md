@@ -12,7 +12,7 @@ Extensão do link na bio aprovado (`/biovisiontour`): mesma paleta, fontes, logo
 | Mensagem pronta de cada botão | atributo `data-wa-msg` no `index.html` |
 | GA4 e Meta Pixel | `js/consent.js`, bloco `CONFIG` (só carregam depois do aceite) |
 | Textos | `index.html`, seção por seção (os comentários marcam cada uma) |
-| Cadastur, noites dos roteiros, prazo de 24 horas | procurar por `[` no `index.html` |
+| Noites dos roteiros, prazo de 24 horas | procurar por `[` no `index.html` |
 | E-mail das políticas | procurar `[EMAIL_DE_CONTATO]` nas pastas `politica-de-*` |
 
 ## Scrollytelling (seções 1 e 2): "pela janela"
