@@ -755,3 +755,21 @@ ul, ol, dl, dd { margin: 0; padding: 0; list-style: none; }
   .faixa { overflow-x: auto; }
 }
 @media (max-width: 767px) { .faixa { padding: .7rem 0; } .faixa__trilho { animation-duration: 40s; } }
+
+/* ---------- Barra de rolagem no estilo dos botões (ouro metálico) ---------- */
+::-webkit-scrollbar { width: 14px; height: 10px; }
+::-webkit-scrollbar-track { background: linear-gradient(90deg, #EFE4D3, var(--pele) 45%, #EFE4D3); border-left: 1px solid rgba(197, 160, 112, .35); }
+::-webkit-scrollbar-thumb {
+  border-radius: 999px; border: 3px solid transparent; background-clip: padding-box;
+  background-image: linear-gradient(180deg, #BE9660, #F2DEAA 45%, #CDA76E 70%, #A67C42);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6), inset 0 0 0 1px rgba(122, 86, 38, .45);
+}
+::-webkit-scrollbar-thumb:hover { background-image: linear-gradient(180deg, #CDA76E, #F7E6BC 45%, #D9B57A 70%, #B08648); }
+::-webkit-scrollbar-thumb:active { background-image: linear-gradient(180deg, #9C7339, #E9CF8E 45%, #B48A4E 70%, #7A5626); }
+::-webkit-scrollbar-button { display: none; height: 0; }
+::-webkit-scrollbar-corner { background: var(--pele); }
+.menu::-webkit-scrollbar, .abas::-webkit-scrollbar, .galeria-preview__fila::-webkit-scrollbar { height: 6px; width: 8px; }
+/* Firefox (não suporta o degradê, usa as cores da marca) */
+@supports not selector(::-webkit-scrollbar) {
+  html { scrollbar-color: #C5A070 #F1E6D6; }
+}

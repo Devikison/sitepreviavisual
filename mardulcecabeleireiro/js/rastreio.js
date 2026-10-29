@@ -9,7 +9,7 @@
 
   var CONFIG = {
     whatsapp: "351917469576", // só números, com 351
-    msgPadrao: "Olá Dulce! Vim pelo site e gostaria de mais informações.",
+    msgPadrao: "Olá Marlene! Vim pelo site e gostaria de mais informações.",
     links: {
       // CHAVE: "url"  -> usado por <a data-link="CHAVE">
       // site: "https://...", instagram: "https://instagram.com/...", maps: "https://maps.app.goo.gl/..."

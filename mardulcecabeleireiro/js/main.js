@@ -113,7 +113,7 @@
       });
       if (!ok) return;
       var d = new FormData(form);
-      var msg = "Olá Dulce! Gostava de fazer uma marcação.\n" +
+      var msg = "Olá Marlene! Gostava de fazer uma marcação.\n" +
         "Nome: " + d.get("nome") + "\nSalão: " + d.get("salao") + "\nServiço: " + d.get("servico") +
         (d.get("dias") ? "\nDisponibilidade: " + d.get("dias") : "") +
         (d.get("mensagem") ? "\nMensagem: " + d.get("mensagem") : "");
