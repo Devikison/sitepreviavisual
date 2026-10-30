@@ -81,7 +81,7 @@
     }
 
     /* ---------- Topo: o salão com o monograma em marca de água ---------- */
-    .topo { position: relative; height: clamp(200px, 50vw, 248px); overflow: hidden; }
+    .topo { position: relative; height: clamp(150px, 38vw, 176px); overflow: hidden; }
     .topo > img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 20%; }
     .topo::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(46, 36, 32, .05) 40%, rgba(46, 36, 32, .55)); }
     .topo__m { position: absolute; right: 5%; top: 8%; font: 500 clamp(8.5rem, 40vw, 10.5rem)/.8 var(--f-titulo); color: transparent; -webkit-text-stroke: 1.2px rgba(255, 246, 228, .75); opacity: .7; pointer-events: none; }
@@ -95,7 +95,7 @@
     .faixa__fio--d { right: 0; }
     .faixa__fio--d::after { left: -4px; }
     .arco {
-      position: absolute; left: 0; right: 0; margin: 0 auto; bottom: -96px; z-index: 2;
+      position: absolute; left: 0; right: 0; margin: 0 auto; bottom: -112px; z-index: 2;
       width: 168px; padding: 7px; border-radius: 999px 999px 18px 18px;
       background: var(--ouro-metal-claro); background-size: 200% 100%;
       box-shadow: 0 26px 46px -18px rgba(0, 0, 0, .7), 0 0 0 1px rgba(122, 86, 38, .6);
@@ -104,13 +104,30 @@
     .arco__moldura img { width: 100%; height: 100%; object-fit: cover; object-position: center 14%; }
 
     /* ---------- Marca ---------- */
-    .marca { padding: 124px 1.5rem 0; text-align: center; }
+    .marca { padding: 132px 1.5rem 0; text-align: center; }
     .marca__logo { width: min(72%, 260px); margin: 0 auto; filter: drop-shadow(0 6px 18px rgba(0, 0, 0, .35)); }
     .marca__lema { margin-top: .8rem; font: italic 400 1.15rem/1.4 var(--f-italico); color: var(--ouro-claro); }
     .marca__sub { margin-top: .2rem; font-size: .76rem; letter-spacing: .2em; text-transform: uppercase; color: var(--texto-2); }
 
+    /* ---------- Site em destaque ---------- */
+    .site-btn {
+      display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: .9rem; margin: 1.6rem 1.5rem 0; min-height: 64px; padding: .7rem 1.2rem .7rem .7rem;
+      border-radius: 999px; text-decoration: none; color: var(--cacau-fundo);
+      background-image: var(--ouro-metal-claro); background-size: 260% 100%; background-position: 0 0;
+      border: 1px solid rgba(122, 86, 38, .6);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .6), inset 0 -1px 0 rgba(122, 86, 38, .3), 0 18px 34px -16px rgba(0, 0, 0, .8), 0 0 26px rgba(233, 207, 142, .18);
+      transition: background-position 1.4s var(--ease), transform .8s var(--ease);
+    }
+    .site-btn__m { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--cacau-fundo); box-shadow: inset 0 0 0 1px rgba(233, 207, 142, .5); }
+    .site-btn__m img { width: 26px; height: auto; }
+    .site-btn__txt strong { display: block; font: 600 .84rem/1.2 var(--f-texto); letter-spacing: .16em; text-transform: uppercase; }
+    .site-btn__txt span { display: block; margin-top: .15rem; font-size: .78rem; line-height: 1.35; color: #5A4636; }
+    .site-btn > .ico { width: 1.3rem; height: 1.3rem; transition: transform .8s var(--ease); }
+    .site-btn:active { transform: scale(.98); transition-duration: .2s; }
+    .bloco-rot { margin: 1.9rem 1.5rem .9rem; text-align: center; font: 600 .7rem/1.4 var(--f-texto); letter-spacing: .24em; text-transform: uppercase; color: var(--ouro-claro); }
+
     /* ---------- Grelha de botões ---------- */
-    .grelha { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; padding: 2rem 1.5rem 0; }
+    .grelha { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; padding: 0 1.5rem; }
     .pilula {
       display: flex; align-items: center; justify-content: center; gap: .5rem; min-height: 54px; padding: .6rem .8rem;
       border-radius: 999px; text-decoration: none; text-align: center;
@@ -124,7 +141,7 @@
     .pilula:active { transform: scale(.97); transition-duration: .2s; }
 
     /* ---------- Texto ---------- */
-    .manifesto { padding: 1.9rem 1.75rem 0; text-align: center; font-size: .94rem; line-height: 1.75; color: var(--texto-2); }
+    .manifesto { padding: 1.4rem 1.75rem 0; text-align: center; font-size: .94rem; line-height: 1.75; color: var(--texto-2); }
     .divisor { display: flex; align-items: center; gap: .9rem; margin: 1.9rem 1.5rem 0; }
     .divisor span { flex: 1; height: 1px; }
     .divisor span:first-child { background: linear-gradient(90deg, transparent, var(--ouro)); }
@@ -132,7 +149,7 @@
     .divisor img { width: auto; height: 24px; }
 
     /* ---------- Salões ---------- */
-    .saloes { padding: 1.5rem 1.5rem 0; }
+    .saloes { padding: 0 1.5rem; }
     .saloes__tit { text-align: center; font: 500 1rem/1.3 var(--f-titulo); letter-spacing: .1em; text-transform: uppercase; color: var(--texto); margin-bottom: .9rem; }
     .saloes__lista { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
     .salao {
@@ -147,7 +164,7 @@
     .salao__ir .ico { width: .95rem; height: .95rem; }
 
     /* ---------- Doca com o WhatsApp em destaque ---------- */
-    .doca { position: relative; margin: 4.4rem 1.25rem 0; padding: .65rem .55rem; display: grid; grid-template-columns: 1fr 1fr 84px 1fr 1fr; align-items: center; justify-items: center;
+    .doca { position: relative; width: min(calc(100% - 3rem), 300px); margin: 4.2rem auto 0; padding: .65rem .7rem; display: grid; grid-template-columns: 1fr 84px 1fr; align-items: center; justify-items: center;
       border-radius: 999px; border: 1px solid rgba(233, 207, 142, .5); background: rgba(46, 36, 32, .45);
       box-shadow: inset 0 1px 0 rgba(255, 240, 210, .12); }
     .doca__item {
@@ -180,6 +197,8 @@
     .rodape a { display: inline-flex; align-items: center; min-height: 36px; color: var(--texto-2); text-underline-offset: 3px; }
 
     @media (hover: hover) {
+      .site-btn:hover { background-position: 100% 0; transform: translateY(-3px); }
+      .site-btn:hover > .ico { transform: translateX(5px); }
       .pilula:hover { background: var(--ouro-brilho); color: var(--cacau-fundo); border-color: var(--ouro-brilho); transform: translateY(-2px); }
       .pilula:hover .ico { color: var(--cacau-fundo); }
       .salao:hover { border-color: var(--ouro-brilho); transform: translateY(-3px); }
@@ -243,19 +262,21 @@
     <p class="marca__sub entra" style="--i:3">Felgueiras &amp; Fafe</p>
   </header>
 
-  <nav class="grelha" aria-label="Ligações principais">
-    <a class="pilula entra" style="--i:4" href="../mardulcecabeleireiro/servicos.html" data-btn="bio-servicos">Serviços</a>
-    <a class="pilula entra" style="--i:5" href="../mardulcecabeleireiro/balayage.html" data-btn="bio-balayage">Balayage</a>
-    <a class="pilula entra" style="--i:6" href="../mardulcecabeleireiro/sobre.html" data-btn="bio-marlene">A Marlene</a>
-    <a class="pilula entra" style="--i:7" href="../mardulcecabeleireiro/formacao.html" data-btn="bio-formacao">Formação</a>
+  <a class="site-btn entra" style="--i:4" href="../mardulcecabeleireiro/" data-btn="bio-site">
+    <span class="site-btn__m"><img src="assets/img/monograma.webp" alt="" width="107" height="96"></span>
+    <span class="site-btn__txt"><strong>Conhecer o site</strong><span>Serviços, salões e a história da Marlene</span></span>
+    <svg class="ico" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M220.24,132.24l-72,72a6,6,0,0,1-8.48-8.48L201.51,134H40a6,6,0,0,1,0-12H201.51L139.76,60.24a6,6,0,0,1,8.48-8.48l72,72A6,6,0,0,1,220.24,132.24Z"/></svg></a>
+
+  <p class="bloco-rot entra" style="--i:5">Explorar</p>
+  <nav class="grelha" aria-label="Páginas do site">
+    <a class="pilula entra" style="--i:6" href="../mardulcecabeleireiro/servicos.html" data-btn="bio-servicos">Serviços</a>
+    <a class="pilula entra" style="--i:7" href="../mardulcecabeleireiro/balayage.html" data-btn="bio-balayage">Balayage</a>
+    <a class="pilula entra" style="--i:8" href="../mardulcecabeleireiro/sobre.html" data-btn="bio-marlene">A Marlene</a>
+    <a class="pilula entra" style="--i:9" href="../mardulcecabeleireiro/formacao.html" data-btn="bio-formacao">Formação</a>
   </nav>
 
-  <p class="manifesto entra" style="--i:8">Há mais de trinta anos que a Marlene renova a imagem e a autoestima de quem se senta na sua cadeira. Sem pressa nem fórmulas repetidas: técnica, escuta e um momento só teu.</p>
-
-  <div class="divisor entra" style="--i:9" aria-hidden="true"><span></span><img src="assets/img/monograma.webp" alt="" width="107" height="96"><span></span></div>
-
   <section class="saloes" id="saloes" aria-labelledby="saloes-tit">
-    <h2 class="saloes__tit entra" style="--i:10" id="saloes-tit">Os nossos salões</h2>
+    <h2 class="bloco-rot entra" style="--i:10" id="saloes-tit">Os nossos salões</h2>
     <div class="saloes__lista">
       <a class="salao entra" style="--i:11" href="https://maps.app.goo.gl/7Q53Jmb5KAVrB41J7" data-btn="bio-maps-felgueiras" target="_blank" rel="noopener">
         <svg class="ico" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,66a38,38,0,1,0,38,38A38,38,0,0,0,128,66Zm0,64a26,26,0,1,1,26-26A26,26,0,0,1,128,130Zm0-112a86.1,86.1,0,0,0-86,86c0,30.91,14.34,63.74,41.47,94.94a252.32,252.32,0,0,0,41.09,38,6,6,0,0,0,6.88,0,252.32,252.32,0,0,0,41.09-38c27.13-31.2,41.47-64,41.47-94.94A86.1,86.1,0,0,0,128,18Zm0,206.51C113,212.93,54,163.62,54,104a74,74,0,0,1,148,0C202,163.62,143,212.93,128,224.51Z"/></svg><h3>Felgueiras</h3><p>Rua do Empresário, Lagares</p><span class="salao__ir">Como chegar <svg class="ico" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M198,64V168a6,6,0,0,1-12,0V78.48L68.24,196.24a6,6,0,0,1-8.48-8.48L177.52,70H88a6,6,0,0,1,0-12H192A6,6,0,0,1,198,64Z"/></svg></span></a>
@@ -264,13 +285,14 @@
     </div>
   </section>
 
-  <nav class="doca entra" style="--i:13" aria-label="Contactos e redes">
+  <div class="divisor entra" style="--i:13" aria-hidden="true"><span></span><img src="assets/img/monograma.webp" alt="" width="107" height="96"><span></span></div>
+  <p class="manifesto entra" style="--i:14">Há mais de trinta anos que a Marlene renova a imagem e a autoestima de quem se senta na sua cadeira. Sem pressa nem fórmulas repetidas: técnica, escuta e um momento só teu.</p>
+
+  <nav class="doca entra" style="--i:15" aria-label="Redes e marcação">
     <a class="doca__item" href="https://www.instagram.com/mardulce_cabeleireira/" data-btn="bio-instagram" target="_blank" rel="noopener" aria-label="Instagram da MarDulce"><svg class="ico" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24ZM128,176a48,48,0,1,1,48-48A48.05,48.05,0,0,1,128,176Zm60-96a12,12,0,1,1,12-12A12,12,0,0,1,188,80Zm-28,48a32,32,0,1,1-32-32A32,32,0,0,1,160,128Z"/></svg></a>
-    <a class="doca__item" href="https://www.tiktok.com/@mardulce_cabeleireiros" data-btn="bio-tiktok" target="_blank" rel="noopener" aria-label="TikTok da MarDulce"><svg class="ico" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M232,80v40a8,8,0,0,1-8,8,103.25,103.25,0,0,1-48-11.71V156a76,76,0,0,1-152,0c0-36.9,26.91-69.52,62.6-75.88A8,8,0,0,1,96,88v42.69a8,8,0,0,1-4.57,7.23A20,20,0,1,0,120,156V24a8,8,0,0,1,8-8h40a8,8,0,0,1,8,8,48.05,48.05,0,0,0,48,48A8,8,0,0,1,232,80Z"/></svg></a>
     <a class="doca__wa" href="https://wa.me/351917469576?text=Ol%C3%A1%20Marlene%21%20Vim%20pelo%20Instagram%20e%20gostaria%20de%20fazer%20uma%20marca%C3%A7%C3%A3o." data-wa data-wa-msg="Olá Marlene! Vim pelo Instagram e gostaria de fazer uma marcação." data-btn="bio-marcar" target="_blank" rel="noopener" aria-label="Fazer marcação pelo WhatsApp">
       <span class="doca__wa-btn"><svg class="ico" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M186.68,146.63l-32-16a6,6,0,0,0-6,.38L133,141.46A42.49,42.49,0,0,1,114.54,123L125,107.33a6,6,0,0,0,.38-6l-16-32A6,6,0,0,0,104,66a38,38,0,0,0-38,38,86.1,86.1,0,0,0,86,86,38,38,0,0,0,38-38A6,6,0,0,0,186.68,146.63ZM152,178a74.09,74.09,0,0,1-74-74,26,26,0,0,1,22.42-25.75l12.66,25.32-10.39,15.58a6,6,0,0,0-.54,5.63,54.43,54.43,0,0,0,29.07,29.07,6,6,0,0,0,5.63-.54l15.58-10.39,25.32,12.66A26,26,0,0,1,152,178ZM128,26A102,102,0,0,0,38.35,176.69L26.73,211.56a14,14,0,0,0,17.71,17.71l34.87-11.62A102,102,0,1,0,128,26Zm0,192a90,90,0,0,1-45.06-12.08,6.09,6.09,0,0,0-3-.81,6.2,6.2,0,0,0-1.9.31L40.65,217.88a2,2,0,0,1-2.53-2.53L50.58,178a6,6,0,0,0-.5-4.91A90,90,0,1,1,128,218Z"/></svg></span><span class="doca__wa-txt">Marcar</span></a>
-    <a class="doca__item" href="#saloes" data-btn="bio-saloes" aria-label="Ver os salões"><svg class="ico" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,66a38,38,0,1,0,38,38A38,38,0,0,0,128,66Zm0,64a26,26,0,1,1,26-26A26,26,0,0,1,128,130Zm0-112a86.1,86.1,0,0,0-86,86c0,30.91,14.34,63.74,41.47,94.94a252.32,252.32,0,0,0,41.09,38,6,6,0,0,0,6.88,0,252.32,252.32,0,0,0,41.09-38c27.13-31.2,41.47-64,41.47-94.94A86.1,86.1,0,0,0,128,18Zm0,206.51C113,212.93,54,163.62,54,104a74,74,0,0,1,148,0C202,163.62,143,212.93,128,224.51Z"/></svg></a>
-    <a class="doca__item" href="../mardulcecabeleireiro/" data-btn="bio-site" aria-label="Site oficial da MarDulce"><img src="assets/img/monograma.webp" alt="" width="107" height="96"></a>
+    <a class="doca__item" href="https://www.tiktok.com/@mardulce_cabeleireiros" data-btn="bio-tiktok" target="_blank" rel="noopener" aria-label="TikTok da MarDulce"><svg class="ico" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M232,80v40a8,8,0,0,1-8,8,103.25,103.25,0,0,1-48-11.71V156a76,76,0,0,1-152,0c0-36.9,26.91-69.52,62.6-75.88A8,8,0,0,1,96,88v42.69a8,8,0,0,1-4.57,7.23A20,20,0,1,0,120,156V24a8,8,0,0,1,8-8h40a8,8,0,0,1,8,8,48.05,48.05,0,0,0,48,48A8,8,0,0,1,232,80Z"/></svg></a>
   </nav>
 
   <footer class="rodape">
