@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Michel Bittencourt · Prévia</title>
+<meta name="description" content="Prévia de ideia: link na bio e páginas de atendimento de Michel Bittencourt, Cabelo e Visagismo.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3EDE4; --card:#FFFFFF; --ink:#2A1D16; --ink2:#6A5A4F; --line:#E2D8CB;
+  --esp:#2A1D16; --esp2:#3D2A1F; --car:#9A6A46; --car-l:#D9B896; --cream:#F8F3EC;
+  --f:"Plus Jakarta Sans",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17110D; --card:#221912; --ink:#F3ECE3; --ink2:#B9A898; --line:#3A2C22; --cream:#2A2018;
+}}
+:root[data-theme="dark"]{--bg:#17110D; --card:#221912; --ink:#F3ECE3; --ink2:#B9A898; --line:#3A2C22; --cream:#2A2018}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:400 15px/1.5 var(--f);-webkit-font-smoothing:antialiased;min-height:100dvh;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.ribbon{background:var(--esp);color:#E9DCCB;font-size:12.5px;text-align:center;padding:9px 16px;letter-spacing:.02em}
+.ribbon b{color:var(--car-l);font-weight:600}
+.page{max-width:480px;margin:0 auto;padding:28px 16px 48px}
+
+/* perfil */
+.prof{display:grid;justify-items:center;text-align:center;gap:6px;animation:up .6s ease both}
+.ava{width:92px;height:92px;border-radius:50%;object-fit:cover;border:3px solid var(--card);box-shadow:0 0 0 1px var(--car-l),0 10px 24px -12px rgba(42,29,22,.5)}
+.prof h1{font-size:26px;font-weight:800;letter-spacing:-.025em;margin-top:8px}
+.prof .role{font-weight:600;color:var(--car)}
+.prof .where{font-size:13.5px;color:var(--ink2)}
+.ig{display:inline-flex;align-items:center;gap:6px;margin-top:6px;font-size:13px;font-weight:600;border:1px solid var(--line);background:var(--card);padding:6px 12px;border-radius:30px}
+.ig svg{width:15px;height:15px}
+
+/* cartões */
+.cards{display:grid;gap:14px;margin-top:26px}
+.card{position:relative;display:block;border-radius:18px;overflow:hidden;isolation:isolate;transition:transform .25s ease, box-shadow .25s ease;animation:up .6s ease both;box-shadow:0 14px 30px -20px rgba(42,29,22,.55)}
+.card:nth-child(1){animation-delay:.08s}.card:nth-child(2){animation-delay:.16s}.card:nth-child(3){animation-delay:.24s}.card:nth-child(4){animation-delay:.32s}
+.card:hover{transform:translateY(-3px);box-shadow:0 20px 36px -20px rgba(42,29,22,.6)}
+.card:active{transform:scale(.985)}
+.kick{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.kick::before{content:"";width:22px;height:1.5px;background:currentColor}
+.card h2{font-size:27px;line-height:1.05;font-weight:800;letter-spacing:-.03em;margin-top:10px}
+.card p{font-size:14px;margin-top:6px}
+.go{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:13.5px;font-weight:700}
+.go i{font-style:normal;transition:transform .25s}
+.card:hover .go i{transform:translateX(4px)}
+
+/* 1 estúdio: foto */
+.c-studio{min-height:330px;color:#fff;display:flex;align-items:flex-end}
+.c-studio img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 30%;z-index:-2;transition:transform .6s ease}
+.c-studio:hover img{transform:scale(1.04)}
+.c-studio::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(42,29,22,0) 30%,rgba(42,29,22,.92) 100%)}
+.c-studio .in{padding:22px}
+.c-studio .kick{color:var(--car-l)}
+.c-studio p{color:#EADFD2}
+.c-studio .go{color:var(--car-l)}
+
+/* 2 domicílio: rota */
+.c-home{background:var(--esp2);color:#F3ECE3;padding:22px}
+.c-home .kick{color:var(--car-l)}
+.c-home p{color:#CDBEAE}
+.route{margin-top:18px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;font-size:12px;color:#CDBEAE}
+.route b{display:block;color:#fff;font-size:13px}
+.route svg{width:100%;height:24px;overflow:visible}
+.route path{stroke:var(--car-l);stroke-width:1.5;fill:none;stroke-dasharray:4 5;animation:dash 2.4s linear infinite}
+.route circle{fill:var(--car-l)}
+.next{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.next span{font-size:12px;font-weight:600;border:1px solid rgba(217,184,150,.45);color:#F3ECE3;padding:5px 10px;border-radius:30px}
+.next span:first-child{background:var(--car-l);color:var(--esp);border-color:var(--car-l)}
+.c-home .go{color:var(--car-l)}
+
+/* 3 on-line: chamada */
+.c-online{background:var(--card);border:1px solid var(--line);display:grid;grid-template-columns:1fr 132px;gap:14px;align-items:center;padding:20px}
+.c-online .kick{color:var(--car)}
+.c-online p{color:var(--ink2)}
+.call{position:relative;aspect-ratio:3/4;border-radius:14px;background:var(--esp);overflow:hidden;box-shadow:0 10px 20px -12px rgba(0,0,0,.5)}
+.call img{width:100%;height:100%;object-fit:cover;opacity:.92}
+.call .rec{position:absolute;top:8px;left:8px;display:flex;align-items:center;gap:5px;font-size:9.5px;font-weight:700;letter-spacing:.08em;color:#fff;background:rgba(0,0,0,.45);padding:3px 7px;border-radius:20px}
+.call .rec::before{content:"";width:6px;height:6px;border-radius:50%;background:#E5484D;animation:blink 1.4s infinite}
+.call .bar{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:center;gap:6px;padding:8px;background:linear-gradient(transparent,rgba(0,0,0,.6))}
+.call .bar i{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.25)}
+.call .bar i:last-child{background:#E5484D}
+.c-online .go{color:var(--car)}
+
+/* 4 cursos */
+.c-course{background:var(--cream);border:1px dashed var(--car-l);padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.c-course .kick{color:var(--car);font-size:10.5px}
+.c-course h2{font-size:18px;margin-top:6px}
+.c-course .arr{flex:none;width:40px;height:40px;border-radius:50%;background:var(--esp);color:var(--car-l);display:grid;place-items:center;font-weight:700}
+
+/* prova */
+.proof{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.proof a{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:2px}
+.proof strong{font-size:20px;font-weight:800;letter-spacing:-.02em}
+.proof span{font-size:12.5px;color:var(--ink2)}
+.stars{color:var(--car);letter-spacing:1px;font-size:13px}
+
+.quote{margin-top:26px;text-align:center;font-size:17px;font-weight:600;letter-spacing:-.01em;line-height:1.35;padding:0 10px}
+.quote small{display:block;margin-top:8px;font-size:12px;color:var(--ink2);font-weight:500;letter-spacing:.14em;text-transform:uppercase}
+
+/* convite para a prévia */
+.how{margin-top:34px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+.how h3{font-size:16px;font-weight:700}
+.how p{font-size:14px;color:var(--ink2);margin-top:6px}
+.how ol{list-style:none;display:grid;gap:8px;margin-top:12px;counter-reset:n}
+.how li{counter-increment:n;display:flex;gap:10px;font-size:14px}
+.how li::before{content:counter(n);flex:none;width:22px;height:22px;border-radius:50%;background:var(--esp);color:var(--car-l);font-size:12px;font-weight:700;display:grid;place-items:center}
+.wa{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:16px;background:#1F7A4D;color:#fff;border-radius:12px;padding:14px;font-weight:700}
+.foot{text-align:center;font-size:12px;color:var(--ink2);margin-top:26px}
+
+@keyframes up{from{transform:translateY(14px)}to{transform:none}}
+@keyframes dash{to{stroke-dashoffset:-36}}
+@keyframes blink{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:370px){.c-online{grid-template-columns:1fr 104px}.card h2{font-size:24px}}
+</style>
+</head>
+<body>
+
+<div class="ribbon"><b>Prévia de ideia</b> · seu novo link na bio · toque nos cartões</div>
+
+<main class="page">
+  <header class="prof">
+    <img class="ava" src="assets/avatar.jpeg" width="92" height="92" alt="Michel Bittencourt">
+    <h1>Michel Bittencourt</h1>
+    <span class="role">Cabelo e Visagismo</span>
+    <span class="where">Guaratinguetá · São Paulo · On-line</span>
+    <a class="ig" href="https://www.instagram.com/michellbittencourtt/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@michellbittencourtt</a>
+  </header>
+
+  <nav class="cards" aria-label="Escolha seu atendimento">
+    <a class="card c-studio" href="estudio.html">
+      <img src="assets/cover.jpg" width="832" height="650" alt="Corte com visagismo feito por Michel">
+      <div class="in">
+        <span class="kick">Presencial · Estúdio</span>
+        <h2>Consultoria de<br>visagismo</h2>
+        <p>O corte certo começa pela leitura do seu rosto.</p>
+        <span class="go">Conhecer o atendimento <i>→</i></span>
+      </div>
+    </a>
+
+    <a class="card c-home" href="domicilio-sp.html">
+      <span class="kick">Em domicílio · São Paulo</span>
+      <h2>O visagismo vai<br>até a sua casa</h2>
+      <p>Estrutura completa, com hora marcada, nas datas em que estou na capital.</p>
+      <div class="route" aria-hidden="true">
+        <span><b>Guaratinguetá</b>estúdio</span>
+        <svg viewBox="0 0 100 24" preserveAspectRatio="none"><circle cx="2" cy="16" r="2.5"/><path d="M2 16 C 30 -2, 70 30, 98 8"/><circle cx="98" cy="8" r="2.5"/></svg>
+        <span style="text-align:right"><b>São Paulo</b>sua casa</span>
+      </div>
+      <div class="next"><span>Próxima: 12 nov</span><span>26 nov</span><span>10 dez</span></div>
+      <span class="go">Ver datas e como funciona <i>→</i></span>
+    </a>
+
+    <a class="card c-online" href="online.html">
+      <div>
+        <span class="kick">À distância</span>
+        <h2>Consultoria on-line</h2>
+        <p>Sua proposta de corte e barba, de onde você estiver.</p>
+        <span class="go">Saber mais <i>→</i></span>
+      </div>
+      <div class="call" aria-hidden="true">
+        <img src="assets/avatar.jpeg" width="150" height="150" alt="">
+        <span class="rec">AO VIVO</span>
+        <span class="bar"><i></i><i></i><i></i></span>
+      </div>
+    </a>
+
+    <a class="card c-course" href="#previa">
+      <div><span class="kick">Para profissionais</span><h2>Cursos e mentoria</h2></div>
+      <span class="arr">→</span>
+    </a>
+  </nav>
+
+  <div class="proof">
+    <a href="#previa"><span class="stars">★★★★★</span><strong>5,0</strong><span>avaliações no Google</span></a>
+    <a href="https://www.instagram.com/michellbittencourtt/" target="_blank" rel="noopener"><strong>81,4 mil</strong><span>pessoas acompanham no Instagram</span></a>
+  </div>
+
+  <p class="quote">Alinhar a imagem é alinhar a forma como o mundo te vê.<small>Michel Bittencourt</small></p>
+
+  <section class="how" id="previa">
+    <h3>Michel, como olhar esta prévia</h3>
+    <p>Essa é a ideia de como a sua bio pode funcionar: cada cliente escolhe o caminho e cai numa página só daquele atendimento.</p>
+    <ol>
+      <li>Toque em cada cartão para ver o rascunho da página.</li>
+      <li>As páginas estão em rascunho: mostram a estrutura, não o visual final.</li>
+      <li>Me conta o que gostou e o que mudaria.</li>
+    </ol>
+    <a class="wa" href="https://wa.me/5547992476541?text=Oi%20Devikison%2C%20vi%20a%20pr%C3%A9via%20da%20bio%20e%20das%20p%C3%A1ginas.%20O%20que%20achei%3A%20" target="_blank" rel="noopener">Falar com o Devikison</a>
+  </section>
+
+  <p class="foot">Prévia criada por Devikison · Descomplica Site</p>
+</main>
+</body>
+</html>
