@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planta do Site Michel</title>
+<meta name="description" content="Rascunho de estrutura do site de Michel Bittencourt, Cabelo e Visagismo. Preparado por Devikison Aguiar.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F2F0EA; --sheet:#FBFAF7; --ink:#1D1C1A; --ink2:#5E5B55; --ink3:#9A968E;
+  --line:#CFCBC2; --hatch:#E4E1D9; --note:#2E46C4; --note-bg:#E9ECFA;
+  --ok:#2F7A4B; --ok-bg:#E3F1E7; --edit:#B0561C; --edit-bg:#F7E9DD;
+  --serif:"Bodoni Moda",Georgia,serif; --sans:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#161614; --sheet:#1F1E1B; --ink:#EEEBE4; --ink2:#B4AFA6; --ink3:#7C786F;
+  --line:#3A3833; --hatch:#2A2925; --note:#8C9CFF; --note-bg:#22263F;
+  --ok:#7FCB98; --ok-bg:#1D3326; --edit:#F0A06A; --edit-bg:#3A2719;
+}}
+:root[data-theme="dark"]{
+  --paper:#161614; --sheet:#1F1E1B; --ink:#EEEBE4; --ink2:#B4AFA6; --ink3:#7C786F;
+  --line:#3A3833; --hatch:#2A2925; --note:#8C9CFF; --note-bg:#22263F;
+  --ok:#7FCB98; --ok-bg:#1D3326; --edit:#F0A06A; --edit-bg:#3A2719;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--ink);font:400 15px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+button,input,select,textarea{font:inherit;color:inherit}
+.mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase}
+
+/* ---------- topo ---------- */
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top__in{max-width:1320px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.top__brand{font-family:var(--mono);font-size:12px;color:var(--ink2);margin-right:auto}
+.top__brand b{color:var(--ink);font-weight:500}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{background:none;border:0;padding:6px 12px;font-size:13px;cursor:pointer;color:var(--ink2)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.count{font-family:var(--mono);font-size:12px;color:var(--ink2)}
+.count b{color:var(--ok)}
+
+/* ---------- abertura ---------- */
+.intro{max-width:1320px;margin:0 auto;padding:64px 24px 40px;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:end}
+.intro h1{font-family:var(--serif);font-weight:400;font-size:clamp(38px,5.4vw,72px);line-height:1.02;letter-spacing:-.01em}
+.intro h1 em{font-style:italic}
+.intro p{color:var(--ink2);max-width:58ch;margin-top:22px;font-size:16px}
+.intro .meta{margin-top:22px;color:var(--ink3)}
+.legend{display:grid;gap:12px;border-top:1px solid var(--line);padding-top:18px}
+.legend div{display:flex;gap:12px;align-items:center;font-size:14px;color:var(--ink2)}
+.legend i{flex:none;width:44px;height:26px;border-radius:3px}
+.lg-ph{background:repeating-linear-gradient(135deg,var(--hatch) 0 6px,transparent 6px 12px);border:1px dashed var(--ink3)}
+.lg-ln{background:linear-gradient(var(--line),var(--line)) 0 6px/100% 5px no-repeat,linear-gradient(var(--line),var(--line)) 0 15px/70% 5px no-repeat}
+.lg-nt{background:var(--note-bg);border-left:3px solid var(--note)}
+
+/* ---------- lógica ---------- */
+.flow{max-width:1320px;margin:0 auto;padding:0 24px 56px}
+.flow ol{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:8px;background:var(--sheet)}
+.flow li{padding:18px 20px;border-right:1px solid var(--line)}
+.flow li:last-child{border-right:0}
+.flow li span{color:var(--note)}
+.flow li strong{display:block;font-family:var(--serif);font-weight:400;font-size:24px;margin:4px 0 2px}
+.flow li p{font-size:13.5px;color:var(--ink2)}
+
+/* ---------- corpo ---------- */
+.body{max-width:1320px;margin:0 auto;padding:0 24px 80px;display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px}
+.idx{position:sticky;top:72px;align-self:start;max-height:calc(100dvh - 90px);overflow:auto}
+.idx h3{margin:18px 0 6px;color:var(--note)}
+.idx h3:first-child{margin-top:0}
+.idx a{display:flex;gap:8px;align-items:center;padding:4px 0;font-size:13.5px;color:var(--ink2);text-decoration:none}
+.idx a .n{font-family:var(--mono);font-size:11px;color:var(--ink3);width:18px}
+.idx a.on{color:var(--ink);font-weight:500}
+.idx a .st{margin-left:auto;width:8px;height:8px;border-radius:50%;border:1px solid var(--line)}
+.idx a .st.ok{background:var(--ok);border-color:var(--ok)}
+.idx a .st.edit{background:var(--edit);border-color:var(--edit)}
+
+.rows{display:grid;gap:0}
+.stage{font-family:var(--serif);font-size:30px;font-weight:400;padding:40px 0 14px;border-bottom:1px solid var(--ink)}
+.stage small{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--note);display:block;margin-bottom:2px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;padding:28px 0;border-bottom:1px solid var(--line);scroll-margin-top:70px}
+body.mob .row{grid-template-columns:390px minmax(0,1fr)}
+body.nonotes .row{grid-template-columns:minmax(0,1fr)}
+body.nonotes.mob .row{grid-template-columns:390px}
+body.nonotes .note{display:none}
+.row__head{display:flex;align-items:baseline;gap:10px;margin-bottom:10px;grid-column:1/-1}
+.row__head .n{font-family:var(--mono);font-size:12px;color:var(--note)}
+.row__head h2{font-size:15px;font-weight:600}
+
+/* ---------- moldura do wireframe ---------- */
+.wire{container-type:inline-size;background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:clamp(18px,4cqi,40px);min-width:0}
+.ph{position:relative;background:repeating-linear-gradient(135deg,var(--hatch) 0 7px,transparent 7px 14px);border:1px dashed var(--ink3);border-radius:4px;display:grid;place-items:center;text-align:center;padding:12px;color:var(--ink2);font-family:var(--mono);font-size:11px;letter-spacing:.03em;text-transform:uppercase;min-height:120px}
+.ph b{display:block;font-weight:500;color:var(--ink)}
+.ph.play::before{content:"";width:0;height:0;border-left:16px solid var(--ink3);border-top:10px solid transparent;border-bottom:10px solid transparent;margin-bottom:8px;display:block;justify-self:center}
+.ln{display:grid;gap:7px;margin-top:12px}
+.ln i{display:block;height:7px;border-radius:2px;background:var(--line)}
+.ln i:nth-child(2){width:92%}.ln i:nth-child(3){width:78%}.ln i:nth-child(4){width:60%}
+.w-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
+.w-h{font-family:var(--serif);font-weight:400;line-height:1.06;letter-spacing:-.01em;font-size:clamp(24px,5.2cqi,46px);margin-top:8px}
+.w-h em{font-style:italic}
+.w-h2{font-family:var(--serif);font-weight:400;font-size:clamp(21px,3.6cqi,32px);line-height:1.12;margin-top:6px}
+.w-p{color:var(--ink2);margin-top:10px;font-size:14.5px;max-width:56ch}
+.w-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.w-btn{border:1.5px solid var(--ink);padding:9px 16px;font-size:13.5px;font-weight:500;border-radius:3px;background:none}
+.w-btn.fill{background:var(--ink);color:var(--sheet)}
+.w-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.w-chip{border:1px dashed var(--ink3);padding:4px 10px;font-size:12.5px;border-radius:3px;color:var(--ink2)}
+.g{display:grid;gap:14px;margin-top:18px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.box{border:1px solid var(--line);border-radius:4px;padding:16px}
+.box h4{font-size:14.5px;font-weight:600}
+.box .w-p{font-size:13.5px;margin-top:4px}
+.step-n{font-family:var(--serif);font-style:italic;font-size:26px;line-height:1;color:var(--ink3)}
+@container (max-width:620px){
+  .g2,.g3,.g4{grid-template-columns:minmax(0,1fr)}
+  .g4.keep{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .split{grid-template-columns:minmax(0,1fr)!important}
+  .hide-sm{display:none!important}
+  .show-sm{display:flex!important}
+}
+.show-sm{display:none!important}
+.split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:28px;align-items:center}
+
+/* menu */
+.w-nav{display:flex;align-items:center;gap:18px;font-size:13.5px}
+.w-nav .logo{font-family:var(--serif);font-size:20px;margin-right:auto}
+.w-nav .logo em{font-style:italic}
+.w-nav .ham{width:26px;display:grid;gap:5px}.w-nav .ham i{height:2px;background:var(--ink)}
+
+/* números */
+.stat strong{font-family:var(--serif);font-weight:400;font-size:clamp(26px,4.4cqi,38px);display:block;line-height:1}
+.stat span{font-size:12.5px;color:var(--ink2)}
+
+/* abas */
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--line);margin-top:18px;overflow-x:auto}
+.tabs button{background:none;border:0;border-bottom:2px solid transparent;padding:10px 14px;font-size:13.5px;cursor:pointer;color:var(--ink2);white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--ink);border-color:var(--ink);font-weight:600}
+.panel{padding-top:18px}
+.panel[hidden]{display:none}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:6px 14px;font-size:13.5px;margin-top:12px}
+.kv dt{color:var(--ink3);font-family:var(--mono);font-size:11px;text-transform:uppercase;padding-top:3px}
+
+/* agenda SP */
+.dates{display:grid;margin-top:16px;border-top:1px solid var(--line)}
+.dates div{display:grid;grid-template-columns:90px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+.dates b{font-family:var(--serif);font-weight:400;font-size:20px}
+.dates em{font-style:normal;font-family:var(--mono);font-size:11px;padding:3px 8px;border:1px solid var(--line);border-radius:3px;color:var(--ink2)}
+
+/* antes e depois */
+.ba{position:relative;aspect-ratio:4/3;border-radius:4px;overflow:hidden;margin-top:16px;--p:50%}
+.ba .ph{position:absolute;inset:0;border-radius:0;min-height:0}
+.ba .after{clip-path:inset(0 0 0 var(--p));background-color:var(--sheet)}
+.ba .bar{position:absolute;top:0;bottom:0;left:var(--p);width:2px;background:var(--ink);pointer-events:none}
+.ba .bar::after{content:"⟷";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--ink);color:var(--sheet);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:15px}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize}
+
+/* depoimentos / vídeos trilho */
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,1fr);gap:12px;overflow-x:auto;margin-top:16px;padding-bottom:6px;scroll-snap-type:x mandatory}
+.rail>*{scroll-snap-align:start}
+.stars{letter-spacing:2px;color:var(--ink)}
+
+/* linha do tempo */
+.tl{display:grid;gap:0;margin-top:14px;border-left:1px solid var(--ink3);padding-left:18px}
+.tl div{position:relative;padding:8px 0}
+.tl div::before{content:"";position:absolute;left:-23px;top:15px;width:9px;height:9px;border-radius:50%;background:var(--sheet);border:1.5px solid var(--ink)}
+.tl b{font-family:var(--mono);font-size:11px;color:var(--ink3);font-weight:400}
+.tl p{font-size:14px}
+
+/* formulário */
+.w-form{display:grid;gap:12px;margin-top:16px}
+.w-form label{display:grid;gap:5px;font-size:12.5px;color:var(--ink2)}
+.w-form .fake{border:1px solid var(--ink3);border-radius:3px;padding:9px 12px;font-size:13.5px;color:var(--ink3);background:var(--sheet)}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opts span{border:1px solid var(--ink3);border-radius:3px;padding:7px 12px;font-size:13px}
+.opts span.sel{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+
+/* faq */
+.faq{margin-top:14px;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:13px 0;display:flex;justify-content:space-between;gap:12px;font-size:14.5px;font-weight:500}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--mono);color:var(--ink3)}
+.faq details[open] summary::after{content:"−"}
+.faq details p{padding:0 0 14px;color:var(--ink2);font-size:14px}
+
+/* ---------- anotações ---------- */
+.note{align-self:start;position:sticky;top:76px;display:grid;gap:14px;font-size:13.5px}
+.note__why{background:var(--note-bg);border-left:3px solid var(--note);padding:12px 14px;border-radius:0 4px 4px 0;color:var(--ink)}
+.note__why .mono{color:var(--note);display:block;margin-bottom:4px}
+.note__need .mono,.note__alt .mono{color:var(--ink3);display:block;margin-bottom:4px}
+.note__need ul{list-style:none;display:grid;gap:4px}
+.note__need li{padding-left:16px;position:relative;color:var(--ink2)}
+.note__need li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;border:1px solid var(--ink3);border-radius:2px}
+.note__alt p{color:var(--ink2)}
+.rev{display:flex;gap:8px;flex-wrap:wrap}
+.rev button{flex:1;min-width:110px;border:1px solid var(--line);background:var(--sheet);border-radius:4px;padding:8px 10px;font-size:13px;cursor:pointer;color:var(--ink2)}
+.rev button.ok[aria-pressed="true"]{background:var(--ok-bg);border-color:var(--ok);color:var(--ok);font-weight:600}
+.rev button.edit[aria-pressed="true"]{background:var(--edit-bg);border-color:var(--edit);color:var(--edit);font-weight:600}
+.rev textarea{width:100%;min-height:72px;border:1px solid var(--edit);border-radius:4px;padding:8px 10px;background:var(--sheet);font-size:13.5px;resize:vertical}
+.rev textarea[hidden]{display:none}
+
+/* ---------- fechamento ---------- */
+.end{max-width:1320px;margin:0 auto;padding:0 24px 96px}
+.end__box{background:var(--ink);color:var(--paper);border-radius:8px;padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
+.end h2{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4vw,48px);line-height:1.05}
+.end h2 em{font-style:italic}
+.end p{color:color-mix(in srgb,var(--paper) 72%,transparent);margin-top:14px;max-width:46ch}
+.sum{display:grid;gap:8px;font-size:14px;max-height:260px;overflow:auto;padding-right:6px}
+.sum div{display:flex;gap:10px;border-bottom:1px solid color-mix(in srgb,var(--paper) 18%,transparent);padding-bottom:8px}
+.sum .tag{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;padding:2px 6px;border-radius:3px;flex:none;height:fit-content}
+.sum .tag.ok{background:#2F7A4B;color:#fff}.sum .tag.edit{background:#B0561C;color:#fff}.sum .tag.pend{border:1px solid color-mix(in srgb,var(--paper) 40%,transparent)}
+.sum small{display:block;opacity:.7}
+.send{margin-top:18px;display:inline-flex;align-items:center;gap:10px;background:var(--paper);color:var(--ink);border:0;border-radius:4px;padding:13px 20px;font-weight:600;cursor:pointer;text-decoration:none;font-size:15px}
+.foot{font-family:var(--mono);font-size:11.5px;color:var(--ink3);text-align:center;padding:0 24px 40px}
+
+/* ---------- responsivo da página ---------- */
+@media (max-width:1100px){
+  .body{grid-template-columns:minmax(0,1fr)}
+  .idx{display:none}
+}
+@media (max-width:900px){
+  .intro{grid-template-columns:minmax(0,1fr);gap:28px;padding-top:40px}
+  .flow ol{grid-template-columns:repeat(2,1fr)}
+  .flow li:nth-child(2){border-right:0}
+  .flow li:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .row,body.mob .row{grid-template-columns:minmax(0,1fr)}
+  .note{position:static}
+  .end__box{grid-template-columns:minmax(0,1fr)}
+  .viewseg{display:none}
+}
+@media (max-width:520px){
+  .top__in{padding:8px 16px;gap:10px}
+  .top__brand{width:100%}
+  .intro,.flow,.body,.end{padding-left:16px;padding-right:16px}
+  .flow ol{grid-template-columns:minmax(0,1fr)}
+  .flow li{border-right:0!important;border-bottom:1px solid var(--line)}
+  .flow li:last-child{border-bottom:0}
+  .wire{padding:16px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top__in">
+    <div class="top__brand"><b>Rascunho 01</b> · Planta do site · Michel Bittencourt</div>
+    <div class="seg viewseg" role="group" aria-label="Ver como">
+      <button type="button" data-view="desk" aria-pressed="true">Computador</button>
+      <button type="button" data-view="mob" aria-pressed="false">Celular</button>
+    </div>
+    <div class="seg" role="group" aria-label="Anotações">
+      <button type="button" data-notes="on" aria-pressed="true">Com anotações</button>
+      <button type="button" data-notes="off" aria-pressed="false">Só o site</button>
+    </div>
+    <div class="count" id="count"><b>0</b> de 15 aprovadas</div>
+  </div>
+</header>
+
+<section class="intro">
+  <div>
+    <p class="mono" style="color:var(--note)">Estrutura antes do visual</p>
+    <h1>Michel, este é o <em>esqueleto</em> do seu site.</h1>
+    <p>Antes de cor, foto e acabamento, a gente decide juntos o que entra em cada parte e em que ordem. Tudo aqui é rascunho de propósito: os blocos cinza são espaços reservados, e ao lado de cada seção eu explico por que ela existe e o que vou precisar de você.</p>
+    <p>Marque o que aprova e o que quer mudar. No final da página, suas observações vão prontas para o meu WhatsApp.</p>
+    <p class="meta mono">Preparado por Devikison Aguiar · Descomplica Site · 30 out 2026</p>
+  </div>
+  <div class="legend" aria-label="Legenda">
+    <div><i class="lg-ph"></i>Foto ou vídeo que vamos produzir ou escolher</div>
+    <div><i class="lg-ln"></i>Texto que escrevo e você revisa</div>
+    <div><i class="lg-nt"></i>Minha anotação: o porquê de cada parte</div>
+  </div>
+</section>
+
+<section class="flow" aria-label="Lógica da página">
+  <ol>
+    <li><span class="mono">01 a 04</span><strong>Entender</strong><p>Quem é você, o que é visagismo e se é para a pessoa.</p></li>
+    <li><span class="mono">05 a 06</span><strong>Escolher</strong><p>Estúdio, casa do cliente em SP ou on-line, cada um no seu lugar.</p></li>
+    <li><span class="mono">07 a 11</span><strong>Confiar</strong><p>Resultados, vídeos, sua história e quem já passou por você.</p></li>
+    <li><span class="mono">12 a 14</span><strong>Agendar</strong><p>A pessoa chega no WhatsApp já filtrada e com o pedido claro.</p></li>
+  </ol>
+</section>
+
+<div class="body">
+  <nav class="idx" id="idx" aria-label="Seções"></nav>
+
+  <main class="rows" id="rows">
+
+    <div class="stage"><small>Etapa 1</small>Entender</div>
+
+    <!-- 00 MENU -->
+    <article class="row" id="s00" data-name="Menu">
+      <div class="row__head"><span class="n">00</span><h2>Menu do topo</h2></div>
+      <div class="wire">
+        <div class="w-nav hide-sm">
+          <span class="logo">Michel <em>Bittencourt</em></span>
+          <span>Visagismo</span><span>Atendimentos</span><span>Resultados</span><span>Sobre</span><span>Dúvidas</span>
+          <span class="w-btn fill">Agendar</span>
+        </div>
+        <div class="w-nav show-sm">
+          <span class="logo">Michel <em>B.</em></span>
+          <span class="w-btn fill" style="padding:6px 12px">Agendar</span>
+          <span class="ham"><i></i><i></i></span>
+        </div>
+      </div>
+      <aside class="note">
+        <div class="note__why"><span class="mono">Por que existe</span>Cinco itens, nada além disso. Quem chega do Instagram acha o que procura em um toque, e o botão de agendar fica visível o tempo todo enquanto a pessoa rola.</div>
+        <div class="note__need"><span class="mono">Vou precisar de você</span><ul><li>Logo ou assinatura, se tiver (se não, crio um lettering do nome)</li></ul></div>
+      </aside>
+    </article>
+
+    <!-- 01 HERO -->
+    <article class="row" id="s01" data-name="Abertura">
+      <div class="row__head"><span class="n">01</span><h2>Abertura (primeira tela)</h2></div>
+      <div class="wire">
+        <div class="split">
+          <div>
+            <span class="w-eyebrow">Cabelo e visagismo masculino</span>
+            <h3 class="w-h">O corte certo começa pela <em>leitura do seu rosto</em>.</h3>
+            <p class="w-p">Consultoria de imagem e corte personalizado para homens que querem transmitir exatamente quem são.</p>
+            <div class="w-btns"><span class="w-btn fill">Quero minha consultoria</span><span class="w-btn">Como funciona</span></div>
+            <div class="w-chips"><span class="w-chip">No estúdio · Guaratinguetá</span><span class="w-chip">Na sua casa · São Paulo</span><span class="w-chip">On-line</span></div>
+          </div>
+          <div class="ph play" style="aspect-ratio:4/5"><span><b>Vídeo curto em loop, sem som</b>você finalizando um corte · 6 a 10 s<br>(ou retrato forte, luz lateral)</span></div>
+        </div>
+      </div>
+      <aside class="note">
+        <div class="note__why"><span class="mono">Por que existe</span>Em 3 segundos a pessoa precisa saber: o que você faz, para quem, e as 3 formas de atender. As etiquetas embaixo já organizam isso desde a primeira tela, sem misturar.</div>
+        <div class="note__need"><span class="mono">Vou precisar de você</span><ul><li>Um vídeo seu trabalhando (celular na horizontal serve, eu trato)</li><li>Ou 2 a 3 retratos seus para escolhermos</li></ul></div>
+        <div class="note__alt"><span class="mono">Pode virar</span><p>Foto em tela cheia com o texto por cima, se quiser algo mais impactante.</p></div>
+      </aside>
+    </article>
+
+    <!-- 02 NÚMEROS -->
+    <article class="row" id="s02" data-name="Números de autoridade">
+      <div class="row__head"><span class="n">02</span><h2>Números de autoridade</h2></div>
+      <div class="wire">
+        <div class="g g4 keep" style="margin-top:0">
+          <div class="stat"><strong>81,4 mil</strong><span>pessoas acompanham no Instagram</span></div>
+          <div class="stat"><strong>[X] anos</strong><span>de cabelo e barbearia</span></div>
+          <div class="stat"><strong>[X] mil</strong><span>atendimentos realizados</span></div>
+          <div class="stat"><strong>[5,0]</strong><span>nota no Google</span></div>
+        </div>
+      </div>
+      <aside class="note">
+        <div class="note__why"><span class="mono">Por que existe</span>Você falou de autoridade e confiança. Número concreto convence mais rápido que adjetivo, e fica logo abaixo da abertura, antes da pessoa decidir se continua.</div>
+        <div class="note__need"><span class="mono">Vou precisar de você</span><ul><li>Anos de profissão</li><li>Estimativa de clientes atendidos</li><li>Alunos formados, se fizer sentido</li></ul></div>
+      </aside>
+    </article>
+
+    <!-- 03 VISAGISMO -->
+    <article class="row" id="s03" data-name="O que é visagismo">
+      <div class="row__head"><span class="n">03</span><h2>O que é visagismo, explicado simples</h2></div>
+      <div class="wire">
+        <span class="w-eyebrow">O método</span>
+        <h3 class="w-h2">Não é só um corte. É uma leitura de quem você é.</h3>
+        <div class="ln"><i></i><i></i><i></i></div>
+        <div class="g g3">
+          <div class="box"><span class="step-n">1</span><h4>Leitura</h4><p class="w-p">Formato do rosto, traços, estilo de vida e como você quer ser visto.</p></div>
+          <div class="box"><span class="step-n">2</span><h4>Proposta</h4><p class="w-p">Desenho do corte, barba e finalização pensados para você.</p></div>
+          <div class="box"><span class="step-n">3</span><h4>Execução e manutenção</h4><p class="w-p">O corte feito e o passo a passo para manter em casa.</p></div>
+        </div>
+      </div>
+      <aside class="note">
+        <div class="note__why"><span class="mono">Por que existe</span>Muita gente não sabe o que é visagismo e por isso acha caro. Explicar em 3 passos transforma "corte" em "consultoria" e justifica o seu valor antes da conversa no WhatsApp.</div>
+        <div class="note__need"><span class="mono">Vou precisar de você</span><ul><li>Como você conduz a consulta na prática (um áudio já resolve)</li></ul></div>
+      </aside>
+    </article>
+
+    <!-- 04 PARA QUEM -->
+    <article class="row" id="s04" data-name="Para quem é">
+      <div class="row__head"><span class="n">04</span><h2>Para quem é (e para quem não é)</h2></div>
+      <div class="wire">
+        <h3 class="w-h2">Esse atendimento é para você se...</h3>
+        <div class="g g2">
+          <div class="box"><h4>É para você</h4><div class="ln"><i></i><i></i><i></i><i></i></div></div>
+          <div class="box" style="border-style:dashed"><h4>Talvez não seja agora</h4><div class="ln"><i></i><i></i><i></i></div></div>
+        </div>
+      </div>
+      <aside class="note">
+        <div class="note__why"><span class="mono">Por que existe</span>É o filtro que você pediu. Você mesmo disse: a pessoa precisa entender "talvez é pra mim, talvez não". Quem não se encaixa sai daqui, e não ocupa a sua assistente com conversa que não fecha.</div>
+        <div class="note__need"><span class="mono">Vou precisar de você</span><ul><li>Como é o seu cliente ideal</li><li>Que tipo de pedido você prefere não pegar</li></ul></div>
+      </aside>
+    </article>
+
+    <div class="stage"><small>Etapa 2</small>Escolher</div>
+
+    <!-- 05 ATENDIMENTOS -->
+    <article class="row" id="s05" data-name="Formas de atendimento">
+      <div class="row__head"><span class="n">05</span><h2>Formas de atendimento</h2></div>
+      <div class="wire">
+        <span class="w-eyebrow">Atendimentos</span>
+        <h3 class="w-h2">Escolha onde a gente se encontra.</h3>
+        <div class="tabs" role="tablist" aria-label="Formas de atendimento">
+          <button role="tab" aria-selected="true" aria-controls="p1" id="t1">No estúdio</button>
+          <button role="tab" aria-selected="false" aria-controls="p2" id="t2" tabindex="-1">Na sua casa · SP</button>
+          <button role="tab" aria-selected="false" aria-controls="p3" id="t3" tabindex="-1">On-line</button>
+        </div>
+        <div class="panel" role="tabpanel" id="p1" aria-labelledby="t1">
+          <div class="split" style="align-items:start">
+            <div>
+              <h4 style="font-size:16px">Atendimento no estúdio</h4>
+              <dl class="kv"><dt>Onde</dt><dd>Guaratinguetá · SP ou espaço reservado em SP</dd><dt>Duração</dt><dd>[tempo médio]</dd><dt>Inclui</dt><dd>Leitura, corte, barba, finalização e orientação de manutenção</dd><dt>Valor</dt><dd>Sob consulta</dd></dl>
+              <div class="w-btns"><span class="w-btn fill">Agendar no estúdio</span></div>
+            </div>
+            <div class="ph" style="aspect-ratio:4/3"><span><b>Foto do espaço</b>cadeira, luz, detalhes</span></div>
+          </div>
+        </div>
+        <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+          <div class="split" style="align-items:start">
+            <div>
+              <h4 style="font-size:16px">Atendimento em domicílio · São Paulo</h4>
+              <dl class="kv"><dt>Onde</dt><dd>Sua casa, escritório ou hotel em São Paulo</dd><dt>Quando</dt><dd>Nas datas em que estou na cidade (agenda abaixo)</dd><dt>Inclui</dt><dd>Estrutura completa levada até você, com a mesma qualidade do estúdio</dd><dt>Segurança</dt><dd>Confirmação só após pré-cadastro e sinal</dd><dt>Valor</dt><dd>Sob consulta, com deslocamento</dd></dl>
+              <div class="w-btns"><span class="w-btn fill">Quero atendimento em casa</span></div>
+            </div>
+            <div class="ph" style="aspect-ratio:4/3"><span><b>Foto da maleta ou montagem</b>mostra que é estrutura profissional</span></div>
+          </div>
+        </div>
+        <div class="panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden>
+          <div class="split" style="align-items:start">
+            <div>
+              <h4 style="font-size:16px">Consultoria on-line</h4>
+              <dl class="kv"><dt>Como</dt><dd>Chamada de vídeo + envio de fotos antes</dd><dt>Você recebe</dt><dd>Proposta de corte e barba para levar ao seu barbeiro</dd><dt>Prazo</dt><dd>[em quantos dias entrega]</dd><dt>Valor</dt><dd>Sob consulta</dd></dl>
+              <div class="w-btns"><span class="w-btn fill">Quero a consultoria on-line</span></div>
+            </div>
+            <div class="ph" style="aspect-ratio:4/3"><span><b>Print ou mockup</b>do material que o cliente recebe</span></div>
+          </div>
+        </div>
+      </div>
+      <aside class="note">
+        <div class="note__why"><span class="mono">Por que existe</span>É o coração do site. Três formas de atender, cada uma na sua aba, com regras próprias. Ninguém lê sobre domicílio achando que é estúdio. Cada botão manda uma mensagem diferente para o WhatsApp, então a sua assistente já sabe de qual atendimento a pessoa veio. Toque nas abas para ver.</div>
+        <div class="note__need"><span class="mono">Vou precisar de você</span><ul><li>Duração média de cada atendimento</li><li>Regras do domicílio (sinal, deslocamento, bairros)</li><li>Como funciona a entrega do on-line</li></ul></div>
+        <div class="note__alt"><span class="mono">Pode virar</span><p>Três cartões lado a lado em vez de abas, se preferir ver tudo de uma vez.</p></div>
+      </aside>
+    </article>
+
+    <!-- 06 AGENDA SP -->
+    <article class="row" id="s06" data-name="Agenda em São Paulo">
+      <div class="row__head"><span class="n">06</span><h2>Próximas datas em São Paulo</h2></div>
+      <div class="wire">
+        <span class="w-eyebrow">Agenda em São Paulo</span>
+        <h3 class="w-h2">Estarei na capital nestas datas.</h3>
+        <div class="dates">
+          <div><b>[12 nov]</b><span>Domicílio e espaço reservado · Zona Sul</span><em>4 horários</em></div>
+          <div><b>[26 nov]</b><span>Domicílio · Zona Oeste</span><em>Últimos 2</em></div>
+          <div><b>[10 dez]</b><span>Domicílio e espaço reservado</span><em>Abre em breve</em></div>
+        </div>
+        <div class="w-btns"><span class="w-btn">Avise-me da próxima data</span></div>
+      </div>
+      <aside class="note">
+        <div class="note__why"><span class="mono">Por que existe</span>Você não mora em SP e vai em datas específicas. Mostrar as datas cria agenda cheia antes da viagem e evita a pergunta "quando você vem?". Eu deixo um jeito simples de você mesmo atualizar.</div>
+        <div class="note__need"><span class="mono">Vou precisar de você</span><ul><li>Frequência média das idas a SP</li><li>Regiões que atende</li></ul></div>
+      </aside>
+    </article>
+
+    <div class="stage"><small>Etapa 3</small>Confiar</div>
+
+    <!-- 07 ANTES E DEPOIS -->
+    <article class="row" id="s07" data-name="Antes e depois">
+      <div class="row__head"><span class="n">07</span><h2>Antes e depois</h2></div>
+      <div class="wire">
+        <span class="w-eyebrow">Resultados</span>
+        <h3 class="w-h2">Arraste e veja a diferença.</h3>
+        <div class="ba" id="ba">
+          <div class="ph"><span><b>Antes</b>mesma luz e mesmo ângulo</span></div>
+          <div class="ph after"><span><b>Depois</b>foto tratada e padronizada</span></div>
+          <span class="bar"></span>
+          <input type="range" min="5" max="95" value="50" aria-label="Comparar antes e depois">
+        </div>
+        <div class="g g4 keep"><div class="ph" style="min-height:70px"><span>caso 2</span></div><div class="ph" style="min-height:70px"><span>caso 3</span></div><div class="ph" style="min-height:70px"><span>caso 4</span></div><div class="ph" style="min-height:70px"><span>caso 5</span></div></div>
+      </div>
+      <aside class="note">
+        <div class="note__why"><span class="mono">Por que existe</span>É a prova mais forte do visagismo. Comparar arrastando prende a atenção bem mais que duas fotos lado a lado. Teste aí: arraste a barra.</div>
+        <div class="note__need"><span class="mono">Vou precisar de você</span><ul><li>5 a 8 pares de antes e depois (eu trato e padronizo cor e enquadramento)</li><li>Autorização dos clientes para uso</li></ul></div>
+      </aside>
+    </article>
+
+    <!-- 08 VÍDEOS -->
+    <article class="row" id="s08" data-name="Vídeos">
+      <div class="row__head"><span class="n">08</span><h2>Vídeos</h2></div>
+      <div class="wire">
+        <span class="w-eyebrow">Em movimento</span>
+        <h3 class="w-h2">Veja o processo.</h3>
+        <div class="rail">
+          <div class="ph play" style="aspect-ratio:9/16"><span><b>Reels 1</b>transformação</span></div>
+          <div class="ph play" style="aspect-ratio:9/16"><span><b>Reels 2</b>explicando visagismo</span></div>
+          <div class="ph play" style="aspect-ratio:9/16"><span><b>Reels 3</b>depoimento</span></div>
+          <div class="ph play" style="aspect-ratio:9/16"><span><b>Reels 4</b>bastidor em SP</span></div>
+        </div>
+      </div>
+      <aside class="note">
+        <div class="note__why"><span class="mono">Por que existe</span>Respondendo a sua dúvida: sim, o site roda vídeo. O segredo é o vídeo só carregar quando a pessoa toca, então a página continua leve no celular. Aproveitamos os Reels que você já tem.</div>
+        <div class="note__need"><span class="mono">Vou precisar de você</span><ul><li>Seus 4 Reels favoritos</li></ul></div>
+      </aside>
+    </article>
+
+    <!-- 09 HISTÓRIA -->
+    <article class="row" id="s09" data-name="Minha história">
+      <div class="row__head"><span class="n">09</span><h2>Quem é o Michel</h2></div>
+      <div class="wire">
+        <div class="split" style="align-items:start">
+          <div class="ph" style="aspect-ratio:3/4"><span><b>Retrato seu</b>ensaio ou foto tratada</span></div>
+          <div>
+            <span class="w-eyebrow">Minha história</span>
+            <h3 class="w-h2">De onde eu vim e por que faço assim.</h3>
+            <div class="tl">
+              <div><b>[ano]</b><p>Onde tudo começou</p></div>
+              <div><b>[ano]</b><p>A barbearia própria</p></div>
+              <div><b>[ano]</b><p>A virada para o visagismo</p></div>
+              <div><b>Hoje</b><p>Atendimento exclusivo, cursos e mentoria</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <aside class="note">
+        <div class="note__why"><span class="mono">Por que existe</span>É o storytelling que você citou: por onde passou, o que fez, de onde veio. Em linha do tempo fica fácil de ler e mostra a bagagem sem virar texto longo.</div>
+        <div class="note__need"><span class="mono">Vou precisar de você</span><ul><li>Um áudio contando a sua trajetória (eu escrevo)</li><li>Formações e cursos que fez</li></ul></div>
+      </aside>
+    </article>
+
+    <!-- 10 DEPOIMENTOS -->
+    <article class="row" id="s10" data-name="Depoimentos">
+      <div class="row__head"><span class="n">10</span><h2>Depoimentos</h2></div>
+      <div class="wire">
+        <span class="w-eyebrow">Quem já passou por aqui</span>
+        <h3 class="w-h2">O que os clientes dizem.</h3>
+        <div class="rail" style="grid-auto-columns:minmax(220px,1fr)">
+          <div class="box"><span class="stars">★★★★★</span><div class="ln"><i></i><i></i><i></i></div><p class="w-p" style="margin-top:10px">[Nome] · Google</p></div>
+          <div class="box"><span class="stars">★★★★★</span><div class="ln"><i></i><i></i><i></i></div><p class="w-p" style="margin-top:10px">[Nome] · Facebook</p></div>
+          <div class="box"><span class="stars">★★★★★</span><div class="ln"><i></i><i></i><i></i></div><p class="w-p" style="margin-top:10px">[Nome] · WhatsApp</p></div>
+        </div>
+        <div class="w-btns"><span class="w-btn">Ver todas no Google</span></div>
+      </div>
+      <aside class="note">
+        <div class="note__why"><span class="mono">Por que existe</span>Você comentou dos feedbacks no Facebook. Trazemos os melhores para cá, com nome e origem, e ligamos ao seu perfil do Google quando ele voltar ao ar.</div>
+        <div class="note__need"><span class="mono">Vou precisar de você</span><ul><li>Link da página do Facebook</li><li>Prints de mensagens de clientes (com permissão)</li></ul></div>
+      </aside>
+    </article>
+
+    <!-- 11 CURSOS -->
+    <article class="row" id="s11" data-name="Cursos e mentoria">
+      <div class="row__head"><span class="n">11</span><h2>Cursos e mentoria (secundário)</h2></div>
+      <div class="wire">
+        <div class="split">
+          <div><span class="w-eyebrow">Para profissionais</span><h3 class="w-h2">Cursos e mentoria em visagismo.</h3><div class="ln"><i></i><i></i></div></div>
+          <div class="w-btns" style="justify-content:flex-end"><span class="w-btn">Quero saber das turmas</span></div>
+        </div>
+      </div>
+      <aside class="note">
+        <div class="note__why"><span class="mono">Por que existe</span>Fica numa faixa discreta, separada do atendimento ao cliente final. Assim o site não mistura público, e o profissional que procura curso ainda te encontra.</div>
+        <div class="note__alt"><span class="mono">Pode virar</span><p>Uma página própria só de cursos, mais pra frente.</p></div>
+      </aside>
+    </article>
+
+    <div class="stage"><small>Etapa 4</small>Agendar</div>
+
+    <!-- 12 AGENDAR -->
+    <article class="row" id="s12" data-name="Como agendar">
+      <div class="row__head"><span class="n">12</span><h2>Como agendar (o filtro final)</h2></div>
+      <div class="wire">
+        <span class="w-eyebrow">Agendamento</span>
+        <h3 class="w-h2">Três perguntas e você fala direto com a minha agenda.</h3>
+        <div class="w-form">
+          <label>Qual atendimento?<div class="opts"><span class="sel">Estúdio</span><span>Em casa · SP</span><span>On-line</span></div></label>
+          <label>O que você procura?<div class="opts"><span>Visagismo completo</span><span class="sel">Corte e barba</span><span>Só consultoria</span></div></label>
+          <div class="g g2" style="margin-top:0"><label>Cidade ou bairro<span class="fake">Ex.: Moema, SP</span></label><label>Data que prefere<span class="fake">dd/mm</span></label></div>
+          <div><span class="w-btn fill" style="display:inline-block">Continuar no WhatsApp</span></div>
+        </div>
+      </div>
+      <aside class="note">
+        <div class="note__why"><span class="mono">Por que existe</span>Aqui está a resposta para o "jogar o cliente direto no WhatsApp". A pessoa responde 3 perguntas e chega na sua assistente com a mensagem pronta: atendimento, objetivo, bairro e data. Menos objeção, menos conversa perdida. Depois, se você fechar a automação que está vendo, ela entra exatamente neste botão.</div>
+        <div class="note__need"><span class="mono">Vou precisar de você</span><ul><li>Número da assistente de agendamentos</li><li>Nome da ferramenta de automação, quando decidir</li></ul></div>
+      </aside>
+    </article>
+
+    <!-- 13 FAQ -->
+    <article class="row" id="s13" data-name="Dúvidas frequentes">
+      <div class="row__head"><span class="n">13</span><h2>Dúvidas frequentes</h2></div>
+      <div class="wire">
+        <h3 class="w-h2">Antes de agendar.</h3>
+        <div class="faq">
+          <details><summary>Qual a diferença entre um corte e o visagismo?</summary><p>[resposta curta sua, eu lapido]</p></details>
+          <details><summary>O atendimento em casa tem custo de deslocamento?</summary><p>[regra do deslocamento]</p></details>
+          <details><summary>A consultoria on-line funciona mesmo à distância?</summary><p>[como funciona]</p></details>
+          <details><summary>Quanto tempo dura o atendimento?</summary><p>[tempo médio]</p></details>
+          <details><summary>Como funciona o pagamento e o sinal?</summary><p>[formas de pagamento]</p></details>
+        </div>
+      </div>
+      <aside class="note">
+        <div class="note__why"><span class="mono">Por que existe</span>Cada pergunta respondida aqui é uma mensagem a menos para a sua assistente. Entram as 5 a 7 perguntas que vocês mais recebem hoje.</div>
+        <div class="note__need"><span class="mono">Vou precisar de você</span><ul><li>As perguntas que mais chegam no WhatsApp</li></ul></div>
+      </aside>
+    </article>
+
+    <!-- 14 FINAL -->
+    <article class="row" id="s14" data-name="Fechamento e rodapé">
+      <div class="row__head"><span class="n">14</span><h2>Fechamento e rodapé</h2></div>
+      <div class="wire">
+        <div style="text-align:center;padding:12px 0 22px;border-bottom:1px solid var(--line)">
+          <h3 class="w-h" style="max-width:18ch;margin:0 auto">Alinhar a imagem é alinhar como o mundo <em>te vê</em>.</h3>
+          <div class="w-btns" style="justify-content:center"><span class="w-btn fill">Agendar minha consultoria</span></div>
+        </div>
+        <div class="g g3" style="font-size:13px;color:var(--ink2)">
+          <div><b style="color:var(--ink)">Michel Bittencourt</b><br>Cabelo e Visagismo<br>Guaratinguetá · São Paulo · On-line</div>
+          <div><b style="color:var(--ink)">Contato</b><br>WhatsApp da agenda<br>Instagram @michellbittencourtt</div>
+          <div class="ph" style="min-height:80px"><span>Mapa do Google</span></div>
+        </div>
+      </div>
+      <aside class="note">
+        <div class="note__why"><span class="mono">Por que existe</span>A frase que já está na sua bio fecha o site e mantém a mesma voz. No rodapé entram mapa, Instagram e o perfil do Google, que eu recadastro para você aparecer nas buscas de Guaratinguetá e São Paulo.</div>
+        <div class="note__need"><span class="mono">Vou precisar de você</span><ul><li>Acesso ao e-mail do antigo Google Meu Negócio, se ainda tiver</li></ul></div>
+      </aside>
+    </article>
+
+  </main>
+</div>
+
+<section class="end" id="fim">
+  <div class="end__box">
+    <div>
+      <p class="mono" style="opacity:.6">Próximo passo</p>
+      <h2>Depois do esqueleto, vem a <em>pele</em>.</h2>
+      <p>Com a estrutura aprovada, eu desenho o visual completo: cores, tipografia, suas fotos tratadas e cada texto escrito. Nada sai do ar sem você ler, reler e aprovar.</p>
+      <a class="send" id="send" href="#" target="_blank" rel="noopener">Enviar minhas marcações pelo WhatsApp</a>
+    </div>
+    <div>
+      <p class="mono" style="opacity:.6;margin-bottom:12px">Suas marcações</p>
+      <div class="sum" id="sum"></div>
+    </div>
+  </div>
+</section>
+<p class="foot">Rascunho de estrutura · não é o visual final · Descomplica Site</p>
+
+<script>
+// Número do Devikison com DDI (ex.: 5515999999999). Vazio: o WhatsApp abre para escolher o contato.
+const WHATS = '5547992476541';
+const KEY = 'michel-planta-v1';
+const rows = [...document.querySelectorAll('.row')];
+let state = {};
+try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} };
+
+// índice lateral
+const idx = document.getElementById('idx');
+let stageN = 0;
+document.querySelectorAll('.stage, .row').forEach(el => {
+  if (el.classList.contains('stage')) {
+    const h = document.createElement('h3'); h.className = 'mono';
+    h.textContent = el.lastChild.textContent.trim(); idx.appendChild(h); return;
+  }
+  const a = document.createElement('a'); a.href = '#' + el.id;
+  a.innerHTML = `<span class="n">${el.id.slice(1)}</span>${el.dataset.name}<span class="st"></span>`;
+  idx.appendChild(a);
+});
+
+// aprovar / ajustar
+rows.forEach(row => {
+  const note = row.querySelector('.note');
+  const rev = document.createElement('div'); rev.className = 'rev';
+  rev.innerHTML = `<button type="button" class="ok" aria-pressed="false">Aprovado</button><button type="button" class="edit" aria-pressed="false">Quero ajustar</button><textarea hidden placeholder="O que você mudaria nesta parte?" aria-label="Ajuste em ${row.dataset.name}"></textarea>`;
+  note.appendChild(rev);
+  const [ok, ed, ta] = rev.children;
+  const s = state[row.id] || {};
+  const paint = () => {
+    const v = state[row.id] || {};
+    ok.setAttribute('aria-pressed', v.s === 'ok'); ed.setAttribute('aria-pressed', v.s === 'edit');
+    ta.hidden = v.s !== 'edit'; ta.value = v.t || '';
+  };
+  ok.onclick = () => { state[row.id] = { s: state[row.id]?.s === 'ok' ? '' : 'ok' }; save(); paint(); refresh(); };
+  ed.onclick = () => { const on = state[row.id]?.s === 'edit'; state[row.id] = { s: on ? '' : 'edit', t: state[row.id]?.t || '' }; save(); paint(); refresh(); if (!on) ta.focus(); };
+  ta.oninput = () => { state[row.id] = { s: 'edit', t: ta.value }; save(); refresh(); };
+  paint();
+});
+
+function refresh() {
+  let okN = 0, lines = [], html = '';
+  rows.forEach(r => {
+    const v = state[r.id] || {}, n = r.id.slice(1), name = r.dataset.name;
+    const dot = idx.querySelector(`a[href="#${r.id}"] .st`);
+    dot.className = 'st' + (v.s ? ' ' + v.s : '');
+    if (v.s === 'ok') { okN++; lines.push(`✅ ${n} ${name}`); }
+    if (v.s === 'edit') lines.push(`✏️ ${n} ${name}: ${v.t || '(explico no áudio)'}`);
+    const tag = v.s === 'ok' ? '<span class="tag ok">ok</span>' : v.s === 'edit' ? '<span class="tag edit">ajustar</span>' : '<span class="tag pend">aberto</span>';
+    html += `<div>${tag}<span>${n} · ${name}${v.s === 'edit' && v.t ? `<small>${v.t.replace(/</g, '&lt;')}</small>` : ''}</span></div>`;
+  });
+  document.getElementById('sum').innerHTML = html;
+  document.querySelector('#count b').textContent = okN;
+  const msg = `Devikison, revisei a planta do site:\n\n${lines.length ? lines.join('\n') : '(ainda não marquei nada)'}\n\n${okN} de ${rows.length} aprovadas.`;
+  document.getElementById('send').href = `https://wa.me/${WHATS}?text=${encodeURIComponent(msg)}`;
+}
+refresh();
+
+// computador / celular e anotações
+document.querySelectorAll('[data-view]').forEach(b => b.onclick = () => {
+  document.body.classList.toggle('mob', b.dataset.view === 'mob');
+  document.querySelectorAll('[data-view]').forEach(x => x.setAttribute('aria-pressed', x === b));
+});
+document.querySelectorAll('[data-notes]').forEach(b => b.onclick = () => {
+  document.body.classList.toggle('nonotes', b.dataset.notes === 'off');
+  document.querySelectorAll('[data-notes]').forEach(x => x.setAttribute('aria-pressed', x === b));
+});
+
+// abas com teclado
+const tabs = [...document.querySelectorAll('[role="tab"]')];
+const pick = t => tabs.forEach(x => {
+  const on = x === t; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1;
+  document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+});
+tabs.forEach((t, i) => {
+  t.onclick = () => pick(t);
+  t.onkeydown = e => {
+    const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+    if (d) { const n = tabs[(i + d + tabs.length) % tabs.length]; pick(n); n.focus(); }
+  };
+});
+
+// antes e depois
+const ba = document.getElementById('ba');
+ba.querySelector('input').oninput = e => ba.style.setProperty('--p', e.target.value + '%');
+
+// seção ativa no índice
+const links = idx.querySelectorAll('a');
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+}), { rootMargin: '-40% 0px -55% 0px' });
+rows.forEach(r => io.observe(r));
+</script>
+</body>
+</html>
