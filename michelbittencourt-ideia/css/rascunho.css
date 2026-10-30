@@ -118,3 +118,9 @@ h1 span,h2 span{color:var(--car)}
   .note{max-width:none}
   .bar span{display:none}
 }
+
+/* referência de foto com pessoa: silhueta + legenda */
+.ph.person{position:relative;place-items:end stretch;padding:12px;background:var(--ph) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 220'%3E%3Cpath d='M100 26c22 0 38 17 38 40 0 16-7 30-18 37v10c26 6 52 20 62 44 4 10 6 24 6 63H12c0-39 2-53 6-63 10-24 36-38 62-44v-10c-11-7-18-21-18-37 0-23 16-40 38-40z' fill='%23C9B9A6' fill-opacity='.25' stroke='%239A6A46' stroke-opacity='.55' stroke-width='1.4' stroke-dasharray='5 4'/%3E%3C/svg%3E") center bottom/66% auto no-repeat}
+.ph.person>div{background:rgba(27,21,17,.78);color:#EADFD2;border-radius:10px;padding:9px 12px;text-align:left;font-size:13px;line-height:1.35}
+.ph.person>div strong{color:#D9B896;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:2px}
+.ph.person .ico{display:none}
