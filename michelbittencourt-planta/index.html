@@ -8,12 +8,12 @@
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=IBM+Plex+Sans:wght@400;500;600&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#F4F1EA; --card:#FBF9F5; --ink:#1E1C19; --ink2:#5F5A52; --line:#DDD7CC;
   --ph:#E7E2D8; --ph-ink:#8B857A; --dark:#2A241F; --postit:#FFE27A; --postit-ink:#3B3220;
-  --serif:"Bodoni Moda",Georgia,serif; --sans:"IBM Plex Sans",system-ui,sans-serif; --hand:"Kalam",cursive;
+  --serif:"Plus Jakarta Sans",system-ui,sans-serif; --sans:"Plus Jakarta Sans",system-ui,sans-serif; --hand:"Kalam",cursive;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#171614; --card:#201E1B; --ink:#EEEAE2; --ink2:#B3ADA3; --line:#36332E;
@@ -145,6 +145,14 @@ h2 em{font-style:italic}
 .end p{color:var(--ink2);max-width:52ch;margin:14px auto 0}
 .wa{display:inline-flex;align-items:center;gap:10px;margin-top:26px;background:#1F7A4D;color:#fff;border-radius:6px;padding:16px 26px;font-weight:600;font-size:17px;text-decoration:none}
 .sign{font-family:var(--hand);font-size:20px;margin-top:28px;color:var(--ink2)}
+
+/* títulos em sans: peso no lugar do itálico */
+.hello h1,h2,.hero h1,.stat strong,.dates b,.nav .logo,.foot .logo{font-weight:700;letter-spacing:-.02em}
+.hello h1 em,h2 em,.hero h1 em,.nav .logo em,.foot .logo em{font-style:normal;font-weight:700;color:var(--ink2)}
+.hello h1 em{color:#CFC8BC}
+.foot .logo em{color:#CFC8BC}
+.num{font-style:normal;font-weight:700;font-size:26px}
+.quote{font-style:normal;font-size:16.5px;font-weight:500}
 
 @media (max-width:860px){
   .hello .wrap,.split{grid-template-columns:minmax(0,1fr);gap:28px}
