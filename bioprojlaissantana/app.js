@@ -2,7 +2,7 @@
   var d=document,b=d.body,hd=d.querySelector('.hd');
   function sc(){hd&&hd.classList.toggle('on',window.scrollY>12)}sc();addEventListener('scroll',sc,{passive:true});
   var bt=d.querySelector('.bg-btn');
-  function setMenu(o){b.classList.toggle('menu-on',o);if(bt){bt.setAttribute('aria-expanded',o);bt.setAttribute('aria-label',o?'Fechar menu':'Abrir menu')}}
+  function setMenu(o){b.classList.toggle('menu-on',o);d.documentElement.classList.toggle('lock',o);if(bt){bt.setAttribute('aria-expanded',o);bt.setAttribute('aria-label',o?'Fechar menu':'Abrir menu')}}
   if(bt){bt.addEventListener('click',function(){setMenu(!b.classList.contains('menu-on'))});
     d.querySelectorAll('.mm a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
     addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)})}

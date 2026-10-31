@@ -46,7 +46,7 @@ section{position:relative;padding:clamp(3.4rem,8vw,6.5rem) 0}
 .menu-on .bg-btn span{background:transparent}.menu-on .bg-btn span::before{transform:translateY(6px) rotate(45deg)}.menu-on .bg-btn span::after{transform:translateY(-6px) rotate(-45deg)}
 .hd .b.hide-m{display:none}
 .mm{position:fixed;inset:0;z-index:55;display:grid;align-content:center;gap:.7rem;padding:6rem 1.4rem 2rem;background:color-mix(in srgb,var(--bg) 92%,transparent);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);opacity:0;visibility:hidden;transition:opacity .5s,visibility .5s}
-.menu-on .mm{opacity:1;visibility:visible}.menu-on{overflow:hidden}
+.menu-on .mm{opacity:1;visibility:visible}html.lock{overflow:hidden}.menu-on .hd{background:color-mix(in srgb,var(--bg) 92%,transparent);border-color:var(--line)}
 .mm a.l{display:flex;align-items:center;gap:.8rem;padding:1rem 1.1rem;border-radius:var(--rc);text-decoration:none;font:var(--fw) 1.25rem/1.1 var(--fd);background:var(--glass);border:1px solid var(--line)}
 .mm a.l .ico{color:var(--ac)}
 @media (min-width:980px){.nav{display:flex}.bg-btn,.mm{display:none}.hd .b.hide-m{display:inline-flex}}
