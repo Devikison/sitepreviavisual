@@ -235,4 +235,9 @@ h1,h2{letter-spacing:.005em}
 .cred li{display:flex;gap:.8rem;align-items:center;padding:1rem 1.1rem;border-radius:var(--rc);background:var(--glass);border:1px solid var(--line);font-weight:600}
 .cred .ico{width:1.6rem;height:1.6rem;color:var(--ac)}
 @media (min-width:820px){.cred{grid-template-columns:repeat(3,1fr)}}
+
+/* logo do escritório */
+.lg img.logo{width:auto;height:38px;border:0;border-radius:0!important;object-fit:contain;filter:drop-shadow(0 2px 6px rgba(0,0,0,.4))}
+.mark{width:clamp(96px,22vw,130px);height:auto;filter:drop-shadow(0 10px 22px rgba(0,0,0,.5))}.mark.sm{width:clamp(72px,16vw,90px)}
+.cta .box{position:relative;overflow:hidden;isolation:isolate}.cta .wm{position:absolute;z-index:-1;right:-6%;bottom:-18%;width:min(420px,70%);height:auto;opacity:.07;pointer-events:none}
 .tz{--ac:#E2B4A0;--ac2:#eac8b9;--onac:#0A1428;--glow:rgba(226,180,160,0.4);--rc:26px;--rb:999px;--ri:50%;--rh:999px 999px 28px 28px}.b-p{color:#0A1428}
