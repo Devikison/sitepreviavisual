@@ -1,4 +1,4 @@
-:root{--bg:#16110E;--bg2:#0f0b09;--bg3:#292421;--tx:#f3f3f3;--tx2:#b1afae;--ac:#C99B5E;--ac2:#d7b588;--onac:#030302;--glass:rgba(255,255,255,.07);--line:rgba(255,255,255,.17);--shadow:rgba(0,0,0,.6);--glow:rgba(201,155,94,0.4);--fd:"Playfair Display",Georgia,serif;--ft:"Lato",system-ui,sans-serif;--fw:600;--ls:0;--rc:0;--rb:0 16px 0 16px;--rh:0 64px 0 64px;--ri:0;--ease:cubic-bezier(.19,1,.22,1);--cpos:50% 50%;--har:5/4}/* Mini landing · 5 páginas · tokens por marca */
+:root{--bg:#0A1428;--bg2:#070d1a;--bg3:#1e2739;--tx:#f3f3f4;--tx2:#adb0b7;--ac:#C9A66B;--ac2:#d7bd91;--onac:#020306;--glass:rgba(255,255,255,.07);--line:rgba(255,255,255,.17);--shadow:rgba(0,0,0,.6);--glow:rgba(201,166,107,0.4);--fd:"Cormorant Garamond",Georgia,serif;--ft:"Montserrat",system-ui,sans-serif;--fw:600;--ls:0;--rc:22px;--rb:14px;--rh:30px;--ri:14px;--ease:cubic-bezier(.19,1,.22,1);--cpos:50% 50%;--har:4/5}/* Mini landing · 5 páginas · tokens por marca */
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;overflow-x:clip;scroll-behavior:smooth;scroll-padding-top:84px;background:var(--bg);scrollbar-color:var(--ac) var(--bg2)}
 ::selection{background:var(--ac);color:var(--onac)}
@@ -57,7 +57,7 @@ section{position:relative;padding:clamp(3.4rem,8vw,6.5rem) 0}
 .hero h1{margin-bottom:1.1rem}.hero p.lead{font-size:clamp(1.05rem,1rem + .3vw,1.25rem);color:var(--tx2);margin-bottom:1.6rem}
 .hero .txt{text-align:center;display:grid;justify-items:center}.hero .row{justify-content:center}
 .hero figure{margin:0;position:relative}
-.hero .ph{position:relative;aspect-ratio:var(--har,4/5);overflow:hidden;border-radius:var(--rh);box-shadow:0 40px 80px -30px var(--shadow);border:1px solid var(--line)}
+.hero .ph{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:var(--rh);box-shadow:0 40px 80px -30px var(--shadow);border:1px solid var(--line)}
 .hero .ph img{width:100%;height:100%;object-fit:cover;object-position:var(--cpos,50% 40%)}
 .hero .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,color-mix(in srgb,var(--bg) 60%,transparent))}
 .hero .sel{position:absolute;z-index:2;left:-.4rem;bottom:1.4rem;display:flex;align-items:center;gap:.7rem;padding:.7rem 1rem .7rem .7rem;border-radius:var(--rc);background:color-mix(in srgb,var(--bg) 78%,transparent);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);border:1px solid var(--line);box-shadow:0 20px 40px -20px rgba(0,0,0,.6)}
@@ -65,7 +65,7 @@ section{position:relative;padding:clamp(3.4rem,8vw,6.5rem) 0}
 .hero .sel b{display:block;font:var(--fw) .95rem/1.15 var(--fd)}.hero .sel span{font-size:.78rem;color:var(--tx2)}
 @media (min-width:960px){
  .h-split .w{grid-template-columns:1.05fr .95fr;gap:4rem}.h-split .txt{text-align:left;justify-items:start}.h-split .row{justify-content:flex-start}
- .h-split .hero .ph,.h-split .ph{aspect-ratio:var(--har,4/5)}
+ .h-split .hero .ph,.h-split .ph{aspect-ratio:4/5}
  .h-flip .w{grid-template-columns:.95fr 1.05fr}.h-flip figure{order:-1}
 }
 /* hero em tela cheia */
@@ -164,4 +164,75 @@ details[open] summary::after{transform:rotate(45deg)}
 .marquee__track>*{flex:0 0 auto}
 @media (prefers-reduced-motion:reduce){.marquee{-webkit-mask-image:none;mask-image:none}}
 html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis.lenis-stopped{overflow:hidden}
-.pg{padding:clamp(3rem,7vw,5.5rem) 0 clamp(1rem,3vw,2rem)}.pg .lead{font-size:clamp(1.05rem,1rem + .3vw,1.25rem);color:var(--tx2)}.hero .w .sel{max-width:calc(100% - 1rem)}
+.pg{padding:clamp(3rem,7vw,5.5rem) 0 clamp(1rem,3vw,2rem)}.pg .lead{font-size:clamp(1.05rem,1rem + .3vw,1.25rem);color:var(--tx2)}.hero .w .sel{max-width:calc(100% - 1rem)}/* Couto Advogados: escritório do casal. Base marinho + champagne; Dr. Leonardo em ouro e chanfro, Dra. Izana em rosé e arco */
+.tl{--rc:3px 22px 3px 22px;--rb:2px 14px 2px 14px;--ri:2px;--rh:0 70px 0 70px}
+body{background:radial-gradient(120% 60% at 80% -10%,color-mix(in srgb,var(--ac) 10%,var(--bg)),var(--bg) 55%)}
+h1,h2{letter-spacing:.005em}
+.it{font-style:italic;font-weight:500;color:var(--ac2)}
+
+/* hero do escritório: os dois retratos */
+.duo{padding:clamp(2.6rem,6vw,5.5rem) 0 clamp(3rem,7vw,6rem);overflow:hidden}
+.duo .w{display:grid;gap:2.6rem;align-items:center}
+.duo .txt{display:grid;justify-items:center;text-align:center;gap:1.2rem}
+.duo .txt p{color:var(--tx2);font-size:clamp(1.05rem,1rem + .3vw,1.22rem)}
+.duo .row{justify-content:center}.duo h1 span{display:block;font-size:.36em;letter-spacing:.22em;text-transform:uppercase;font-family:var(--ft);font-weight:600;color:var(--ac2);margin-top:.9rem}
+.pair{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:560px;margin-inline:auto;width:100%}
+.pt{margin:0;position:relative}
+.pt .fr{padding:5px;background:linear-gradient(140deg,var(--c1),var(--c2),var(--c1));box-shadow:0 40px 70px -30px rgba(0,0,0,.85)}
+.pt .fr>span{display:block;overflow:hidden;aspect-ratio:3/4;background:var(--bg2)}
+.pt img{width:100%;height:100%;object-fit:cover;object-position:center 22%}
+.pt.m{--c1:#9C7339;--c2:#F0D9A6}.pt.m .fr,.pt.m .fr>span{clip-path:polygon(16% 0,100% 0,100% 88%,84% 100%,0 100%,0 12%)}
+.pt.f{--c1:#B98472;--c2:#F6D8C9;margin-top:2.6rem}.pt.f .fr,.pt.f .fr>span{border-radius:999px 999px 18px 18px}
+.pt figcaption{margin-top:.9rem;text-align:center}
+.pt figcaption b{display:block;font:var(--fw) clamp(1.15rem,1rem + .6vw,1.45rem)/1.15 var(--fd)}
+.pt.f figcaption b{font-style:italic;font-weight:500}
+.pt figcaption span{display:block;margin-top:.25rem;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tx2)}
+@media (min-width:980px){.duo .w{grid-template-columns:1.05fr .95fr;gap:4rem}.duo .txt{justify-items:start;text-align:left}.duo .row{justify-content:flex-start}}
+
+/* proposta para os dois */
+.dom{margin-top:1.4rem;padding:1.3rem 1.3rem 1.1rem;border-radius:var(--rc);border:1px dashed var(--ac);background:rgba(255,255,255,.03);text-align:left}
+.dom b{display:block;font:var(--fw) 1.1rem/1.2 var(--fd);margin-bottom:.6rem}
+.dom li{display:flex;gap:.6rem;align-items:flex-start;padding:.35rem 0;font-size:.95rem;min-width:0}
+.dom code{font:600 clamp(.8rem,.7rem + .4vw,.95rem)/1.45 var(--ft);color:var(--ac2)}
+.dom li span{color:var(--tx2);font-size:.85rem}
+.dom small{display:block;margin-top:.5rem;color:var(--tx2);font-size:.8rem}
+.dom .ico{color:var(--ac);margin-top:.15rem}
+.plan .pr small{display:inline}
+
+/* os advogados */
+.advs{display:grid;gap:1.4rem}
+.adv{display:grid;gap:1.2rem;padding:1.4rem;border-radius:var(--rc);background:var(--glass);border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 34px 60px -34px rgba(0,0,0,.8)}
+.adv .ph{overflow:hidden;aspect-ratio:4/3}
+.adv .ph img{width:100%;height:100%;object-fit:cover;object-position:center 22%}
+.adv.m{--ac:#C9A66B;--ac2:#E6CB97;border-color:rgba(201,166,107,.35)}.adv.m .ph{clip-path:polygon(0 0,calc(100% - 34px) 0,100% 34px,100% 100%,34px 100%,0 calc(100% - 34px))}
+.adv.f{--ac:#E2B4A0;--ac2:#F2CFC0;border-color:rgba(226,180,160,.35);border-radius:28px}.adv.f .ph{border-radius:999px 999px 20px 20px;aspect-ratio:1}
+.adv.f h3{font-style:italic;font-weight:500}
+.adv h3{font-size:clamp(1.45rem,1.2rem + 1vw,1.9rem)}
+.adv .role{color:var(--ac2);font-size:.88rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.adv p{color:var(--tx2);font-size:.97rem}
+.tags{display:flex;flex-wrap:wrap;gap:.45rem}.tags li{padding:.3rem .75rem;border-radius:99px;font-size:.78rem;font-weight:600;border:1px solid var(--line);background:rgba(255,255,255,.04)}
+.adv .b-p{color:#0A1428;background:linear-gradient(120deg,var(--ac),var(--ac2))}
+@media (min-width:900px){.advs{grid-template-columns:1fr 1fr;align-items:start}}
+
+/* áreas em 3 colunas */
+.cards.c3{grid-template-columns:1fr}
+@media (min-width:640px){.cards.c3{grid-template-columns:1fr 1fr}}
+@media (min-width:1080px){.cards.c3{grid-template-columns:repeat(3,1fr)}}
+.cd .who{display:inline-flex;align-items:center;gap:.4rem;font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ac2)}
+.cd.f{--ac:#E2B4A0;--ac2:#F2CFC0;border-radius:24px}.cd.m{--ac:#C9A66B;--ac2:#E6CB97}
+.cd.f .ic{border-radius:50%}
+
+/* página de cada advogado */
+.ph-hero{padding:clamp(2.6rem,6vw,5rem) 0 clamp(2rem,5vw,3.5rem)}
+.ph-hero .w{display:grid;gap:2.2rem;align-items:center}
+.ph-hero .txt{display:grid;gap:1.1rem;justify-items:center;text-align:center}
+.ph-hero .txt p{color:var(--tx2)}
+.ph-hero .pt{max-width:360px;margin:0 auto;width:100%}
+.ph-hero .pt.f{margin-top:0}
+@media (min-width:900px){.ph-hero .w{grid-template-columns:.8fr 1.2fr;gap:4.5rem}.ph-hero .txt{justify-items:start;text-align:left}.ph-hero .row{justify-content:flex-start}}
+.tz .b-p,.tz .ann{color:#0A1428}
+.cred{display:grid;gap:.8rem}
+.cred li{display:flex;gap:.8rem;align-items:center;padding:1rem 1.1rem;border-radius:var(--rc);background:var(--glass);border:1px solid var(--line);font-weight:600}
+.cred .ico{width:1.6rem;height:1.6rem;color:var(--ac)}
+@media (min-width:820px){.cred{grid-template-columns:repeat(3,1fr)}}
+.tz{--ac:#E2B4A0;--ac2:#eac8b9;--onac:#0A1428;--glow:rgba(226,180,160,0.4);--rc:26px;--rb:999px;--ri:50%;--rh:999px 999px 28px 28px}.b-p{color:#0A1428}
