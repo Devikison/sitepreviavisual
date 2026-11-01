@@ -425,6 +425,165 @@
     requestAnimationFrame(passo);
   });
 
+  /* ---------- álbum em varal (inspirado no "Polaroid Line Carousel") ----------
+     Fotos presas num fio que enverga. Arrastar (ou as setas / ← →) desliza o varal;
+     as fotos balançam nos pregadores conforme a velocidade e voltam com uma mola.
+     A do meio é a ativa: clicar nela (ou Enter) abre a polaroid ampliada. */
+  var varal = document.querySelector("[data-varal]");
+  if (varal) (function () {
+    var cards = Array.prototype.slice.call(varal.querySelectorAll(".varal__card"));
+    var n = cards.length;
+    var fio = varal.querySelector("[data-varal-fio]");
+    var leg = varal.querySelector("[data-varal-legenda]");
+    var conta = varal.querySelector("[data-varal-conta]");
+    var sr = varal.querySelector("[data-varal-sr]");
+    var dadosEl = document.getElementById("album-dados");
+    var dados = dadosEl ? JSON.parse(dadosEl.textContent) : [];
+    var AUTOPLAY = 4500;
+    var tam = { w: 1200, h: 700, cw: 300, sag: 46, y0: 80 };
+    var esp = 0;                                   /* distância entre as fotos */
+    var off = 0, vel = 0, alvo = 0;                /* deslocamento do varal (mola) */
+    var ang = [], angV = [];                       /* balanço de cada foto */
+    var ativa = -1, arr = null, ultimoToque = 0, visivel = false, raf = 0, tAnt = 0;
+
+    function pad(x) { return x < 10 ? "0" + x : String(x); }
+    function medir() {
+      var r = varal.getBoundingClientRect();
+      var celular = r.width < 640;
+      var barra = celular ? 170 : 120;
+      var y0 = Math.max(36, r.height * (celular ? .1 : .12));
+      var sag = celular ? 26 : 46;
+      var livre = r.height - barra - (y0 + sag + 16);
+      var cw = Math.round(clamp(Math.min(320, r.width * (celular ? .66 : .3), (livre - 70) / .75), 160, 320));
+      tam = { w: r.width, h: r.height, cw: cw, sag: sag, y0: y0 };
+      esp = cw * 1.08;
+      varal.style.setProperty("--cw", cw + "px");
+      off = alvo = Math.max(ativa, 0) * esp;
+    }
+    function ir(i) { alvo = clamp(i, 0, n - 1) * esp; acordar(); }
+    /* índice de destino do varal (não o que está passando pelo meio agora) */
+    function destino() { return clamp(Math.round(alvo / esp), 0, n - 1); }
+    function marcar(i) {
+      if (i === ativa) return;
+      ativa = i;
+      cards.forEach(function (c, k) { c.classList.toggle("is-ativa", k === i); });
+      var f = dados[i] || {};
+      leg.innerHTML = "<strong></strong><span></span>";
+      leg.firstChild.textContent = f.lugar || ""; leg.lastChild.textContent = f.texto || "";
+      conta.innerHTML = "<b>" + pad(i + 1) + "</b> / " + pad(n);
+      sr.textContent = "Foto " + (i + 1) + " de " + n + (f.lugar ? ": " + f.lugar : "");
+    }
+
+    function quadro(t) {
+      raf = 0;
+      if (!visivel) return;
+      var dt = Math.min(0.033, (t - (tAnt || t)) / 1000); tAnt = t;
+      var linhaV;
+      if (arr && arr.moveu) { linhaV = arr.v * 1000; }
+      else {
+        /* mola criticamente amortecida até o alvo */
+        var antes = off, k = 70, c = 2 * Math.sqrt(k);
+        vel += (k * (alvo - off) - c * vel) * dt; off += vel * dt;
+        linhaV = -(off - antes) / Math.max(dt, 1e-3);
+      }
+      var g = reduz ? 0 : 1, w = tam.w, cw = tam.cw;
+      var perto = clamp(Math.round(off / esp), 0, n - 1);
+      for (var i = 0; i < n; i++) {
+        var el = cards[i];
+        var x = w / 2 + i * esp - off;
+        if (x < -cw * 1.5 || x > w + cw * 1.5) { el.style.visibility = "hidden"; continue; }
+        el.style.visibility = "";
+        /* a foto fica para trás no movimento, a gravidade traz de volta e o ar amortece */
+        var a = ang[i] || 0, av = angV[i] || 0;
+        av += (-38 * a - 4.2 * av + linhaV * 0.0034 * g) * dt;
+        a = clamp(a + av * dt, -0.6, 0.6);
+        if (g) a += Math.sin(t / 1300 + i * 1.7) * 0.0009;   /* brisa leve, mesmo parado */
+        ang[i] = a; angV[i] = av;
+        var u = clamp(x / w, 0, 1);
+        var y = tam.y0 + 4 * tam.sag * u * (1 - u) - 6;
+        el.style.transform = "translate(" + (x - cw / 2).toFixed(1) + "px," + y.toFixed(1) + "px) rotate(" + a.toFixed(4) + "rad)";
+        el.style.zIndex = String(i === perto ? n + 1 : n - Math.abs(i - perto));
+      }
+      fio.setAttribute("d", "M0 " + tam.y0 + " Q" + w / 2 + " " + (tam.y0 + 2 * tam.sag) + " " + w + " " + tam.y0);
+      marcar(perto);
+      raf = requestAnimationFrame(quadro);
+    }
+    function acordar() { if (visivel && !raf) { tAnt = 0; raf = requestAnimationFrame(quadro); } }
+
+    varal.addEventListener("pointerdown", function (e) {
+      if (e.button !== 0 || e.target.closest(".varal__barra")) return;
+      ultimoToque = performance.now();
+      arr = { x: e.clientX, off: off, lx: e.clientX, lt: e.timeStamp, v: 0, moveu: false };
+    });
+    varal.addEventListener("pointermove", function (e) {
+      if (!arr) return;
+      var dx = e.clientX - arr.x;
+      if (!arr.moveu && Math.abs(dx) > 5) {
+        arr.moveu = true; varal.classList.add("is-arrastando");
+        varal.setPointerCapture(e.pointerId);
+      }
+      if (!arr.moveu) return;
+      var dt = Math.max(1, e.timeStamp - arr.lt);
+      arr.v = 0.7 * ((e.clientX - arr.lx) / dt) + 0.3 * arr.v;
+      arr.lx = e.clientX; arr.lt = e.timeStamp;
+      var max = (n - 1) * esp, o = arr.off - dx;
+      if (o < 0) o *= 0.35;                          /* resistência nas pontas */
+      if (o > max) o = max + (o - max) * 0.35;
+      off = o; acordar();
+    });
+    function soltar(e, cancelou) {
+      var a = arr; arr = null; ultimoToque = performance.now();
+      if (!a) return;
+      if (a.moveu) {
+        varal.classList.remove("is-arrastando");
+        vel = -a.v * 1000;
+        ir(Math.round((off - a.v * 180) / esp));
+        return;
+      }
+      if (cancelou) return;
+      var card = e.target.closest("[data-i]");
+      if (!card) return;
+      var i = +card.getAttribute("data-i");
+      if (i === ativa) card.dispatchEvent(new CustomEvent("abrir-foto", { bubbles: true }));
+      else ir(i);
+    }
+    varal.addEventListener("pointerup", function (e) { soltar(e, false); });
+    varal.addEventListener("pointercancel", function (e) { soltar(e, true); });
+    varal.addEventListener("dragstart", function (e) { e.preventDefault(); });
+
+    function passo(d) { ultimoToque = performance.now(); ir(destino() + d); }
+    varal.querySelector("[data-varal-ant]").addEventListener("click", function () { passo(-1); });
+    varal.querySelector("[data-varal-prox]").addEventListener("click", function () { passo(1); });
+    varal.addEventListener("keydown", function (e) {
+      if (e.target !== varal) return;
+      if (e.key === "ArrowRight") passo(1);
+      else if (e.key === "ArrowLeft") passo(-1);
+      else if (e.key === "Enter" || e.key === " ") cards[destino()].dispatchEvent(new CustomEvent("abrir-foto", { bubbles: true }));
+      else return;
+      e.preventDefault();
+    });
+    /* ao fechar o zoom, o varal vai até a última foto vista lá */
+    document.addEventListener("zoom-fechou", function (e) {
+      off = alvo = clamp(e.detail, 0, n - 1) * esp; vel = 0; acordar();
+    });
+
+    /* troca sozinho; espera enquanto alguém mexe e volta ao começo depois da última */
+    if (!reduz) setInterval(function () {
+      if (!visivel || document.hidden || arr || document.documentElement.classList.contains("zoom-aberto")) return;
+      if (performance.now() - ultimoToque < AUTOPLAY * 1.5) return;
+      var d = destino();
+      ir(d >= n - 1 ? 0 : d + 1);
+    }, AUTOPLAY);
+
+    new IntersectionObserver(function (en) { visivel = en[0].isIntersecting; acordar(); }).observe(varal);
+    if ("ResizeObserver" in window) new ResizeObserver(function () { medir(); acordar(); }).observe(varal);
+    medir(); marcar(0);
+    /* posição inicial já calculada, antes do primeiro quadro */
+    visivel = true; quadro(performance.now()); visivel = false;
+    if (raf) { cancelAnimationFrame(raf); raf = 0; }
+    varal.classList.add("is-pronto");
+  })();
+
   /* ---------- álbum: polaroid ampliada com anterior / próxima ---------- */
   var zoom = document.querySelector("[data-zoom]");
   var albumDados = document.getElementById("album-dados");
@@ -461,11 +620,12 @@
     zoom.addEventListener("close", function () {
       document.documentElement.classList.remove("zoom-aberto");
       if (lenis) lenis.start();
-      /* o foco volta para a polaroid original (o clone do carrossel não recebe foco) */
+      /* o foco volta para o varal, que vai até a última foto vista no zoom */
       if (voltarPara) {
-        var alvo = document.querySelector('[data-foto="' + voltarPara.getAttribute("data-foto") + '"]:not([data-clone])');
-        if (alvo) alvo.focus({ preventScroll: true });
+        var alvo = voltarPara.closest("[data-varal]") || voltarPara;
+        if (alvo.focus) alvo.focus({ preventScroll: true });
       }
+      document.dispatchEvent(new CustomEvent("zoom-fechou", { detail: atual }));
     });
 
     document.addEventListener("abrir-foto", function (e) { abrir(+e.target.getAttribute("data-foto"), e.target); });

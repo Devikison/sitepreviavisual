@@ -410,31 +410,62 @@ p { margin: 0; text-wrap: pretty; }
   .saida .btn { width: 100%; }
 }
 
-/* ---------- seção 6: álbum de polaroids ----------
-   Duas fileiras em sentidos opostos (mesma mecânica do carrossel contínuo).
-   Clicar numa foto abre a polaroid ampliada (.zoom). */
+/* ---------- seção 6: álbum em varal ----------
+   Inspirado no "Polaroid Line Carousel": polaroids presas por pregadores num fio que enverga.
+   O JS calcula a posição e o balanço de cada foto a cada quadro (bloco "varal" do main.js). */
 .album .cabeca { margin-bottom: 0; }
-.carrossel.album__fila { margin-top: clamp(4px, 1.5vw, 16px); padding-block: 40px 64px; }   /* respiro para a sombra (o carrossel corta o que passa da borda) */
-.carrossel.album__fila + .album__fila { margin-top: -40px; }
-.album__fila .carrossel__trilho { gap: clamp(22px, 2.6vw, 36px); padding-inline: 18px; }
-.polaroid { --giro: -2.2deg; position: relative; flex: 0 0 clamp(220px, 21vw, 290px); display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 12px 12px 16px; border: 0; border-radius: 4px; background: #FBF8F3; color: var(--tinta); font: inherit; text-align: center; cursor: pointer; rotate: var(--giro);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, .7) inset, 0 18px 34px -14px rgba(0, 0, 0, .65), 0 4px 10px rgba(0, 0, 0, .25);
-  transition: rotate .7s var(--ease), translate .7s var(--ease), box-shadow .7s var(--ease); }
-.polaroid:nth-child(4n+2) { --giro: 1.8deg; }
-.polaroid:nth-child(4n+3) { --giro: -1deg; }
-.polaroid:nth-child(4n) { --giro: 2.6deg; }
-/* fita adesiva no topo */
-.polaroid::before { content: ""; position: absolute; top: -11px; left: 50%; width: 74px; height: 22px; translate: -50% 0; rotate: calc(var(--giro) * -1.6); background: rgba(242, 196, 141, .55); box-shadow: 0 1px 2px rgba(0, 0, 0, .12); -webkit-mask: linear-gradient(90deg, transparent 0 3px, #000 3px calc(100% - 3px), transparent calc(100% - 3px)); }
-.polaroid img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 2px; background: var(--navy-claro); filter: saturate(1.05) contrast(1.02); }
-.polaroid__legenda { font-family: var(--titulo); font-size: 17px; font-weight: 600; line-height: 1.25; color: var(--tinta); }
+.varal { --varal-h: clamp(560px, 76vh, 680px); --cw: 300px; --fio: rgba(234, 228, 220, .55);
+  position: relative; height: var(--varal-h); margin-top: clamp(8px, 2vw, 24px); overflow: hidden; cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; outline: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%); }
+.varal.is-arrastando { cursor: grabbing; }
+.varal:focus-visible { box-shadow: inset 0 0 0 2px rgba(234, 228, 220, .5); border-radius: 18px; }
+.varal__fio { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.varal__fio path { fill: none; stroke: var(--fio); stroke-width: 1.6; stroke-linecap: round; filter: drop-shadow(0 2px 2px rgba(0, 0, 0, .35)); }
+.varal__card { position: absolute; left: 0; top: 0; width: var(--cw); transform-origin: 50% 0; will-change: transform; visibility: hidden; }
+.varal.is-pronto .varal__card { visibility: visible; }
+.varal__print { margin-top: 12px; padding: clamp(8px, 1.1vw, 12px) clamp(8px, 1.1vw, 12px) 0; border-radius: 3px; background: #FBF8F3;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .7) inset, 0 1px 2px rgba(0, 0, 0, .18), 0 26px 40px -18px rgba(0, 0, 0, .7);
+  transition: transform .6s var(--ease), filter .6s var(--ease); }
+.varal__card:not(.is-ativa) .varal__print { transform: scale(.88); filter: saturate(.75) brightness(.86); }
+.varal__card.is-ativa { cursor: zoom-in; }
+.varal.is-arrastando .varal__card.is-ativa { cursor: grabbing; }
+.varal__foto { position: relative; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 2px; background: var(--navy-claro); }
+.varal__foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; -webkit-user-drag: none; }
+.varal__nota { display: flex; align-items: center; justify-content: center; height: clamp(44px, 4.4vw, 54px); margin: 0; padding: 0 6px; font-family: var(--titulo); font-size: clamp(14px, 1.25vw, 17px); font-weight: 600; line-height: 1.1; color: var(--tinta); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* pregador de madeira */
+.varal__pregador { position: absolute; left: 50%; top: 0; z-index: 1; width: 11px; height: 28px; margin-left: -5.5px; border-radius: 2px;
+  background: linear-gradient(90deg, #B98F5C, #E6CDA6 45%, #A97E4C); box-shadow: 0 2px 4px rgba(0, 0, 0, .4); }
+.varal__pregador::after { content: ""; position: absolute; left: 4.5px; top: 9px; width: 2px; height: 8px; border-radius: 1px; background: rgba(70, 50, 25, .5); }
+
+/* legenda, contador e setas embaixo do varal */
+.varal__barra { position: absolute; left: clamp(16px, 5vw, 64px); right: clamp(16px, 5vw, 64px); bottom: clamp(18px, 3.5vh, 36px); display: flex; align-items: center; gap: clamp(14px, 2vw, 28px); cursor: default; }
+.varal__legenda { flex: 1; min-width: 0; display: grid; gap: 4px; }
+.varal__legenda > * { animation: varal-entra .55s var(--ease) both; }
+.varal__legenda strong { font-family: var(--titulo); font-size: clamp(22px, 2.4vw, 30px); font-weight: 600; line-height: 1.1; color: var(--branco); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.varal__legenda span { font-size: clamp(14px, 1.2vw, 16px); line-height: 1.45; color: var(--creme); max-width: 40em; }
+.varal__conta { font-size: 13px; font-weight: 600; letter-spacing: .16em; color: var(--creme); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.varal__conta b { color: #F2C48D; font-weight: 600; }
+.varal__setas { display: flex; gap: 12px; }
+.btn--vt.varal__seta { width: 56px; min-height: 56px; padding: 0; }
+.varal__seta .btn__ico svg { width: 20px; height: 20px; stroke-width: 2.2; }
 @media (hover: hover) and (pointer: fine) {
-  .carrossel:not(.is-arrastando) .polaroid:hover { rotate: 0deg; translate: 0 -8px; box-shadow: 0 1px 0 rgba(255, 255, 255, .7) inset, 0 28px 44px -16px rgba(0, 0, 0, .7), 0 6px 14px rgba(0, 0, 0, .25); }
+  .btn--vt.varal__seta[data-varal-ant]:hover .btn__estado--ir .btn__ico { transform: translateX(-3px); }
+  .btn--vt.varal__seta[data-varal-prox]:hover .btn__estado--ir .btn__ico { transform: translateX(3px); }
 }
-.polaroid:focus-visible { outline: 2px solid var(--creme); outline-offset: 6px; }
-@media (max-width: 767px) {
-  .polaroid { flex-basis: 62vw; }
-  .polaroid__legenda { font-size: 15px; }
+@keyframes varal-entra { from { opacity: 0; transform: translateY(14px); } }
+
+@media (max-width: 640px) {
+  .varal { --varal-h: 560px; -webkit-mask-image: none; mask-image: none; }
+  .varal__barra { display: grid; grid-template-columns: 1fr auto; row-gap: 14px; }
+  .varal__legenda { grid-column: 1 / -1; text-align: center; }
+  .varal__legenda strong { white-space: normal; }
+  .varal__conta { justify-self: start; align-self: center; }
 }
+/* sem JS: as fotos viram uma faixa que rola para o lado */
+html:not(.js) .varal { height: auto; display: flex; gap: 20px; padding: 24px; overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+html:not(.js) .varal__card { position: relative; flex: none; visibility: visible; }
+html:not(.js) .varal__fio, html:not(.js) .varal__barra { display: none; }
+@media (prefers-reduced-motion: reduce) { .varal__legenda > * { animation: none; } .varal__print { transition: none; } }
 
 /* polaroid ampliada */
 .zoom { width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; padding: clamp(16px, 4vw, 40px) clamp(16px, 4vw, 40px) calc(var(--zoom-barra) + clamp(16px, 3vh, 28px)); border: 0; background: transparent; color: var(--tinta); overflow: auto; --zoom-barra: calc(48px + clamp(20px, 4vh, 36px) * 2); overscroll-behavior: contain; }
