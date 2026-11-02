@@ -22,8 +22,7 @@
 .m{--k:var(--gold);--k2:var(--gold2);--ki:var(--goldi)}
 
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;overflow-x:clip;background:var(--navy2);scrollbar-color:var(--gold) var(--navy2);scroll-padding-top:104px}
-html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}
+html{-webkit-text-size-adjust:100%;overflow-x:clip;background:var(--navy2);scrollbar-color:var(--gold) var(--navy2);scroll-padding-top:104px;scroll-behavior:smooth}
 html.lock{overflow:hidden}
 ::selection{background:var(--gold);color:var(--navy)}
 ::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--navy2)}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:9px;border:2px solid var(--navy2)}

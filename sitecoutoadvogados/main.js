@@ -3,7 +3,6 @@
   'use strict';
   var d = document, b = d.body, root = d.documentElement;
   var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var fino = matchMedia('(hover:hover) and (pointer:fine)').matches;
 
   /* topo em vidro depois do início da página */
   var hd = d.querySelector('.hd'), mark = d.createElement('div');
@@ -18,7 +17,6 @@
   function menu(on) {
     b.classList.toggle('menu', on); root.classList.toggle('lock', on);
     if (bt) { bt.setAttribute('aria-expanded', on); bt.setAttribute('aria-label', on ? 'Fechar menu' : 'Abrir menu'); }
-    if (lenis) { if (on) lenis.stop(); else lenis.start(); }
   }
   if (bt) {
     bt.addEventListener('click', function () { menu(!b.classList.contains('menu')); });
@@ -81,18 +79,6 @@
       });
     });
   });
-
-  /* rolagem suave só com mouse; no toque fica a rolagem nativa */
-  var lenis = null;
-  if (fino && !reduced && window.Lenis) {
-    lenis = new Lenis({ duration: 1.25, smoothWheel: true });
-    (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
-    d.addEventListener('click', function (e) {
-      var a = e.target.closest('a[href^="#"]'); if (!a) return;
-      var t = d.querySelector(a.getAttribute('href')); if (!t) return;
-      e.preventDefault(); lenis.scrollTo(t, { offset: -96 });
-    });
-  }
 
   /* UTM: guarda a origem e leva junto para o WhatsApp */
   var CH = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid'], utm = {};
