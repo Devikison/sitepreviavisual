@@ -1,7 +1,7 @@
 :root{--ink:#1E1114;--ink2:#2e2224;--ac:#96223A;--ac-d:#c07a86;--on-ac:#ffffff;--on-ac-d:#160d0f;--act:#96223A;--on-act:#ffffff;--paper:#F6F0EF;--surf:#fcf9f9;--surf2:#ece6e5;--tx:#1b0f12;--tx2:#564b4d;--line:rgba(30,17,20,0.15);--line-d:rgba(255,255,255,.16);--on-ink:#faf6f5;--on-ink2:#c6bfbf;--fd:"DM Serif Display",Georgia,serif;--ft:"Work Sans",system-ui,sans-serif;--fw:400;--ls:0;--fs:1.02;--ease:cubic-bezier(.19,1,.22,1);--pos:50% 22%;--rc:0 26px 0 26px;--rb:0 14px 0 14px;--ri:0 10px 0 10px;--rp:0}/* Sites de advogados: seções claras com blocos escuros. Cada escritório muda tokens, cantos e composição. */
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scrollbar-color:var(--ac) var(--paper)}
-html.lock,html.lock body{overflow:hidden}
+html.lock{overflow:hidden}
 html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}
 ::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--paper)}::-webkit-scrollbar-thumb{background:var(--ac);border:2px solid var(--paper)}
 ::selection{background:var(--ac);color:var(--on-ac)}

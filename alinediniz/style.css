@@ -1,7 +1,7 @@
 :root{--ink:#221524;--ink2:#312533;--ac:#7B3F78;--ac-d:#a980a6;--on-ac:#ffffff;--on-ac-d:#1a101b;--act:#7B3F78;--on-act:#ffffff;--paper:#F4EFF4;--surf:#fbf9fb;--surf2:#ebe5eb;--tx:#1f1320;--tx2:#594e5a;--line:rgba(34,21,36,0.15);--line-d:rgba(255,255,255,.16);--on-ink:#f8f5f8;--on-ink2:#c6bfc6;--fd:"Bodoni Moda",Georgia,serif;--ft:"Manrope",system-ui,sans-serif;--fw:500;--ls:-.005em;--fs:1;--ease:cubic-bezier(.19,1,.22,1);--pos:50% 22%;--rc:0 26px 0 26px;--rb:0 14px 0 14px;--ri:0 10px 0 10px;--rp:0}/* Sites de advogados: seções claras com blocos escuros. Cada escritório muda tokens, cantos e composição. */
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scrollbar-color:var(--ac) var(--paper)}
-html.lock,html.lock body{overflow:hidden}
+html.lock{overflow:hidden}
 html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}
 ::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--paper)}::-webkit-scrollbar-thumb{background:var(--ac);border:2px solid var(--paper)}
 ::selection{background:var(--ac);color:var(--on-ac)}
