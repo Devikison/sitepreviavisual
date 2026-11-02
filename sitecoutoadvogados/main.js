@@ -80,6 +80,33 @@
     });
   });
 
+  /* rolagem suave da roda do mouse, sem biblioteca. Solta o controle na hora se a pessoa
+     pegar a barra lateral, clicar, usar o teclado ou o navegador mover a página por outro motivo. */
+  if (matchMedia('(hover:hover) and (pointer:fine)').matches && !reduced) {
+    var alvoY = 0, posY = 0, escrito = 0, anima = false, antes = 0;
+    var parar = function () { anima = false; };
+    var maxY = function () { return root.scrollHeight - innerHeight; };
+    var passo = function (t) {
+      if (!anima) return;
+      if (Math.abs(scrollY - escrito) > 3) { parar(); return; } /* outra coisa moveu a página */
+      var dt = Math.min(t - antes, 50); antes = t;
+      posY += (alvoY - posY) * (1 - Math.exp(-dt * .0062));
+      if (Math.abs(alvoY - posY) < .6) posY = alvoY;
+      scrollTo({ top: posY, behavior: 'instant' }); escrito = scrollY;
+      if (posY === alvoY) { parar(); return; }
+      requestAnimationFrame(passo);
+    };
+    addEventListener('wheel', function (e) {
+      if (e.ctrlKey || e.metaKey || e.shiftKey || root.classList.contains('lock')) return;
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      var dy = e.deltaY * (e.deltaMode === 1 ? 32 : e.deltaMode === 2 ? innerHeight : 1);
+      e.preventDefault();
+      if (!anima) { posY = alvoY = escrito = scrollY; antes = performance.now(); anima = true; requestAnimationFrame(passo); }
+      alvoY = Math.max(0, Math.min(maxY(), alvoY + dy));
+    }, { passive: false });
+    ['mousedown', 'keydown', 'touchstart'].forEach(function (ev) { addEventListener(ev, parar, { passive: true }); });
+  }
+
   /* UTM: guarda a origem e leva junto para o WhatsApp */
   var CH = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid'], utm = {};
   try {
