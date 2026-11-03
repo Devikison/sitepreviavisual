@@ -1,0 +1,14 @@
+/* Barra superior: some ao rolar para baixo e volta ao rolar para cima.
+   A mesma curva e o mesmo tempo nos dois sentidos, para o efeito ser um espelho do outro. */
+.site-header{
+  transition:background-color .3s,color .3s,transform .45s cubic-bezier(.22,1,.36,1),opacity .45s cubic-bezier(.22,1,.36,1);
+}
+.site-header.is-hidden{
+  transform:translateY(calc(-100% - 36px));
+  opacity:0;
+  pointer-events:none;
+}
+@media (prefers-reduced-motion:reduce){
+  .site-header{transition:none}
+  .site-header.is-hidden{transform:none;opacity:1;pointer-events:auto}
+}
