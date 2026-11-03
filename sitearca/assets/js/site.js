@@ -432,6 +432,72 @@
     toReveal.forEach(function (el) { el.classList.add('is-in'); });
   }
 
+  // ---------- empilhamento de cards no celular ----------
+  (function () {
+    var telaPequena = window.matchMedia('(max-width:760px)');
+    var semAnim = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (semAnim) return;
+    var pilhas = [];
+    var pedido = false;
+
+    function atualizar() {
+      pedido = false;
+      pilhas.forEach(function (itens) {
+        itens.forEach(function (card, i) {
+          var prox = itens[i + 1];
+          if (!prox) return;
+          var a = card.getBoundingClientRect();
+          var altura = card.offsetHeight;
+          var topoProx = prox.getBoundingClientRect().top;
+          var base = a.top;
+          var p = 1 - Math.max(0, Math.min(1, (topoProx - base) / altura));
+          // cards mais antigos recuam um pouco mais conforme a pilha cresce
+          var ultimo = itens[itens.length - 1].getBoundingClientRect().top;
+          var extra = Math.max(0, Math.min(1, 1 - (ultimo - base) / (altura * (itens.length - 1 - i))));
+          var escala = 1 - p * 0.05 - extra * 0.04;
+          card.style.transform = p > 0 ? 'scale(' + escala.toFixed(4) + ')' : '';
+        });
+      });
+    }
+    function pedir() {
+      if (!pedido) { pedido = true; requestAnimationFrame(atualizar); }
+    }
+    function medir() {
+      pilhas.forEach(function (itens) {
+        itens.forEach(function (card, i) {
+          // card mais alto que a tela rola até o fim antes de prender
+          var livre = window.innerHeight - card.offsetHeight - 16;
+          card.style.setProperty('--stack-top', Math.min(84 + i * 8, livre) + 'px');
+        });
+      });
+      atualizar();
+    }
+    function montar() {
+      pilhas = [];
+      document.querySelectorAll('.help, .valores, .destinos, .steps, .stack-list').forEach(function (grade) {
+        var itens = Array.prototype.slice.call(grade.children);
+        if (telaPequena.matches && itens.length > 2) {
+          grade.classList.add('stack-on');
+          itens.forEach(function (c) {
+            c.classList.remove('reveal');
+            c.classList.add('is-in');
+            c.style.removeProperty('--d');
+          });
+          pilhas.push(itens);
+        } else {
+          grade.classList.remove('stack-on');
+          itens.forEach(function (c) { c.style.transform = ''; c.style.removeProperty('--stack-top'); });
+        }
+      });
+      medir();
+    }
+    montar();
+    window.addEventListener('scroll', pedir, { passive: true });
+    window.addEventListener('resize', medir);
+    window.addEventListener('load', medir);
+    if (telaPequena.addEventListener) telaPequena.addEventListener('change', montar);
+  })();
+
   // ---------- link atual no menu ----------
   var page = location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-full a').forEach(function (a) {
