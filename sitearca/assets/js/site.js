@@ -235,28 +235,112 @@
       if (done) done.classList.add('is-visible');
     });
   });
-  // ---------- carrossel contínuo de fotos ----------
+  // ---------- carrossel de fotos: passa sozinho, pode ser arrastado e retoma com suavidade ----------
   var marquee = document.getElementById('marquee');
   if (marquee) {
-    var reducedMarquee = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!reducedMarquee) {
-      marquee.querySelectorAll('.marquee-track').forEach(function (track) {
-        Array.prototype.slice.call(track.children).forEach(function (li) {
-          var copy = li.cloneNode(true);
-          copy.setAttribute('aria-hidden', 'true');
-          copy.querySelector('img').alt = '';
-          track.appendChild(copy);
-        });
+    var semMovimento = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var parado = semMovimento;
+    var RETOMADA = 2.6;  // quanto maior, mais rápido volta ao ritmo normal depois de soltar
+    var trilhos = Array.prototype.map.call(marquee.querySelectorAll('.marquee-track'), function (track, i) {
+      var originais = Array.prototype.slice.call(track.children);
+      originais.forEach(function (li) {
+        var copia = li.cloneNode(true);
+        copia.setAttribute('aria-hidden', 'true');
+        copia.querySelector('img').alt = '';
+        track.appendChild(copia);
       });
-      marquee.classList.add('is-ready');
+      return {
+        el: track,
+        primeiraCopia: track.children[originais.length],
+        x: 0,
+        ritmo: i % 2 ? 30 : -38,  // px por segundo; cada fileira vai para um lado
+        v: i % 2 ? 30 : -38,
+        volta: 0,
+        arrastando: false
+      };
+    });
+
+    function medir() {
+      trilhos.forEach(function (t) { t.volta = t.primeiraCopia.offsetLeft - t.el.children[0].offsetLeft; });
     }
+    function posicionar(t) {
+      if (t.volta > 0) {
+        while (t.x <= -t.volta) t.x += t.volta;
+        while (t.x > 0) t.x -= t.volta;
+      }
+      t.el.style.transform = 'translate3d(' + t.x + 'px,0,0)';
+    }
+    medir();
+    window.addEventListener('resize', medir);
+    window.addEventListener('load', medir);
+
+    trilhos.forEach(function (t) {
+      var ultimoX = 0, ultimoT = 0;
+      t.el.addEventListener('pointerdown', function (e) {
+        if (e.pointerType === 'mouse' && e.button !== 0) return;
+        t.arrastando = true;
+        t.v = 0;
+        ultimoX = e.clientX;
+        ultimoT = e.timeStamp;
+        t.el.classList.add('is-dragging');
+        t.el.setPointerCapture(e.pointerId);
+      });
+      t.el.addEventListener('pointermove', function (e) {
+        if (!t.arrastando) return;
+        var dx = e.clientX - ultimoX;
+        var dt = Math.max(e.timeStamp - ultimoT, 1) / 1000;
+        t.x += dx;
+        t.v = 0.75 * (dx / dt) + 0.25 * t.v;
+        ultimoX = e.clientX;
+        ultimoT = e.timeStamp;
+        posicionar(t);
+      });
+      function soltar(e) {
+        if (!t.arrastando) return;
+        t.arrastando = false;
+        t.el.classList.remove('is-dragging');
+        // se a pessoa segurou parada antes de soltar, não há embalo
+        if (e.timeStamp - ultimoT > 90) t.v = 0;
+        t.v = Math.max(-2600, Math.min(2600, t.v));
+      }
+      t.el.addEventListener('pointerup', soltar);
+      t.el.addEventListener('pointercancel', soltar);
+      t.el.addEventListener('dragstart', function (e) { e.preventDefault(); });
+    });
+
+    // teclado: setas movem as fotos
+    marquee.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault();
+      trilhos.forEach(function (t) { t.v = e.key === 'ArrowLeft' ? 900 : -900; });
+    });
+
+    var visivel = true, antes = 0;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { visivel = es[0].isIntersecting; antes = 0; }).observe(marquee);
+    }
+    (function passo(agora) {
+      requestAnimationFrame(passo);
+      if (!visivel) return;
+      var dt = antes ? Math.min((agora - antes) / 1000, 0.05) : 0;
+      antes = agora;
+      trilhos.forEach(function (t) {
+        if (t.arrastando) return;
+        var alvo = parado ? 0 : t.ritmo;
+        t.v += (alvo - t.v) * (1 - Math.exp(-dt * RETOMADA));
+        t.x += t.v * dt;
+        posicionar(t);
+      });
+    })(performance.now());
+
     var marqueeToggle = document.getElementById('marqueeToggle');
     if (marqueeToggle) {
-      if (reducedMarquee) marqueeToggle.hidden = true;
+      marqueeToggle.setAttribute('aria-pressed', String(parado));
+      marqueeToggle.textContent = parado ? 'Continuar as fotos' : 'Pausar as fotos';
       marqueeToggle.addEventListener('click', function () {
-        var paused = marquee.classList.toggle('is-paused');
-        marqueeToggle.setAttribute('aria-pressed', String(paused));
-        marqueeToggle.textContent = paused ? 'Continuar as fotos' : 'Pausar as fotos';
+        parado = !parado;
+        marqueeToggle.setAttribute('aria-pressed', String(parado));
+        marqueeToggle.textContent = parado ? 'Continuar as fotos' : 'Pausar as fotos';
       });
     }
   }
