@@ -10,12 +10,6 @@
   var reduz = matchMedia("(prefers-reduced-motion: reduce)").matches;
   var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
 
-  /* ---------- rolagem suave (só mouse, sem reduced motion) ---------- */
-  var lenis = null;
-  if (window.Lenis && !reduz && matchMedia("(hover: hover) and (pointer: fine)").matches) {
-    lenis = new Lenis({ duration: 1.15, easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); } });
-  }
-
   /* ---------- menu ---------- */
   var topo = document.querySelector("[data-topo]");
   var abrir = document.querySelector("[data-menu]");
@@ -252,7 +246,6 @@
 
   /* ---------- laço único de quadro ---------- */
   function laco(t) {
-    if (lenis) lenis.raf(t);
     if (!reduz && vooVisivel) {
       alvoP = progressoVoo();
       atualP += (alvoP - atualP) * (celular ? 0.3 : 0.16);
@@ -615,11 +608,9 @@
       mostrar(i);
       zoom.showModal();
       document.documentElement.classList.add("zoom-aberto");
-      if (lenis) lenis.stop();
     }
     zoom.addEventListener("close", function () {
       document.documentElement.classList.remove("zoom-aberto");
-      if (lenis) lenis.start();
       /* o foco volta para o varal, que vai até a última foto vista no zoom */
       if (voltarPara) {
         var alvo = voltarPara.closest("[data-varal]") || voltarPara;

@@ -1,19 +1,12 @@
-/* Base JS — site/bio de luxo. Sem dependências (Lenis opcional via CDN:
-   <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>).
+/* Base JS — site/bio de luxo. Sem dependências.
    Uso: copiar para o <script> do fim do body e chamar Base.init(). */
 const Base = (() => {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const headerH = () => (document.querySelector('[data-header]')?.offsetHeight || 0) + 12;
-  let lenis = null;
 
-  /* Smooth scroll: Lenis só no desktop com mouse; touch usa scroll nativo */
+  /* Âncoras com desconto do header; rolagem nativa */
   function initSmoothScroll() {
-    if (finePointer && !reduced && window.Lenis) {
-      lenis = new Lenis({ lerp: 0.09, wheelMultiplier: 1 });
-      const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
-      requestAnimationFrame(raf);
-    }
     document.addEventListener('click', e => {
       const a = e.target.closest('a[href^="#"]');
       if (!a || a.getAttribute('href').length < 2) return;
@@ -21,8 +14,7 @@ const Base = (() => {
       if (!target) return;
       e.preventDefault();
       closeMenu();
-      if (lenis) lenis.scrollTo(target, { offset: -headerH() });
-      else window.scrollTo({ top: target.getBoundingClientRect().top + scrollY - headerH(), behavior: reduced ? 'auto' : 'smooth' });
+      window.scrollTo({ top: target.getBoundingClientRect().top + scrollY - headerH(), behavior: reduced ? 'auto' : 'smooth' });
     });
   }
 
@@ -45,7 +37,6 @@ const Base = (() => {
   function closeMenu() {
     document.body.classList.remove('menu-open');
     document.querySelector('[data-menu-toggle]')?.setAttribute('aria-expanded', 'false');
-    lenis?.start();
   }
   function initMenu() {
     const btn = document.querySelector('[data-menu-toggle]');
@@ -54,7 +45,6 @@ const Base = (() => {
       const open = !document.body.classList.contains('menu-open');
       document.body.classList.toggle('menu-open', open);
       btn.setAttribute('aria-expanded', String(open));
-      open ? lenis?.stop() : lenis?.start();
     });
     addEventListener('keydown', e => e.key === 'Escape' && closeMenu());
     matchMedia('(min-width: 960px)').addEventListener('change', closeMenu);

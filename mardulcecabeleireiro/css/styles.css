@@ -54,10 +54,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; overflow-x: clip; }
-html:not(.lenis) { scroll-behavior: smooth; }
-html.lenis, html.lenis body { height: auto; }
-.lenis.lenis-smooth { scroll-behavior: auto !important; }
-.lenis.lenis-stopped { overflow: hidden; }
+html { scroll-behavior: smooth; }
 body {
   margin: 0; overflow-x: clip;
   background: var(--pele); color: var(--cacau);
@@ -669,7 +666,7 @@ ul, ol, dl, dd { margin: 0; padding: 0; list-style: none; }
 @keyframes sobe { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 @keyframes respira { from { transform: scale(1.06); } to { transform: none; } }
 @media (prefers-reduced-motion: reduce) {
-  html:not(.lenis) { scroll-behavior: auto; }
+  html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .js [data-revelar] { opacity: 1; transform: none; }
   .js [data-revelar] .arco__moldura { clip-path: none; }
