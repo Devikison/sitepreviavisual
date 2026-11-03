@@ -33,16 +33,16 @@
   menu.addEventListener("click", function (e) { if (e.target.closest("a")) fecharMenu(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") fecharMenu(); });
 
-  /* âncoras passam pelo Lenis quando ele está ativo */
+  /* âncoras descontam a altura do topo */
   document.addEventListener("click", function (e) {
     var a = e.target.closest('a[href^="#"]');
-    if (!a || !lenis) return;
+    if (!a) return;
     var id = a.getAttribute("href");
     if (id.length < 2) return;
     var alvo = document.querySelector(id);
     if (!alvo) return;
     e.preventDefault();
-    lenis.scrollTo(alvo, { offset: id === "#topo" ? 0 : -(topo.offsetHeight + 16) });
+    window.scrollTo({ top: id === "#topo" ? 0 : alvo.getBoundingClientRect().top + scrollY - (topo.offsetHeight + 16), behavior: reduz ? "auto" : "smooth" });
   });
 
   /* ---------- entradas ---------- */
@@ -765,4 +765,39 @@
     }, { threshold: 0.4 });
     ioP.observe(painel);
   }
+})();
+
+/* rolagem suave da roda do mouse, sem biblioteca. Solta o controle na hora se a pessoa
+   pegar a barra lateral, clicar, usar o teclado ou o navegador mover a página por outro motivo. */
+(function () {
+  if (!matchMedia('(hover:hover) and (pointer:fine)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var root = document.documentElement, alvoY = 0, posY = 0, escrito = 0, anima = false, antes = 0;
+  function parar() { anima = false; }
+  function travada() { return getComputedStyle(root).overflowY === 'hidden' || getComputedStyle(document.body).overflowY === 'hidden' || getComputedStyle(document.body).position === 'fixed'; }
+  function temRolagemPropria(el) {
+    for (; el && el !== document.body && el !== root && el.nodeType === 1; el = el.parentElement) {
+      var o = getComputedStyle(el).overflowY;
+      if ((o === 'auto' || o === 'scroll') && el.scrollHeight > el.clientHeight) return true;
+    }
+    return false;
+  }
+  function passo(t) {
+    if (!anima) return;
+    if (Math.abs(scrollY - escrito) > 3) { parar(); return; } /* outra coisa moveu a página */
+    var dt = Math.min(t - antes, 50); antes = t;
+    posY += (alvoY - posY) * (1 - Math.exp(-dt * .0062));
+    if (Math.abs(alvoY - posY) < .6) posY = alvoY;
+    scrollTo({ top: posY, behavior: 'instant' }); escrito = scrollY;
+    if (posY === alvoY) { parar(); return; }
+    requestAnimationFrame(passo);
+  }
+  addEventListener('wheel', function (e) {
+    if (e.ctrlKey || e.metaKey || e.shiftKey || travada() || temRolagemPropria(e.target)) return;
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+    var dy = e.deltaY * (e.deltaMode === 1 ? 32 : e.deltaMode === 2 ? innerHeight : 1);
+    e.preventDefault();
+    if (!anima) { posY = alvoY = escrito = scrollY; antes = performance.now(); anima = true; requestAnimationFrame(passo); }
+    alvoY = Math.max(0, Math.min(root.scrollHeight - innerHeight, alvoY + dy));
+  }, { passive: false });
+  ['mousedown', 'keydown', 'touchstart'].forEach(function (ev) { addEventListener(ev, parar, { passive: true }); });
 })();
