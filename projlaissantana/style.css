@@ -163,5 +163,4 @@ details[open] summary::after{transform:rotate(45deg)}
 .marquee__track{display:flex;align-items:stretch;gap:.9rem;width:max-content;will-change:transform;margin:0;padding:0;list-style:none}
 .marquee__track>*{flex:0 0 auto}
 @media (prefers-reduced-motion:reduce){.marquee{-webkit-mask-image:none;mask-image:none}}
-html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis.lenis-stopped{overflow:hidden}
 .pg{padding:clamp(3rem,7vw,5.5rem) 0 clamp(1rem,3vw,2rem)}.pg .lead{font-size:clamp(1.05rem,1rem + .3vw,1.25rem);color:var(--tx2)}.hero .w .sel{max-width:calc(100% - 1rem)}

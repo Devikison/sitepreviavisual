@@ -75,22 +75,38 @@
   }
   function start(){document.querySelectorAll('[data-marquee]').forEach(marquee)}
   (document.fonts&&document.fonts.ready)?document.fonts.ready.then(start):addEventListener('load',start);
+})();
 
-  /* rolagem suave (Lenis) só no desktop com mouse; no celular fica a rolagem nativa */
-  var fine=matchMedia('(hover: hover) and (pointer: fine)').matches,lenis=null;
-  function lenisInit(){
-    if(lenis||!fine||reduced||!window.Lenis)return;
-    lenis=new Lenis({lerp:.085,wheelMultiplier:.95,smoothWheel:true});
-    function raf(t){lenis.raf(t);requestAnimationFrame(raf)}requestAnimationFrame(raf);
-    window.__lenis=lenis;
-    var obs=new MutationObserver(function(){document.body.classList.contains('menu-on')?lenis.stop():lenis.start()});
-    obs.observe(document.body,{attributes:true,attributeFilter:['class']});
+/* rolagem suave da roda do mouse, sem biblioteca. Solta o controle na hora se a pessoa
+   pegar a barra lateral, clicar, usar o teclado ou o navegador mover a página por outro motivo. */
+(function () {
+  if (!matchMedia('(hover:hover) and (pointer:fine)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var root = document.documentElement, alvoY = 0, posY = 0, escrito = 0, anima = false, antes = 0;
+  function parar() { anima = false; }
+  function temRolagemPropria(el) {
+    for (; el && el !== document.body && el !== root && el.nodeType === 1; el = el.parentElement) {
+      var o = getComputedStyle(el).overflowY;
+      if ((o === 'auto' || o === 'scroll') && el.scrollHeight > el.clientHeight) return true;
+    }
+    return false;
   }
-  if(window.Lenis)lenisInit();else addEventListener('load',lenisInit);
-  document.addEventListener('click',function(e){
-    var a=e.target.closest('a[href*="#"]');if(!a||!lenis)return;
-    var u=new URL(a.href,location.href);if(u.pathname!==location.pathname||!u.hash||u.hash.length<2)return;
-    var t=document.querySelector(u.hash);if(!t)return;e.preventDefault();
-    var h=(document.querySelector('.hd')||{}).offsetHeight||0;lenis.scrollTo(t,{offset:-(h+8)});
-  });
+  function passo(t) {
+    if (!anima) return;
+    if (Math.abs(scrollY - escrito) > 3) { parar(); return; } /* outra coisa moveu a página */
+    var dt = Math.min(t - antes, 50); antes = t;
+    posY += (alvoY - posY) * (1 - Math.exp(-dt * .0062));
+    if (Math.abs(alvoY - posY) < .6) posY = alvoY;
+    scrollTo({ top: posY, behavior: 'instant' }); escrito = scrollY;
+    if (posY === alvoY) { parar(); return; }
+    requestAnimationFrame(passo);
+  }
+  addEventListener('wheel', function (e) {
+    if (e.ctrlKey || e.metaKey || e.shiftKey || root.classList.contains('lock') || temRolagemPropria(e.target)) return;
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+    var dy = e.deltaY * (e.deltaMode === 1 ? 32 : e.deltaMode === 2 ? innerHeight : 1);
+    e.preventDefault();
+    if (!anima) { posY = alvoY = escrito = scrollY; antes = performance.now(); anima = true; requestAnimationFrame(passo); }
+    alvoY = Math.max(0, Math.min(root.scrollHeight - innerHeight, alvoY + dy));
+  }, { passive: false });
+  ['mousedown', 'keydown', 'touchstart'].forEach(function (ev) { addEventListener(ev, parar, { passive: true }); });
 })();
