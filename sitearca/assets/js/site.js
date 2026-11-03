@@ -261,8 +261,79 @@
     }
   }
 
-  // ---------- entrada das seções ----------
-  var toReveal = document.querySelectorAll('.reveal, #prints');
+  // ---------- faixas de texto infinitas ----------
+  if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    document.querySelectorAll('[data-ticker] ul').forEach(function (ul) {
+      var originais = Array.prototype.slice.call(ul.children);
+      for (var i = 0; i < 3; i++) {
+        originais.forEach(function (li) {
+          var copia = li.cloneNode(true);
+          copia.setAttribute('aria-hidden', 'true');
+          ul.appendChild(copia);
+        });
+      }
+      ul.parentElement.classList.add('is-ready');
+    });
+  }
+
+  // ---------- surgimento ao rolar ----------
+  var calmo = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var observados = [];
+
+  // títulos: cada palavra sobe de trás de uma máscara
+  function dividir(no, contador) {
+    Array.prototype.slice.call(no.childNodes).forEach(function (filho) {
+      if (filho.nodeType === 3) {
+        var frag = document.createDocumentFragment();
+        filho.textContent.split(/(\s+)/).forEach(function (parte) {
+          if (!parte) return;
+          if (/^\s+$/.test(parte)) { frag.appendChild(document.createTextNode(' ')); return; }
+          var w = document.createElement('span'); w.className = 'w';
+          var dentro = document.createElement('span'); dentro.textContent = parte;
+          dentro.style.setProperty('--i', contador.n++);
+          w.appendChild(dentro); frag.appendChild(w);
+        });
+        no.replaceChild(frag, filho);
+      } else if (filho.nodeType === 1) {
+        dividir(filho, contador);
+      }
+    });
+  }
+  if (!calmo) {
+    document.querySelectorAll('.hero h1, .pg-title, .h2').forEach(function (t) {
+      t.classList.remove('reveal');
+      t.classList.add('split');
+      dividir(t, { n: 0 });
+      observados.push(t);
+    });
+
+    // textos, botões e pílulas entram em sequência dentro do bloco
+    var blocos = '.hero-text, .pg-hero-text, .head, .doar-left, .pix-card, .b-main, .guardiao-text, .acolhe-text, .volunt-body, .contato-card, .duo-head, .transp-head > div, .transp-copy, .closing, .split-card > div, .card-body, .help-card, .glass, .prose, .form-wrap form, .footer-inner';
+    document.querySelectorAll(blocos).forEach(function (bloco) {
+      var i = 0;
+      Array.prototype.forEach.call(bloco.children, function (el) {
+        if (el.classList.contains('split') || el.tagName === 'H1' || el.tagName === 'FORM') return;
+        el.classList.add('reveal');
+        el.style.setProperty('--d', Math.min(i++ * 90, 540) + 'ms');
+      });
+    });
+
+    // cards entram um depois do outro
+    document.querySelectorAll('.valores, .help, .destinos, .duo-cards, .bento, .steps, .faq-list, .two-col, .contact-list, .contato-grid, .footer-grid, .badges').forEach(function (grade) {
+      Array.prototype.forEach.call(grade.children, function (el, i) {
+        el.classList.add('reveal');
+        el.style.setProperty('--d', (i % 3) * 110 + 'ms');
+      });
+    });
+    document.querySelectorAll('.ticker, .marquee, .doar-card, .acolhe, .guardiao, .volunt, .split-card, .panel, .transp').forEach(function (el) { el.classList.add('reveal'); });
+
+    // fotos abrem com máscara e assentam o zoom
+    document.querySelectorAll('.card-media, .b-photo, .guardiao-photo, .volunt-photo, .contato-photo, .split-card > figure, .hero-photo, .pg-hero-photo').forEach(function (el) {
+      el.classList.add('mask');
+      observados.push(el);
+    });
+  }
+  var toReveal = observados.concat(Array.prototype.slice.call(document.querySelectorAll('.reveal, #prints')));
   if ('IntersectionObserver' in window) {
     var revealIO = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -271,22 +342,10 @@
           revealIO.unobserve(entry.target);
         }
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    }, { rootMargin: '0px 0px -7% 0px', threshold: 0.04 });
     toReveal.forEach(function (el) { revealIO.observe(el); });
   } else {
     toReveal.forEach(function (el) { el.classList.add('is-in'); });
-  }
-
-  // ---------- a barra superior acompanha a cor do capítulo ----------
-  var siteHeader = document.querySelector('.site-header');
-  var chapters = document.querySelectorAll('[data-chapter]');
-  if (siteHeader && chapters.length && 'IntersectionObserver' in window) {
-    var chapterIO = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) siteHeader.setAttribute('data-on', entry.target.getAttribute('data-chapter'));
-      });
-    }, { rootMargin: '-72px 0px -88% 0px' });
-    chapters.forEach(function (c) { chapterIO.observe(c); });
   }
 
   // ---------- link atual no menu ----------
