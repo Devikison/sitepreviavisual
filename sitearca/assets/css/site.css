@@ -53,6 +53,15 @@ strong{font-weight:600;color:var(--ink)}
 :focus-visible{outline:3px solid var(--blue-2);outline-offset:3px}
 ::selection{background:var(--blue);color:var(--white)}
 
+/* barra de rolagem lateral */
+html{scrollbar-color:auto;scrollbar-width:auto}
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--blue-2),var(--blue));border-radius:999px;border:3px solid var(--bg)}
+::-webkit-scrollbar-thumb:hover{background:var(--blue-dark)}
+::-webkit-scrollbar-corner{background:var(--bg)}
+@supports not selector(::-webkit-scrollbar){html{scrollbar-color:var(--blue) var(--bg);scrollbar-width:thin}}
+
 .skip-link{position:absolute;left:12px;top:-80px;z-index:50;background:var(--navy);color:var(--white);padding:12px 18px;border-radius:12px;font-weight:600}
 .skip-link:focus{top:12px}
 
