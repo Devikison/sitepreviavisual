@@ -28,6 +28,14 @@
     document.head.appendChild(s);
   }
 
+  /* Avisa o Google Tag Manager (Modo de Consentimento v2) da escolha da pessoa */
+  function updateConsent(granted) {
+    var v = granted ? "granted" : "denied";
+    window.dataLayer = window.dataLayer || [];
+    /* o GTM só reconhece o comando no formato "arguments" do gtag, não como array */
+    (function () { window.dataLayer.push(arguments); })("consent", "update", { ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v });
+  }
+
   var loaded = false;
   function loadAnalytics() {
     if (loaded || isLocal) return;
@@ -68,6 +76,7 @@
       if (!b) return;
       var accepted = b.getAttribute("data-consent") === "accept";
       save(accepted);
+      updateConsent(accepted);
       if (accepted) loadAnalytics();
       hide();
     });

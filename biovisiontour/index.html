@@ -1,6 +1,20 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
+<!-- Google Tag Manager (Modo de Consentimento v2: medição só depois do "Aceitar" no aviso de cookies).
+     Só carrega no domínio oficial, para a prévia não sujar as métricas do cliente. -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("consent", "default", {ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied", analytics_storage: "denied", wait_for_update: 500});
+  try { var vtc = JSON.parse(localStorage.getItem("site-consent-v1") || "null"); if (vtc && vtc.analytics) gtag("consent", "update", {ad_storage: "granted", ad_user_data: "granted", ad_personalization: "granted", analytics_storage: "granted"}); } catch (e) {}
+</script>
+<script>if (/(^|\.)visiontourav\.com$/.test(location.hostname)) (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MQZZ4MCL');</script>
+<!-- End Google Tag Manager -->
 <meta charset="utf-8">
 <meta name="facebook-domain-verification" content="h7th1m426omhruaoaa4zfvtky8qlbq" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -89,11 +103,24 @@ html.protegido { -webkit-touch-callout: none; }
 html.protegido body { -webkit-user-select: none; user-select: none; }
 html.protegido img { -webkit-user-drag: none; }
 html.protegido input, html.protegido textarea, html.protegido select { -webkit-user-select: text; user-select: text; -webkit-touch-callout: default; }
+.consent{position:fixed;left:16px;right:16px;bottom:16px;z-index:60;max-width:440px;margin:0 auto;padding:20px;border-radius:16px;background:#F6F3EE;color:#122234;font-family:Poppins,system-ui,sans-serif;font-size:13.5px;line-height:1.5;box-shadow:0 20px 40px -12px rgba(7,14,24,.6);transform:translateY(130%);visibility:hidden;transition:transform .7s cubic-bezier(.16,1,.3,1),visibility .7s}
+.consent.is-on{transform:none;visibility:visible}
+.consent__title{margin:0 0 6px;font-family:MuseoModerno,sans-serif;font-weight:600;font-size:17px}
+.consent__text{margin:0}
+.consent a{color:#122234}
+.consent__actions{margin-top:14px;display:flex;flex-wrap:wrap;gap:10px}
+.consent button{min-height:44px;padding:10px 18px;border:0;border-radius:12px;font:600 14px/1.2 Poppins,system-ui,sans-serif;cursor:pointer}
+.consent [data-consent=accept]{background:#122234;color:#FFFFFF}
+.consent [data-consent=reject]{background:transparent;color:#122234;box-shadow:inset 0 0 0 1.5px rgba(18,34,52,.4)}
+.bio-cookies{background:none;border:0;padding:0;font:300 11.5px/1.6 Poppins,system-ui,sans-serif;color:#FFFFFF;text-decoration:underline;cursor:pointer}
 </style>
 
 </head>
 <body>
 
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MQZZ4MCL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div class="vt-root" style="position: relative; min-height: 100dvh; overflow: hidden; background: #122234; font-family: Poppins, sans-serif; color: #EAE4DC">
 <div class="vt-bg" aria-hidden="true">
 <div class="vt-sky">
@@ -205,6 +232,7 @@ html.protegido input, html.protegido textarea, html.protegido select { -webkit-u
 <span>Ambiente seguro</span>
 </div>
 <p style="margin: 0; font-size: 11.5px; line-height: 1.6; font-weight: 300; color: #FFFFFF">© 2026 Vision Tour Agência de Viagens.<br>Todos os direitos reservados. CNPJ 63.777.435/0001-67</p>
+<button type="button" class="bio-cookies" data-cookie-settings>Preferências de cookies</button>
 </footer>
 
 </main>
@@ -265,6 +293,43 @@ html.protegido input, html.protegido textarea, html.protegido select { -webkit-u
     if (!(e.ctrlKey || e.metaKey) || livre(e.target)) return;
     if (/^[acxspu]$/i.test(e.key)) e.preventDefault();
   });
+})();
+</script>
+<script>
+/* Aviso de cookies (LGPD). Mesma chave do site: quem escolher aqui não vê o aviso de novo lá. */
+(function () {
+  "use strict";
+  var KEY = "site-consent-v1", banner;
+  function ler() { try { return JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) { return null; } }
+  function salvar(a) { try { localStorage.setItem(KEY, JSON.stringify({ analytics: !!a, date: new Date().toISOString() })); } catch (e) { /* navegação privada */ } }
+  function avisarGTM(a) {
+    var v = a ? "granted" : "denied";
+    window.dataLayer = window.dataLayer || [];
+    (function () { window.dataLayer.push(arguments); })("consent", "update", { ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v });
+  }
+  function montar() {
+    banner = document.createElement("section");
+    banner.className = "consent";
+    banner.setAttribute("role", "dialog");
+    banner.setAttribute("aria-live", "polite");
+    banner.setAttribute("aria-label", "Aviso de cookies");
+    banner.innerHTML = '<p class="consent__title">Sua privacidade</p>' +
+      '<p class="consent__text">Usamos cookies essenciais para a página funcionar e, com a sua permissão, cookies de medição para entender as visitas. Você pode mudar a escolha quando quiser. Saiba mais na <a href="/visiontour/politica-de-cookies/">Política de Cookies</a>.</p>' +
+      '<div class="consent__actions"><button type="button" data-consent="accept">Aceitar</button><button type="button" data-consent="reject">Somente essenciais</button></div>';
+    banner.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-consent]");
+      if (!b) return;
+      var a = b.getAttribute("data-consent") === "accept";
+      salvar(a); avisarGTM(a);
+      banner.classList.remove("is-on");
+    });
+    document.body.appendChild(banner);
+  }
+  function mostrar() { if (!banner) montar(); requestAnimationFrame(function () { banner.classList.add("is-on"); }); }
+  document.addEventListener("click", function (e) {
+    if (e.target.closest && e.target.closest("[data-cookie-settings]")) { e.preventDefault(); mostrar(); }
+  });
+  if (!ler()) setTimeout(mostrar, 900);
 })();
 </script>
 </body>
