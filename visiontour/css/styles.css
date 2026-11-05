@@ -714,6 +714,7 @@ html:not(.js) .carrossel { overflow-x: auto; }
 .vidro-ico::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: radial-gradient(120% 90% at 30% 0%, rgba(255, 255, 255, .28), transparent 55%); }
 .vidro-ico::after { content: ""; position: absolute; inset: 0; z-index: -2; border-radius: inherit; background: var(--cor); opacity: .28; transition: opacity .5s var(--ease); }
 .vidro-ico--wa { --cor: linear-gradient(145deg, #4BE38A, #1DA851); --brilho: rgba(75, 227, 138, .45); }
+.vidro-ico--mail { --cor: linear-gradient(145deg, #F2C48D, #B97A36); --brilho: rgba(242, 196, 141, .45); }
 .vidro-ico--ig { --cor: linear-gradient(145deg, #FEDA75 0%, #FA7E1E 30%, #D62976 60%, #962FBF 85%, #4F5BD5 100%); --brilho: rgba(214, 41, 118, .45); }
 .vidro-ico svg { width: 26px; height: 26px; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .35)); }
 .vidro-ico:focus-visible { outline: 2px solid var(--creme); outline-offset: 4px; }
