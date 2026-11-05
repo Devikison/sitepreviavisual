@@ -922,3 +922,9 @@ html:not(.js) .carrossel { overflow-x: auto; }
 /* cartões de motivos alinhados: mesma altura em cada linha */
 .motivos__grade .bilhete { display: flex; }
 .motivos__grade .bilhete__corpo { flex: 1; }
+
+/* proteção contra cópia casual (a classe vem do js/protecao.js; as políticas ficam livres) */
+html.protegido { -webkit-touch-callout: none; }
+html.protegido body { -webkit-user-select: none; user-select: none; }
+html.protegido img { -webkit-user-drag: none; }
+html.protegido input, html.protegido textarea, html.protegido select { -webkit-user-select: text; user-select: text; -webkit-touch-callout: default; }
