@@ -13,7 +13,7 @@ Extensão do link na bio aprovado (`/biovisiontour`): mesma paleta, fontes, logo
 | GA4 e Meta Pixel | `js/consent.js`, bloco `CONFIG` (só carregam depois do aceite) |
 | Textos | `index.html`, seção por seção (os comentários marcam cada uma) |
 | Noites dos roteiros, prazo de 24 horas | procurar por `[` no `index.html` |
-| E-mail das políticas | procurar `[EMAIL_DE_CONTATO]` nas pastas `politica-de-*` |
+| Contato das políticas | hoje o WhatsApp; trocar por e-mail quando chegar, procurando `o WhatsApp (85) 99436-6957` nas pastas `politica-de-*` |
 
 ## Scrollytelling (seções 1 e 2): "pela janela"
 

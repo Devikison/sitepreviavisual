@@ -682,8 +682,10 @@
         indo = false;
         var toque = matchMedia("(pointer: coarse)").matches;
         if (toque) { location.href = url; return; }
-        var w = window.open(url, "_blank", "noopener");
-        if (!w) location.href = url;   /* navegador bloqueou a nova aba: abre na mesma */
+        /* sem a opção "noopener": com ela o navegador sempre devolve null e a página do site também era redirecionada */
+        var w = window.open(url, "_blank");
+        if (w) w.opener = null;
+        else location.href = url;   /* navegador bloqueou a nova aba: abre na mesma */
       }, 1500);
     });
   });
