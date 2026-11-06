@@ -169,7 +169,44 @@
     $$('[data-fx-carousel]').forEach(carousel);
     $$('.fx-marq').forEach(marquee);
     tint();
+    legible();
     reveal();
+    var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(legible, 200); });
+  }
+
+  /* ================= leitura confortável =================
+     Textos de leitura: peso médio, tamanho mínimo e contraste reforçado
+     (pensado para quem usa óculos e para telas pequenas de iPhone e Android). */
+  var TXT = 'p,address,dd,.qa-a p,.cr-sub,figcaption span,.fnote,.support,.cs-t,.pj-list li,.t-txt p,.c-txt p,.rs-txt p,li > p,li > span:not([class])';
+  var SMALL = /(note|support|fnote|cap|tag|eyebrow|legal|chip|lab|cr-sub)/;
+  function rgb(c) { var m = c && c.match(/[\d.]+/g); return m ? m.slice(0, 4).map(Number) : null; }
+  function lum(c) { var a = c.slice(0, 3).map(function (v) { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }); return .2126 * a[0] + .7152 * a[1] + .0722 * a[2]; }
+  function bgOf(el) {
+    for (var e = el; e && e !== document.documentElement; e = e.parentElement) {
+      var c = rgb(getComputedStyle(e).backgroundColor);
+      if (c && (c[3] === undefined || c[3] > .5)) return c;
+      if (getComputedStyle(e).backgroundImage !== 'none') return null; // fundo com imagem/gradiente: não mexe
+    }
+    return [255, 255, 255];
+  }
+  function mix(a, b, t) { return 'rgb(' + [0, 1, 2].map(function (i) { return Math.round(a[i] + (b[i] - a[i]) * t); }).join(',') + ')'; }
+  function legible() {
+    var mobile = innerWidth < 700;
+    $$(TXT).forEach(function (el) {
+      if (el.closest('header,nav,.hero-tag,.fx-marq,.cr-band,.cr-foot,button,.btn,svg,[data-fx-keep]')) return;
+      if (!el.textContent.trim()) return;
+      var cs = getComputedStyle(el), small = SMALL.test(el.className || '') || SMALL.test((el.parentElement && el.parentElement.className) || '');
+      var min = small ? (mobile ? 14 : 14) : 16;
+      if (parseFloat(cs.fontSize) < min) el.style.fontSize = min + 'px';
+      if ((+cs.fontWeight || 400) < 500) el.style.fontWeight = '500';
+      if (parseFloat(cs.lineHeight) / parseFloat(cs.fontSize) < 1.45) el.style.lineHeight = '1.55';
+      if (el.__fxc) return; el.__fxc = 1; // cor ajustada só uma vez
+      var c = rgb(cs.color), bg = bgOf(el);
+      if (!c || !bg) return;
+      var dark = lum(bg) < .35;
+      if (!dark && lum(c) > .1) el.style.color = mix(c, [16, 22, 32], .45);
+      else if (dark && lum(c) < .62) el.style.color = mix(c, [255, 255, 255], .45);
+    });
   }
 
   /* ícones duotone: o preenchimento suave acompanha a cor do traço de cada site */

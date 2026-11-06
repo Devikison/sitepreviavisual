@@ -2,7 +2,7 @@
 *{box-sizing:border-box}
 html{scroll-padding-top:88px;-webkit-text-size-adjust:100%}
 html,body{overflow-x:clip}
-body{margin:0;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-webkit-touch-callout:none;user-select:none}
+body{margin:0;-webkit-font-smoothing:auto;-moz-osx-font-smoothing:auto;text-rendering:optimizeLegibility;-webkit-touch-callout:none;user-select:none}
 img{display:block;max-width:100%;height:auto;-webkit-user-drag:none;user-select:none}
 input,select,textarea,button{font:inherit;color:inherit}
 input,textarea{user-select:text}

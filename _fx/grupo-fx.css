@@ -103,3 +103,8 @@
 @media (max-width:699px){.crachas{flex-wrap:wrap}.cracha{flex:0 1 280px}}
 /* carrossel: some a barra de rolagem nativa (a navegação própria fica) */
 .fx-car [data-fx-track]{scrollbar-width:none}.fx-car [data-fx-track]::-webkit-scrollbar{display:none}
+
+/* ---------- leitura confortável ---------- */
+body{-webkit-font-smoothing:auto!important;-moz-osx-font-smoothing:auto!important;text-rendering:optimizeLegibility}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+p,li,address,dd{text-wrap:pretty;overflow-wrap:break-word}
