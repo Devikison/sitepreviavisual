@@ -206,7 +206,7 @@ header.hdr,[data-screen-label="01 Abertura"] ~ * header,body>header{animation:fx
   .team-txt:has(>.crachas)>h2{order:1}
   .team-txt:has(>.crachas)>.crachas{order:2;margin:6px 0 10px}
   [data-screen-label="06 Quem conduz"]>div{display:flex!important;flex-direction:column;gap:22px}
-  [data-screen-label="06 Quem conduz"]>div>div:first-child{display:contents}
+  [data-screen-label="06 Quem conduz"]>div>div:first-child{display:contents!important}
   [data-screen-label="06 Quem conduz"]>div>div:first-child>*{order:3}
   [data-screen-label="06 Quem conduz"]>div>div:first-child>h2{order:1}
   [data-screen-label="06 Quem conduz"]>div>.crachas{order:2}
