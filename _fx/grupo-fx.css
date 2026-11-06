@@ -184,3 +184,12 @@ header.hdr,[data-screen-label="01 Abertura"] ~ * header,body>header{animation:fx
   #inicio .specs li{align-items:flex-start!important;text-align:left;line-height:1.5}
   #inicio .specs li:before{flex:none;margin-top:.5em}
 }
+
+/* celular: imagens da abertura com proporção fixa pela largura (não esticam quando a barra do navegador some) */
+@media (max-width:959px){
+  #inicio .sheet-img{height:auto!important;aspect-ratio:4/3.3!important;min-height:0!important}
+  #inicio .sheet-img img{height:100%!important}
+  #inicio .hero-in{padding-top:calc(72px + 230px)!important}
+  #inicio .hero-shade{background:linear-gradient(180deg,rgba(17,19,22,0) 0,rgba(17,19,22,0) 150px,rgba(17,19,22,.82) 290px,rgba(17,19,22,.93) 520px,#111316 100%)!important}
+  #inicio .hero-img{height:100%;object-fit:cover}
+}
