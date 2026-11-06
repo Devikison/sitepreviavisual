@@ -193,7 +193,7 @@
   function legible() {
     var mobile = innerWidth < 700;
     $$(TXT).forEach(function (el) {
-      if (el.closest('header,nav,.hero-tag,.fx-marq,.cr-band,.cr-foot,button,.btn,svg,[data-fx-keep]')) return;
+      if (el.closest('header,nav,.hero-tag,.fx-marq,.cr-band,.cr-foot,.carimbo,button,.btn,svg,[data-fx-keep]')) return;
       if (!el.textContent.trim()) return;
       var cs = getComputedStyle(el), small = SMALL.test(el.className || '') || SMALL.test((el.parentElement && el.parentElement.className) || '');
       var min = small ? (mobile ? 14 : 14) : 16;
