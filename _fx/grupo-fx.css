@@ -305,3 +305,4 @@ header.hdr,[data-screen-label="01 Abertura"] ~ * header,body>header{animation:fx
   #inicio:has(.hero-in) h1{font-size:clamp(28px,8.2vw,36px)!important;line-height:1.04!important}
   #inicio:has(.hero-in) .lead{font-size:16px!important;line-height:1.55!important}
 }
+@media (max-width:959px){#inicio .carimbo{display:none!important}#inicio .sheet{padding-top:26px!important;margin-bottom:0!important}}
