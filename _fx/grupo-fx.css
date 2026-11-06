@@ -250,3 +250,4 @@ header.hdr,[data-screen-label="01 Abertura"] ~ * header,body>header{animation:fx
   .contact-txt>.fx-local{order:3;margin-top:22px;width:100%}
   .fx-local-map{height:200px}
 }
+.fx-local .ct-lines{display:flex;flex-direction:column;align-items:flex-start}
