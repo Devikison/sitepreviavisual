@@ -60,9 +60,9 @@
 .fx-marq-g span:nth-child(even){color:var(--fx-acc,#5FD3A8)}
 .fx-marq.fx-ghost .fx-marq-g span{font-size:clamp(28px,4.4vw,62px);font-weight:600;letter-spacing:-.035em;text-transform:none;color:var(--fx-fg2,#0E2A22);opacity:.9}
 .fx-marq.fx-ghost .fx-marq-g span:nth-child(even){color:var(--fx-acc,#0F8C69);font-style:italic;font-weight:400;opacity:1}
-/* separador: marca de mira/topografia */
-.fx-marq-g span:after{content:"";flex:none;width:clamp(14px,1.4vw,20px);height:clamp(14px,1.4vw,20px);border:1.5px solid var(--fx-acc,#5FD3A8);border-radius:50%;background:linear-gradient(var(--fx-acc,#5FD3A8),var(--fx-acc,#5FD3A8)) 50% 50%/100% 1.5px no-repeat,linear-gradient(var(--fx-acc,#5FD3A8),var(--fx-acc,#5FD3A8)) 50% 50%/1.5px 100% no-repeat;opacity:.9}
-.fx-marq.fx-ghost .fx-marq-g span:after{width:clamp(16px,1.8vw,26px);height:clamp(16px,1.8vw,26px)}
+/* separador: símbolo da marca num selo */
+.fx-marq-g span:after{content:"";flex:none;width:clamp(30px,2.6vw,38px);height:clamp(30px,2.6vw,38px);border-radius:10px;background:#fff var(--fx-sep,none) 50% 50%/68% auto no-repeat;box-shadow:0 0 0 1px rgba(255,255,255,.18),0 8px 18px -8px rgba(0,0,0,.55)}
+.fx-marq.fx-ghost .fx-marq-g span:after{width:clamp(36px,3.4vw,52px);height:clamp(36px,3.4vw,52px);border-radius:12px;box-shadow:0 0 0 1px var(--fx-rule,rgba(0,0,0,.08)),0 12px 24px -14px rgba(0,0,0,.4)}
 @keyframes fx-marq{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
 
 /* movimento reduzido: tudo aparece direto; a faixa segue, mais lenta */
@@ -98,7 +98,7 @@
 .cr-bars{display:flex;align-items:stretch;gap:2px;height:18px}
 .cr-bars i{width:2px;background:#1A2230;border-radius:1px}.cr-bars i.w{width:4px}
 /* coluna da equipe mais larga quando há dois crachás */
-.team-grid:has(.cracha + .cracha){grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)!important}
+@media (min-width:960px){.team-grid:has(.cracha + .cracha){grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)!important}}
 .team-ph:has(.cracha + .cracha){max-width:none!important;width:100%}
 @media (max-width:699px){.crachas{flex-wrap:wrap}.cracha{flex:0 1 280px}}
 /* carrossel: some a barra de rolagem nativa (a navegação própria fica) */
