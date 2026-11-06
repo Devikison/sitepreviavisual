@@ -28,8 +28,8 @@
 <meta name="twitter:image" content="https://www.sitepreviavisual.site/planearconstrutorasite/assets/planear-og.jpg">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"GeneralContractor","name":"Planear Construtora","description":"Construção e reforma por administração em Sorocaba e região.","url":"https://www.sitepreviavisual.site/planearconstrutorasite/","image":"https://www.sitepreviavisual.site/planearconstrutorasite/assets/planear-og.jpg","logo":"https://www.sitepreviavisual.site/planearconstrutorasite/assets/planear-logo.png","address":{"@type":"PostalAddress","streetAddress":"Rua Bernardo Guimarães, 105","addressLocality":"Sorocaba","addressRegion":"SP","addressCountry":"BR"},"areaServed":["Sorocaba","Araçoiaba da Serra"],"sameAs":["https://www.instagram.com/planearconstrutora/"]}</script>
 <script src="planear.js"></script>
-<link rel="stylesheet" href="../_fx/grupo-fx.css?v=20261107u">
-<script src="../_fx/grupo-fx.js?v=20261107u" defer></script>
+<link rel="stylesheet" href="../_fx/grupo-fx.css?v=20261107v">
+<script src="../_fx/grupo-fx.js?v=20261107v" defer></script>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https:; style-src 'self' 'unsafe-inline' blob: https:; img-src 'self' data: blob: https:; font-src 'self' data: blob: https:; connect-src 'self' blob: https: wss:; media-src 'self' blob: https:; frame-src 'self' blob: https:; worker-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'self' https:; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
   <script data-protecao="link-bio">(function(){
@@ -748,15 +748,15 @@ class Component extends DCLogic {
       const cards = [...s.querySelectorAll('[data-card]')];
       cards.forEach(c => { if (!c.dataset.top0) c.dataset.top0 = parseFloat(c.style.top) || 120; });
       if (desk) {
-        if (head) { head.style.top = '120px'; head.style.paddingBottom = '0px'; head.style.background = 'none'; }
+        if (head) { head.style.position = 'sticky'; head.style.top = '120px'; head.style.paddingBottom = '0px'; head.style.background = 'none'; }
         // profundidade: todos param na mesma altura, com folga em cima para as bordas dos de trás
         const dt = Math.max(cards.length ? +cards[0].dataset.top0 : 112, hb + 72);
         cards.forEach(c => { c.style.top = (depth ? dt : +c.dataset.top0) + 'px'; });
       } else {
-        const ht = Math.round(hb + 8);
-        if (head) { head.style.top = ht + 'px'; head.style.paddingBottom = '0px'; }
-        const base = ht + (head ? head.offsetHeight : 0) + 14;
-        cards.forEach((c, i) => { c.style.top = (base + (depth ? 30 : i * 12)) + 'px'; });
+        // celular: título rola junto; cards grudam logo abaixo do menu para caberem inteiros
+        if (head) { head.style.position = 'relative'; head.style.top = 'auto'; head.style.paddingBottom = '0px'; }
+        const base = Math.round(hb + 12);
+        cards.forEach((c, i) => { c.style.top = (base + i * 8) + 'px'; });
       }
       const n = cards.length; if (!n) return;
       // todos com a altura do mais alto: o card N encaixa exatamente sobre o N-1

@@ -112,15 +112,16 @@
     var hb = hdr ? hdr.offsetTop + hdr.offsetHeight : 76;
     stacks.forEach(function (g) {
       if (desk) {
-        if (g.head) g.head.style.top = (hb + 32) + 'px';
+        if (g.head) { g.head.style.position = ''; g.head.style.top = (hb + 32) + 'px'; }
         // profundidade: todos na mesma altura, com folga em cima para os de trás aparecerem
         var dt = Math.max(g.cards.length ? g.cards[0].top0 : 110, hb + 72);
         g.cards.forEach(function (o) { o.c.style.top = (g.depth ? dt : o.top0) + 'px'; });
       } else {
-        var ht = Math.round(hb + 8);
-        if (g.head) g.head.style.top = ht + 'px';
-        var base = ht + (g.head ? g.head.offsetHeight : 0) + 14;
-        g.cards.forEach(function (o, i) { o.c.style.top = (base + (g.depth ? 36 : i * 12)) + 'px'; });
+        // celular: o título rola junto com a página e os cards grudam logo abaixo do menu,
+        // aproveitando o espaço de cima para o card inteiro caber na tela durante a leitura
+        if (g.head) { g.head.style.position = 'relative'; g.head.style.top = 'auto'; }
+        var base = Math.round(hb + 12);
+        g.cards.forEach(function (o, i) { o.c.style.top = (base + i * 8) + 'px'; });
       }
       // a pilha sai inteira junto: cada card ganha margem embaixo até o fim do último,
       // e o card seguinte devolve essa margem em cima para o fluxo não mudar
