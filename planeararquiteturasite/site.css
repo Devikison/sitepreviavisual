@@ -553,6 +553,7 @@ section:has(>.axis),.ftr{position:relative}
   .hero h1{font-size:clamp(38px,3.7vw,60px)}
   .sheet{display:flex;flex-direction:column;margin-top:-40px;padding-right:44px}
   .sheet-img{flex:1;aspect-ratio:auto;min-height:460px}
+  .sheet-img img{object-position:98% 55%}
   .carimbo{width:100%;margin:-1px 0 0}
   .cota-v{height:calc(100% - 40px - var(--carimbo-h,96px))}
 }
