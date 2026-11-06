@@ -35,6 +35,9 @@
     $$('h2', document.querySelector('main') || document.body).forEach(function (h) {
       if (skipped(h) && !h.closest('[data-reveal]')) return;
       if (h.querySelector('.fx-cota') || h.closest('.fx-marq')) return;
+      // etiquetas pequenas (ex.: "PARA QUEM É") e títulos em linha com ícone não recebem a linha de cota
+      var hs = getComputedStyle(h);
+      if (parseFloat(hs.fontSize) < 24 || hs.display.indexOf('flex') > -1 || hs.textTransform === 'uppercase' && parseFloat(hs.fontSize) < 30) return;
       var c = document.createElement('span');
       c.className = 'fx-cota';
       c.setAttribute('aria-hidden', 'true');
