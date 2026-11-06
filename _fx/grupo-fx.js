@@ -6,8 +6,8 @@
 
   /* ================= entrada ao rolar ================= */
   // Fica fora: abertura, cabeçalho, rodapé e as áreas que já têm animação própria
-  var SKIP = '#inicio,.hero,header,footer,[data-stack],[data-scrub],[data-reveal],[data-fx-skip],#como-funciona,form,.fx-marq,[data-fx-track],[data-screen-label="01 Abertura"],[data-screen-label="04 Como funciona"],[data-screen-label="03 Serviços"],[data-screen-label="05 O que você não vai passar"]';
-  var PICK = '.fx-car,h2,h3,p,li,figure,blockquote,address,iframe,.btn,.cl-grid,.pj-list,.cs-list,.faq-list,.qa,article';
+  var SKIP = '#inicio,.hero,header,footer,[data-stack],[data-scrub],[data-reveal],[data-fx-skip],#como-funciona,form,.fx-marq,[data-fx-track],.cracha,[data-screen-label="01 Abertura"],[data-screen-label="04 Como funciona"],[data-screen-label="03 Serviços"],[data-screen-label="05 O que você não vai passar"]';
+  var PICK = '.fx-car,.crachas,h2,h3,p,li,figure,blockquote,address,iframe,.btn,.cl-grid,.pj-list,.cs-list,.faq-list,.qa,article';
 
   function skipped(el) { return !!el.closest(SKIP); }
 
@@ -168,7 +168,22 @@
   function init() {
     $$('[data-fx-carousel]').forEach(carousel);
     $$('.fx-marq').forEach(marquee);
+    tint();
     reveal();
+  }
+
+  /* ícones duotone: o preenchimento suave acompanha a cor do traço de cada site */
+  function tint() {
+    $$('svg').forEach(function (svg) {
+      if (!svg.querySelector('[style*="fill-opacity"]')) return;
+      var paint = function () {
+        var st = getComputedStyle(svg).stroke;
+        if (st && st !== 'none' && st.indexOf('url') < 0) svg.style.color = st;
+      };
+      paint();
+      var host = svg.closest('a,button,article,li,.card');
+      if (host) { host.addEventListener('mouseenter', function () { setTimeout(paint, 60); setTimeout(paint, 500); }); host.addEventListener('mouseleave', function () { setTimeout(paint, 60); setTimeout(paint, 500); }); }
+    });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { setTimeout(init, 60); });
   else setTimeout(init, 60);
