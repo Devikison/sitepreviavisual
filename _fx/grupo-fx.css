@@ -277,7 +277,7 @@ header.hdr,[data-screen-label="01 Abertura"] ~ * header,body>header{animation:fx
 .fx-wa-btn:focus-visible{outline:3px solid #2EDB6C;outline-offset:3px}
 
 /* ---------- Soluções: cards empilhando ao rolar (scroll stacking) ---------- */
-#para-quem.forwho{overflow:clip}
+#para-quem.forwho.blue:has(.pq-grid){overflow:clip}
 .pq-grid{display:flex!important;flex-direction:column;gap:clamp(16px,2vw,26px)}
 .pq-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,26px);position:sticky;top:calc(110px + var(--r,0) * 30px)}
 .pq-card{box-shadow:inset 0 1px 0 #fff,0 -18px 40px -26px rgba(0,0,0,.45),0 34px 70px -40px rgba(0,0,0,.65)}
@@ -286,3 +286,5 @@ header.hdr,[data-screen-label="01 Abertura"] ~ * header,body>header{animation:fx
   .pq-card{position:sticky;top:calc(82px + var(--k,0) * 16px)}
 }
 .fx-wa-btn{background:linear-gradient(180deg,var(--btn1,var(--deep,#0E2A22)),var(--btn2,var(--deep,#0E2A22)));color:var(--btntxt,#fff)!important;border:1px solid var(--btnb,transparent)}
+/* emblemas divisórios sempre por cima das seções vizinhas (abertura inclusive) */
+.axis,.stair,.beam,.roofs{z-index:8!important}
