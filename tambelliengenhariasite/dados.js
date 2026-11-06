@@ -15,7 +15,8 @@
    Sem whatsapp e sem email o formulário fica em modo demonstração.
    ===================================================================== */
 window.PLANEAR = {
-  whatsapp: '',
+  whatsapp: '(15) 99776-8565',
+  waMsg: 'Olá! Vim pelo site da Tambelli Engenharia e quero avaliar meu empreendimento.',
   email: 'contato@tambelliengenharia.com.br',
   telefone: '(15) 3326-2091',
   cnpj: '24.363.971/0001-64',
@@ -71,7 +72,7 @@ window.PLANEAR = {
   };
   P.waLink = function (msg) {
     var n = P.waNumber();
-    return n ? 'https://wa.me/' + n + '?text=' + encodeURIComponent(msg || 'Olá, Planear! Vim pelo site e quero falar sobre minha obra.') : '';
+    return n ? 'https://wa.me/' + n + '?text=' + encodeURIComponent(msg || P.waMsg || 'Olá, Planear! Vim pelo site e quero falar sobre minha obra.') : '';
   };
 
   /* Preenche [data-cfg] e [data-cfg-link] nas páginas estáticas */
