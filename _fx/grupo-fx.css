@@ -117,3 +117,7 @@ p,li,address,dd{text-wrap:pretty;overflow-wrap:break-word}
 .cl-rows{display:flex;flex-direction:column;gap:14px}
 .cl-m{display:none}
 @media (max-width:767px){.cl-d{display:none}.cl-m{display:block}.fx-logos .lg{width:156px;height:94px;margin-right:12px;padding:12px 14px}.fx-logos .lg img{max-height:58px}}
+/* logos padronizados: mesma área útil, centralizados */
+.fx-logos .lg{padding:14px 18px}
+.fx-logos .lg img{width:100%;height:100%;max-width:none;max-height:none;object-fit:contain;object-position:50% 50%}
+@media (max-width:767px){.fx-logos .lg{padding:10px 12px}.fx-logos .lg img{max-height:none}}
