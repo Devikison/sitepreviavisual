@@ -164,7 +164,11 @@ header.hdr,[data-screen-label="01 Abertura"] ~ * header,body>header{animation:fx
 #inicio .cta,[data-screen-label="01 Abertura"] h1 ~ div:has(a){animation:fx-up 1.3s var(--fx-hero-e) .75s backwards}
 #inicio .proof,#inicio .specs,#inicio .rail,#inicio .tags,#inicio .hero-tags{animation:fx-up 1.3s var(--fx-hero-e) .95s backwards}
 /* imagem: a obra se ergue de baixo para cima */
-#inicio figure,#inicio .sheet-img,#inicio .cover-frame,#inicio .house,[data-screen-label="01 Abertura"] picture{animation:fx-build 1.8s var(--fx-hero-e) .35s backwards}
+@keyframes fx-fade{from{opacity:0;transform:translate3d(0,34px,0)}to{opacity:1;transform:none}}
+@keyframes fx-photo{from{opacity:0;transform:scale(1.12)}to{opacity:1;transform:none}}
+/* imagem da abertura: a moldura surge suave (sem mexer em recortes como a casa da Soluções) e a foto assenta com zoom */
+#inicio .sheet,#inicio .cover,#inicio .house-wrap,#inicio figure:not(.sheet):not(.cover){animation:fx-fade 1.4s var(--fx-hero-e) .3s backwards}
+#inicio .sheet-img img,#inicio .cover-frame img,#inicio .house img,[data-screen-label="01 Abertura"] picture img{animation:fx-photo 2s var(--fx-hero-e) .35s backwards}
 #inicio .hero-img{animation:fx-zoom 2.4s var(--fx-hero-e) 0s backwards}
 #inicio .cota,#inicio .cota-l,#inicio .carimbo,#inicio .cover-tag{animation:fx-up 1.2s var(--fx-hero-e) 1.15s backwards}
 @media (prefers-reduced-motion:reduce){header.hdr,#inicio *,[data-screen-label="01 Abertura"] *{animation:none!important}}

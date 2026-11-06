@@ -552,3 +552,7 @@ svg{flex:none}
 .c-big{width:clamp(84px,9vw,120px);height:clamp(84px,9vw,120px);border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#FFA04A,#E57113);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 24px 40px -18px rgba(185,88,11,.9)}
 .c-big svg{width:46%;height:46%;fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .c-lab{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--onpale)}
+
+/* enquadramento da foto da abertura: as três pessoas inteiras na moldura */
+.house img{object-position:100% 50%}
+@media (max-width:959px){.house img{object-position:50% 8%}}
