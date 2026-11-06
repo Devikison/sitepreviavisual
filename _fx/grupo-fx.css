@@ -74,8 +74,7 @@
 
 /* ---------- crachá da equipe ---------- */
 .crachas{display:flex;flex-wrap:nowrap;gap:clamp(16px,2vw,26px);justify-content:center;align-items:flex-start;margin:0;width:100%}
-.cracha{position:relative;margin:0;flex:0 1 270px;min-width:0;padding-top:48px;transform-origin:50% 0;animation:cr-sway 8s ease-in-out infinite;animation-delay:var(--cr-delay,0ms)}
-@keyframes cr-sway{0%,100%{transform:rotate(-.8deg)}50%{transform:rotate(.8deg)}}
+.cracha{position:relative;margin:0;flex:0 1 270px;min-width:0;padding-top:48px}
 .cr-strap{position:absolute;top:0;left:50%;width:26px;height:52px;margin-left:-13px;border-radius:3px 3px 0 0;background:var(--cr-d);box-shadow:inset 6px 0 8px -6px rgba(0,0,0,.45),inset -6px 0 8px -6px rgba(0,0,0,.45)}
 .cr-strap:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:var(--cr-a);opacity:.9}
 .cr-clip{position:absolute;top:36px;left:50%;width:40px;height:24px;margin-left:-20px;border-radius:7px 7px 5px 5px;background:linear-gradient(180deg,#F4F5F7 0%,#B9BEC6 45%,#E6E8EC 60%,#9EA4AD 100%);box-shadow:0 4px 10px rgba(0,0,0,.28),inset 0 1px 0 #fff;z-index:3}
@@ -102,6 +101,5 @@
 .team-grid:has(.cracha + .cracha){grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)!important}
 .team-ph:has(.cracha + .cracha){max-width:none!important;width:100%}
 @media (max-width:699px){.crachas{flex-wrap:wrap}.cracha{flex:0 1 280px}}
-@media (prefers-reduced-motion:reduce){.cracha{animation:none}}
 /* carrossel: some a barra de rolagem nativa (a navegação própria fica) */
 .fx-car [data-fx-track]{scrollbar-width:none}.fx-car [data-fx-track]::-webkit-scrollbar{display:none}
