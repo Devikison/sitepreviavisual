@@ -171,3 +171,9 @@ header.hdr,[data-screen-label="01 Abertura"] ~ * header,body>header{animation:fx
 
 /* celular/tablet: título "Quem conduz" vem antes dos crachás */
 @media (max-width:959px){.team-grid>.team-ph,.team-grid>.cr-wrap{order:2}.team-grid{display:grid}}
+
+/* logos: espaço para a sombra aparecer inteira (a faixa corta o que passa da borda) */
+.fx-marq.fx-logos{padding:20px 0 38px}
+.fx-logos .lg{box-shadow:0 0 0 1px rgba(0,0,0,.06),0 12px 22px -14px rgba(0,0,0,.32)}
+.cl-rows{gap:0}
+@media (max-width:767px){.fx-marq.fx-logos{padding:14px 0 30px}}
