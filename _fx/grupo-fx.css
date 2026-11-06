@@ -178,3 +178,9 @@ header.hdr,[data-screen-label="01 Abertura"] ~ * header,body>header{animation:fx
 .cl-rows{gap:0}
 @media (max-width:767px){.fx-marq.fx-logos{padding:14px 0 30px}}
 .fx-car [data-fx-track]{padding-top:10px!important;padding-bottom:36px!important;margin-bottom:-22px}
+/* celular: lista de destaques da abertura alinhada à esquerda, pontinho na primeira linha */
+@media (max-width:959px){
+  #inicio .specs{align-self:stretch;align-items:flex-start!important;text-align:left;width:100%;max-width:420px;margin-left:auto;margin-right:auto}
+  #inicio .specs li{align-items:flex-start!important;text-align:left;line-height:1.5}
+  #inicio .specs li:before{flex:none;margin-top:.5em}
+}
