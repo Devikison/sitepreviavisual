@@ -268,3 +268,20 @@ header.hdr,[data-screen-label="01 Abertura"] ~ * header,body>header{animation:fx
   .pq-card:hover .pq-ico,.fx-local:hover .fx-local-ic{transform:scale(1.06) rotate(-4deg)}
   .pq-ico,.fx-local-ic{transition:transform .6s cubic-bezier(.16,.84,.24,1)}
 }
+
+/* ---------- botão de WhatsApp por assunto (cards dos 5 sites) ---------- */
+.fx-wa-btn{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;width:fit-content;margin-top:6px;height:46px;padding:0 20px 0 6px;border-radius:999px;background:var(--deep,#0E2A22);color:#fff!important;font-size:15px;font-weight:600;text-decoration:none;box-shadow:0 14px 26px -16px rgba(0,0,0,.6);transition:transform .5s cubic-bezier(.16,.84,.24,1),box-shadow .5s,background .4s;position:relative;z-index:2}
+.fx-wa-btn i{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#2EDB6C,#1EB457);flex:none}
+.fx-wa-btn svg{width:19px;height:19px;color:#fff;fill:#fff}
+@media (hover:hover){.fx-wa-btn:hover{transform:translateY(-2px);box-shadow:0 20px 32px -16px rgba(0,0,0,.7)}}
+.fx-wa-btn:focus-visible{outline:3px solid #2EDB6C;outline-offset:3px}
+
+/* ---------- Soluções: cards empilhando ao rolar (scroll stacking) ---------- */
+#para-quem.forwho{overflow:clip}
+.pq-grid{display:flex!important;flex-direction:column;gap:clamp(16px,2vw,26px)}
+.pq-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,26px);position:sticky;top:calc(110px + var(--r,0) * 30px)}
+.pq-card{box-shadow:inset 0 1px 0 #fff,0 -18px 40px -26px rgba(0,0,0,.45),0 34px 70px -40px rgba(0,0,0,.65)}
+@media (max-width:959px){
+  .pq-row{display:contents}
+  .pq-card{position:sticky;top:calc(82px + var(--k,0) * 16px)}
+}
