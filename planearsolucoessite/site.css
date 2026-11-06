@@ -60,9 +60,9 @@ fieldset.fl legend{padding:0}
 .map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 
 /* revelar ao rolar */
-.js [data-reveal]{opacity:0;transform:translate3d(0,28px,0)}
-.js [data-reveal].in{opacity:1;transform:none;transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.js [data-reveal]{opacity:1;transform:none}.js [data-fill]{transform:none}}
+.js [data-reveal]{opacity:0;transform:translate3d(0,46px,0);filter:blur(7px)}
+.js [data-reveal].in{opacity:1;transform:none;filter:none;transition:opacity 1.35s cubic-bezier(.16,.84,.24,1),transform 1.35s cubic-bezier(.16,.84,.24,1),filter 1.2s cubic-bezier(.16,.84,.24,1)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.js [data-reveal]{opacity:1;transform:none;filter:none}.js [data-fill]{transform:none}}
 
 /* ---------- reflexo dos botões (mesma ideia da Construtora) ---------- */
 .btn{overflow:hidden;isolation:isolate}

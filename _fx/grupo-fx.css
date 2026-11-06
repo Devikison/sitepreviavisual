@@ -1,0 +1,69 @@
+/* =====================================================================
+   GRUPO PLANEAR / TAMBELLI · efeitos compartilhados (fx)
+   - entrada ao rolar com linguagem de engenharia (cota de planta,
+     estrutura subindo, peças encaixando)
+   - carrossel arrastável (mouse, dedo, setas e teclado)
+   - faixa de texto infinita (não para com o mouse em cima)
+   Cores: cada site define --fx-bg, --fx-fg, --fx-acc, --fx-line.
+   ===================================================================== */
+:root{--fx-e:cubic-bezier(.16,.84,.24,1);--fx-dur:1.35s}
+
+/* ---------- entrada ao rolar ---------- */
+.fx-on .fx{opacity:0;transform:translate3d(0,46px,0);filter:blur(7px);transition:opacity var(--fx-dur) var(--fx-e) var(--fx-d,0ms),transform var(--fx-dur) var(--fx-e) var(--fx-d,0ms),filter calc(var(--fx-dur) * .9) var(--fx-e) var(--fx-d,0ms);will-change:opacity,transform}
+.fx-on .fx.fx-side{transform:translate3d(-54px,0,0)}
+.fx-on .fx.fx-side-r{transform:translate3d(54px,0,0)}
+.fx-on .fx.fx-in{opacity:1;transform:none;filter:none}
+/* imagens: a estrutura "sobe" de baixo para cima, como uma obra */
+.fx-on .fx-img{clip-path:inset(100% 0 0 0);transform:scale(1.12);transition:clip-path 1.7s var(--fx-e) var(--fx-d,0ms),transform 2.2s var(--fx-e) var(--fx-d,0ms);will-change:clip-path,transform}
+.fx-on .fx-img.fx-in{clip-path:inset(0 0 0 0);transform:none}
+/* títulos: linha de cota (traço de planta com marcas nas pontas) */
+.fx-cota{display:block;position:relative;height:12px;width:min(190px,46%);margin-top:.42em;pointer-events:none}
+.fx-cota.fx-c{margin-left:auto;margin-right:auto}
+.fx-cota.fx-r{margin-left:auto}
+.fx-cota i{position:absolute;left:0;right:0;top:50%;height:1.5px;background:var(--fx-line,currentColor);opacity:.55;transform:scaleX(0);transform-origin:0 50%;transition:transform 1.6s var(--fx-e) .25s}
+.fx-cota b,.fx-cota em{position:absolute;top:0;width:1.5px;height:12px;background:var(--fx-line,currentColor);opacity:0;transition:opacity .6s ease .2s}
+.fx-cota b{left:0}.fx-cota em{right:0;transition-delay:1.5s}
+.fx-cota s{position:absolute;left:0;top:50%;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:50%;background:var(--fx-acc,currentColor);opacity:0;transition:left 1.6s var(--fx-e) .25s,opacity .3s ease .25s}
+.fx-in .fx-cota i,.fx-cota.fx-in i{transform:scaleX(1)}
+.fx-in .fx-cota b,.fx-in .fx-cota em,.fx-cota.fx-in b,.fx-cota.fx-in em{opacity:.75}
+.fx-in .fx-cota s,.fx-cota.fx-in s{left:100%;opacity:1}
+/* cards: leve "encaixe" com sombra assentando */
+.fx-on .fx.fx-card{transform:translate3d(0,56px,0) rotateX(8deg);transform-origin:50% 100%}
+.fx-on .fx.fx-card.fx-in{transform:none}
+
+/* ---------- carrossel ---------- */
+.fx-car{position:relative}
+.fx-car [data-fx-track]{cursor:grab;-webkit-user-select:none;user-select:none;touch-action:pan-x pan-y;overscroll-behavior-x:contain;scroll-behavior:smooth}
+.fx-car [data-fx-track].fx-drag{cursor:grabbing;scroll-snap-type:none!important;scroll-behavior:auto}
+.fx-car [data-fx-track] img{-webkit-user-drag:none;pointer-events:none}
+.fx-nav{display:flex;align-items:center;gap:12px;margin-top:14px}
+.fx-bar{flex:1;height:2px;border-radius:2px;background:rgba(127,127,127,.22);overflow:hidden}
+.fx-bar i{display:block;height:100%;width:30%;background:var(--fx-acc,#0F8C69);border-radius:2px;transform-origin:0 50%;transition:width .3s var(--fx-e),transform .3s var(--fx-e)}
+.fx-arw{flex:none;width:46px;height:46px;border-radius:50%;border:1px solid rgba(127,127,127,.35);background:rgba(255,255,255,.85);color:var(--fx-fg2,#0E2A22);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .35s var(--fx-e),transform .35s var(--fx-e),opacity .3s}
+.fx-arw svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.fx-arw:hover{transform:translateY(-2px);background:#fff}
+.fx-arw:disabled{opacity:.35;cursor:default;transform:none}
+.fx-arw:focus-visible{outline:3px solid var(--fx-acc,#0F8C69);outline-offset:2px}
+
+/* ---------- faixa infinita ---------- */
+.fx-marq{position:relative;overflow:hidden;background:var(--fx-bg,#0E2A22);color:var(--fx-fg,#fff);padding:clamp(16px,2.2vw,26px) 0;-webkit-user-select:none;user-select:none}
+.fx-marq.fx-ghost{background:transparent;color:var(--fx-fg2,#0E2A22);border-top:1px solid var(--fx-rule,rgba(127,127,127,.22));border-bottom:1px solid var(--fx-rule,rgba(127,127,127,.22))}
+.fx-marq:before,.fx-marq:after{content:"";position:absolute;top:0;bottom:0;width:min(12vw,140px);z-index:2;pointer-events:none}
+.fx-marq:before{left:0;background:linear-gradient(90deg,var(--fx-fade,var(--fx-bg,#0E2A22)),transparent)}
+.fx-marq:after{right:0;background:linear-gradient(-90deg,var(--fx-fade,var(--fx-bg,#0E2A22)),transparent)}
+.fx-marq-t{display:flex;width:max-content;animation:fx-marq var(--fx-t,40s) linear infinite;will-change:transform}
+.fx-marq.fx-rev .fx-marq-t{animation-direction:reverse}
+.fx-marq:hover .fx-marq-t,.fx-marq-t:hover{animation-play-state:running!important}
+.fx-marq-g{display:flex;align-items:center;flex:none}
+.fx-marq-g span{display:inline-flex;align-items:center;gap:clamp(18px,2.4vw,34px);padding-right:clamp(18px,2.4vw,34px);font-size:clamp(20px,2.6vw,34px);font-weight:600;letter-spacing:-.02em;line-height:1.1;white-space:nowrap}
+.fx-marq.fx-ghost .fx-marq-g span{font-size:clamp(26px,4vw,56px);font-weight:700;color:transparent;-webkit-text-stroke:1.2px var(--fx-fg2,#0E2A22)}
+.fx-marq.fx-ghost .fx-marq-g span:nth-child(3n+2){color:var(--fx-fg2,#0E2A22);-webkit-text-stroke:0}
+.fx-marq-g span:after{content:"";flex:none;width:clamp(10px,1.1vw,14px);height:clamp(10px,1.1vw,14px);border:1.5px solid var(--fx-acc,#5FD3A8);transform:rotate(45deg)}
+@keyframes fx-marq{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+
+/* movimento reduzido: tudo aparece direto; a faixa segue, mais lenta */
+@media (prefers-reduced-motion:reduce){
+  .fx-on .fx,.fx-on .fx-img{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important;transition:none!important}
+  .fx-cota i{transform:none}.fx-cota b,.fx-cota em{opacity:.75}
+  .fx-marq-t{animation:fx-marq calc(var(--fx-t,40s) * 2) linear infinite!important}
+}
