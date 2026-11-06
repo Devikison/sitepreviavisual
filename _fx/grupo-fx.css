@@ -299,7 +299,7 @@ header.hdr,[data-screen-label="01 Abertura"] ~ * header,body>header{animation:fx
 
 /* Tambelli celular: foto como faixa no topo (prédio + engenheiro) e conteúdo sobre o fundo escuro */
 @media (max-width:959px){
-  #inicio:has(.hero-in) .hero-img{position:absolute!important;top:0!important;left:0!important;right:0!important;bottom:auto!important;width:100%!important;height:460px!important;object-fit:cover!important;object-position:50% 40%!important}
+  #inicio:has(.hero-in) .hero-img{position:absolute!important;top:0!important;left:0!important;right:0!important;bottom:auto!important;width:100%!important;height:460px!important;object-fit:cover!important;object-position:50% 70%!important}
   #inicio:has(.hero-in) .hero-shade{background:linear-gradient(180deg,rgba(17,19,22,.6) 0,rgba(17,19,22,0) 110px,rgba(17,19,22,0) 230px,rgba(17,19,22,.88) 400px,#111316 470px,#111316 100%)!important}
   #inicio .hero-in{padding-top:318px!important}
   #inicio:has(.hero-in) h1{font-size:clamp(28px,8.2vw,36px)!important;line-height:1.04!important}
