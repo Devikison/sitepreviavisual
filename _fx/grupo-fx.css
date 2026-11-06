@@ -285,3 +285,4 @@ header.hdr,[data-screen-label="01 Abertura"] ~ * header,body>header{animation:fx
   .pq-row{display:contents}
   .pq-card{position:sticky;top:calc(82px + var(--k,0) * 16px)}
 }
+.fx-wa-btn{background:linear-gradient(180deg,var(--btn1,var(--deep,#0E2A22)),var(--btn2,var(--deep,#0E2A22)));color:var(--btntxt,#fff)!important;border:1px solid var(--btnb,transparent)}
