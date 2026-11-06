@@ -211,3 +211,14 @@ header.hdr,[data-screen-label="01 Abertura"] ~ * header,body>header{animation:fx
   [data-screen-label="06 Quem conduz"]>div>div:first-child>h2{order:1}
   [data-screen-label="06 Quem conduz"]>div>.crachas{order:2}
 }
+
+/* computador: equipe sempre com o crachá à esquerda e título + texto (+ cards) à direita */
+@media (min-width:960px){
+  .team-card:has(.crachas){grid-template-columns:minmax(260px,300px) minmax(0,1fr)!important;grid-template-areas:"cr h" "cr p" "cr list";column-gap:clamp(36px,4vw,64px)!important;row-gap:18px!important;align-items:start!important}
+  .team-card:has(.crachas) .team-txt{display:contents}
+  .team-card:has(.crachas) .team-txt>h2{grid-area:h;margin:0}
+  .team-card:has(.crachas) .team-txt>p{grid-area:p;margin:0!important}
+  .team-card:has(.crachas) .team-txt>.crachas{grid-area:cr;align-self:center;margin:0}
+  .team-card:has(.crachas) .team-list{grid-area:list;margin-top:10px}
+  [data-screen-label="06 Quem conduz"]>div>.crachas{order:-1}
+}
