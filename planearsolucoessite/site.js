@@ -401,6 +401,16 @@
       };
       var bad2 = function () { if (btn) { btn.disabled = false; if (btnLabel) btnLabel.textContent = 'Enviar'; } if (fail) fail.hidden = false; };
       if (btn) { btn.disabled = true; if (btnLabel) btnLabel.textContent = 'Enviando…'; }
+      var hook = String(C.webhook || '').trim();
+      if (hook) {
+        var payload = { empresa_site: C.name || '', formulario: C.formName || 'contato', pagina: location.href, enviado_em: new Date().toISOString(), campos: dados };
+        $$('[data-field]', form).forEach(function (el) { payload[el.getAttribute('data-field')] = g(el.getAttribute('data-field')); });
+        Object.keys(utm || {}).forEach(function (k) { payload[k] = utm[k]; });
+        fetch(hook, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+          .then(function (r) { r.ok ? ok() : bad2(); })
+          .catch(bad2);
+        return;
+      }
       if (wa) {
         var txt = (C.waIntro || 'Olá! Vim pelo site.') + '\n\n' + Object.keys(dados).map(function (k) { return '*' + k + ':* ' + dados[k]; }).join('\n') + utmLine();
         window.open('https://wa.me/' + wa + '?text=' + encodeURIComponent(txt), '_blank', 'noopener');

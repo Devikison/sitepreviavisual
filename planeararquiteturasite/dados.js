@@ -16,10 +16,12 @@
    ===================================================================== */
 window.PLANEAR = {
   whatsapp: '',
-  email: '',
-  cnpj: '',
+  email: 'contato@planeararqeng.com.br',
+  telefone: '(15) 3326-2091',
+  cnpj: '52.046.258/0001-22',
   instagram: 'https://www.instagram.com/planeararquitetura/',
   linkedin: '',
+  webhook: 'https://n8n-n8n-start.dnjlb7.easypanel.host/webhook/ee379b13-04f3-4b9d-83c0-274299b2800d?source=planear-arq-eng',
   gtm: 'GTM-5LHWK58X',
   mostrarConfirmar: true
 };

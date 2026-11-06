@@ -14,10 +14,12 @@
    ===================================================================== */
 window.PLANEAR = {
   whatsapp: '',
-  email: '',
-  cnpj: '',
+  email: 'contato@planearconstrutora.com.br',
+  telefone: '(15) 3326-2091',
+  cnpj: '50.592.000/0001-04',
   instagram: 'https://www.instagram.com/planearconstrutora/',
   linkedin: '',
+  webhook: 'https://n8n-n8n-start.dnjlb7.easypanel.host/webhook/ee379b13-04f3-4b9d-83c0-274299b2800d?source=planear-construtora',
   gtm: 'GTM-5WPWR92P'
 };
 

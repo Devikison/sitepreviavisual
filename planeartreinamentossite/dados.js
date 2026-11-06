@@ -16,10 +16,12 @@
    ===================================================================== */
 window.PLANEAR = {
   whatsapp: '',
-  email: '',
-  cnpj: '',
+  email: 'contato@planeartreinamentos.com.br',
+  telefone: '(15) 3326-2091',
+  cnpj: '50.609.497/0001-18',
   instagram: 'https://www.instagram.com/planeartreinamentos/',
   linkedin: '',
+  webhook: 'https://n8n-n8n-start.dnjlb7.easypanel.host/webhook/ee379b13-04f3-4b9d-83c0-274299b2800d?source=planear-treinamentos',
   gtm: 'GTM-5K2C8GCK',
   mostrarConfirmar: true
 };
