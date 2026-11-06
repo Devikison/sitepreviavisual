@@ -306,3 +306,22 @@ header.hdr,[data-screen-label="01 Abertura"] ~ * header,body>header{animation:fx
   #inicio:has(.hero-in) .lead{font-size:16px!important;line-height:1.55!important}
 }
 @media (max-width:959px){#inicio .carimbo{display:none!important}#inicio .sheet{padding-top:26px!important;margin-bottom:0!important}}
+
+/* ---------- rodapé no celular: centralizado e organizado (5 sites) ---------- */
+@media (max-width:959px){
+  footer.ftr :is(.ftr-grid,.ftr-in){display:flex!important;flex-direction:column!important;align-items:center!important;text-align:center!important;gap:24px!important}
+  footer.ftr .ftr-logo{display:flex;justify-content:center;margin:0 auto!important}
+  footer.ftr .ftr-logo img{height:76px!important;width:auto!important}
+  footer.ftr .ftr-nav{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 12px!important;width:100%;max-width:380px;margin:0 auto;justify-items:center;text-align:center}
+  footer.ftr .ftr-nav>*{display:flex;align-items:center;justify-content:center;min-height:44px;padding:6px 4px!important;font-size:15px!important;line-height:1.3}
+  footer.ftr .ftr-nav>button{grid-column:1/-1}
+  footer.ftr .ftr-bot{display:flex!important;flex-direction:column!important;align-items:center!important;text-align:center!important;gap:16px!important;padding-bottom:96px!important}
+  footer.ftr .ftr-legal{display:flex!important;flex-direction:column!important;align-items:center!important;gap:4px!important;text-align:center}
+  footer.ftr .soc{justify-content:center!important;display:flex;gap:12px}
+  /* Construtora (rodapé montado à mão) */
+  body>div footer:not(.ftr) nav[aria-label="Rodapé"]{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 12px!important;width:100%;max-width:380px;justify-items:center;text-align:center}
+  body>div footer:not(.ftr) nav[aria-label="Rodapé"]>*{min-height:44px;display:flex;align-items:center;justify-content:center}
+  body>div footer:not(.ftr) nav[aria-label="Rodapé"]>button{grid-column:1/-1}
+  body>div footer:not(.ftr)>div:last-child{flex-direction:column!important;align-items:center!important;text-align:center;padding-bottom:84px}
+  body>div footer:not(.ftr)>div:last-child>div:first-child{flex-direction:column;align-items:center;gap:4px!important}
+}
