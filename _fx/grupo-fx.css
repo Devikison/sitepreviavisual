@@ -128,3 +128,13 @@ p,li,address,dd{text-wrap:pretty;overflow-wrap:break-word}
 .fx-wa:hover{transform:translateY(-3px);box-shadow:0 0 0 1px rgba(255,255,255,.25) inset,0 20px 36px -12px rgba(16,120,60,.8),0 6px 14px rgba(0,0,0,.2)}
 .fx-wa:focus-visible{outline:3px solid #fff;outline-offset:3px}
 @media (max-width:699px){.fx-wa{width:56px;padding:0;justify-content:center}.fx-wa span{display:none}}
+
+/* ---------- abertura cabendo na primeira tela (computador) ---------- */
+@media (min-width:960px){
+  #inicio.hero{min-height:100svh;padding-top:calc(80px + 2.4vh)!important;padding-bottom:3vh!important;box-sizing:border-box}
+  #inicio .wrap{max-width:min(1440px,100%)!important;padding-left:clamp(24px,4vw,64px);padding-right:clamp(24px,4vw,64px)}
+  #inicio h1{font-size:clamp(34px,min(4.3vw,6.6vh),74px)!important;line-height:1.02!important}
+  #inicio .lead{font-size:clamp(16px,min(1.25vw,2.25vh),19px)!important;line-height:1.55!important}
+  #inicio .hero-txt{gap:clamp(12px,2.1vh,22px)!important}
+  #inicio .cover-frame img{min-height:0!important}
+}
