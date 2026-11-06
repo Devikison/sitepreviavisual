@@ -319,9 +319,9 @@ header.hdr,[data-screen-label="01 Abertura"] ~ * header,body>header{animation:fx
   footer.ftr .ftr-legal{display:flex!important;flex-direction:column!important;align-items:center!important;gap:4px!important;text-align:center}
   footer.ftr .soc{justify-content:center!important;display:flex;gap:12px}
   /* Construtora (rodapé montado à mão) */
-  body>div footer:not(.ftr) nav[aria-label="Rodapé"]{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 12px!important;width:100%;max-width:380px;justify-items:center;text-align:center}
-  body>div footer:not(.ftr) nav[aria-label="Rodapé"]>*{min-height:44px;display:flex;align-items:center;justify-content:center}
-  body>div footer:not(.ftr) nav[aria-label="Rodapé"]>button{grid-column:1/-1}
-  body>div footer:not(.ftr)>div:last-child{flex-direction:column!important;align-items:center!important;text-align:center;padding-bottom:84px}
-  body>div footer:not(.ftr)>div:last-child>div:first-child{flex-direction:column;align-items:center;gap:4px!important}
+  footer:not(.ftr) nav[aria-label="Rodapé"]{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 12px!important;width:100%;max-width:380px;justify-items:center;text-align:center}
+  footer:not(.ftr) nav[aria-label="Rodapé"]>*{min-height:44px;display:flex;align-items:center;justify-content:center}
+  footer:not(.ftr) nav[aria-label="Rodapé"]>button{grid-column:1/-1}
+  footer:not(.ftr)>div:last-child{flex-direction:column!important;align-items:center!important;text-align:center;padding-bottom:84px}
+  footer:not(.ftr)>div:last-child>div:first-child{flex-direction:column;align-items:center;gap:4px!important}
 }
