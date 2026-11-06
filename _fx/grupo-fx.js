@@ -6,8 +6,8 @@
 
   /* ================= entrada ao rolar ================= */
   // Fica fora: abertura, cabeçalho, rodapé e as áreas que já têm animação própria
-  var SKIP = '#inicio,.hero,header,footer,[data-stack],[data-scrub],[data-reveal],[data-fx-skip],#como-funciona,form,.fx-marq,[data-screen-label="01 Abertura"],[data-screen-label="04 Como funciona"],[data-screen-label="03 Serviços"],[data-screen-label="05 O que você não vai passar"]';
-  var PICK = 'h2,h3,p,li,figure,blockquote,address,iframe,.btn,.cl-grid,.pj-list,.cs-list,.faq-list,.qa,article';
+  var SKIP = '#inicio,.hero,header,footer,[data-stack],[data-scrub],[data-reveal],[data-fx-skip],#como-funciona,form,.fx-marq,[data-fx-track],[data-screen-label="01 Abertura"],[data-screen-label="04 Como funciona"],[data-screen-label="03 Serviços"],[data-screen-label="05 O que você não vai passar"]';
+  var PICK = '.fx-car,h2,h3,p,li,figure,blockquote,address,iframe,.btn,.cl-grid,.pj-list,.cs-list,.faq-list,.qa,article';
 
   function skipped(el) { return !!el.closest(SKIP); }
 
@@ -32,7 +32,7 @@
       }
     });
     // títulos de seção ganham a linha de cota
-    $$('main h2').forEach(function (h) {
+    $$('h2', document.querySelector('main') || document.body).forEach(function (h) {
       if (skipped(h) && !h.closest('[data-reveal]')) return;
       if (h.querySelector('.fx-cota') || h.closest('.fx-marq')) return;
       var c = document.createElement('span');
@@ -50,24 +50,27 @@
 
   function reveal() {
     var els = tag();
-    if (reduced || !('IntersectionObserver' in window)) {
+    if (reduced) {
       els.concat(cotas).forEach(function (e) { e.classList.add('fx-in'); });
       return;
     }
     document.documentElement.classList.add('fx-on');
-    var io = new IntersectionObserver(function (en) {
-      en.forEach(function (x) {
-        if (x.isIntersecting) { x.target.classList.add('fx-in'); io.unobserve(x.target); }
-      });
-    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
-    els.concat(cotas).forEach(function (e) { io.observe(e); });
-    // o que já está na tela ao abrir aparece sem esperar rolagem
-    setTimeout(function () {
-      els.concat(cotas).forEach(function (e) {
+    // checagem direta na rolagem: confiável dentro de carrosséis e em páginas montadas por script
+    var pend = els.concat(cotas), ticking = false;
+    function check() {
+      ticking = false;
+      var lim = innerHeight * 0.9;
+      pend = pend.filter(function (e) {
+        if (!e.isConnected) return false;
         var r = e.getBoundingClientRect();
-        if (r.top < innerHeight * 0.95 && r.bottom > 0) e.classList.add('fx-in');
+        if (r.top < lim && r.bottom > 0) { e.classList.add('fx-in'); return false; }
+        return true;
       });
-    }, 120);
+    }
+    function onScroll() { if (!ticking && pend.length) { ticking = true; requestAnimationFrame(check); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    setTimeout(check, 120);
   }
 
   /* ================= carrossel arrastável ================= */
