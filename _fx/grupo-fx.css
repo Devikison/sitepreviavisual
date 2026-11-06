@@ -251,3 +251,5 @@ header.hdr,[data-screen-label="01 Abertura"] ~ * header,body>header{animation:fx
   .fx-local-map{height:200px}
 }
 .fx-local .ct-lines{display:flex;flex-direction:column;align-items:flex-start}
+@media (max-width:959px){[data-screen-label="08 Contato"]>div[data-reveal]>div:first-child>.fx-local{order:3;margin-top:22px}}
+@media (max-width:959px){#inicio .sheet-img img{object-position:96% 60%!important}}
