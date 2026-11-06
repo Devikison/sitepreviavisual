@@ -197,13 +197,13 @@
   function legible() {
     var mobile = innerWidth < 700;
     $$(TXT).forEach(function (el) {
-      if (el.closest('header,nav,.hero-tag,.fx-marq,.cr-band,.cr-foot,.carimbo,button,.btn,svg,[data-fx-keep]')) return;
+      if (el.closest('#inicio,[data-screen-label="01 Abertura"],header,nav,.hero-tag,.fx-marq,.cr-band,.cr-foot,.carimbo,button,.btn,svg,[data-fx-keep]')) return;
       if (!el.textContent.trim()) return;
       var cs = getComputedStyle(el), small = SMALL.test(el.className || '') || SMALL.test((el.parentElement && el.parentElement.className) || '');
       var min = small ? (mobile ? 14 : 14) : 16;
       if (parseFloat(cs.fontSize) < min) el.style.fontSize = min + 'px';
       if ((+cs.fontWeight || 400) < 500) el.style.fontWeight = '500';
-      if (parseFloat(cs.lineHeight) / parseFloat(cs.fontSize) < 1.45) el.style.lineHeight = '1.55';
+      if (parseFloat(cs.fontSize) <= 20 && parseFloat(cs.lineHeight) / parseFloat(cs.fontSize) < 1.45) el.style.lineHeight = '1.55';
       if (el.__fxc) return; el.__fxc = 1; // cor ajustada só uma vez
       var c = rgb(cs.color), bg = bgOf(el);
       if (!c || !bg) return;
