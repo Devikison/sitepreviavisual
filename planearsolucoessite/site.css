@@ -556,3 +556,15 @@ svg{flex:none}
 /* enquadramento da foto da abertura: as três pessoas inteiras na moldura */
 .house img{object-position:100% 50%}
 @media (max-width:959px){.house img{object-position:50% 8%}}
+
+/* "Para quem é": no computador ficam as abas; no celular, 3 cartões sempre visíveis */
+.pan-t{display:none}
+@media (max-width:959px){
+  .tablist{display:none!important}
+  .tabs .pan,.tabs .pan[hidden]{display:grid!important;grid-template-columns:56px minmax(0,1fr);align-items:center;gap:10px 14px;padding:18px 18px 20px;border-radius:24px;margin:0 0 14px;text-align:left}
+  .tabs .pan-ico{width:56px;height:56px;border-radius:16px}
+  .tabs .pan-ico svg{width:28px;height:28px}
+  .tabs .pan-t{display:block;margin:0;font-size:19px;line-height:1.2;letter-spacing:-.01em;color:var(--ink)}
+  .tabs .pan p{grid-column:1/-1;flex:none;font-size:16px!important;font-weight:500;line-height:1.5;letter-spacing:0;color:var(--body)}
+  .tabs .pan .btn{grid-column:1/-1;justify-self:start;margin-top:2px}
+}
