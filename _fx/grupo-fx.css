@@ -288,3 +288,11 @@ header.hdr,[data-screen-label="01 Abertura"] ~ * header,body>header{animation:fx
 .fx-wa-btn{background:linear-gradient(180deg,var(--btn1,var(--deep,#0E2A22)),var(--btn2,var(--deep,#0E2A22)));color:var(--btntxt,#fff)!important;border:1px solid var(--btnb,transparent)}
 /* emblemas divisórios sempre por cima das seções vizinhas (abertura inclusive) */
 .axis,.stair,.beam,.roofs{z-index:8!important}
+
+/* celular: cards empilhados mais compactos para caberem inteiros na tela (inclusive telas pequenas) */
+@media (max-width:959px){
+  [data-stack] .card :is(.sc-img,.sp-img,.t-img){height:120px!important;min-height:0!important;max-height:120px!important;aspect-ratio:auto!important;flex:none!important}
+  [data-stack] .card .sc-stamp{display:none!important}
+  #servicos [data-card]>div>div:has(img){min-height:120px!important;height:120px!important}
+  #servicos [data-card]>div>div:first-child{gap:14px!important}
+}
