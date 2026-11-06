@@ -121,7 +121,7 @@
         // aproveitando o espaço de cima para o card inteiro caber na tela durante a leitura
         if (g.head) { g.head.style.position = 'relative'; g.head.style.top = 'auto'; }
         var base = Math.round(hb + 12);
-        g.cards.forEach(function (o, i) { o.c.style.top = (base + i * 8) + 'px'; });
+        g.cards.forEach(function (o, i) { o.c.style.top = (base + Math.min(i, 3) * 8) + 'px'; });
       }
       // a pilha sai inteira junto: cada card ganha margem embaixo até o fim do último,
       // e o card seguinte devolve essa margem em cima para o fluxo não mudar

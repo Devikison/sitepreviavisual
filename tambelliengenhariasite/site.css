@@ -182,7 +182,7 @@ h2.eyebrow{font-size:16px;margin-bottom:18px}
 .burger[aria-expanded="true"] i:nth-of-type(2){transform:rotate(-45deg)}
 @media (max-width:959px){
   .mnav{display:flex!important;max-height:0;opacity:0;visibility:hidden;overflow:hidden;padding-top:0!important;padding-bottom:0!important;transform:translate3d(0,-10px,0);transition:max-height .8s cubic-bezier(.65,0,.25,1),opacity .6s var(--e),transform .7s var(--e),padding .8s cubic-bezier(.65,0,.25,1),visibility 0s .8s}
-  .mnav.is-open{max-height:80vh;opacity:1;visibility:visible;padding-top:6px!important;padding-bottom:18px!important;transform:none;transition:max-height .8s cubic-bezier(.65,0,.25,1),opacity .6s var(--e) .1s,transform .7s var(--e),padding .8s cubic-bezier(.65,0,.25,1),visibility 0s}
+  .mnav.is-open{max-height:80svh;opacity:1;visibility:visible;padding-top:6px!important;padding-bottom:18px!important;transform:none;transition:max-height .8s cubic-bezier(.65,0,.25,1),opacity .6s var(--e) .1s,transform .7s var(--e),padding .8s cubic-bezier(.65,0,.25,1),visibility 0s}
   .mnav a{opacity:0;transform:translate3d(-12px,0,0);transition:opacity .5s var(--e),transform .6s var(--e)}
   .mnav.is-open a{opacity:1;transform:none}
   .mnav.is-open a:nth-child(2){transition-delay:.06s}.mnav.is-open a:nth-child(3){transition-delay:.12s}.mnav.is-open a:nth-child(4){transition-delay:.18s}
@@ -199,7 +199,7 @@ h2.eyebrow{font-size:16px;margin-bottom:18px}
 .hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(17,19,22,.97) 0%,rgba(17,19,22,.88) 40%,rgba(17,19,22,.3) 72%),linear-gradient(0deg,rgba(17,19,22,1) 0%,rgba(17,19,22,0) 40%)}
 .hero-in{position:relative;flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-top:calc(68px + 64px)}
 .hero .wrap{width:100%;max-width:1360px}
-.hero-txt{display:flex;flex-direction:column;gap:22px;padding-bottom:clamp(28px,5vh,56px)}
+.hero-txt{display:flex;flex-direction:column;gap:22px;padding-bottom:clamp(28px,5svh,56px)}
 .h-tag{align-self:flex-start;display:inline-flex;align-items:center;gap:12px;padding:8px 14px 8px 8px;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.03));border:1px solid var(--line2);font-family:var(--cond);font-size:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;backdrop-filter:blur(8px)}
 .h-tag img{width:34px;height:auto;padding:5px;background:#fff}
 .hero h1{max-width:21ch;font-size:clamp(40px,4.8vw,80px);line-height:.95;text-transform:uppercase;text-shadow:0 10px 30px rgba(0,0,0,.4)}
@@ -254,8 +254,8 @@ h2.eyebrow{font-size:16px;margin-bottom:18px}
 .idx li.on:after{transform:scaleX(1)}
 @media (max-width:959px){.idx{display:none}}
 .cards{flex:999 1 640px;gap:22px}
-@media (min-width:960px){.svc .cards{padding-bottom:clamp(70px,16vh,150px)}}
-.tcard{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);backface-visibility:hidden;min-height:clamp(340px,42vh,420px);background:linear-gradient(160deg,#20242A 0%,#171A1E 100%);border:1px solid var(--line);border-top:0;box-shadow:var(--sh)}
+@media (min-width:960px){.svc .cards{padding-bottom:clamp(70px,16svh,150px)}}
+.tcard{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);backface-visibility:hidden;min-height:clamp(340px,42svh,420px);background:linear-gradient(160deg,#20242A 0%,#171A1E 100%);border:1px solid var(--line);border-top:0;box-shadow:var(--sh)}
 .tcard:before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:linear-gradient(90deg,var(--red) 0 70%,var(--navy2) 70% 100%);z-index:1}
 .tcard .shade{background:#000}
 .t-txt{display:flex;flex-direction:column;justify-content:space-between;gap:24px;padding:clamp(26px,3vw,40px)}
@@ -314,10 +314,10 @@ h2.eyebrow{font-size:16px;margin-bottom:18px}
 
 /* como funciona: viga + painel técnico */
 .steps{position:relative;background:linear-gradient(180deg,#14171A,#0F1114);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-@media (min-width:960px){.steps{height:340vh}.steps-pin{position:sticky;top:0;height:100svh;display:flex;align-items:center;padding-top:60px}}
+@media (min-width:960px){.steps{height:340svh}.steps-pin{position:sticky;top:0;height:100svh;display:flex;align-items:center;padding-top:60px}}
 @media (prefers-reduced-motion:reduce){.cols li.on{animation:none}}
 .steps-pin .wrap{width:100%}
-.steps-top{display:flex;flex-wrap:wrap;align-items:end;gap:20px 48px;margin-bottom:clamp(22px,3vh,36px)}
+.steps-top{display:flex;flex-wrap:wrap;align-items:end;gap:20px 48px;margin-bottom:clamp(22px,3svh,36px)}
 .steps-top h2{flex:none}
 .viga{flex:1 1 360px;display:grid;grid-template-columns:repeat(4,1fr 14px);align-items:end;padding-bottom:6px}
 .seg{height:12px;background:var(--panel2);position:relative;overflow:hidden;box-shadow:inset 0 1px 2px rgba(0,0,0,.6)}
@@ -343,7 +343,7 @@ h2.eyebrow{font-size:16px;margin-bottom:18px}
 .dash-h img{width:34px;height:auto;padding:4px 5px;background:#fff}
 .dash-h i{width:10px;height:10px;border-radius:50%;background:#2A2F35}
 .dash-h i:nth-of-type(1){margin-left:auto;background:var(--red)}
-.scenes{flex:1;min-height:clamp(300px,46vh,420px)}
+.scenes{flex:1;min-height:clamp(300px,46svh,420px)}
 .scene{display:flex;flex-direction:column}
 .sc-cap{display:none;margin:0;padding:12px 16px 0;font-family:var(--cond);font-size:18px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink)}
 .scene svg{flex:1;fill:none;stroke-linecap:square}
@@ -465,7 +465,7 @@ h2.eyebrow{font-size:16px;margin-bottom:18px}
 .soc svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 
 @media (max-width:959px){
-  .hero-in{padding-top:calc(72px + 30vh)}
+  .hero-in{padding-top:calc(72px + 30svh)}
   .hero-shade{background:linear-gradient(0deg,#111316 0%,rgba(17,19,22,.93) 50%,rgba(17,19,22,.35) 76%,rgba(17,19,22,.15) 100%)}
   .hero-img{object-position:62% 30%}
   .rail-in{grid-template-columns:1fr 1fr}
@@ -487,7 +487,7 @@ h2.eyebrow{font-size:16px;margin-bottom:18px}
   .nope-x{width:48px;height:48px}
   .why-sym{width:84px}
   /* como funciona no celular: também preso na tela, contando a história conforme rola */
-  .steps{height:430vh}
+  .steps{height:430svh}
   .steps-pin{position:sticky;top:0;height:100svh;display:flex;align-items:center;padding-top:64px;overflow:hidden}
   .steps-top{gap:12px;margin-bottom:14px}
   .steps-top h2{font-size:clamp(36px,10vw,48px)}
@@ -515,7 +515,7 @@ h2.eyebrow{font-size:16px;margin-bottom:18px}
    sombra escura só atrás do texto e leitura centralizada nos títulos */
 @media (max-width:959px){
   .hero-img{transform:none!important;transition:none;will-change:auto}
-  .hero-shade{background:linear-gradient(180deg,rgba(17,19,22,0) 0,rgba(17,19,22,0) calc(72px + 30vh - 150px),rgba(17,19,22,.82) calc(72px + 30vh - 10px),rgba(17,19,22,.93) calc(72px + 30vh + 220px),#111316 100%)}
+  .hero-shade{background:linear-gradient(180deg,rgba(17,19,22,0) 0,rgba(17,19,22,0) calc(72px + 30svh - 150px),rgba(17,19,22,.82) calc(72px + 30svh - 10px),rgba(17,19,22,.93) calc(72px + 30svh + 220px),#111316 100%)}
   .hero-txt{align-items:center;text-align:center}
   .h-tag{align-self:center}
   .hero h1{margin-inline:auto}

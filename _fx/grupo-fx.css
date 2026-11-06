@@ -131,11 +131,11 @@ p,li,address,dd{text-wrap:pretty;overflow-wrap:break-word}
 
 /* ---------- abertura cabendo na primeira tela (computador) ---------- */
 @media (min-width:960px){
-  #inicio.hero{min-height:100svh;padding-top:calc(80px + 2.4vh)!important;padding-bottom:3vh!important;box-sizing:border-box}
+  #inicio.hero{min-height:100svh;padding-top:calc(80px + 2.4svh)!important;padding-bottom:3svh!important;box-sizing:border-box}
   #inicio .wrap{max-width:min(1440px,100%)!important;padding-left:clamp(24px,4vw,64px);padding-right:clamp(24px,4vw,64px)}
-  #inicio h1{font-size:clamp(34px,min(4.3vw,6.6vh),74px)!important;line-height:1.02!important}
-  #inicio .lead{font-size:clamp(16px,min(1.25vw,2.25vh),19px)!important;line-height:1.55!important}
-  #inicio .hero-txt{gap:clamp(12px,2.1vh,22px)!important}
+  #inicio h1{font-size:clamp(34px,min(4.3vw,6.6svh),74px)!important;line-height:1.02!important}
+  #inicio .lead{font-size:clamp(16px,min(1.25vw,2.25svh),19px)!important;line-height:1.55!important}
+  #inicio .hero-txt{gap:clamp(12px,2.1svh,22px)!important}
   #inicio .cover-frame img{min-height:0!important}
   /* Treinamentos: a foto acompanha a altura do texto, sem esticar a seção */
   #inicio .cover{min-height:min(600px,calc(100svh - 150px))}
@@ -145,7 +145,7 @@ p,li,address,dd{text-wrap:pretty;overflow-wrap:break-word}
   /* Tambelli: faixa de números colada no rodapé da abertura, sem espaço duplo em cima */
   #inicio .hero-in{padding-top:0!important}
   #inicio.hero:has(.rail){padding-bottom:0!important}
-  #inicio .hero-in .hero-txt{padding-bottom:clamp(16px,3vh,40px)!important;gap:clamp(12px,1.8vh,20px)!important}
+  #inicio .hero-in .hero-txt{padding-bottom:clamp(16px,3svh,40px)!important;gap:clamp(12px,1.8svh,20px)!important}
 }
 
 /* ---------- entrada da abertura ao carregar (5 sites) ---------- */
