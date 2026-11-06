@@ -168,3 +168,6 @@ header.hdr,[data-screen-label="01 Abertura"] ~ * header,body>header{animation:fx
 #inicio .hero-img{animation:fx-zoom 2.4s var(--fx-hero-e) 0s backwards}
 #inicio .cota,#inicio .cota-l,#inicio .carimbo,#inicio .cover-tag{animation:fx-up 1.2s var(--fx-hero-e) 1.15s backwards}
 @media (prefers-reduced-motion:reduce){header.hdr,#inicio *,[data-screen-label="01 Abertura"] *{animation:none!important}}
+
+/* celular/tablet: título "Quem conduz" vem antes dos crachás */
+@media (max-width:959px){.team-grid>.team-ph,.team-grid>.cr-wrap{order:2}.team-grid{display:grid}}
