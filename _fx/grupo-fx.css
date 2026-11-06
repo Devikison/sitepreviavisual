@@ -255,3 +255,16 @@ header.hdr,[data-screen-label="01 Abertura"] ~ * header,body>header{animation:fx
 @media (max-width:959px){#inicio .sheet-img img{object-position:96% 60%!important}}
 [data-screen-label="02 Para quem é"] h2{white-space:nowrap}
 #para-quem .eyebrow,#para-quem h2.eyebrow{white-space:nowrap}
+
+/* ---------- hover dos cards (somente onde existe mouse) ---------- */
+@media (hover:hover) and (pointer:fine){
+  :is(.pq-card,.fx-local,.qa,.team-list li,.spec li,.pj-list li,.fx-logos .lg,.ob-row figure,section.why li,section.change li,.reasons>li,.nope,.cracha .cr-card){transition:transform .7s cubic-bezier(.16,.84,.24,1),box-shadow .7s cubic-bezier(.16,.84,.24,1),background-color .5s!important}
+  :is(.pq-card,.fx-local,.qa,.team-list li,.spec li,.fx-logos .lg):hover{transform:translate3d(0,-6px,0)!important;box-shadow:0 30px 56px -30px rgba(0,0,0,.45),0 0 0 1px rgba(0,0,0,.04)!important}
+  :is(section.why li,section.change li,.reasons>li,.nope):hover{transform:translate3d(0,-6px,0)!important}
+  .pj-list li:hover{transform:translate3d(0,-3px,0)!important;box-shadow:0 14px 26px -16px rgba(0,0,0,.35)!important}
+  .ob-row figure:hover{transform:translate3d(0,-4px,0)}
+  .cs-list li{transition:padding .5s cubic-bezier(.16,.84,.24,1),background-color .5s}
+  .cs-list li:hover{padding-left:14px;background:rgba(255,255,255,.04)}
+  .pq-card:hover .pq-ico,.fx-local:hover .fx-local-ic{transform:scale(1.06) rotate(-4deg)}
+  .pq-ico,.fx-local-ic{transition:transform .6s cubic-bezier(.16,.84,.24,1)}
+}
