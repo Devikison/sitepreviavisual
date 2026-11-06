@@ -155,7 +155,7 @@
   function marquee(m) {
     var t = m.querySelector('.fx-marq-t');
     var g = t && t.querySelector('.fx-marq-g');
-    if (!g || t.__fx) return; t.__fx = 1;
+    if (!g || t.__fx || !m.offsetWidth) return; t.__fx = 1; // faixa escondida (versão celular no computador) monta quando aparecer
     // repete o grupo até cobrir 2x a largura da tela, depois duplica (loop sem emenda)
     var base = g.innerHTML, n = 0;
     while (g.scrollWidth < Math.max(innerWidth, 1200) && n++ < 12) g.insertAdjacentHTML('beforeend', base);
@@ -171,7 +171,7 @@
     tint();
     legible();
     reveal();
-    var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(legible, 200); });
+    var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(function () { legible(); $$('.fx-marq').forEach(marquee); }, 200); });
   }
 
   /* ================= leitura confortável =================
