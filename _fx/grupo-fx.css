@@ -177,3 +177,4 @@ header.hdr,[data-screen-label="01 Abertura"] ~ * header,body>header{animation:fx
 .fx-logos .lg{box-shadow:0 0 0 1px rgba(0,0,0,.06),0 12px 22px -14px rgba(0,0,0,.32)}
 .cl-rows{gap:0}
 @media (max-width:767px){.fx-marq.fx-logos{padding:14px 0 30px}}
+.fx-car [data-fx-track]{padding-top:10px!important;padding-bottom:36px!important;margin-bottom:-22px}
