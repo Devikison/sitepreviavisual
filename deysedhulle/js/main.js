@@ -11,6 +11,7 @@
   var alturaTopo = function () { return topo ? topo.getBoundingClientRect().bottom + 16 : 16; };
 
   /* ---------- Títulos palavra por palavra (mantém <em>) ---------- */
+  var ci = 0;
   $$("[data-split]").forEach(function (el) {
     var i = 0;
     (function andar(no) {
@@ -21,7 +22,10 @@
             if (!p) return;
             if (/^[ \t\n\r]+$/.test(p)) { frag.appendChild(document.createTextNode(" ")); return; }
             var w = document.createElement("span"); w.className = "w";
-            var s = document.createElement("span"); s.textContent = p; s.style.setProperty("--wi", i++);
+            var s = document.createElement("span"); s.style.setProperty("--wi", i++);
+            if (el.getAttribute("data-split") === "hero" && !(no.closest && no.closest(".ouro"))) {
+              Array.prototype.forEach.call(p, function (ch) { var c = document.createElement("span"); c.className = "c"; c.textContent = ch; c.style.setProperty("--ci", ci++); s.appendChild(c); });
+            } else s.textContent = p;
             w.appendChild(s); frag.appendChild(w);
           });
           no.replaceChild(frag, n);
@@ -37,8 +41,18 @@
     var h1 = $('[data-split="hero"]');
     if (h1) { h1.style.setProperty("--wd", "250ms"); h1.classList.add("in"); }
   }
-  if (document.fonts && document.fonts.ready) Promise.race([document.fonts.ready, new Promise(function (r) { setTimeout(r, 600); })]).then(function () { requestAnimationFrame(pronto); });
-  else requestAnimationFrame(pronto);
+  var intro = document.querySelector("[data-intro]");
+  function abrir() {
+    if (intro && !reduz) {
+      intro.classList.add("sai");
+      setTimeout(pronto, 450);
+      setTimeout(function () { intro.remove(); }, 1400);
+    } else { if (intro) intro.remove(); requestAnimationFrame(pronto); }
+  }
+  var t0 = performance.now(), minimo = reduz ? 0 : 1500;
+  var fontes = document.fonts && document.fonts.ready ? Promise.race([document.fonts.ready, new Promise(function (r) { setTimeout(r, 1200); })]) : Promise.resolve();
+  fontes.then(function () { setTimeout(abrir, Math.max(0, minimo - (performance.now() - t0))); });
+  setTimeout(function () { if (intro && intro.isConnected && !intro.classList.contains("sai")) abrir(); }, 3200);
 
   /* ---------- Revelação na rolagem, em cascata ---------- */
   var alvos = $$("[data-reveal], [data-img], [data-split]:not([data-split=hero])");
