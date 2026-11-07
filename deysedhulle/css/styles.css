@@ -1133,3 +1133,40 @@ html.letras-grandes { font-size: 125%; }
 .pag-lista .bio-cta { margin-top: 1.4rem; }
 .pag-lista .bio__rodape p { flex-direction: column; gap: .4rem; }
 .pag-lista .bio__rodape a { font-size: 1rem; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+
+/* ================= Cards de serviço com cara de clicável ================= */
+.trat-card { cursor: pointer; border: 1.5px solid rgba(78, 115, 99, .16); }
+.trat-card__ir { display: flex; align-items: center; justify-content: space-between; gap: .8rem; margin: .8rem 1.1rem 1.1rem; padding: .35rem .35rem .35rem 1.2rem; border-radius: 999px; color: #fff; font-weight: 700; font-size: 1rem; background: linear-gradient(180deg, #6C907F, #4E7363); box-shadow: 0 12px 24px -12px rgba(54, 86, 74, .6), inset 0 1px 0 rgba(255, 255, 255, .22); transition: filter .5s var(--e), box-shadow .5s var(--e); }
+.trat-card__seta { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: #fff; color: var(--terra-esc); transition: transform .5s var(--e); }
+.trat-card__seta .ic { width: 1.1rem; height: 1.1rem; }
+.trat-card:active { transform: scale(.985); }
+@media (hover: hover) {
+  .trat-card:hover { border-color: rgba(188, 135, 38, .55); transform: translateY(-6px); }
+  .trat-card:hover .trat-card__ir { filter: brightness(1.06); box-shadow: 0 16px 30px -12px rgba(54, 86, 74, .7); }
+  .trat-card:hover .trat-card__seta { transform: translateX(3px); }
+}
+.consulta-card .trat-card__ir { margin: 0; color: #3B2A06; background: linear-gradient(180deg, #F8DE8C, #E6B651 55%, #CF9E3A); }
+.consulta-card { border: 1.5px solid rgba(188, 135, 38, .45); }
+@media (max-width: 640px) { .consulta-card .trat-card__ir { width: 100%; } }
+
+/* Bio: cards do carrossel e blocos */
+.bio-trat { display: flex; flex-direction: column; border: 1.5px solid rgba(188, 135, 38, .4); }
+.bio-trat > span:nth-of-type(1) { flex: 1; }
+.bio-trat__ir { display: flex; align-items: center; justify-content: space-between; margin: 0 .7rem .75rem; padding: .45rem .5rem .45rem .9rem; border-radius: 999px; font-weight: 700; font-size: .88rem; color: #fff; background: linear-gradient(180deg, #6C907F, #4E7363); }
+.bio-trat__ir .ic { width: 1.05rem; height: 1.05rem; }
+.bio-tile { position: relative; border: 1.5px solid rgba(78, 115, 99, .2); padding-bottom: 3.4rem; }
+.bio-tile__ir { position: absolute; left: 1rem; right: 1rem; bottom: .8rem; display: flex; align-items: center; justify-content: space-between; padding: .3rem .4rem .3rem .85rem; border-radius: 999px; font-weight: 700; font-size: .85rem; color: var(--terra-esc); background: rgba(255, 255, 255, .9); border: 1px solid rgba(78, 115, 99, .25); }
+.bio-tile__ir .ic { width: 1rem; height: 1rem; }
+
+/* Página inicial: sanfonas de tratamento com "Detalhes" */
+.trat summary { transition: background .4s var(--e); }
+.trat__abrir { grid-column: 3; grid-row: 1 / span 2; display: inline-flex; align-items: center; gap: .55rem; padding: .3rem .3rem .3rem .95rem; border-radius: 999px; background: linear-gradient(180deg, #FFFFFF, var(--papel)); border: 1px solid rgba(78, 115, 99, .22); box-shadow: 0 8px 16px -10px rgba(22, 34, 29, .35); }
+.trat__abrir-tx { font-weight: 700; font-size: .9rem; color: var(--terra-esc); }
+.trat__abrir .trat__mais { grid-column: auto; grid-row: auto; width: 36px; height: 36px; border-radius: 50%; box-shadow: none; }
+.trat[open] .trat__abrir-tx::after { content: ""; }
+.trat[open] .trat__abrir { background: linear-gradient(180deg, #6C907F, #4E7363); border-color: transparent; }
+.trat[open] .trat__abrir-tx { color: #fff; }
+@media (hover: hover) { .trat summary:hover { background: rgba(255, 255, 255, .55); } .trat summary:hover .trat__abrir { border-color: var(--terra); } }
+@media (max-width: 640px) { .trat__abrir { padding: .25rem; } .trat__abrir-tx { display: none; } }
+.bio-trat .bio-trat__ir { display: flex; align-items: center; justify-content: space-between; gap: .5rem; padding: .45rem .55rem .45rem .95rem; margin: 0 .7rem .8rem; white-space: nowrap; }
+.bio-trat .bio-trat__ir .ic { width: 1.05rem; height: 1.05rem; flex: none; }
