@@ -1283,3 +1283,15 @@ html.letras-grandes { font-size: 125%; }
 /* Leitura: textos secundários sempre escuros o bastante */
 :root { --tinta-2: #35443D; }
 .trat__resumo, .resultado__nota, .painel__foto figcaption, .flutua p, .bio__reg, .bio-tile small, .bio-trat small, .lista-btn__tx small, .trat-card__tx > span { color: var(--tinta-2); }
+
+/* ================= Hover sem giro: só uma subida suave ================= */
+.card--tilt, .js .card--tilt[data-reveal].in { transform: translateY(var(--ty, 0)) !important; }
+@media (hover: hover) {
+  .card--tilt:hover { --ty: -5px; }
+  .card:hover .selo-ic { transform: translateY(-2px); }
+  .btn:hover .btn__ic { transform: translateX(3px); }
+  .print:hover, .carrossel:not(.is-arrastando) .print:hover { transform: translateY(-8px); }
+  .derma__card:hover .derma__simbolo { transform: none; }
+}
+.trat[open] .trat__mais, .faq__item[open] .trat__mais { transform: none; }
+.trat[open] .trat__mais i:last-child, .faq__item[open] .trat__mais i:last-child { transform: rotate(0deg) scaleY(0); }

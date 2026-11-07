@@ -188,7 +188,7 @@
     } else {
       var g = GUIA[id]; if (!g) return;
       var itens = g.trat.map(function (t, i) {
-        return '<li style="--i:' + i + '"><a href="#' + t.id + '" data-abre="' + t.id + '"><span class="selo-ic">' + icone("spark") + "</span><span><strong>" + esc(t.nome) + "</strong><span>" + esc(t.resumo) + "</span></span>" + icone("arrow") + "</a></li>";
+        return '<li style="--i:' + i + '"><a href="#' + t.id + '" data-abre="' + t.id + '"><span class="selo-ic">' + icone("ok") + "</span><span><strong>" + esc(t.nome) + "</strong><span>" + esc(t.resumo) + "</span></span>" + icone("arrow") + "</a></li>";
       }).join("");
       html = '<p class="eyebrow">Indicados para</p><p class="resultado__tit">' + esc(g.nome) + "</p>" +
         '<p class="resultado__nota">A escolha final acontece na avaliação, de acordo com a sua pele.</p>' +
@@ -228,7 +228,7 @@
     if (!fino || reduz) return;
     $$(".card", raiz).forEach(function (c) {
       if (c._luz) return; c._luz = 1;
-      var tilt = c.classList.contains("card--tilt");
+      var tilt = false;
       c.addEventListener("pointermove", function (e) {
         var r = c.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
         c.style.setProperty("--lx", x + "px"); c.style.setProperty("--ly", y + "px");
