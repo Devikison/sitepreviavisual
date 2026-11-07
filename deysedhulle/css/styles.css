@@ -1198,3 +1198,45 @@ html.letras-grandes { font-size: 125%; }
 @media (max-width: 640px) { .hero__fig { height: clamp(200px, calc(100svh - 488px), 470px); } }
 @media (max-width: 640px) and (max-height: 700px) { .hero__texto .eyebrow { display: none; } .hero__fig { height: clamp(200px, calc(100svh - 450px), 470px); } }
 @media (min-width: 641px) and (max-width: 899px) { .hero__fig { height: clamp(300px, calc(100svh - 530px), 560px); } }
+
+/* ================= Celular: títulos, textos e botões centralizados ================= */
+@media (max-width: 640px) {
+  .hero__texto, .cab, .cab--linha > div, .cab__sub, .derma__cab, .guia__cab, .aval__texto > .eyebrow, .aval__texto > h2, .aval__sub,
+  .sobre__texto > .eyebrow, .sobre__texto > h2, .fisio__cab, .exp__texto, .faq__cab, .contato__cab, .rodape__cta, .historia__card--intro,
+  .pg-hero > .wrap > .eyebrow, .pg-hero > .wrap > h1, .pg-hero > .wrap > .pg-hero__sub, .pg-hero__grid > div, .cat-bloco__cab, .pg-duas > div:first-child, .pg-cta__in, .lista-cab, .bio__topo { text-align: center; }
+  .cab__sub, .derma__cab p, .guia__cab > p, .aval__sub, .exp__texto > p, .faq__cab > p, .pg-hero__sub, .cat-bloco__cab p, .pg-txt, .hero__sub { margin-inline: auto; justify-self: center; }
+  .cab--linha { justify-items: center; }
+  .hero h1, .pg-hero h1, h2 { margin-inline: auto; }
+  .migalhas ol { margin-inline: auto; }
+  .chips, .pg-hero__chips, .hero__acoes, .pg-hero__acoes, .linha-acoes, .trat__acoes, .pg-cta__acoes { justify-content: center; }
+  .faq__cab > div:last-child, .derma__cab > div, .fisio__cab > div { align-items: center; }
+  .pg-hero__nota { justify-content: center; text-align: left; }
+  .exp__lista, .hero__info { text-align: left; }
+  .sobre__texto > p:not(.eyebrow) { text-align: left; }
+  .sobre__texto > p:has(.link-seta) { text-align: center; }
+
+  /* Botões: largura total, texto no centro e círculo à direita */
+  .btn { width: 100%; max-width: 420px; justify-content: space-between; }
+  .btn .btn__tx { flex: 1; text-align: center; padding-left: calc(var(--bh) - 14px); }
+  .topo__cta, .topo__cta.btn { width: auto; }
+  .topo__cta .btn__tx { padding-left: 0; }
+  .btn--sm .btn__tx { padding-left: calc(var(--bh) - 10px); }
+  .hero__acoes .btn, .pg-hero__acoes .btn, .linha-acoes .btn, .pg-cta__acoes .btn, .faq__cab .btn, .contato__cta .btn, .rodape__cta .btn, .fisio__cab .btn, .historia__card .btn, .trat .btn, .resultado .btn { margin-inline: auto; }
+  .linha-acoes, .pg-cta__acoes, .trat__acoes { flex-direction: column; }
+  .link-seta { justify-content: center; }
+  .prints__mais { text-align: center; }
+  .prints__mais .btn { display: inline-flex; }
+}
+.hero h1 { font-size: clamp(2.9rem, min(4.1vw, 8vh), 4.6rem); }
+.derma__img { margin: calc(var(--s-5) * -1) calc(var(--s-5) * -1) 1.4rem; height: 250px; overflow: hidden; position: relative; border-radius: var(--r) var(--r) 0 0; }
+.derma__img img { width: 100%; height: 100%; object-fit: cover; object-position: 8% 32%; transition: transform 1.4s var(--e-out); }
+.derma__img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(31, 45, 39, 0) 45%, rgba(54, 86, 74, .95) 100%); }
+@media (hover: hover) { .derma__card:hover .derma__img img { transform: scale(1.05); } }
+.derma__card.derma__card--3d { justify-content: flex-start; }
+@media (max-width: 640px) {
+  .btn .btn__tx { padding-left: calc((var(--bh) - 14px) * .5); }
+  .contato__cta .btn, .historia__card .btn, .resultado .btn { font-size: .98rem; }
+}
+@media (max-width: 640px) { .contato__cta .btn .btn__tx { padding-left: .4rem; white-space: nowrap; } }
+.derma__img::after { background: linear-gradient(180deg, rgba(69, 105, 90, 0) 30%, rgba(69, 105, 90, .55) 70%, #45695A 100%); }
+.derma__card.derma__card--3d { background: linear-gradient(180deg, #45695A 0, #45695A 250px, var(--cafe) 100%); }
