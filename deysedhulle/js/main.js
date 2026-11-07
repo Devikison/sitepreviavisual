@@ -278,6 +278,37 @@
     cena.style.setProperty("--tx", tx.toFixed(2) + "deg");
   }
 
+  /* ---------- Carrossel infinito de depoimentos (passa devagar, arrasta com inércia) ---------- */
+  var car = $("[data-carrossel]"), trilho = car ? $("[data-trilho]", car) : null;
+  var cx = 0, cvel = reduz ? 0 : -0.35, cin = 0, arr = false, ax = 0, carVivo = false, metade = 0, moveu = 0;
+  function medir() { if (trilho) metade = trilho.scrollWidth / 2; }
+  if (car && trilho) {
+    medir(); window.addEventListener("resize", medir); window.addEventListener("load", medir);
+    new IntersectionObserver(function (e) { carVivo = e[0].isIntersecting; }).observe(car);
+    car.addEventListener("pointerdown", function (e) {
+      arr = true; ax = e.clientX; cin = 0; moveu = 0;
+      car.classList.add("is-arrastando");
+      try { car.setPointerCapture(e.pointerId); } catch (er) {}
+    });
+    car.addEventListener("pointermove", function (e) {
+      if (!arr) return;
+      var dx = e.clientX - ax; ax = e.clientX;
+      cx += dx; cin = dx; moveu += Math.abs(dx);
+    });
+    function soltar() { if (!arr) return; arr = false; car.classList.remove("is-arrastando"); }
+    car.addEventListener("pointerup", soltar);
+    car.addEventListener("pointercancel", soltar);
+    car.addEventListener("lostpointercapture", soltar);
+    car.addEventListener("click", function (e) { if (moveu > 6) { e.preventDefault(); e.stopPropagation(); } }, true);
+  }
+  function passoCarrossel() {
+    if (!trilho || !carVivo || !metade) return;
+    if (!arr) { cx += cvel + cin; cin *= 0.95; if (Math.abs(cin) < .05) cin = 0; }
+    if (cx <= -metade) cx += metade;
+    if (cx > 0) cx -= metade;
+    trilho.style.transform = "translate3d(" + cx.toFixed(2) + "px,0,0)";
+  }
+
   /* ---------- Scrollytelling ---------- */
   var hist = $("[data-historia]");
   var marcas = hist ? $$(".historia__marcas li", hist) : [];
@@ -348,6 +379,7 @@
   function laco(t) {
     passoRolagem(t);
     passo3d();
+    passoCarrossel();
     var y = scrollY;
     if (y !== ySalvo) {
       ySalvo = y;

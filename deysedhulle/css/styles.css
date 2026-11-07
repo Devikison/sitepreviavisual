@@ -737,3 +737,18 @@ h1 .ouro { font-size: 1.02em; }
 .ouro .w > span, .ouro:not(:has(.w)) { background-image: linear-gradient(100deg, #7E560E 0%, #A07015 30%, #C8962C 42%, #E2B654 50%, #C8962C 58%, #A07015 70%, #7E560E 100%); }
 .sec--terra .ouro .w > span, .rodape .ouro .w > span { background-image: linear-gradient(100deg, #D9A93C 0%, #E6B651 30%, #F3D27A 44%, #FFF1C2 50%, #F3D27A 56%, #E6B651 70%, #D9A93C 100%); }
 .petalas { mix-blend-mode: multiply; }
+
+/* ================= Revisão 6: carrossel de depoimentos e faixas retas ================= */
+.faixas .faixa--verde, .faixas .faixa--vidro { transform: none; }
+.faixas .faixa--vidro { margin-top: 0; }
+.faixas { padding: 0; }
+
+.carrossel { position: relative; overflow: hidden; padding: 1rem 0 3.5rem; cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%); }
+.carrossel.is-arrastando { cursor: grabbing; }
+.carrossel__trilho { display: flex; gap: clamp(1rem, 2vw, 1.75rem); width: max-content; padding-inline: 1rem; will-change: transform; }
+.carrossel .print { flex: none; width: clamp(190px, 19vw, 260px); margin: 0; transition: transform .9s var(--e); }
+.carrossel .print:nth-child(even) { margin-top: 2.5rem; }
+.carrossel .print img { pointer-events: none; }
+@media (hover: hover) { .carrossel:not(.is-arrastando) .print:hover { transform: translateY(-10px); } }
+@media (max-width: 640px) { .carrossel .print { width: 62vw; } .carrossel .print:nth-child(even) { margin-top: 1.5rem; } }
