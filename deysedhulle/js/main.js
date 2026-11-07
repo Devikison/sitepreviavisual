@@ -251,6 +251,48 @@
     }, { threshold: .6 }).observe(el);
   });
 
+  /* ---------- Vidro líquido (refração só em navegadores Chromium) ---------- */
+  var marcasUA = navigator.userAgentData && navigator.userAgentData.brands;
+  if (marcasUA && marcasUA.some(function (b) { return /Chrom/.test(b.brand); }) && !reduz) doc.classList.add("liquido");
+
+  /* ---------- Símbolo 3D: gira devagar e segue o cursor ---------- */
+  var c3d = $("[data-c3d]"), c3dVivo = false, ang = 0, tx = -8, txAlvo = -8, angExtra = 0, angExtraAlvo = 0, cena = null;
+  if (c3d) {
+    cena = $(".c3d__cena", c3d);
+    new IntersectionObserver(function (e) { c3dVivo = e[0].isIntersecting; }).observe(c3d);
+    if (fino) {
+      var cardC = c3d.closest(".card") || c3d;
+      cardC.addEventListener("pointermove", function (e) {
+        var r = cardC.getBoundingClientRect();
+        angExtraAlvo = ((e.clientX - r.left) / r.width - .5) * 70;
+        txAlvo = -8 + ((e.clientY - r.top) / r.height - .5) * -24;
+      });
+      cardC.addEventListener("pointerleave", function () { angExtraAlvo = 0; txAlvo = -8; });
+    }
+  }
+  function passo3d() {
+    if (!cena || !c3dVivo) return;
+    if (!reduz) ang = (ang + .22) % 360;
+    angExtra += (angExtraAlvo - angExtra) * .08; tx += (txAlvo - tx) * .08;
+    cena.style.setProperty("--a", (ang + angExtra).toFixed(2) + "deg");
+    cena.style.setProperty("--tx", tx.toFixed(2) + "deg");
+  }
+
+  /* ---------- Scrollytelling ---------- */
+  var hist = $("[data-historia]");
+  var marcas = hist ? $$(".historia__marcas li", hist) : [];
+  var passosH = hist ? $$(".historia__passo", hist) : [];
+  function passoHistoria() {
+    if (!hist) return;
+    var r = hist.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > innerHeight) return;
+    var k = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height - innerHeight)));
+    hist.style.setProperty("--hp", k.toFixed(3));
+    var ativo = 0;
+    passosH.forEach(function (p, i) { if (p.getBoundingClientRect().top < innerHeight * .55) ativo = i; });
+    marcas.forEach(function (m, i) { m.classList.toggle("on", i === ativo); });
+  }
+
   /* ---------- Rolagem suave (roda do mouse + âncoras) ---------- */
   var sm = { on: false, cur: 0, alvo: 0, last: 0, lambda: 5.2 };
   function maxY() { return doc.scrollHeight - innerHeight; }
@@ -305,6 +347,7 @@
   var ultimoY = scrollY, ySalvo = -1;
   function laco(t) {
     passoRolagem(t);
+    passo3d();
     var y = scrollY;
     if (y !== ySalvo) {
       ySalvo = y;
@@ -318,6 +361,7 @@
       }
       if (prog) prog.style.setProperty("--p", (y / Math.max(1, maxY())).toFixed(4));
       if (!reduz) par.forEach(function (el) { el.style.transform = "translate3d(0," + (y * parseFloat(el.getAttribute("data-par"))).toFixed(1) + "px,0)"; });
+      passoHistoria();
       if (linha) {
         var r = linha.getBoundingClientRect();
         var k = Math.min(1, Math.max(0, (innerHeight * .65 - r.top) / r.height));
