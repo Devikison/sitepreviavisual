@@ -98,6 +98,7 @@
     var mapa = {};
     links.forEach(function (a) { var s = document.getElementById(a.getAttribute("href").slice(1)); if (s) mapa[s.id] = a; });
     var ion = new IntersectionObserver(function (es) {
+      if (scrollY < 300) { links.forEach(function (l) { l.removeAttribute("aria-current"); }); return; }
       es.forEach(function (e) {
         if (e.isIntersecting && mapa[e.target.id]) {
           links.forEach(function (l) { l.removeAttribute("aria-current"); });
@@ -176,7 +177,7 @@
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   function icone(n, c) { return '<svg class="' + (c || "ic") + '" aria-hidden="true"><use href="#i-' + n + '"/></svg>'; }
   function botaoWa(msg, label, id) {
-    return '<a class="btn btn--ouro" href="' + linkWa(msg) + '" target="_blank" rel="noopener" data-btn="' + id + '"><span class="btn__ic">' + icone("wa") + '</span><span class="btn__tx">' + label + "</span></a>";
+    return '<a class="btn btn--ouro" href="' + linkWa(msg) + '" target="_blank" rel="noopener" data-btn="' + id + '"><span class="btn__tx">' + label + '</span><span class="btn__ic">' + icone("wa") + "</span></a>";
   }
   function mostrar(id) {
     var html;
@@ -291,6 +292,20 @@
     cena.style.setProperty("--a", (ang + angExtra).toFixed(2) + "deg");
     cena.style.setProperty("--tx", tx.toFixed(2) + "deg");
   }
+
+  /* ---------- Aumentar letras (acessibilidade, lembrado no aparelho) ---------- */
+  var botLetras = document.querySelectorAll("[data-letras]");
+  function aplicarLetras(on) {
+    doc.classList.toggle("letras-grandes", on);
+    Array.prototype.forEach.call(botLetras, function (b) { b.setAttribute("aria-pressed", on ? "true" : "false"); b.lastChild.textContent = on ? " Letras normais" : " Aumentar letras"; });
+  }
+  try { if (localStorage.getItem("letras-grandes") === "1") aplicarLetras(true); } catch (e) {}
+  Array.prototype.forEach.call(botLetras, function (b) {
+    b.addEventListener("click", function () {
+      var on = !doc.classList.contains("letras-grandes"); aplicarLetras(on);
+      try { localStorage.setItem("letras-grandes", on ? "1" : "0"); } catch (e) {}
+    });
+  });
 
   /* ---------- Guia de fotos para a cliente (só com ?fotos no link) ---------- */
   if (/[?&]fotos\b/.test(location.search)) {
@@ -424,6 +439,7 @@
         ultimoY = y;
       }
       if (prog) prog.style.setProperty("--p", (y / Math.max(1, maxY())).toFixed(4));
+      if (zap && !hero) zap.classList.toggle("is-on", y > 480);
       if (!reduz) par.forEach(function (el) {
         var base = el.parentElement.getBoundingClientRect();
         if (base.bottom < -200 || base.top > innerHeight + 200) return;

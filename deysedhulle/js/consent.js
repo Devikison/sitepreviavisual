@@ -12,6 +12,7 @@
   };
 
   var KEY = "site-consent-v1";
+  var RAIZ = ((document.currentScript && document.currentScript.src) || "").replace(/js\/consent\.js.*$/, "");
   var isLocal = /^(localhost|127\.|192\.168\.)/.test(location.hostname);
 
   function read() {
@@ -64,7 +65,7 @@
     banner.setAttribute("aria-label", "Aviso de cookies");
     banner.innerHTML =
       '<p class="consent__title">Sua privacidade</p>' +
-      '<p class="consent__text">Usamos cookies essenciais para o site funcionar e, com a sua permissão, cookies de medição para entender as visitas. Você pode mudar a escolha quando quiser. Saiba mais na <a href="' + (/\/bio\//.test(location.pathname) ? "../" : "") + 'politica-de-cookies.html">Política de Cookies</a>.</p>' +
+      '<p class="consent__text">Usamos cookies essenciais para o site funcionar e, com a sua permissão, cookies de medição para entender as visitas. Você pode mudar a escolha quando quiser. Saiba mais na <a href="' + RAIZ + 'politica-de-cookies.html">Política de Cookies</a>.</p>' +
       '<div class="consent__actions">' +
       '<button type="button" class="btn btn-gold" data-consent="accept">Aceitar</button>' +
       '<button type="button" class="btn btn-outline" data-consent="reject">Somente essenciais</button>' +
