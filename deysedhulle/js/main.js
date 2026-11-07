@@ -17,9 +17,9 @@
       Array.prototype.slice.call(no.childNodes).forEach(function (n) {
         if (n.nodeType === 3) {
           var frag = document.createDocumentFragment();
-          n.textContent.split(/(\s+)/).forEach(function (p) {
+          n.textContent.split(/([ \t\n\r]+)/).forEach(function (p) {
             if (!p) return;
-            if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(" ")); return; }
+            if (/^[ \t\n\r]+$/.test(p)) { frag.appendChild(document.createTextNode(" ")); return; }
             var w = document.createElement("span"); w.className = "w";
             var s = document.createElement("span"); s.textContent = p; s.style.setProperty("--wi", i++);
             w.appendChild(s); frag.appendChild(w);

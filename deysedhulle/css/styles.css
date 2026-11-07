@@ -833,3 +833,4 @@ h2 + p, .eyebrow + h2 { margin-top: 0; }
 .hero h1 .ouro { white-space: nowrap; }
 @media (max-width: 400px) { .hero h1 { font-size: clamp(2rem, 9.6vw, 2.6rem); } }
 @media (max-width: 640px) { .hero__fig { width: clamp(210px, calc((100svh - 486px) * .94), 360px); } }
+.hero h1 .ouro { white-space: normal; }
