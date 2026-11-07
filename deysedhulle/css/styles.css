@@ -1240,3 +1240,46 @@ html.letras-grandes { font-size: 125%; }
 @media (max-width: 640px) { .contato__cta .btn .btn__tx { padding-left: .4rem; white-space: nowrap; } }
 .derma__img::after { background: linear-gradient(180deg, rgba(69, 105, 90, 0) 30%, rgba(69, 105, 90, .55) 70%, #45695A 100%); }
 .derma__card.derma__card--3d { background: linear-gradient(180deg, #45695A 0, #45695A 250px, var(--cafe) 100%); }
+
+/* ================= Sem verde-escuro: superfícies em sálvia clarinho e texto com contraste alto ================= */
+:root { --salvia-1: #EEF4F0; --salvia-2: #DDE9E2; --salvia-3: #CCDDD3; --verde-medio: #5E8272; --verde-medio-2: #7FA393; }
+/* Seção Desfrute */
+.sec--terra { background: radial-gradient(70% 90% at 0% 0%, #F4F8F5, transparent 60%), linear-gradient(160deg, var(--salvia-2), var(--salvia-3)); color: var(--tinta); }
+.sec--terra h2, .sec--terra h3 { color: var(--tinta); }
+.sec--terra .eyebrow { color: var(--terra); }
+.sec--terra .eyebrow::before { background: var(--ouro-2); box-shadow: 0 0 0 4px rgba(230, 182, 81, .22); }
+.exp__texto > p:not(.eyebrow) { color: var(--tinta-2) !important; }
+.exp__item { color: var(--tinta); background: rgba(255, 255, 255, .78); border: 1px solid rgba(78, 115, 99, .16); box-shadow: inset 0 1px 0 #fff, 0 16px 30px -22px rgba(22, 34, 29, .35); }
+@media (hover: hover) { .exp__item:hover { background: #fff; } }
+.sec--terra .moldura { background: var(--salvia-2); box-shadow: 0 30px 60px -32px rgba(22, 34, 29, .4); }
+.sec--terra .ouro .w > span, .rodape .ouro .w > span { background-image: linear-gradient(100deg, #7E560E 0%, #A07015 30%, #C8962C 42%, #E2B654 50%, #C8962C 58%, #A07015 70%, #7E560E 100%); }
+/* Rodapé claro */
+.rodape { background: linear-gradient(180deg, var(--salvia-1), var(--salvia-2)); color: var(--tinta); }
+.rodape__cta { border-bottom-color: rgba(78, 115, 99, .2); }
+.rodape__cta h2 { color: var(--tinta); }
+.rodape__tit { color: #8E6211; }
+.rodape__col p, .rodape__base { color: var(--tinta-2); }
+.rodape__base { border-top-color: rgba(78, 115, 99, .2); }
+.rodape a:not(.btn) { color: var(--terra-esc); font-weight: 700; }
+/* Card Ciência com sensibilidade */
+.derma__card.derma__card--3d { color: var(--tinta); background: linear-gradient(180deg, var(--salvia-2) 0, var(--salvia-2) 250px, var(--salvia-1) 100%); border-color: rgba(188, 135, 38, .4); }
+.derma__card.derma__card--3d h3 { color: var(--tinta); }
+.derma__card--3d p { color: var(--tinta-2) !important; }
+.derma__img::after { background: linear-gradient(180deg, rgba(221, 233, 226, 0) 35%, rgba(221, 233, 226, .7) 75%, var(--salvia-2) 100%); }
+/* Card de WhatsApp do contato */
+.contato__cta { color: var(--tinta); background: radial-gradient(80% 70% at 100% 0%, #F4F8F5, transparent 70%), linear-gradient(160deg, var(--salvia-2), var(--salvia-3)); border: 1px solid rgba(78, 115, 99, .18); box-shadow: inset 0 1px 0 #fff, 0 34px 60px -32px rgba(22, 34, 29, .4); }
+.contato__cta .rot { color: var(--terra); }
+.contato__num { color: var(--tinta); }
+.contato__cta p:not(.rot):not(.contato__num) { color: var(--tinta-2); opacity: 1; }
+/* Faixa verde vira sálvia clara */
+.faixas .faixa--verde { color: var(--terra-esc); background: linear-gradient(180deg, var(--salvia-2), var(--salvia-3)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .8), 0 20px 40px -26px rgba(22, 34, 29, .35); }
+.faixas .faixa--verde span.alt { color: #8E6211; }
+/* Verde de destaque em tom médio (não escuro) */
+.selo-ic:not(.selo-ic--ouro) { background: linear-gradient(160deg, var(--verde-medio-2), var(--verde-medio)); }
+.abas__luz, .chip[aria-pressed="true"], .trat[open] .trat__mais, .faq__item[open] .trat__mais, .trat[open] .trat__abrir { background: linear-gradient(180deg, var(--verde-medio-2), var(--verde-medio)) !important; }
+.btn--terra, .trat-card__ir, .bio-trat__ir, .lista-btn__ic { background: linear-gradient(180deg, #6C907F, var(--verde-medio)); }
+.historia { background: #EFEAE3; }
+.letras[aria-pressed="true"] { background: var(--verde-medio); border-color: var(--verde-medio); }
+/* Leitura: textos secundários sempre escuros o bastante */
+:root { --tinta-2: #35443D; }
+.trat__resumo, .resultado__nota, .painel__foto figcaption, .flutua p, .bio__reg, .bio-tile small, .bio-trat small, .lista-btn__tx small, .trat-card__tx > span { color: var(--tinta-2); }
