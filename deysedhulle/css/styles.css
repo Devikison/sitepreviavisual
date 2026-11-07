@@ -200,13 +200,8 @@ button { font: inherit; color: inherit; }
 .js [data-reveal] { opacity: 0; transform: translateY(34px); filter: blur(8px); transition: opacity 1.1s var(--e-out), transform 1.1s var(--e-out), filter 1.1s var(--e-out), box-shadow .7s var(--e), border-color .6s var(--e); transition-delay: var(--rd, 0ms); }
 .js [data-reveal].in { opacity: 1; transform: none; filter: none; }
 .js .card--tilt[data-reveal].in { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ty, 0)); }
-.js [data-img] { clip-path: inset(100% 0 0 0 round var(--r)); transition: clip-path 1.5s var(--e-out); }
-.js [data-img] img { transform: scale(1.18); transition: transform 2s var(--e-out); }
-.js [data-img].in { clip-path: inset(0 0 0 0 round var(--r)); }
-.js [data-img].in img { transform: scale(1); }
-.js .moldura--ouro[data-img] { clip-path: none; }
-.js .moldura--ouro[data-img] img { clip-path: inset(100% 0 0 0 round var(--r)); transition: clip-path 1.5s var(--e-out), transform 2s var(--e-out); }
-.js .moldura--ouro[data-img].in img { clip-path: inset(0 0 0 0 round var(--r)); }
+.js [data-img] img { clip-path: inset(100% 0 0 0 round var(--r)); transform: scale(1.18); transition: clip-path 1.5s var(--e-out), transform 2s var(--e-out); }
+.js [data-img].in img { clip-path: inset(0 0 0 0 round var(--r)); transform: scale(1); }
 .js .moldura--ouro[data-img]::after { opacity: 0; transform: translate(-14px, -14px); transition: opacity 1s var(--e-out) .6s, transform 1.4s var(--e-out) .6s; }
 .js .moldura--ouro[data-img].in::after { opacity: .8; transform: none; }
 @media (hover: hover) { .moldura img { transition: transform 1.4s var(--e-out); } .moldura:hover img { transform: scale(1.05); } }
@@ -246,10 +241,8 @@ button { font: inherit; color: inherit; }
 @media (hover: hover) { .chip:hover { transform: translateY(-3px); border-color: var(--terra); box-shadow: inset 0 1px 0 #fff, 0 16px 26px -14px rgba(122, 55, 19, .55); } }
 .resultado { padding: clamp(1.5rem, 3vw, 2.5rem); min-height: 430px; }
 .resultado__vazio { display: grid; align-content: center; gap: .6rem; height: 100%; min-height: 360px; color: var(--tinta-2); }
-.coluna--mini { width: 64px; height: auto; margin-bottom: var(--s-3); }
-.coluna--mini circle { fill: var(--trav); }
-.js .coluna--mini circle { animation: pulsa 2.4s ease-in-out infinite; animation-delay: calc(var(--i) * 140ms); }
-@keyframes pulsa { 0%, 100% { fill: var(--trav); } 40% { fill: var(--cobre); } }
+.resultado__simbolo { width: 58px; height: auto; margin-bottom: var(--s-3); animation: respira 3.2s ease-in-out infinite; }
+@keyframes respira { 50% { transform: translateY(-6px) rotate(-3deg); opacity: .75; } }
 .resultado__tit { font-family: var(--f-tit); font-size: 1.9rem; line-height: 1.05; color: var(--tinta); margin-bottom: .3rem; }
 .resultado__nota { color: var(--tinta-2); margin-bottom: var(--s-4); }
 .resultado__lista { display: grid; gap: .6rem; margin-bottom: var(--s-5); }
@@ -566,7 +559,7 @@ button { font: inherit; color: inherit; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .js [data-reveal], .js .hero__ent, .js .hero__img, .js .hero__placa { opacity: 1; transform: none; filter: none; }
   .js [data-split] .w > span { transform: none; }
-  .js [data-img], .js .moldura--ouro[data-img] img { clip-path: none; }
+  .js [data-img] img { clip-path: none; }
   .js [data-img] img { transform: none; }
   .js .coluna--hero circle { opacity: .9; }
 }
