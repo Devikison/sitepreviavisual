@@ -752,3 +752,15 @@ h1 .ouro { font-size: 1.02em; }
 .carrossel .print img { pointer-events: none; }
 @media (hover: hover) { .carrossel:not(.is-arrastando) .print:hover { transform: translateY(-10px); } }
 @media (max-width: 640px) { .carrossel .print { width: 62vw; } .carrossel .print:nth-child(even) { margin-top: 1.5rem; } }
+
+/* ================= Guia de fotos (só aparece com ?fotos no link) ================= */
+.etiqueta { position: absolute; left: 12px; right: 12px; top: 12px; z-index: 6; display: flex; gap: .7rem; align-items: flex-start; padding: .75rem .9rem; border-radius: 16px; background: rgba(255, 255, 255, .93); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 1.5px solid var(--ouro-2); box-shadow: 0 18px 36px -16px rgba(22, 34, 29, .5); font-size: .86rem; line-height: 1.4; color: var(--tinta-2); text-align: left; }
+.etiqueta b { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; font-family: var(--f-tit); font-size: 1.05rem; color: var(--terra-esc); background: linear-gradient(160deg, var(--ouro-1), var(--ouro-2) 55%, var(--ouro-3)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .7); }
+.etiqueta strong { display: block; font-weight: 700; color: var(--tinta); margin-bottom: .15rem; }
+.hero__fig .etiqueta { top: 4%; left: 6%; right: 6%; }
+.carrossel .etiqueta { left: 50%; right: auto; top: .5rem; width: min(560px, calc(100% - 2rem)); transform: translateX(-50%); }
+.guia-aviso { position: fixed; left: 16px; bottom: 16px; z-index: 70; width: min(440px, calc(100% - 32px)); display: grid; grid-template-columns: 1fr auto; gap: .2rem .8rem; padding: 1rem 1.1rem; border-radius: 18px; background: var(--cafe); color: var(--creme); box-shadow: 0 30px 60px -24px rgba(0, 0, 0, .6); font-size: .9rem; border: 1px solid var(--ouro-3); }
+.guia-aviso strong { font-family: var(--f-tit); font-size: 1.2rem; color: var(--ouro-1); }
+.guia-aviso span { grid-column: 1; }
+.guia-aviso button { grid-column: 2; grid-row: 1 / span 2; align-self: start; width: 36px; height: 36px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, .25); background: transparent; color: var(--creme); font-size: 1.3rem; cursor: pointer; }
+.guia-fotos .consent { display: none; }

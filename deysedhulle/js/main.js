@@ -278,6 +278,24 @@
     cena.style.setProperty("--tx", tx.toFixed(2) + "deg");
   }
 
+  /* ---------- Guia de fotos para a cliente (só com ?fotos no link) ---------- */
+  if (/[?&]fotos\b/.test(location.search)) {
+    doc.classList.add("guia-fotos");
+    $$("[data-foto]").forEach(function (el) {
+      var partes = el.getAttribute("data-foto").split("|");
+      var et = document.createElement("div"); et.className = "etiqueta";
+      var b = document.createElement("b"); b.textContent = partes[0];
+      var sp = document.createElement("span");
+      var st = document.createElement("strong"); st.textContent = "Foto " + partes[0] + ": " + partes[1];
+      sp.appendChild(st); sp.appendChild(document.createTextNode(partes[2] || ""));
+      et.appendChild(b); et.appendChild(sp); el.appendChild(et);
+    });
+    var aviso = document.createElement("div"); aviso.className = "guia-aviso";
+    aviso.innerHTML = "<strong>Guia de fotos</strong><span>Cada etiqueta dourada mostra a foto ideal para aquele espaço. Em Tratamentos, toque nas abas para ver as fotos 2 a 5. Se não tiver uma foto assim, mande a que achar mais parecida.</span><button type=\"button\" aria-label=\"Fechar aviso\">×</button>";
+    aviso.querySelector("button").addEventListener("click", function () { aviso.remove(); });
+    document.body.appendChild(aviso);
+  }
+
   /* ---------- Carrossel infinito de depoimentos (passa devagar, arrasta com inércia) ---------- */
   var car = $("[data-carrossel]"), trilho = car ? $("[data-trilho]", car) : null;
   var cx = 0, cvel = reduz ? 0 : -0.35, cin = 0, arr = false, ax = 0, carVivo = false, metade = 0, moveu = 0;
