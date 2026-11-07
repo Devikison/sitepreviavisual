@@ -360,7 +360,12 @@
         ultimoY = y;
       }
       if (prog) prog.style.setProperty("--p", (y / Math.max(1, maxY())).toFixed(4));
-      if (!reduz) par.forEach(function (el) { el.style.transform = "translate3d(0," + (y * parseFloat(el.getAttribute("data-par"))).toFixed(1) + "px,0)"; });
+      if (!reduz) par.forEach(function (el) {
+        var base = el.parentElement.getBoundingClientRect();
+        if (base.bottom < -200 || base.top > innerHeight + 200) return;
+        var off = (base.top + base.height / 2 - innerHeight / 2) * -parseFloat(el.getAttribute("data-par"));
+        el.style.transform = "translate3d(0," + off.toFixed(1) + "px,0)";
+      });
       passoHistoria();
       if (linha) {
         var r = linha.getBoundingClientRect();
