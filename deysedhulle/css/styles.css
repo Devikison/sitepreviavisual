@@ -689,3 +689,51 @@ button { font: inherit; color: inherit; }
 .sobre__fatos dd { white-space: nowrap; font-size: 1.08rem; }
 .relevo--logo { opacity: .7; }
 @media (max-width: 640px) { .sobre__fatos { grid-template-columns: 1fr 1fr; } }
+
+/* ================= Revisão 5: delicadeza, serifa, pétalas ================= */
+@font-face { font-family: "Serifa"; src: url("../fonts/noto-serif-display-latin-500-italic.woff2") format("woff2"); font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: "Serifa"; src: url("../fonts/noto-serif-display-latin-500-normal.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+:root { --f-serif: "Serifa", Georgia, "Times New Roman", serif; --blush: #E9C4BE; }
+
+/* Destaques dos títulos em serifa elegante */
+.ouro { font-family: var(--f-serif); font-weight: 500; font-style: italic; letter-spacing: -.01em; }
+h1 .ouro { font-size: 1.02em; }
+.ouro .w { padding-bottom: .16em; margin-bottom: -.16em; }
+
+/* Faixas mais estreitas, serifadas e com palavras alternando de cor */
+.faixa { padding: .62rem 0; }
+.faixa__grupo { gap: 1.6rem; padding-right: 1.6rem; }
+.faixa__grupo span { font-family: var(--f-serif); font-weight: 500; font-style: normal; font-size: clamp(1.05rem, 1.7vw, 1.4rem); letter-spacing: .01em; }
+.faixa__grupo span.alt { font-style: italic; }
+.faixa__sep { height: 1.25em; }
+.faixa--ouro { color: var(--terra-esc); }
+.faixa--ouro span.alt { color: #6E4A0C; }
+.faixas .faixa--verde span.alt { color: var(--ouro-1); }
+.faixas .faixa--vidro span.alt { color: #A87718; }
+.faixas { padding: var(--s-5) 0; }
+.faixas .faixa--vidro { margin-top: -.8rem; }
+
+/* Scrollytelling com a imagem clara da coluna */
+.historia { background: #EFEAE3; }
+.historia__fundo img { filter: blur(1.5px) saturate(1.02); object-position: 18% 40%; }
+.historia__veu { background: radial-gradient(70% 70% at 70% 50%, rgba(246, 244, 239, .05), rgba(246, 244, 239, .5)), linear-gradient(180deg, rgba(246, 244, 239, .55), rgba(246, 244, 239, 0) 22%, rgba(246, 244, 239, 0) 78%, rgba(246, 244, 239, .6)); opacity: 1; }
+.historia__marcas li { background: rgba(54, 86, 74, .22); }
+.historia__card { background: linear-gradient(135deg, rgba(255, 255, 255, .62), rgba(255, 255, 255, .3)); }
+
+/* Pétalas caindo devagar pela página */
+.petalas { position: fixed; inset: 0; z-index: 30; pointer-events: none; overflow: hidden; }
+.petala { position: absolute; top: -40px; left: var(--x); width: var(--s); height: var(--s); opacity: var(--o); animation: cai var(--d) linear var(--dl) infinite; will-change: transform; }
+.petala svg { width: 100%; height: 100%; display: block; animation: balanca calc(var(--d) / 6) ease-in-out var(--dl) infinite alternate; filter: drop-shadow(0 4px 6px rgba(120, 80, 70, .15)); }
+.petala--rosa { --pf: url(#g-rosa); }
+.petala--ouro { --pf: url(#g-ouro); }
+@keyframes cai { to { transform: translate3d(0, calc(100dvh + 80px), 0); } }
+@keyframes balanca { from { transform: translateX(calc(var(--sw) * -1)) rotate(-30deg); } to { transform: translateX(var(--sw)) rotate(40deg); } }
+@media (max-width: 640px) { .petala:nth-child(n+7) { display: none; } }
+@media (prefers-reduced-motion: reduce) { .petalas { display: none; } }
+.historia__fundo { inset: 0; transform: scale(calc(1.02 + var(--hp, 0) * .06)); transform-origin: 20% 40%; }
+.historia__fundo img { filter: none; object-position: 0% 30%; }
+.historia__veu { background: linear-gradient(90deg, rgba(246, 244, 239, 0) 0%, rgba(246, 244, 239, 0) 30%, rgba(246, 244, 239, .35) 60%, rgba(246, 244, 239, .55) 100%), linear-gradient(180deg, rgba(246, 244, 239, .5), rgba(246, 244, 239, 0) 18%, rgba(246, 244, 239, 0) 82%, rgba(246, 244, 239, .6)); }
+@media (max-width: 1024px) { .historia__fundo img { object-position: 8% 30%; } .historia__veu { background: linear-gradient(180deg, rgba(246, 244, 239, .45), rgba(246, 244, 239, .15) 30%, rgba(246, 244, 239, .15) 70%, rgba(246, 244, 239, .55)); } }
+.ouro .w > span, .ouro:not(:has(.w)) { background-image: linear-gradient(100deg, #7E560E 0%, #A07015 30%, #C8962C 42%, #E2B654 50%, #C8962C 58%, #A07015 70%, #7E560E 100%); }
+.sec--terra .ouro .w > span, .rodape .ouro .w > span { background-image: linear-gradient(100deg, #D9A93C 0%, #E6B651 30%, #F3D27A 44%, #FFF1C2 50%, #F3D27A 56%, #E6B651 70%, #D9A93C 100%); }
+.petalas { mix-blend-mode: multiply; }
