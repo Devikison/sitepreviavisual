@@ -1342,3 +1342,4 @@ html.letras-grandes { font-size: 125%; }
   .hero__acoes .btn .btn__tx { padding-left: calc(var(--bh) - 14px); padding-right: .2rem; }
 }
 @media (max-width: 640px) and (max-height: 600px) { .hero__fig { height: clamp(150px, calc(100svh - 430px), 240px) !important; } .hero__sub { font-size: .96rem; } .hero h1 { margin-bottom: .55rem; } }
+@media (max-width: 1024px) { .topo__cta { display: none !important; } .burger { margin-left: auto; } }
