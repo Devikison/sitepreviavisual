@@ -1447,3 +1447,18 @@ html.letras-grandes { font-size: 125%; }
 .trat[open] .trat__abrir-tx { color: #3B2A06 !important; }
 .faq__item[open] .trat__mais i, .trat[open] .trat__mais i { background: #3B2A06; }
 @media (max-width: 640px) { .faq__item p { margin: 0 .8rem 1rem; } .trat__corpo { margin: 0 .7rem 1rem; padding: 1rem; } }
+
+/* ================= Bio no padrão do site ================= */
+.bio-eyebrow { display: flex; justify-content: center; margin: .6rem 0 .5rem; }
+.bio-h2 { text-align: center; font-size: 1.7rem; margin-bottom: 1rem; }
+.pag-bio .bio-bloco { margin-top: .8rem; }
+.pag-bio .faq__lista { gap: .6rem; }
+.pag-bio .faq__item summary { font-size: 1.02rem; padding: .9rem .9rem .9rem 1.1rem; min-height: 60px; text-align: left; }
+.bio-mais { display: flex; justify-content: center; margin: 1rem 0 0; }
+.pag-bio .btn { width: 100%; max-width: 420px; justify-content: space-between; }
+.pag-bio .btn .btn__tx { flex: 1; text-align: center; padding-left: calc((var(--bh) - 14px) * .5); }
+.bio-local2 { display: grid; gap: 1.1rem; }
+.bio-local2 .local__mapa { aspect-ratio: 4 / 3; width: 100%; }
+.bio-local2 .local__dados { margin: 0; text-align: left; }
+.bio-local2 .btn { margin-inline: auto; }
+.pag-bio .bio__rodape .bio-mais { margin: 1rem 0 1.2rem; }
