@@ -1582,3 +1582,42 @@ html.letras-grandes { font-size: 125%; }
   .btn:not(.topo__cta) .btn__tx { padding-left: calc((var(--bh) - 14px) * .5); }
   .contato__cta .btn .btn__tx { padding-left: .3rem; }
 }
+
+
+/* ===== Sistema de fundos: só 3 tons da mesma família (marfim, névoa sálvia, sálvia suave) ===== */
+:root { --fundo-a: #F7F5F0; --fundo-b: #EEF3EF; --fundo-c: #E4ECE7; }
+body { background: var(--fundo-a); }
+#dermatofuncional, #tratamentos, #sobre, #depoimentos, #contato { background: var(--fundo-a); }
+.sec--guia, #avaliacao, #duvidas { background: var(--fundo-b); }
+.sec--guia { background: radial-gradient(60% 70% at 100% 0%, rgba(255, 255, 255, .7), transparent 70%), var(--fundo-b); }
+.sec--terra { background: radial-gradient(70% 80% at 0% 0%, rgba(255, 255, 255, .55), transparent 65%), var(--fundo-c); }
+.historia { background: var(--fundo-b); }
+.local { background: linear-gradient(180deg, var(--fundo-a), var(--fundo-b)); }
+.rodape { background: linear-gradient(180deg, var(--fundo-b), var(--fundo-c)); }
+.derma__card.derma__card--3d { background: linear-gradient(180deg, var(--fundo-c) 0, var(--fundo-c) 250px, var(--fundo-b) 100%); }
+.derma__img::after { background: linear-gradient(180deg, rgba(228, 236, 231, 0) 35%, rgba(228, 236, 231, .75) 75%, var(--fundo-c) 100%); }
+.contato__cta { background: radial-gradient(80% 70% at 100% 0%, rgba(255, 255, 255, .6), transparent 70%), var(--fundo-c); }
+/* emenda suave entre seções de tons diferentes: uma linha dourada finíssima, quase imperceptível */
+.sec--guia, #avaliacao, #duvidas, .sec--terra, .historia { box-shadow: inset 0 1px 0 rgba(188, 135, 38, .12); }
+
+/* ===== Celular leve: sem desfoque de vidro, sem desfoque nas entradas, sem sombras em elementos que se movem ===== */
+@media (max-width: 899px) {
+  .vidro, .liquido .vidro, .btn--vidro, .flutua, .abas, .painel__foto figcaption, .etiqueta, .consent, .menu, .topo.is-solid .topo__barra, .faixas .faixa--vidro, .historia__card {
+    -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+  .vidro, .historia__card { background: linear-gradient(135deg, rgba(255, 255, 255, .94), rgba(250, 251, 249, .86)) !important; }
+  .flutua, .abas { background: rgba(255, 255, 255, .93) !important; }
+  .btn--vidro { background: linear-gradient(180deg, #FFFFFF, #F8F8F4) !important; }
+  .painel__foto figcaption { background: rgba(252, 251, 248, .96); }
+  .topo.is-solid .topo__barra { background: rgba(252, 251, 248, .96) !important; }
+  .js [data-reveal], .js .hero__ent { filter: none !important; transition-property: opacity, transform, box-shadow, border-color !important; }
+  .faixa__sep { filter: none !important; }
+  .historia__fundo img { filter: none !important; }
+  .flutua { animation: none !important; }
+  .relevo { will-change: auto; }
+}
+@media (prefers-reduced-motion: reduce) { .faixa__trilho { animation-duration: 120s !important; } }
+
+/* mapa no celular: só carrega quando a pessoa toca (economiza cerca de 1,7 MB) */
+.mapa-tocar { position: absolute; inset: 0; z-index: 2; display: grid; place-content: center; justify-items: center; gap: .55rem; width: 100%; border: 0; cursor: pointer; font: inherit; font-weight: 700; color: var(--terra-esc); background: radial-gradient(60% 60% at 50% 45%, rgba(255, 255, 255, .9), rgba(238, 243, 239, .6)); }
+.mapa-tocar span { display: inline-flex; align-items: center; gap: .5rem; min-height: 46px; padding: 0 1.3rem; border-radius: 999px; background: #fff; border: 1.5px solid rgba(188, 135, 38, .45); box-shadow: 0 12px 24px -14px rgba(150, 105, 25, .55); }
+.mapa-tocar .ic { width: 1.15rem; height: 1.15rem; color: #A87718; }

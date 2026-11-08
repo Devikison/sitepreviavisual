@@ -340,7 +340,13 @@
   var mapa = document.querySelector(".local__mapa iframe[data-src]");
   if (mapa) {
     var carregar = function () { if (!mapa.src) mapa.src = mapa.getAttribute("data-src"); };
-    if ("IntersectionObserver" in window) new IntersectionObserver(function (e, o) { if (e[0].isIntersecting) { carregar(); o.disconnect(); } }, { rootMargin: "300px" }).observe(mapa);
+    if (matchMedia("(max-width: 899px)").matches) {
+      var bt = document.createElement("button");
+      bt.type = "button"; bt.className = "mapa-tocar";
+      bt.innerHTML = '<span><svg class="ic" aria-hidden="true"><use href="#i-pin"></use></svg>Toque para ver o mapa</span>';
+      bt.addEventListener("click", function () { carregar(); bt.remove(); });
+      mapa.parentNode.appendChild(bt);
+    } else if ("IntersectionObserver" in window) new IntersectionObserver(function (e, o) { if (e[0].isIntersecting) { carregar(); o.disconnect(); } }, { rootMargin: "300px" }).observe(mapa);
     else carregar();
   }
 
@@ -510,7 +516,7 @@
       }
       if (prog) prog.style.setProperty("--p", (y / Math.max(1, maxY())).toFixed(4));
       if (zap && !hero) zap.classList.toggle("is-on", y > 480);
-      if (!reduz) par.forEach(function (el) {
+      if (!reduz && innerWidth > 899) par.forEach(function (el) {
         var base = el.parentElement.getBoundingClientRect();
         if (base.bottom < -200 || base.top > innerHeight + 200) return;
         var off = (base.top + base.height / 2 - innerHeight / 2) * -parseFloat(el.getAttribute("data-par"));
