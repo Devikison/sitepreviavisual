@@ -165,7 +165,7 @@
     setTimeout(function () { rolarAte(d); }, 60);
   }
   var hashIni = location.hash.slice(1);
-  if (hashIni && document.getElementById(hashIni) && document.getElementById(hashIni).matches("details.trat")) abrirTratamento(hashIni);
+  if (hashIni && (performance.getEntriesByType && (performance.getEntriesByType("navigation")[0] || {}).type) !== "reload" && document.getElementById(hashIni) && document.getElementById(hashIni).matches("details.trat")) abrirTratamento(hashIni);
 
   /* ---------- Guia: o que você quer melhorar ---------- */
   var dadosEl = $("#guia-dados"), saida = $("[data-resultado]");
@@ -212,7 +212,6 @@
     if (!a) return;
     e.preventDefault();
     abrirTratamento(a.getAttribute("data-abre"));
-    history.replaceState(null, "", "#" + a.getAttribute("data-abre"));
   });
 
   /* ---------- Sanfonas em câmera lenta (abrir e fechar animando a altura) ---------- */
@@ -447,7 +446,6 @@
     e.preventDefault();
     if (el) prepararDestino(el);
     rolarPara(el ? alvoDe(el) : 0, 3.4, true);
-    history.replaceState(null, "", "#" + id);
   });
   if (fino && !reduz) {
     doc.style.scrollBehavior = "auto";
@@ -485,7 +483,9 @@
       if (r.top < innerHeight && r.bottom > 0 && !x.closest("[hidden]")) x.classList.add("in", "feito");
     });
   }
-  if (location.hash && location.hash.length > 1) {
+  var navTipo = (performance.getEntriesByType && performance.getEntriesByType("navigation")[0] || {}).type;
+  if (navTipo === "reload" && location.hash) history.replaceState(null, "", location.pathname + location.search);
+  if (location.hash && location.hash.length > 1 && navTipo !== "reload") {
     var alvoHash = document.getElementById(location.hash.slice(1));
     if (alvoHash && !alvoHash.matches("details")) { prepararDestino(alvoHash); setTimeout(function () { scrollTo(0, Math.max(0, alvoDe(alvoHash))); revelarVisiveis(); }, 60); }
   }

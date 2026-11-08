@@ -1506,3 +1506,13 @@ html.letras-grandes { font-size: 125%; }
 /* Palavras douradas em itálico: a máscara de entrada não pode cortar as pontas das letras */
 .ouro .w { padding: .04em .14em .2em .1em; margin: -.04em -.14em -.2em -.1em; }
 [data-split].feito .w { overflow: visible; }
+
+/* Sobre mim: a frase fica abaixo da foto, sem sobrepor os cards */
+.sobre__foto { display: grid; gap: 0; padding: 0 14px 0 0; }
+.sobre__frase { position: relative !important; left: auto !important; right: auto !important; bottom: auto !important; max-width: none !important; margin: -2.4rem 1.4rem 0 !important; z-index: 2; }
+.sobre__fatos { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important; }
+.sobre__fatos .card { min-width: 0; }
+@media (max-width: 640px) { .sobre__fatos .card:first-child { grid-column: 1 / -1; } }
+.sobre__fatos { grid-template-columns: minmax(0, 1.5fr) minmax(0, .9fr) minmax(0, 1.15fr) !important; }
+.sobre__fatos dd { font-size: 1.05rem; }
+@media (max-width: 640px) { .sobre__fatos { grid-template-columns: 1fr 1fr !important; } .sobre__fatos .card:first-child { grid-column: 1 / -1; } }
