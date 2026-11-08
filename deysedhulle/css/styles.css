@@ -1516,3 +1516,6 @@ html.letras-grandes { font-size: 125%; }
 .sobre__fatos { grid-template-columns: minmax(0, 1.5fr) minmax(0, .9fr) minmax(0, 1.15fr) !important; }
 .sobre__fatos dd { font-size: 1.05rem; }
 @media (max-width: 640px) { .sobre__fatos { grid-template-columns: 1fr 1fr !important; } .sobre__fatos .card:first-child { grid-column: 1 / -1; } }
+.bio-site { gap: .8rem; padding-left: .8rem; }
+.bio-site__ic { flex: none; display: grid; place-items: center; width: 50px; height: 50px; border-radius: 50%; color: #fff; background: linear-gradient(160deg, var(--verde-medio-2), var(--verde-medio)); box-shadow: 0 8px 16px -8px rgba(54, 86, 74, .6); }
+.bio-site__ic .ic { width: 1.4rem; height: 1.4rem; }
