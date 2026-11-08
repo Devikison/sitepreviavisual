@@ -1538,3 +1538,11 @@ html.letras-grandes { font-size: 125%; }
   .pag-destaques .lista-cab, .pag-destaques .destaques-todos, .pag-destaques .bio-cta { width: 100%; max-width: 480px; margin-inline: auto; }
   .destaques-grade { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem; }
 }
+
+/* bio: retrato em arco (sem emblema em cima), moldura fina dourada com linha deslocada */
+.bio__retrato::before { content: none; display: none; }
+.bio__retrato { width: 168px; height: 212px; margin: 1.4rem auto 1.2rem; padding: 3px; border-radius: 999px 999px 26px 26px;
+  background: linear-gradient(160deg, #F6DE9A 0%, #C99A35 30%, #FFF1C2 52%, #B4831F 76%, #E9C46A 100%);
+  box-shadow: 0 26px 46px -24px rgba(54, 86, 74, .55); isolation: isolate; }
+.bio__retrato::after { content: ""; position: absolute; inset: -9px; z-index: -1; border-radius: 999px 999px 34px 34px; border: 1px solid rgba(188, 135, 38, .55); pointer-events: none; }
+.bio__retrato img { border-radius: 999px 999px 23px 23px; border: 0; object-fit: cover; object-position: 50% 0%; background: linear-gradient(180deg, #E9F0EB 0%, #CFDED5 100%); }
