@@ -691,8 +691,8 @@ button { font: inherit; color: inherit; }
 @media (max-width: 640px) { .sobre__fatos { grid-template-columns: 1fr 1fr; } }
 
 /* ================= Revisão 5: delicadeza, serifa, pétalas ================= */
-@font-face { font-family: "Serifa"; src: url("../fonts/lora-latin-600-italic.woff2") format("woff2"); font-weight: 400 700; font-style: italic; font-display: swap; }
-@font-face { font-family: "Serifa"; src: url("../fonts/lora-latin-500-normal.woff2") format("woff2"); font-weight: 400 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Serifa"; src: url("../fonts/playfair-display-latin-500-italic.woff2") format("woff2"); font-weight: 400 700; font-style: italic; font-display: swap; }
+@font-face { font-family: "Serifa"; src: url("../fonts/playfair-display-latin-500-normal.woff2") format("woff2"); font-weight: 400 700; font-style: normal; font-display: swap; }
 :root { --f-serif: "Serifa", Georgia, "Times New Roman", serif; --blush: #E9C4BE; }
 
 /* Destaques dos títulos em serifa elegante */
@@ -1547,5 +1547,5 @@ html.letras-grandes { font-size: 125%; }
 .bio__retrato::after { content: ""; position: absolute; inset: -9px; z-index: -1; border-radius: 999px 999px 34px 34px; border: 1px solid rgba(188, 135, 38, .55); pointer-events: none; }
 .bio__retrato img { border-radius: 999px 999px 23px 23px; border: 0; object-fit: cover; object-position: 50% 0%; background: linear-gradient(180deg, #E9F0EB 0%, #CFDED5 100%); }
 
-/* destaques em serifa mais legível (Lora): traço firme, letras abertas, sem contraste extremo */
-.ouro { font-weight: 600; letter-spacing: 0; }
+/* destaques em Playfair Display itálico: refinado e premium, com traço firme para leitura */
+.ouro { font-weight: 500; letter-spacing: 0; }
