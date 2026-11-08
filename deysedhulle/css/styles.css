@@ -1469,3 +1469,25 @@ html.letras-grandes { font-size: 125%; }
 .zap .ic { padding: 9px; background: #fff !important; }
 .app-base__agendar .ic { width: 1.45rem; height: 1.45rem; }
 .app-base__insta .ic, .exp__lista .ic { color: inherit; }
+
+/* Cor dos logos de WhatsApp e Instagram conforme o botão */
+.btn--ouro .btn__ic, .bio-cta__ic, .zap .ic, .btn--ouro .btn__ic .ic { color: #8E6211 !important; }
+.app-base__agendar { color: #3B2A06; }
+.app-base__agendar .ic { color: #6E4A0C; }
+.btn--terra .btn__ic, .btn--terra .btn__ic .ic { color: var(--verde-medio) !important; }
+.btn--vidro .btn__ic, .btn--vidro .btn__ic .ic { color: var(--verde-medio) !important; }
+.app-base__insta .ic { color: #A87718 !important; }
+.selo-ic .ic { color: inherit; }
+
+/* Base do rodapé: direitos, LGPD e links legais alinhados */
+.rodape__base { align-items: flex-start; gap: 1.2rem 2rem; }
+.rodape__direitos p { margin: 0 0 .3rem; font-size: .88rem; line-height: 1.55; color: var(--tinta-2); }
+.rodape__direitos p:first-child { font-weight: 700; color: var(--tinta); }
+.rodape__legal { gap: .6rem 1.4rem; font-size: .88rem; }
+@media (max-width: 899px) { .rodape__base { flex-direction: column; align-items: center; text-align: center; } .rodape__legal { justify-content: center; } }
+
+/* Abertura: logo completo (Deyse Dhulle + Estética e Saúde) e linha dourada */
+.intro__marca { gap: 1.1rem; }
+.intro__marca img.intro__logo { width: min(250px, 62vw); height: auto; opacity: 0; transform: scale(.92); filter: blur(6px); animation: introMarca 1.1s var(--e-out) .1s forwards; }
+.intro__linha { width: 160px; }
+@media (max-width: 899px) { .rodape { padding-bottom: 96px; } }
