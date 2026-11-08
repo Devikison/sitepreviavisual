@@ -1343,3 +1343,32 @@ html.letras-grandes { font-size: 125%; }
 }
 @media (max-width: 640px) and (max-height: 600px) { .hero__fig { height: clamp(150px, calc(100svh - 430px), 240px) !important; } .hero__sub { font-size: .96rem; } .hero h1 { margin-bottom: .55rem; } }
 @media (max-width: 1024px) { .topo__cta { display: none !important; } .burger { margin-left: auto; } }
+
+/* Hero celular: foto inteira (até abaixo da cintura), texto e botão logo abaixo */
+@media (max-width: 899px) {
+  .hero { min-height: 0 !important; height: auto !important; padding-bottom: 2.6rem; }
+  .hero__fig, .hero__fig[style] { height: auto !important; padding-top: 18px; }
+  .hero__img { width: 100%; height: auto !important; object-fit: contain !important; display: block; }
+}
+@media (max-width: 640px) {
+  .hero__fig { max-width: 420px; margin-inline: auto; }
+  .hero__texto .eyebrow { display: inline-flex !important; }
+  .hero__acoes .btn { width: 100%; max-width: 380px; }
+}
+@media (min-width: 641px) and (max-width: 899px) { .hero__fig { max-width: 460px; margin-inline: auto; } }
+
+/* ================= Rodapé: ícones oficiais em botões de relevo suave ================= */
+.redes { display: flex; gap: 1rem; margin-top: 1.4rem; }
+.rede { display: grid; place-items: center; width: 60px; height: 60px; border-radius: 16px; background: #E6EFEA; border: 1px solid rgba(0, 0, 0, 0);
+  box-shadow: 6px 6px 12px -2px rgba(38, 64, 53, .22), -6px -6px 12px -2px rgba(255, 255, 255, .85); transition: transform .5s, box-shadow .5s, border-color .5s; }
+.rede svg { width: 28px; height: 28px; transition: transform .5s; }
+@media (hover: hover) {
+  .rede:hover { transform: translateY(.35em); border-color: rgba(38, 64, 53, .08);
+    box-shadow: inset 4px 4px 6px -1px rgba(38, 64, 53, .22), inset -4px -4px 6px -1px rgba(255, 255, 255, .8), -.5px -.5px 0 #fff, .5px .5px 0 rgba(38, 64, 53, .12), 0 12px 10px -10px rgba(0, 0, 0, .05); }
+  .rede:hover svg { transform: scale(.9); }
+}
+.rede:active { transform: translateY(.25em) scale(.97); }
+.rede:focus-visible { outline: 2px solid var(--ouro-3); outline-offset: 3px; }
+.rodape a.rede { background-image: none; }
+.bio__rodape .redes { justify-content: center; margin: 0 0 1.4rem; }
+@media (max-width: 640px) { .rodape__marca { display: grid; justify-items: center; } .redes { justify-content: center; } }
