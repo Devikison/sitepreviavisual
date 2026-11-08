@@ -1519,3 +1519,22 @@ html.letras-grandes { font-size: 125%; }
 .bio-site { gap: .8rem; padding-left: .8rem; }
 .bio-site__ic { flex: none; display: grid; place-items: center; width: 50px; height: 50px; border-radius: 50%; color: #fff; background: linear-gradient(160deg, var(--verde-medio-2), var(--verde-medio)); box-shadow: 0 8px 16px -8px rgba(54, 86, 74, .6); }
 .bio-site__ic .ic { width: 1.4rem; height: 1.4rem; }
+
+/* página de tratamentos em destaque: cards de 2 em 2 no celular */
+.destaques-grade { list-style: none; margin: 0 0 1.2rem; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+.destaques-grade li { display: flex; min-width: 0; }
+.destaques-grade .bio-trat { width: 100%; }
+.destaques-grade .bio-trat img { height: auto; aspect-ratio: 4 / 3; }
+.destaques-grade .bio-trat > span:nth-of-type(1) { padding: .7rem .75rem .8rem; }
+.destaques-grade .bio-trat .bio-trat__ir { margin: auto .6rem .7rem; padding: .45rem .45rem .45rem .8rem; font-size: .84rem; }
+.destaques-todos { margin-bottom: .9rem; }
+@media (max-width: 370px) {
+  .destaques-grade { gap: .6rem; }
+  .destaques-grade .bio-trat strong { font-size: 1rem; }
+  .destaques-grade .bio-trat .bio-trat__ir { font-size: .8rem; padding-left: .7rem; margin-inline: .5rem; }
+}
+@media (min-width: 900px) {
+  .pag-destaques .bio { width: min(100% - 4rem, 780px); }
+  .pag-destaques .lista-cab, .pag-destaques .destaques-todos, .pag-destaques .bio-cta { width: 100%; max-width: 480px; margin-inline: auto; }
+  .destaques-grade { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem; }
+}
