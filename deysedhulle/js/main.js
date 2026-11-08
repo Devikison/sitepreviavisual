@@ -215,6 +215,36 @@
     history.replaceState(null, "", "#" + a.getAttribute("data-abre"));
   });
 
+  /* ---------- Sanfonas em câmera lenta (abrir e fechar animando a altura) ---------- */
+  var DUR = 720, EASE = "cubic-bezier(.22, .8, .24, 1)";
+  function alturaFechada(d) { return d.querySelector("summary").offsetHeight + (d.offsetHeight - d.clientHeight); }
+  function abrirSuave(d) {
+    var grupo = d.getAttribute("data-grupo");
+    if (grupo) Array.prototype.forEach.call(document.querySelectorAll('details[data-grupo="' + grupo + '"][open]'), function (o) { if (o !== d) fecharSuave(o); });
+    if (reduz) { d.open = true; return; }
+    var ini = d.offsetHeight; d.open = true; var fim = d.offsetHeight;
+    var corpo = d.querySelector("summary + *");
+    d.animate([{ height: ini + "px" }, { height: fim + "px" }], { duration: DUR, easing: EASE });
+    if (corpo) corpo.animate([{ opacity: 0, transform: "translateY(-6px)" }, { opacity: 1, transform: "none" }], { duration: DUR, delay: 120, easing: EASE, fill: "backwards" });
+  }
+  function fecharSuave(d) {
+    if (reduz) { d.open = false; return; }
+    var ini = d.offsetHeight, fim = alturaFechada(d);
+    var corpo = d.querySelector("summary + *");
+    if (corpo) corpo.animate([{ opacity: 1 }, { opacity: 0 }], { duration: DUR * .5, easing: "ease" });
+    var an = d.animate([{ height: ini + "px" }, { height: fim + "px" }], { duration: DUR, easing: EASE });
+    d._fechando = true;
+    an.onfinish = function () { d.open = false; d._fechando = false; };
+  }
+  Array.prototype.forEach.call(document.querySelectorAll("details.faq__item, details.trat"), function (d) {
+    if (d.hasAttribute("name")) { d.setAttribute("data-grupo", d.getAttribute("name")); d.removeAttribute("name"); }
+    d.querySelector("summary").addEventListener("click", function (e) {
+      e.preventDefault();
+      if (d._fechando) return;
+      if (d.open) fecharSuave(d); else abrirSuave(d);
+    });
+  });
+
   /* ---------- Sanfonas: uma aberta por vez, com rolagem até ela ---------- */
   $$("details[name]").forEach(function (d) {
     d.addEventListener("toggle", function () {
@@ -306,6 +336,14 @@
       try { localStorage.setItem("letras-grandes", on ? "1" : "0"); } catch (e) {}
     });
   });
+
+  /* ---------- Mapa: só carrega quando a seção aparece ---------- */
+  var mapa = document.querySelector(".local__mapa iframe[data-src]");
+  if (mapa) {
+    var carregar = function () { if (!mapa.src) mapa.src = mapa.getAttribute("data-src"); };
+    if ("IntersectionObserver" in window) new IntersectionObserver(function (e, o) { if (e[0].isIntersecting) { carregar(); o.disconnect(); } }, { rootMargin: "300px" }).observe(mapa);
+    else carregar();
+  }
 
   /* ---------- Guia de fotos para a cliente (só com ?fotos no link) ---------- */
   if (/[?&]fotos\b/.test(location.search)) {
