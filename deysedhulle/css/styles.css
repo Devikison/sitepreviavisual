@@ -1491,3 +1491,14 @@ html.letras-grandes { font-size: 125%; }
 .intro__marca img.intro__logo { width: min(250px, 62vw); height: auto; opacity: 0; transform: scale(.92); filter: blur(6px); animation: introMarca 1.1s var(--e-out) .1s forwards; }
 .intro__linha { width: 160px; }
 @media (max-width: 899px) { .rodape { padding-bottom: 96px; } }
+
+/* Menu do celular: blocos padronizados (ícone em cima, nome centralizado) */
+@media (max-width: 1024px) {
+  .app-grade { gap: .65rem; }
+  .app-tile { flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: .5rem; min-height: 104px; padding: .85rem .6rem .8rem; font-size: .92rem; line-height: 1.22; }
+  .app-tile > span:last-child { display: flex; align-items: center; justify-content: center; min-height: 2.44em; max-width: 13ch; text-wrap: balance; }
+  .app-tile__ic { width: 40px; height: 40px; border-radius: 13px; }
+  .app-tile__ic .ic { width: 1.15rem; height: 1.15rem; }
+  .app-grupo { padding: 1rem .85rem .9rem; }
+}
+@media (max-width: 360px) { .app-tile { min-height: 98px; font-size: .86rem; } }
