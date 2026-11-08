@@ -1462,3 +1462,10 @@ html.letras-grandes { font-size: 125%; }
 .bio-local2 .local__dados { margin: 0; text-align: left; }
 .bio-local2 .btn { margin-inline: auto; }
 .pag-bio .bio__rodape .bio-mais { margin: 1rem 0 1.2rem; }
+
+/* Logos oficiais nos botões: tamanho certo dentro do círculo */
+.btn__ic svg[class~="ic"], .zap .ic, .bio-cta__ic .ic { overflow: visible; }
+.btn__ic .ic, .bio-cta__ic .ic { width: 1.3rem; height: 1.3rem; }
+.zap .ic { padding: 9px; background: #fff !important; }
+.app-base__agendar .ic { width: 1.45rem; height: 1.45rem; }
+.app-base__insta .ic, .exp__lista .ic { color: inherit; }

@@ -412,13 +412,32 @@
   /* ---------- Rolagem suave (roda do mouse + âncoras) ---------- */
   var sm = { on: false, cur: 0, alvo: 0, last: 0, lambda: 5.2 };
   function maxY() { return doc.scrollHeight - innerHeight; }
-  function rolarPara(y, lambda) {
+  function rolarPara(y, lambda, ancora) {
     y = Math.max(0, Math.min(maxY(), y));
+    sm.ancora = !!ancora;
+    if (ancora && topo) topo.classList.remove("is-hidden");
     if (reduz) { scrollTo(0, y); return; }
     if (!sm.on) { sm.cur = scrollY; sm.last = 0; }
     sm.alvo = y; sm.lambda = lambda || 3.4; sm.on = true;
   }
-  function rolarAte(el) { rolarPara(el.getBoundingClientRect().top + scrollY - alturaTopo(), 3.4); }
+  /* Altura real da barra quando visível (sem contar se ela estiver escondida no momento) */
+  function baseTopo() {
+    if (!topo) return 0;
+    var barra = topo.querySelector(".topo__barra");
+    return (barra ? barra.offsetHeight : 0) + (parseFloat(getComputedStyle(topo).top) || 0);
+  }
+  /* Alvo de uma seção: o conteúdo dela começa logo abaixo da barra, alinhado */
+  function alvoDe(el) {
+    var topoEl = el.getBoundingClientRect().top + scrollY;
+    var pad = el.matches("section, .sec") ? parseFloat(getComputedStyle(el).paddingTop) || 0 : 0;
+    if (el.matches(".historia")) return topoEl;
+    return topoEl + pad - (baseTopo() + 28);
+  }
+  /* Deixa o conteúdo da seção de destino pronto, sem esperar a animação de entrada */
+  function prepararDestino(el) {
+    Array.prototype.forEach.call(el.querySelectorAll("[data-reveal], [data-img], [data-split]"), function (x) { x.classList.add("in", "feito"); });
+  }
+  function rolarAte(el) { rolarPara(el.getBoundingClientRect().top + scrollY - (baseTopo() + 16), 3.4, true); }
   document.addEventListener("click", function (e) {
     var a = e.target.closest('a[href^="#"]:not([data-abre]):not([data-cookie-settings])');
     if (!a) return;
@@ -426,7 +445,8 @@
     var el = id ? document.getElementById(id) : null;
     if (!el && id !== "inicio") return;
     e.preventDefault();
-    rolarPara(el ? el.getBoundingClientRect().top + scrollY - alturaTopo() : 0, 3.4);
+    if (el) prepararDestino(el);
+    rolarPara(el ? alvoDe(el) : 0, 3.4, true);
     history.replaceState(null, "", "#" + id);
   });
   if (fino && !reduz) {
@@ -453,9 +473,21 @@
     var dt = sm.last ? Math.min(.064, (t - sm.last) / 1000) : 1 / 60;
     sm.last = t;
     var d = sm.alvo - sm.cur;
-    if (Math.abs(d) < .4) { sm.cur = sm.alvo; scrollTo(0, sm.cur); sm.on = false; return; }
+    if (Math.abs(d) < .4) { sm.cur = sm.alvo; scrollTo(0, sm.cur); sm.on = false; if (sm.ancora) { sm.ancora = false; ultimoY = scrollY; revelarVisiveis(); } return; }
     sm.cur += d * (1 - Math.exp(-sm.lambda * dt));
     scrollTo(0, sm.cur);
+  }
+
+  /* Revela o que já está na tela (ao terminar uma rolagem por âncora ou ao chegar por link com #) */
+  function revelarVisiveis() {
+    Array.prototype.forEach.call(document.querySelectorAll("[data-reveal]:not(.in), [data-img]:not(.in), [data-split]:not(.in)"), function (x) {
+      var r = x.getBoundingClientRect();
+      if (r.top < innerHeight && r.bottom > 0 && !x.closest("[hidden]")) x.classList.add("in", "feito");
+    });
+  }
+  if (location.hash && location.hash.length > 1) {
+    var alvoHash = document.getElementById(location.hash.slice(1));
+    if (alvoHash && !alvoHash.matches("details")) { prepararDestino(alvoHash); setTimeout(function () { scrollTo(0, Math.max(0, alvoDe(alvoHash))); revelarVisiveis(); }, 60); }
   }
 
   /* ---------- Laço único: topo, progresso, paralaxe, linha dos passos ---------- */
@@ -470,7 +502,7 @@
       ySalvo = y;
       if (topo) {
         topo.classList.toggle("is-solid", y > 30);
-        if (!topo.classList.contains("is-open")) {
+        if (!topo.classList.contains("is-open") && !sm.ancora) {
           if (y > ultimoY + 6 && y > 420) topo.classList.add("is-hidden");
           else if (y < ultimoY - 6 || y < 420) topo.classList.remove("is-hidden");
         }
