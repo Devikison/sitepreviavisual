@@ -39,7 +39,7 @@
   function pronto() {
     doc.classList.add("is-pronto");
     var h1 = $('[data-split="hero"]');
-    if (h1) { h1.style.setProperty("--wd", "250ms"); h1.classList.add("in"); }
+    if (h1) { h1.style.setProperty("--wd", "250ms"); h1.classList.add("in"); setTimeout(function () { h1.classList.add("feito"); }, 2600); }
   }
   var intro = document.querySelector("[data-intro]");
   function abrir() {
