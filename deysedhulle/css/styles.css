@@ -1322,3 +1322,23 @@ html.letras-grandes { font-size: 125%; }
 .bio-cta__tx small { color: #5C4210; }
 .bio-cta::after { display: none; }
 .btn--ouro .btn__ic, .bio-cta__ic, .zap .ic { box-shadow: 0 2px 6px rgba(80, 55, 10, .25), inset 0 0 0 1px rgba(168, 119, 24, .25) !important; }
+
+/* ================= Hero celular: acabamento final ================= */
+@media (max-width: 640px) {
+  .hero { padding-top: calc(var(--topo-h) + var(--topo-y) + 14px); }
+  .hero__foto { width: 100%; margin: 0 0 1.15rem; align-self: stretch; }
+  .hero__fig { width: 100% !important; border-radius: 28px; padding-top: 16px; box-shadow: 0 24px 44px -28px rgba(22, 34, 29, .45); }
+  .hero__placa { top: 0; bottom: 0; border-radius: 28px; }
+  .hero__filete { inset: 10px; border: 1.5px solid rgba(192, 143, 69, .55); border-radius: 20px; }
+  .hero__img { border-radius: 0 0 28px 28px; }
+  .hero h1 { font-size: clamp(1.85rem, 9.1vw, 2.7rem) !important; letter-spacing: -.015em; line-height: 1.04; }
+  .hero h1 .ouro { font-size: 1em; }
+  .hero__sub { max-width: 34ch; }
+  /* Botão do topo: texto centralizado, sem espaço do círculo */
+  .topo__cta { padding: 0 1.15rem !important; justify-content: center; }
+  .topo__cta .btn__tx { padding-left: 0 !important; flex: none; }
+  /* Botão principal: espaçamento simétrico */
+  .hero__acoes .btn { --bh: 58px; padding: 0 .4rem 0 .4rem; }
+  .hero__acoes .btn .btn__tx { padding-left: calc(var(--bh) - 14px); padding-right: .2rem; }
+}
+@media (max-width: 640px) and (max-height: 600px) { .hero__fig { height: clamp(150px, calc(100svh - 430px), 240px) !important; } .hero__sub { font-size: .96rem; } .hero h1 { margin-bottom: .55rem; } }
