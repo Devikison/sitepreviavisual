@@ -1780,3 +1780,20 @@ p strong, li strong, dd strong { font-weight: 600; }
   .guia__voltar-ic { width: 1.1rem; height: 1.1rem; transform: rotate(180deg); color: #A87718; }
 }
 @media (max-width: 899px) and (prefers-reduced-motion: reduce) { #guia .guia > * { transition: none !important; } }
+/* giro do guia: troca de lado exatamente na metade do giro (à prova de iPhone/Safari) */
+@media (max-width: 899px) {
+  #guia .guia > .guia__painel, #guia .guia > .resultado { transform-style: flat !important; will-change: transform; }
+  #guia .guia > .guia__painel { opacity: 1 !important; visibility: visible; transition: transform 1s cubic-bezier(.22, .61, .36, 1), opacity 0s linear .5s, visibility 0s linear .5s !important; }
+  #guia .guia > .resultado { opacity: 0 !important; visibility: hidden; transition: transform 1s cubic-bezier(.22, .61, .36, 1), opacity 0s linear .5s, visibility 0s linear .5s !important; }
+  #guia .guia.virado > .guia__painel { opacity: 0 !important; visibility: hidden; }
+  #guia .guia.virado > .resultado { opacity: 1 !important; visibility: visible; }
+  #guia .guia > .guia__painel *, #guia .guia > .resultado * { -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+}
+@media (max-width: 899px) {
+  #guia .guia > .guia__painel, #guia .guia > .resultado { transition: transform 1s cubic-bezier(.45, 0, .55, 1), opacity 0s linear .5s, visibility 0s linear .5s !important; }
+}
+@media (max-width: 899px) {
+  #guia .guia > .guia__painel, #guia .guia > .resultado, #guia .guia.virado > .guia__painel, #guia .guia.virado > .resultado {
+    transition-property: transform, opacity, visibility !important; transition-duration: 1s, 0s, 0s !important;
+    transition-timing-function: cubic-bezier(.45, 0, .55, 1), linear, linear !important; transition-delay: 0s, .5s, .5s !important; }
+}
