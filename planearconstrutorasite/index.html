@@ -28,8 +28,8 @@
 <meta name="twitter:image" content="https://www.sitepreviavisual.site/planearconstrutorasite/assets/planear-og.jpg">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"GeneralContractor","name":"Planear Construtora","description":"Construção e reforma por administração em Sorocaba e região.","url":"https://www.sitepreviavisual.site/planearconstrutorasite/","image":"https://www.sitepreviavisual.site/planearconstrutorasite/assets/planear-og.jpg","logo":"https://www.sitepreviavisual.site/planearconstrutorasite/assets/planear-logo.png","address":{"@type":"PostalAddress","streetAddress":"Rua Bernardo Guimarães, 105","addressLocality":"Sorocaba","addressRegion":"SP","addressCountry":"BR"},"areaServed":["Sorocaba","Araçoiaba da Serra"],"sameAs":["https://www.instagram.com/planearconstrutora/"]}</script>
 <script src="planear.js"></script>
-<link rel="stylesheet" href="../_fx/grupo-fx.css?v=202611091300">
-<script src="../_fx/grupo-fx.js?v=202611091300" defer></script>
+<link rel="stylesheet" href="../_fx/grupo-fx.css?v=202611091800">
+<script src="../_fx/grupo-fx.js?v=202611091800" defer></script>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https:; style-src 'self' 'unsafe-inline' blob: https:; img-src 'self' data: blob: https:; font-src 'self' data: blob: https:; connect-src 'self' blob: https: wss:; media-src 'self' blob: https:; frame-src 'self' blob: https:; worker-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'self' https:; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
   <script data-protecao="link-bio">(function(){
@@ -63,7 +63,7 @@
 /* Para quem é (computador): texto à esquerda e as duas pílulas à direita */
 @media (min-width:960px){
   #para-quem div[data-mc="1"]{max-width:none!important;display:grid!important;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);column-gap:clamp(36px,4.5vw,72px);row-gap:clamp(18px,2.4vw,26px)!important;align-items:center}
-  #para-quem div[data-mc="1"]>h2{grid-column:1;grid-row:1}
+  #para-quem div[data-mc="1"]>h2{grid-column:1;grid-row:1;justify-self:start;align-self:end!important;width:auto}
   #para-quem div[data-mc="1"]>p{grid-column:1;grid-row:2;font-size:clamp(21px,2.1vw,29px)!important}
   #para-quem div[data-mc="1"]>div{grid-column:2;grid-row:1/3;grid-template-columns:1fr!important;max-width:none!important;gap:14px!important;align-self:center}
   #para-quem div[data-mc="1"]>div p{font-size:17px!important}
@@ -73,6 +73,20 @@
 .obras .ob-top{display:block;text-align:center}
 /* Quem cuida da sua obra: texto do Maicon e do Marcel */
 [data-screen-label="06 Quem conduz"] p[data-fx-keep]{font-weight:400}
+/* Quem cuida (computador): mesmo padrão da Arquitetura — título central, crachás maiores ao centro e textos abaixo */
+@media (min-width:960px){
+  [data-screen-label="06 Quem conduz"]>div{display:flex!important;flex-direction:column;align-items:center;gap:clamp(24px,3svh,40px)!important}
+  [data-screen-label="06 Quem conduz"]>div>div:first-child{display:contents!important}
+  [data-screen-label="06 Quem conduz"]>div>div:first-child>h2{order:1!important;text-align:center}
+  [data-screen-label="06 Quem conduz"] h2 br{display:none}
+  [data-screen-label="06 Quem conduz"]>div>.crachas{order:2!important;width:100%;max-width:860px;margin:0!important}
+  [data-screen-label="06 Quem conduz"]>div>div:first-child>p{order:3!important;margin:0 auto!important;max-width:76ch!important;text-align:center}
+  [data-screen-label="06 Quem conduz"]>div>div:first-child>p+p{margin-top:-8px!important}
+  [data-screen-label="06 Quem conduz"] .cracha{flex:0 1 360px}
+  [data-screen-label="06 Quem conduz"] .cr-ph{margin:12px 12px 0;aspect-ratio:1/1.12}
+  [data-screen-label="06 Quem conduz"] .cr-ph img{object-position:50% 20%}
+  [data-screen-label="06 Quem conduz"] .cr-body strong{font-size:21px}
+}
 </style>
 <style data-mobile-center="1">@media (max-width:959px){[data-mhero]{text-align:center;align-items:stretch}[data-mhero]>p{margin-left:auto!important;margin-right:auto!important;max-width:34ch}[data-mhero]>p[role=heading]{max-width:none}[data-mc]{text-align:center}div[data-mc]{align-items:center}div[data-mc]>h2,div[data-mc]>p,div[data-mc]>span,div[data-mc]>a,div[data-mc]>address{align-self:center!important}div[data-mc]>div:not([aria-hidden]){align-self:stretch!important;text-align:left}div[data-mc]>p{margin-left:auto!important;margin-right:auto!important}[data-mloc]>[aria-hidden="true"]{align-self:stretch!important;background:linear-gradient(90deg,rgba(10,90,69,0),rgba(10,90,69,.25),rgba(10,90,69,0))!important}}</style>
 </helmet>
@@ -380,7 +394,7 @@
     <section data-screen-label="06 Quem conduz" style="padding:clamp(72px,10vw,128px) clamp(16px,4vw,40px) clamp(48px,7vw,88px)">
       <div style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(32px,5vw,64px);align-items:center">
         <div style="display:flex;flex-direction:column;gap:20px">
-          <h2 data-reveal="0" data-mc="1" style="margin:0;font-size:clamp(32px,4.4vw,54px);line-height:1.04;font-weight:800;letter-spacing:-.035em;color:#0E2A22">Quem cuida<br>da sua obra</h2>
+          <h2 data-reveal="0" data-mc="1" style="margin:0;font-size:clamp(32px,4.4vw,54px);line-height:1.04;font-weight:800;letter-spacing:-.035em;color:#0E2A22">Quem cuida <br>da sua obra</h2>
           <p data-fx-keep style="margin:0;font-size:clamp(16px,1.4vw,18px);line-height:1.65;color:#3F5953;max-width:54ch;text-wrap:pretty">Engenheiro civil, com MBA em Gestão de Projetos e Negócios pela Facens (Faculdade de Engenharia de Sorocaba), o Eng. Maicon Tambelli atua na execução de obras de construção e reforma nas tipologias residencial, comercial e institucional, com responsabilidade técnica sobre o planejamento, o controle de custo e o cumprimento do cronograma em cada etapa.</p>
           <p data-fx-keep data-marcel style="margin:0;font-size:clamp(16px,1.4vw,18px);line-height:1.65;color:#3F5953;max-width:54ch;text-wrap:pretty">Ao lado dele, o sócio Marcel Ribeiro de Lima responde pela gestão de campo: acompanha as equipes e a rotina da obra no dia a dia e é quem organiza a retomada quando a Planear assume uma obra que outro prestador deixou parada.</p>
         </div>
