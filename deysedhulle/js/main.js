@@ -197,6 +197,7 @@
         '<ul class="resultado__lista">' + itens + "</ul>" +
         botaoWa("Olá, Dra. Deyse! Vim pelo site e quero tratar: " + g.nome.toLowerCase() + ". Pode me orientar?", "Quero uma orientação", "guia-" + id);
     }
+    html = '<button type="button" class="guia__voltar" data-guia-voltar>' + icone("arrow", "ic guia__voltar-ic") + '<span>Voltar às opções</span></button>' + html;
     saida.innerHTML = html;
     prepararCards(saida);
     prepararMagneticos(saida);
@@ -206,9 +207,38 @@
     b.addEventListener("click", function () {
       $$("[data-guia]").forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
       mostrar(b.getAttribute("data-guia"));
-      if (window.matchMedia("(max-width: 1024px)").matches) rolarAte(saida);
+      if (guiaMobile()) virarGuia(true);
+      else if (window.matchMedia("(max-width: 1024px)").matches) rolarAte(saida);
     });
   });
+  /* Celular: o cartão vira para mostrar os protocolos e volta com o botão "Voltar às opções" */
+  var guiaEl = $("#guia .guia"), guiaPainel = $("#guia .guia__painel");
+  function guiaMobile() { return !!guiaEl && window.matchMedia("(max-width: 899px)").matches; }
+  function alturaGuia() {
+    if (!guiaEl) return;
+    if (!guiaMobile()) { guiaEl.style.height = ""; return; }
+    var ativo = guiaEl.classList.contains("virado") ? saida : guiaPainel;
+    guiaEl.style.height = ativo.offsetHeight + "px";
+  }
+  function virarGuia(virar) {
+    guiaEl.classList.toggle("virado", virar);
+    if (virar) saida.classList.add("in", "feito");
+    alturaGuia();
+    var topo = guiaEl.getBoundingClientRect().top;
+    if (topo < 70 || topo > innerHeight * .5) rolarAte(guiaEl);
+    if (virar) { var v = saida.querySelector("[data-guia-voltar]"); if (v) setTimeout(function () { v.focus({ preventScroll: true }); }, 500); }
+  }
+  if (guiaEl) {
+    alturaGuia();
+    addEventListener("resize", alturaGuia);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(alturaGuia);
+    if ("ResizeObserver" in window) { var roG = new ResizeObserver(alturaGuia); roG.observe(guiaPainel); roG.observe(saida); }
+    saida.addEventListener("click", function (e) {
+      if (!e.target.closest("[data-guia-voltar]")) return;
+      virarGuia(false);
+      var sel = guiaPainel.querySelector('[aria-pressed="true"]'); if (sel) setTimeout(function () { sel.focus({ preventScroll: true }); }, 500);
+    });
+  }
   document.addEventListener("click", function (e) {
     var a = e.target.closest("[data-abre]");
     if (!a) return;

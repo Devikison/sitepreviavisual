@@ -1764,3 +1764,19 @@ p strong, li strong, dd strong { font-weight: 600; }
 .rodape__nav a:hover { color: #8E6211; }
 @media (max-width: 1024px) { .rodape__in { grid-template-columns: 1fr 1fr; } .rodape__marca { grid-column: 1 / -1; } }
 @media (max-width: 640px) { .rodape__in { grid-template-columns: 1fr; text-align: center; } .rodape__nav ul { justify-content: center; } }
+
+/* Guia no celular: cartão que vira (frente = opções, verso = protocolos) */
+.guia__voltar { display: none; }
+@media (max-width: 899px) {
+  #guia .guia { display: grid; grid-template-columns: 1fr; gap: 0; perspective: 1800px; transition: height .8s cubic-bezier(.22, .61, .36, 1); }
+  #guia .guia > .guia__painel, #guia .guia > .resultado { grid-area: 1 / 1; align-self: start; -webkit-backface-visibility: hidden; backface-visibility: hidden; transform-style: preserve-3d;
+    transition: transform 1s cubic-bezier(.22, .61, .36, 1), visibility 0s linear 0s, opacity .6s var(--e-out) !important; }
+  #guia .guia > .guia__painel { transform: rotateY(0deg) !important; visibility: visible; }
+  #guia .guia > .resultado { position: relative; top: 0; transform: rotateY(180deg) !important; visibility: hidden; transition-delay: 0s, .5s, 0s !important; }
+  #guia .guia.virado > .guia__painel { transform: rotateY(-180deg) !important; visibility: hidden; transition-delay: 0s, .5s, 0s !important; }
+  #guia .guia.virado > .resultado { transform: rotateY(0deg) !important; visibility: visible; opacity: 1 !important; transition-delay: 0s !important; }
+  #guia .resultado__vazio { display: none; }
+  .guia__voltar { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; margin: -.2rem 0 .9rem; padding: 0 1.1rem 0 .85rem; border-radius: 999px; cursor: pointer; font: inherit; font-family: var(--f-tit); font-weight: 600; font-size: .95rem; color: var(--terra-esc); background: #fff; border: 1px solid rgba(188, 135, 38, .45); box-shadow: 0 10px 20px -14px rgba(150, 105, 25, .6); }
+  .guia__voltar-ic { width: 1.1rem; height: 1.1rem; transform: rotate(180deg); color: #A87718; }
+}
+@media (max-width: 899px) and (prefers-reduced-motion: reduce) { #guia .guia > * { transition: none !important; } }
