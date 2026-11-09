@@ -1,5 +1,33 @@
+# Site da Dra. Deyse Dhulle: aberto para buscadores e assistentes de IA
 User-agent: *
-Disallow: /admin/
-Disallow: /api/
+Allow: /
+Disallow: /404.html
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
 
 Sitemap: https://www.sitepreviavisual.site/deysedhulle/sitemap.xml

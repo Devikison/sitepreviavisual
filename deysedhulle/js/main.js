@@ -182,7 +182,8 @@
   function mostrar(id) {
     var html;
     if (id === "nao-sei") {
-      html = '<p class="eyebrow">Recomendação</p><p class="resultado__tit">Comece pela Consulta Estética</p>' +
+      html = '<div class="guia__passo guia__passo--claro"><span class="guia__num">2</span><div><strong>Recomendação da Dra. Deyse</strong><small>O melhor primeiro passo</small></div></div>' +
+        '<p class="resultado__tit">Comece pela <em class="ouro-txt">Consulta Estética</em></p>' +
         '<p class="resultado__nota">É nela que a Dra. Deyse avalia sua pele, entende sua rotina e indica o protocolo certo para você. Sem achismo e sem gastar com o que não precisa.</p>' +
         botaoWa("Olá, Dra. Deyse! Vim pelo site, ainda não sei qual tratamento fazer e quero agendar a Consulta Estética.", "Agendar avaliação", "guia-nao-sei");
     } else {
@@ -190,7 +191,8 @@
       var itens = g.trat.map(function (t, i) {
         return '<li style="--i:' + i + '"><a href="#' + t.id + '" data-abre="' + t.id + '"><span class="selo-ic">' + icone("ok") + "</span><span><strong>" + esc(t.nome) + "</strong><span>" + esc(t.resumo) + "</span></span>" + icone("arrow") + "</a></li>";
       }).join("");
-      html = '<p class="eyebrow">Indicados para</p><p class="resultado__tit">' + esc(g.nome) + "</p>" +
+      html = '<div class="guia__passo guia__passo--claro"><span class="guia__num">2</span><div><strong>Protocolos indicados</strong><small>' + g.trat.length + ' opções para começar</small></div></div>' +
+        '<p class="resultado__tit">' + esc(g.nome) + "</p>" +
         '<p class="resultado__nota">A escolha final acontece na avaliação, de acordo com a sua pele.</p>' +
         '<ul class="resultado__lista">' + itens + "</ul>" +
         botaoWa("Olá, Dra. Deyse! Vim pelo site e quero tratar: " + g.nome.toLowerCase() + ". Pode me orientar?", "Quero uma orientação", "guia-" + id);
