@@ -563,3 +563,54 @@ section:has(>.axis),.ftr{position:relative}
 .carimbo dt{font-size:10.5px;letter-spacing:.12em}
 .carimbo dd{margin:4px 0 0;font-size:15px;font-weight:600;line-height:1.3;color:var(--ink);text-wrap:balance}
 @media (max-width:599px){.carimbo dl{grid-template-columns:1fr}.carimbo div{border-left:0;border-top:1px solid var(--line)}.carimbo div:first-child{border-top:0}}
+
+/* ===== Ajustes 09/11 ===== */
+/* Abertura (computador): texto centralizado na altura da foto e foto afastada do emblema da divisão */
+@media (min-width:960px){
+  #inicio .hero-txt{justify-content:center}
+  section#inicio.hero{padding-bottom:clamp(64px,9svh,104px)!important}
+}
+/* Para quem é: texto da esquerda centralizado na altura do bloco da direita */
+@media (min-width:960px){
+  .forwho .fw-grid{align-items:stretch}
+  .forwho .fw-grid>div:first-child{display:flex;flex-direction:column;justify-content:center}
+}
+/* Clientes: título central em duas linhas */
+section.clients .cl-head{display:block;text-align:center;margin-inline:auto}
+section.clients .cl-head h2{margin-inline:auto}
+@media (min-width:960px){section.clients .cl-head h2{white-space:nowrap}}
+/* Todos os projetos: título central e índice de pranchas por disciplina */
+section.projs .pj-head{display:block;text-align:center}
+section.projs .pj-head h2{margin-inline:auto}
+.pj-board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,24px);align-items:stretch}
+.pj-col{position:relative;margin:0;background:var(--sheet);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 34px 60px -44px rgba(15,43,82,.55),inset 0 1px 0 #fff}
+.pj-ch{position:relative;display:flex;align-items:center;gap:14px;padding:20px 22px;background:linear-gradient(150deg,var(--navy) 0%,var(--navy3) 100%);color:#fff;overflow:hidden}
+.pj-ch:after{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--bpline) 1px,transparent 1px),linear-gradient(90deg,var(--bpline) 1px,transparent 1px);background-size:18px 18px;pointer-events:none}
+.pj-ic{position:relative;z-index:1;flex:none;width:46px;height:46px;display:grid;place-items:center;border-radius:12px;background:rgba(255,255,255,.1);border:1px solid rgba(207,224,247,.35)}
+.pj-ic svg{width:24px;height:24px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pj-ch>div{position:relative;z-index:1;min-width:0}
+.pj-ch h3{margin:0;font-size:clamp(19px,1.5vw,22px);line-height:1.15;letter-spacing:-.015em;color:#fff}
+.pj-ch p{margin:4px 0 0;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--bptx)}
+.pj-q{position:relative;z-index:1;margin-left:auto;font-family:var(--mono);font-size:30px;line-height:1;color:rgba(255,255,255,.28)}
+.pj-ol{list-style:none;margin:0;padding:6px 22px 10px}
+.pj-ol li{display:grid;grid-template-columns:38px 1fr;align-items:center;gap:8px;padding:12px 0;border-bottom:1px dashed var(--line2)}
+.pj-ol li:last-child{border-bottom:0}
+.pj-n{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--red);letter-spacing:.04em}
+.pj-t{font-size:16.5px;line-height:1.25;font-weight:600;color:var(--ink)}
+.pj-t small{display:block;margin-bottom:2px;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+@media (hover:hover){.pj-ol li{transition:padding-left .5s var(--e)}.pj-ol li:hover{padding-left:6px}.pj-ol li:hover .pj-t{color:var(--navy)}}
+@media (max-width:959px){.pj-board{grid-template-columns:1fr;max-width:560px;margin-inline:auto}}
+/* Quem conduz (computador): título central, crachás maiores ao centro e texto organizado abaixo */
+@media (min-width:960px){
+  section.team .team-grid{display:flex!important;flex-direction:column;align-items:center;gap:clamp(24px,3svh,40px)}
+  section.team .team-grid>.team-txt{display:contents}
+  section.team .team-txt>h2{order:1;margin:0;text-align:center}
+  section.team .team-grid>.team-ph{order:2;width:100%;max-width:860px}
+  section.team .team-txt>p{order:3;margin:0 auto;max-width:76ch;text-align:center;font-weight:400;line-height:1.7}
+  section.team .team-txt>.spec{order:4;width:100%;margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  section.team .cracha{flex:0 1 360px}
+  section.team .cr-ph{margin:12px 12px 0;aspect-ratio:1/1.12}
+  section.team .cr-ph img{object-position:50% 20%}
+  section.team .cr-body strong{font-size:21px}
+}
+@media (max-width:959px){section.team .team-txt>p{font-weight:500}}

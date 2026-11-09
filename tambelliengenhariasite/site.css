@@ -549,3 +549,25 @@ h2.eyebrow{font-size:16px;margin-bottom:18px}
   :is(.rs,.qa,.nope):hover :is(.rs-ico,.nope-x){transform:translate3d(0,-3px,0) scale(1.08);box-shadow:0 14px 28px -10px rgba(229,37,42,.45)}
 }
 @media (max-width:959px){.why-sym{display:none!important}}
+
+/* ===== Ajustes 09/11 ===== */
+/* Clientes: título central em duas linhas, sem subtexto */
+section.clients .cl-head{display:block;text-align:center;margin-inline:auto}
+section.clients .cl-head h2{margin-inline:auto;text-wrap:wrap}
+@media (min-width:960px){section.clients .cl-head h2{white-space:nowrap}}
+/* Para quem é: texto à esquerda e bloco "Não atendemos" à direita, mesma altura e alinhados */
+@media (min-width:960px){
+  .forwho .fw-grid{grid-template-columns:minmax(0,7fr) minmax(0,4.6fr);align-items:stretch;gap:clamp(36px,4.5vw,72px)}
+  .forwho .fw-grid>div:first-child{display:flex;flex-direction:column;justify-content:center}
+  .forwho .nope{align-self:stretch;align-content:center;align-items:center;padding:clamp(28px,2.6vw,40px)}
+}
+/* Quem conduz: crachá maior, foto aproveitada e texto mais leve no computador */
+@media (min-width:960px){
+  section.team .team-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(36px,5vw,88px)}
+  section.team .cracha{flex:0 1 380px}
+  section.team .cr-ph{margin:12px 12px 0;aspect-ratio:1/1.12}
+  section.team .cr-ph img{object-position:50% 20%}
+  section.team .cr-body strong{font-size:22px}
+  section.team .team-p{font-weight:400;font-size:clamp(17px,1.35vw,19px);line-height:1.7;max-width:52ch}
+}
+@media (max-width:959px){section.team .team-p{font-weight:500}}
