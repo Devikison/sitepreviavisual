@@ -20,6 +20,9 @@
   --ouro-txt-1: #8E6211;
   --ouro-txt-2: #C9962F;
   --ouro-txt-3: #F8DE8C;
+  /* Dourado oficial da marca: o mesmo gradiente metálico da logo (símbolo e nome) */
+  --ouro-grad: linear-gradient(100deg, #7E560E 0%, #A87718 22%, #D4A646 40%, #E2B654 47%, #F1D27F 50%, #E2B654 53%, #C8962C 62%, #A07015 80%, #7E560E 100%);
+  --ouro-grad-fixo: linear-gradient(100deg, #7E560E 0%, #A87718 28%, #D4A646 46%, #ECC66A 54%, #C8962C 64%, #A07015 82%, #7E560E 100%);
   --tinta: #1D2823;
   --tinta-2: #47574F;
   --creme: #F8F6F0;
@@ -572,8 +575,8 @@ button { font: inherit; color: inherit; }
 
 /* Dourado com reflexo lento nos títulos */
 .ouro { font-style: italic; color: var(--ouro-txt-2); }
-.ouro .w > span, .ouro:not(:has(.w)) { background: linear-gradient(100deg, #7E560E 0%, #A87718 28%, #D9A93C 42%, #FFF3C9 50%, #D9A93C 58%, #A87718 72%, #7E560E 100%); background-size: 320% 100%; background-position: 100% 0; -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; animation: reflexo 4s cubic-bezier(.45, 0, .25, 1) infinite; animation-delay: calc(var(--wi, 0) * .14s); padding-right: .04em; }
-.sec--terra .ouro .w > span, .rodape .ouro .w > span { background-image: linear-gradient(100deg, #C9962F 0%, #E6B651 30%, #F8DE8C 44%, #FFFBEA 50%, #F8DE8C 56%, #E6B651 70%, #C9962F 100%); }
+.ouro .w > span, .ouro:not(:has(.w)) { background: var(--ouro-grad); background-size: 320% 100%; background-position: 100% 0; -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; animation: reflexo 4s cubic-bezier(.45, 0, .25, 1) infinite; animation-delay: calc(var(--wi, 0) * .14s); padding-right: .04em; }
+.sec--terra .ouro .w > span, .rodape .ouro .w > span { background-image: var(--ouro-grad); }
 @keyframes reflexo { 0% { background-position: 100% 0; } 60%, 100% { background-position: 0% 0; } }
 
 /* Vidro líquido */
@@ -735,8 +738,8 @@ h1 .ouro { font-size: 1.02em; }
 .historia__fundo img { filter: none; object-position: 0% 30%; }
 .historia__veu { background: linear-gradient(90deg, rgba(246, 244, 239, 0) 0%, rgba(246, 244, 239, 0) 30%, rgba(246, 244, 239, .35) 60%, rgba(246, 244, 239, .55) 100%), linear-gradient(180deg, rgba(246, 244, 239, .5), rgba(246, 244, 239, 0) 18%, rgba(246, 244, 239, 0) 82%, rgba(246, 244, 239, .6)); }
 @media (max-width: 1024px) { .historia__fundo img { object-position: 8% 30%; } .historia__veu { background: linear-gradient(180deg, rgba(246, 244, 239, .45), rgba(246, 244, 239, .15) 30%, rgba(246, 244, 239, .15) 70%, rgba(246, 244, 239, .55)); } }
-.ouro .w > span, .ouro:not(:has(.w)) { background-image: linear-gradient(100deg, #7E560E 0%, #A07015 30%, #C8962C 42%, #E2B654 50%, #C8962C 58%, #A07015 70%, #7E560E 100%); }
-.sec--terra .ouro .w > span, .rodape .ouro .w > span { background-image: linear-gradient(100deg, #D9A93C 0%, #E6B651 30%, #F3D27A 44%, #FFF1C2 50%, #F3D27A 56%, #E6B651 70%, #D9A93C 100%); }
+.ouro .w > span, .ouro:not(:has(.w)) { background-image: var(--ouro-grad); }
+.sec--terra .ouro .w > span, .rodape .ouro .w > span { background-image: var(--ouro-grad); }
 .petalas { mix-blend-mode: multiply; }
 
 /* ================= Revisão 6: carrossel de depoimentos e faixas retas ================= */
@@ -1253,7 +1256,7 @@ html.letras-grandes { font-size: 125%; }
 .exp__item { color: var(--tinta); background: rgba(255, 255, 255, .78); border: 1px solid rgba(78, 115, 99, .16); box-shadow: inset 0 1px 0 #fff, 0 16px 30px -22px rgba(22, 34, 29, .35); }
 @media (hover: hover) { .exp__item:hover { background: #fff; } }
 .sec--terra .moldura { background: var(--salvia-2); box-shadow: 0 30px 60px -32px rgba(22, 34, 29, .4); }
-.sec--terra .ouro .w > span, .rodape .ouro .w > span { background-image: linear-gradient(100deg, #7E560E 0%, #A07015 30%, #C8962C 42%, #E2B654 50%, #C8962C 58%, #A07015 70%, #7E560E 100%); }
+.sec--terra .ouro .w > span, .rodape .ouro .w > span { background-image: var(--ouro-grad); }
 /* Rodapé claro */
 .rodape { background: linear-gradient(180deg, var(--salvia-1), var(--salvia-2)); color: var(--tinta); }
 .rodape__cta { border-bottom-color: rgba(78, 115, 99, .2); }
@@ -1809,3 +1812,17 @@ p strong, li strong, dd strong { font-weight: 600; }
   .abas button[aria-selected="true"] { color: #fff; background: linear-gradient(180deg, var(--verde-medio-2), var(--verde-medio)) !important; border-color: transparent !important; box-shadow: 0 12px 22px -12px rgba(54, 86, 74, .7); }
   .abas button[aria-selected="true"] b { background: rgba(255, 255, 255, .22); color: #fff; }
 }
+
+
+/* ================= Padrão dourado da marca (logo + nome + destaques) ================= */
+/* Texto com o mesmo dourado metálico da logo. Use .txt-ouro em qualquer elemento. */
+.txt-ouro, .bio__nome, .flutua--a strong, .sobre__frase cite, .resultado__dra > span, .ouro-txt, .rodape__tit {
+  background: var(--ouro-grad-fixo); background-size: 100% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+}
+.resultado__dra > span .nobr { -webkit-text-fill-color: transparent; }
+.bio__nome { font-weight: 700; }
+.sobre__frase cite { font-weight: 700; }
+.flutua--a strong { font-weight: 700; }
+.sobre__aspas, .resultado__prova .ic { color: #B8862A; }
+@media (forced-colors: active) { .txt-ouro, .bio__nome, .flutua--a strong, .sobre__frase cite, .resultado__dra > span, .ouro-txt, .rodape__tit, .ouro .w > span, .ouro:not(:has(.w)) { -webkit-text-fill-color: currentColor; color: CanvasText; background: none; } }
