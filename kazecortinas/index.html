@@ -752,6 +752,22 @@ body{font-size:16px;color:var(--ink)}
 .wa:hover{box-shadow:0 10px 20px -8px rgba(20,44,51,.55)}
 .bar__wa{box-shadow:none}
 .progress{background:var(--magenta)}
+/* Divisor entre seções: fio fino que se desenha dos dois lados até o símbolo da Kazê */
+.seam{display:block;position:static;transform:none;margin-top:var(--s-6);pointer-events:none}
+.divider::before,.divider::after{height:1px}
+.divider::before{background:linear-gradient(90deg,rgba(76,15,61,0),rgba(76,15,61,.22) 70%,rgba(76,15,61,.38))}
+.divider::after{background:linear-gradient(270deg,rgba(76,15,61,0),rgba(76,15,61,.22) 70%,rgba(76,15,61,.38))}
+.divider__mark{gap:14px;height:auto;padding:0 14px;border-radius:0;background:none;box-shadow:none}
+.divider__mark i{width:5px;height:5px;border-radius:50%;background:var(--gold);transform:none}
+.divider__seal{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:#fff;box-shadow:inset 0 0 0 1px rgba(76,15,61,.16)}
+.divider__seal img{width:22px;height:auto;display:block}
+.why .divider__seal,.faq .divider__seal{background:var(--sand)}
+.why__media .device{box-shadow:none}
+.ba-sec .divider__seal,.how .divider__seal{background:#fff}
+.js .divider.reveal .divider__mark{opacity:0;transform:scale(.85)}
+.js .divider.reveal.is-in .divider__mark{opacity:1;transform:none;transition:opacity 1s var(--ease) .35s,transform 1.2s var(--ease) .35s}
+.js .divider.reveal.is-in::before,.js .divider.reveal.is-in::after{transition:transform 1.8s var(--ease) .1s}
+@media (max-width:640px){.seam{margin-top:var(--s-5)}.divider__seal{width:46px;height:46px}.divider__seal img{width:19px}}
 .map{display:grid;background:#3A0C2F}
 .map__load{display:grid;place-content:center;justify-items:center;gap:14px;padding:32px;border:0;background:transparent;color:#fff;text-align:center;cursor:pointer;font-family:var(--f-ui)}
 .map__load .ico{width:44px;height:44px;padding:11px;border-radius:50%;background:var(--gold);color:var(--plum);stroke-width:1.8;transition:transform .6s var(--ease)}
@@ -968,7 +984,6 @@ body{font-size:16px;color:var(--ink)}
       </div>
     </div>
   </div>
-  <div class="shell seam"><div class="divider reveal" aria-hidden="true"><span class="divider__mark"><i></i><svg><use href="#i-star"/></svg><i></i></span></div></div>
 </section>
 
 <!-- 03 BARRA DE CONFIANÇA -->
@@ -1134,7 +1149,7 @@ body{font-size:16px;color:var(--ink)}
       </div>
     </div>
   </div>
-  <div class="shell seam"><div class="divider reveal" aria-hidden="true"><span class="divider__mark"><i></i><svg><use href="#i-star"/></svg><i></i></span></div></div>
+  <div class="shell seam"><div class="divider reveal" aria-hidden="true"><span class="divider__mark"><i></i><span class="divider__seal"><img src="uploads/logo-kaze-simbolo.png" alt="" width="334" height="260" loading="lazy" decoding="async"></span><i></i></span></div></div>
 </section>
 
 <!-- 08 PORTFÓLIO -->
@@ -1201,6 +1216,7 @@ body{font-size:16px;color:var(--ink)}
       </figure>
     </div>
   </div>
+  <div class="shell seam"><div class="divider reveal" aria-hidden="true"><span class="divider__mark"><i></i><span class="divider__seal"><img src="uploads/logo-kaze-simbolo.png" alt="" width="334" height="260" loading="lazy" decoding="async"></span><i></i></span></div></div>
 </section>
 
 <!-- 10 CLÍNICAS E EMPRESAS -->
@@ -1241,7 +1257,7 @@ body{font-size:16px;color:var(--ink)}
       <li class="step step--final reveal" style="--i:3"><div class="step__head"><span class="step__ic"><svg class="ico"><use href="#i-curtain"/></svg></span><span class="step__n">04</span></div><h3>Confecção e instalação</h3><p>Produção no ateliê, montagem, ajuste de caimento e programação dos motores.</p><span class="step__bar" aria-hidden="true"><i style="width:100%"></i></span></li>
     </ol>
   </div>
-  <div class="shell seam"><div class="divider reveal" aria-hidden="true"><span class="divider__mark"><i></i><svg><use href="#i-star"/></svg><i></i></span></div></div>
+  <div class="shell seam"><div class="divider reveal" aria-hidden="true"><span class="divider__mark"><i></i><span class="divider__seal"><img src="uploads/logo-kaze-simbolo.png" alt="" width="334" height="260" loading="lazy" decoding="async"></span><i></i></span></div></div>
 </section>
 
 <!-- 12 FAQ -->
