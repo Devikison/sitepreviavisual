@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Kazê Cortinas e Persianas | Links</title>
 <meta name="description" content="Cortinas e persianas sob medida em Rio Branco, AC. Site, orçamento no WhatsApp, modelos, motorização e endereço do ateliê.">
-<meta name="theme-color" content="#FBF7F4">
+<meta name="theme-color" content="#1A3842">
 <meta name="format-detection" content="telephone=no">
 <link rel="canonical" href="https://kazecortinas.com.br/bio/">
 <meta property="og:type" content="website">
@@ -41,8 +41,8 @@ window.KAZE_GTM = '';
 <script src="/kazecortinas/js/kaze-comum.js" defer></script>
 <style>
 :root{
-  --plum:#4C0F3D; --magenta:#8B1367; --mauve:#C79BB8; --rose:#F6EEF2; --sand:#FBF7F4;
-  --ink:#142C33; --ink-2:#3C5C64; --gold:#D8B983; --gold-hi:#F0DDB8; --wa:#1FAF54;
+  --plum:#1A3842; --magenta:#2C5966; --mauve:#9DB3B9; --rose:#EEF2F2; --sand:#F6F1EB;
+  --ink:#14303A; --ink-2:#3C5C64; --gold:#D8B983; --gold-hi:#F0DDB8; --wa:#1FAF54;
   --ease:cubic-bezier(.22,1,.36,1);
   --s-1:8px; --s-2:16px; --s-3:24px; --s-4:32px; --s-5:48px;
 }
@@ -113,7 +113,7 @@ h1 em{font-style:italic;color:var(--plum)}
 .lk--wa .lk__chip{background:rgba(255,255,255,.2);color:#fff}
 
 /* 3º: contorno ameixa que enche de baixo para cima (como o "Ver modelos" do site) */
-.lk--line{color:var(--plum);background-color:#fff;box-shadow:inset 0 0 0 1.5px rgba(76,15,61,.35)}
+.lk--line{color:var(--plum);background-color:#fff;box-shadow:inset 0 0 0 1.5px rgba(26,56,66,.35)}
 .lk--line::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--plum);border-radius:inherit;transform:translateY(101%);transition:transform .7s var(--ease)}
 .lk--line .lk__ic{background:var(--rose);color:var(--plum)}
 .lk--line .lk__t span{color:var(--ink-2)}
@@ -144,7 +144,7 @@ h1 em{font-style:italic;color:var(--plum)}
 }
 @media (max-width:360px){.lk__t strong{font-size:14.5px}.lk__t span{font-size:12px}.lk__ic{width:44px;height:44px}}
 .sep{display:flex;align-items:center;gap:var(--s-2);margin:var(--s-3) 0 var(--s-1);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2)}
-.sep::after{content:"";flex:1;height:1px;background:rgba(76,15,61,.14)}
+.sep::after{content:"";flex:1;height:1px;background:rgba(26,56,66,.14)}
 
 .foot{margin-top:var(--s-5);display:grid;justify-items:center;gap:10px;text-align:center;font-size:12px;line-height:1.6;color:var(--ink-2)}
 .foot__links{display:flex;gap:18px;margin:0;padding:0;list-style:none}
@@ -156,10 +156,47 @@ h1 em{font-style:italic;color:var(--plum)}
 .rv{animation:rise .9s var(--ease) backwards;animation-delay:calc(var(--i,0)*70ms)}
 @media (prefers-reduced-motion:reduce){.rv{animation:none}*{transition-duration:.01ms!important}}
 @media (min-width:700px){.page{padding-top:var(--s-5)}}
+/* Paleta nova da Kazê: azul petróleo (#1A3842) em destaque */
+:root{--blue:#1A3842;--blue-2:#2C5966;--blue-soft:#E7EEF0}
+html{scrollbar-color:var(--blue) var(--blue-soft)}
+::-webkit-scrollbar-track{background:var(--blue-soft)}
+::-webkit-scrollbar-thumb{background:var(--blue);border-color:var(--blue-soft)}
+::-webkit-scrollbar-thumb:hover{background:var(--blue-2)}
+::selection{background:var(--blue)}
+:focus-visible{outline-color:var(--blue)}
+.band{display:grid;place-items:center;padding:36px 24px 40px;background:var(--blue);border-radius:0 0 28px 28px}
+.band img{height:46px;width:auto}
+.page{padding-top:var(--s-5)}
+h1{color:var(--blue)}
+h1 em{color:var(--blue-2)}
+.intro p{color:#3F5A61}
+/* 1º botão: site em azul, com seta dourada */
+.lk--site{background-color:var(--blue)}
+.lk--site .lk__ic{background:rgba(255,255,255,.12);color:var(--gold-hi)}
+.lk--site .lk__chip{background:var(--gold);color:var(--blue)}
+/* 3º botão: contorno azul que enche de azul */
+.lk--line{color:var(--blue);box-shadow:inset 0 0 0 1.5px rgba(26,56,66,.4)}
+.lk--line::before{background:var(--blue)}
+.lk--line .lk__ic{background:var(--blue-soft);color:var(--blue)}
+.lk--line .lk__chip{background:var(--blue);color:#fff}
+.foot{color:#4A6168}
+.foot__links a{color:var(--blue);text-decoration-color:rgba(26,56,66,.35)}
+@media (hover:hover){
+  .lk--site:hover{background-color:var(--blue-2)}
+  .lk--site:hover .lk__chip{background:#fff;color:var(--blue)}
+  .lk--line:hover{box-shadow:inset 0 0 0 1.5px var(--blue)}
+  .lk--line:hover .lk__chip{background:#fff;color:var(--blue)}
+  .foot__links a:hover{color:var(--blue-2)}
+}
+@media (max-width:480px){.band{padding:30px 20px 34px;border-radius:0 0 24px 24px}.band img{height:40px}}
+/* aviso de cookies no azul também */
+.ck__ok{background:var(--blue)}.ck__ok:hover{background:var(--blue-2)}
+.ck__no{color:var(--blue);box-shadow:inset 0 0 0 1px rgba(26,56,66,.4)}.ck__no:hover{background:var(--blue-soft);box-shadow:inset 0 0 0 1px var(--blue)}
+.ck__p a{color:var(--blue)}
 </style>
 </head>
 <body>
-<div class="topline" aria-hidden="true"></div>
+<header class="band"><img src="/kazecortinas/uploads/logo-kaze-h-branco.png" alt="Kazê Cortinas e Persianas" width="945" height="260"></header>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8"/></symbol>
@@ -174,9 +211,6 @@ h1 em{font-style:italic;color:var(--plum)}
 </svg>
 
 <main class="page">
-  <header class="brand rv">
-    <img src="/kazecortinas/uploads/logo-kaze-h-escuro.png" alt="Kazê Cortinas e Persianas" width="945" height="260">
-  </header>
 
 
   <section class="intro rv" style="--i:2" aria-labelledby="bio-t">
