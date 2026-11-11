@@ -753,13 +753,15 @@ body{font-size:16px;color:var(--ink)}
 .bar__wa{box-shadow:none}
 .progress{background:var(--magenta)}
 /* Divisor entre seções: fio fino que se desenha dos dois lados até o símbolo da Kazê */
-.seam{display:block;position:static;transform:none;margin-top:var(--s-6);pointer-events:none}
+/* o divisor fica exatamente na linha entre uma seção e a próxima */
+.why,.ba-sec,.how{position:relative}
+.seam{display:block;position:absolute;left:50%;bottom:0;z-index:6;margin:0;transform:translate(-50%,50%);pointer-events:none}
 .divider::before,.divider::after{height:1px}
 .divider::before{background:linear-gradient(90deg,rgba(76,15,61,0),rgba(76,15,61,.22) 70%,rgba(76,15,61,.38))}
 .divider::after{background:linear-gradient(270deg,rgba(76,15,61,0),rgba(76,15,61,.22) 70%,rgba(76,15,61,.38))}
 .divider__mark{gap:14px;height:auto;padding:0 14px;border-radius:0;background:none;box-shadow:none}
 .divider__mark i{width:5px;height:5px;border-radius:50%;background:var(--gold);transform:none}
-.divider__seal{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:#fff;box-shadow:inset 0 0 0 1px rgba(76,15,61,.16)}
+.divider__seal{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#fff;box-shadow:inset 0 0 0 1px rgba(76,15,61,.22)}
 .divider__seal img{width:22px;height:auto;display:block}
 .why .divider__seal,.faq .divider__seal{background:var(--sand)}
 .why__media .device{box-shadow:none}
@@ -767,7 +769,7 @@ body{font-size:16px;color:var(--ink)}
 .js .divider.reveal .divider__mark{opacity:0;transform:scale(.85)}
 .js .divider.reveal.is-in .divider__mark{opacity:1;transform:none;transition:opacity 1s var(--ease) .35s,transform 1.2s var(--ease) .35s}
 .js .divider.reveal.is-in::before,.js .divider.reveal.is-in::after{transition:transform 1.8s var(--ease) .1s}
-@media (max-width:640px){.seam{margin-top:var(--s-5)}.divider__seal{width:46px;height:46px}.divider__seal img{width:19px}}
+@media (max-width:640px){.divider__seal{width:46px;height:46px}.divider__seal img{width:19px}}
 .map{display:grid;background:#3A0C2F}
 .map__load{display:grid;place-content:center;justify-items:center;gap:14px;padding:32px;border:0;background:transparent;color:#fff;text-align:center;cursor:pointer;font-family:var(--f-ui)}
 .map__load .ico{width:44px;height:44px;padding:11px;border-radius:50%;background:var(--gold);color:var(--plum);stroke-width:1.8;transition:transform .6s var(--ease)}
