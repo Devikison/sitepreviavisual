@@ -1,0 +1,23 @@
+/* Kazê: aviso de cookies e rodapé legal, comuns a todas as páginas */
+.ck{position:fixed;z-index:1500;left:20px;bottom:20px;width:min(420px,calc(100% - 40px));padding:22px 22px 20px;border-radius:16px;background:#fff;color:#142C33;font-family:'Poppins',sans-serif;box-shadow:0 0 0 1px rgba(76,15,61,.14),0 16px 34px -20px rgba(46,9,37,.45);opacity:0;transform:translateY(16px);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.ck.is-on{opacity:1;transform:none}
+.ck__t{margin:0 0 8px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;letter-spacing:-.02em}
+.ck__p{margin:0 0 18px;font-size:14px;line-height:1.6;color:#3C5C64}
+.ck__p a{color:#8B1367;text-decoration:underline;text-underline-offset:2px}
+.ck__b{display:flex;gap:10px;flex-wrap:wrap}
+.ck__b button{flex:1 1 auto;min-height:46px;padding:0 20px;border:0;border-radius:999px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:background .5s cubic-bezier(.22,1,.36,1),color .5s,box-shadow .5s}
+.ck__ok{background:#8B1367;color:#fff}
+.ck__ok:hover{background:#4C0F3D}
+.ck__no{background:transparent;color:#4C0F3D;box-shadow:inset 0 0 0 1px rgba(76,15,61,.35)}
+.ck__no:hover{box-shadow:inset 0 0 0 1px #4C0F3D;background:#F6EEF2}
+.ck button:focus-visible{outline:2px solid #8B1367;outline-offset:3px}
+@media (max-width:640px){.ck{left:12px;right:12px;bottom:12px;width:auto}}
+
+/* rodapé legal */
+.legal{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;font-size:13px;line-height:1.6}
+.legal__c{margin:0}
+.legal__links{display:flex;flex-wrap:wrap;gap:6px 20px;margin:0;padding:0;list-style:none}
+.legal__links a,.legal__links button{padding:2px 0;border:0;background:none;font:inherit;color:inherit;text-decoration:underline;text-decoration-color:currentColor;text-underline-offset:3px;text-decoration-thickness:1px;cursor:pointer;opacity:.9;transition:opacity .4s}
+.legal__links a:hover,.legal__links button:hover{opacity:1}
+@media (max-width:640px){.legal{flex-direction:column;align-items:flex-start}}
+@media (prefers-reduced-motion:reduce){.ck{transition:none}}
