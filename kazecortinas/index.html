@@ -160,7 +160,7 @@ ul,ol{margin:0;padding:0;list-style:none}
 .js .reveal{opacity:0}
 .js .reveal.is-in{opacity:1;animation:rise 1s var(--ease) backwards;animation-delay:calc(var(--i,0)*90ms)}
 .js .curtain img{clip-path:inset(0 50% 0 50%)}
-.js .curtain.is-in img{clip-path:inset(0 0 0 0);animation:open 1.5s var(--ease) backwards;animation-delay:calc(var(--i,0)*90ms)}
+.js .curtain.is-in img{clip-path:inset(0 0 0 0);animation:open 1.1s var(--ease) backwards;animation-delay:calc(var(--i,0)*70ms)}
 .curtain{display:block;overflow:hidden}
 .curtain img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
 .seam{position:absolute;left:50%;bottom:0;z-index:5;transform:translate(-50%,50%);pointer-events:none}
@@ -751,7 +751,9 @@ body{font-size:16px;color:var(--ink)}
 .wa{background:#1FAF54;box-shadow:0 8px 18px -8px rgba(20,44,51,.5)}
 .wa:hover{box-shadow:0 10px 20px -8px rgba(20,44,51,.55)}
 .bar__wa{box-shadow:none}
-.progress{background:var(--magenta)}
+.progress{background:var(--magenta);transform:scaleX(0);will-change:transform}
+.curtain{background:#EADAE3}
+.on-dark .curtain,.work .shot__btn{background:#2E0925}
 /* Divisor entre seções: fio fino que se desenha dos dois lados até o símbolo da Kazê */
 /* o divisor fica exatamente na linha entre uma seção e a próxima */
 .why,.ba-sec,.how{position:relative}
@@ -1115,7 +1117,7 @@ body{font-size:16px;color:var(--ink)}
         </div>
       </div>
       <div class="device reveal" style="--i:2">
-        <video poster="uploads/poster-motor.jpg" data-src="uploads/V%C3%ADdeo%20cortina%20motorizada%20%201080x1740.mp4" muted loop playsinline preload="none" aria-label="Cortina motorizada abrindo"></video>
+        <video poster="uploads/poster-motor.jpg" data-src="uploads/cortina-motorizada.mp4" muted loop playsinline preload="none" aria-label="Cortina motorizada abrindo"></video>
       </div>
     </div>
     <div class="awning">
@@ -1144,7 +1146,7 @@ body{font-size:16px;color:var(--ink)}
     </div>
     <div class="why__media reveal" style="--i:2">
       <div class="device">
-        <video id="atelie" poster="uploads/poster-atelie.jpg" data-src="uploads/Ateli%C3%AA%20bastidores.mp4" muted loop playsinline preload="none" aria-label="Bastidores do ateliê Kazê"></video>
+        <video id="atelie" poster="uploads/poster-atelie.jpg" data-src="uploads/atelie-bastidores.mp4" muted loop playsinline preload="none" aria-label="Bastidores do ateliê Kazê"></video>
         <button class="sound" id="sound" type="button" aria-pressed="false" aria-label="Ativar ou desativar o som do vídeo">
           <svg class="ico i-off"><use href="#i-sound-off"/></svg><svg class="ico i-on"><use href="#i-sound-on"/></svg>
         </button>
@@ -1404,7 +1406,7 @@ body{font-size:16px;color:var(--ink)}
   /* Entrada ao rolar */
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
-  }, { threshold: 0.14, rootMargin: '0px 0px -6% 0px' });
+  }, { threshold: 0, rootMargin: '0px 0px 12% 0px' });
   $$('.reveal, .curtain').forEach((el) => io.observe(el));
 
   /* Contadores */
@@ -1428,8 +1430,11 @@ body{font-size:16px;color:var(--ink)}
   /* Barra (some ao descer, volta ao subir), progresso e parallax */
   const bar = $('#bar'), plx = $('[data-parallax]'), stacks = [$$('.why__row'), $$('.step')];
   /* Diferenciais e Como funciona: no celular os cards empilham e o de trás recua */
+  let stackWasOn = true;
   const stack = () => {
     const on = innerWidth <= 640 && !still;
+    if (!on && !stackWasOn) return;   /* no computador não há empilhamento: não mexe em nada */
+    stackWasOn = on;
     stacks.forEach((rows) => rows.forEach((r, i) => {
       const next = rows[i + 1];
       let t = 0;
@@ -1437,22 +1442,30 @@ body{font-size:16px;color:var(--ink)}
         const top = r.getBoundingClientRect().top, h = r.offsetHeight;
         t = Math.max(0, Math.min(1, 1 - (next.getBoundingClientRect().top - top - 16) / h));
       }
-      r.style.transform = t > 0 ? 'scale(' + (1 - 0.06 * t).toFixed(4) + ')' : '';
-      r.style.setProperty('--t', t.toFixed(3));
+      const tf = t > 0 ? 'scale(' + (1 - 0.06 * t).toFixed(4) + ')' : '';
+      if (r.style.transform !== tf) r.style.transform = tf;
+      const tv = t.toFixed(2);
+      if (r.dataset.t !== tv) { r.dataset.t = tv; r.style.setProperty('--t', tv); }
     }));
   };
-  let lastY = scrollY, ticking = false;
+  let lastY = scrollY, ticking = false, maxH = root.scrollHeight - innerHeight;
+  const progress = $('.progress');
+  const doorsEl = $('.doors');
+  let hideAfter = doorsEl ? doorsEl.offsetTop + doorsEl.offsetHeight - 80 : 900;
+  addEventListener('resize', () => {
+    maxH = root.scrollHeight - innerHeight;
+    hideAfter = doorsEl ? doorsEl.offsetTop + doorsEl.offsetHeight - 80 : 900;
+  });
+  addEventListener('load', () => { maxH = root.scrollHeight - innerHeight; });
   const frame = () => {
     ticking = false;
-    const y = scrollY, max = root.scrollHeight - innerHeight;
-    root.style.setProperty('--sp', max > 0 ? (y / max).toFixed(4) : 0);
+    const y = scrollY;
+    if (progress) progress.style.transform = 'scaleX(' + (maxH > 0 ? Math.min(1, y / maxH) : 0).toFixed(4) + ')';
     bar.classList.toggle('is-scrolled', y > 40);
     if (plx && !still && y < innerHeight * 1.2) plx.style.transform = 'translate3d(0,' + (y * 0.05).toFixed(1) + 'px,0)';
     stack();
     if (Math.abs(y - lastY) > 10) {
-      const doors = document.querySelector('.doors');
-      const after = doors ? doors.offsetTop + doors.offsetHeight - 80 : 900;
-      bar.classList.toggle('is-away', y > lastY && y > after && !bar.querySelector('[aria-expanded="true"]'));
+      bar.classList.toggle('is-away', y > lastY && y > hideAfter && !bar.querySelector('[aria-expanded="true"]'));
       lastY = y;
     }
   };
@@ -1461,6 +1474,11 @@ body{font-size:16px;color:var(--ink)}
   addEventListener('resize', onScroll);
   bar.addEventListener('focusin', () => bar.classList.remove('is-away'));
   frame();
+
+  /* Fotos: a primeira tela carrega primeiro; logo depois, todas as outras baixam
+     em segundo plano, para nenhuma aparecer vazia ao rolar rápido */
+  const warm = () => $$('img[loading="lazy"]').forEach((im) => { im.loading = 'eager'; });
+  addEventListener('load', () => ('requestIdleCallback' in window ? requestIdleCallback(warm, { timeout: 1200 }) : setTimeout(warm, 600)));
 
   /* Mapa: só carrega quando a pessoa pede */
   const map = $('[data-map]');
