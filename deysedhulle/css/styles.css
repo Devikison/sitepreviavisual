@@ -21,8 +21,9 @@
   --ouro-txt-2: #C9962F;
   --ouro-txt-3: #F8DE8C;
   /* Dourado oficial da marca: o mesmo gradiente metálico da logo (símbolo e nome) */
-  --ouro-grad: linear-gradient(100deg, #7E560E 0%, #A87718 22%, #D4A646 40%, #E2B654 47%, #F1D27F 50%, #E2B654 53%, #C8962C 62%, #A07015 80%, #7E560E 100%);
-  --ouro-grad-fixo: linear-gradient(100deg, #7E560E 0%, #A87718 28%, #D4A646 46%, #ECC66A 54%, #C8962C 64%, #A07015 82%, #7E560E 100%);
+  --ouro-grad: linear-gradient(100deg, #6E4A0B 0%, #8E6211 18%, #A87718 34%, #C8962C 44%, #E2B654 50%, #C8962C 56%, #A87718 66%, #8E6211 82%, #6E4A0B 100%);
+  --ouro-grad-fixo: linear-gradient(100deg, #6B4709 0%, #8E6211 30%, #A87718 50%, #8E6211 70%, #6B4709 100%);
+  --ouro-metal: linear-gradient(180deg, #FCEBB2 0%, #EDC468 30%, #D6A443 58%, #B8862A 86%, #A07015 100%);
   --tinta: #1D2823;
   --tinta-2: #47574F;
   --creme: #F8F6F0;
@@ -1826,3 +1827,37 @@ p strong, li strong, dd strong { font-weight: 600; }
 .flutua--a strong { font-weight: 700; }
 .sobre__aspas, .resultado__prova .ic { color: #B8862A; }
 @media (forced-colors: active) { .txt-ouro, .bio__nome, .flutua--a strong, .sobre__frase cite, .resultado__dra > span, .ouro-txt, .rodape__tit, .ouro .w > span, .ouro:not(:has(.w)) { -webkit-text-fill-color: currentColor; color: CanvasText; background: none; } }
+
+
+/* ================= Logo nova (Deyse Dhulle) ================= */
+.topo__logo img { height: 60px; width: auto; }
+@media (max-width: 1180px) { .topo__logo img { height: 54px; } }
+@media (max-width: 640px) { .topo__logo img { height: 46px; } }
+.rodape__marca img { width: 260px; height: auto; }
+.pag-bio .bio__logo { width: min(280px, 76vw); }
+
+/* ================= Dourados com mais contraste ================= */
+.btn--ouro, .zap, .bio__btn--prim { background: var(--ouro-metal); color: #1A241F; }
+.selo-ic--ouro, .passo__n { background: linear-gradient(160deg, #FCEBB2, #E2B654 50%, #B8862A); }
+.sec--terra .ouro .w > span, .rodape .ouro .w > span { background-image: var(--ouro-grad); }
+
+/* ================= Card do propósito: vidro líquido ================= */
+.sobre__frase.card {
+  overflow: hidden; isolation: isolate; border-radius: 24px; padding: 1.6rem 1.7rem 1.4rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, .80) 0%, rgba(255, 255, 255, .56) 55%, rgba(252, 246, 230, .66) 100%);
+  -webkit-backdrop-filter: blur(26px) saturate(185%); backdrop-filter: blur(26px) saturate(185%);
+  border: 1px solid rgba(255, 255, 255, .85);
+  box-shadow: inset 0 1.5px 1px rgba(255, 255, 255, 1), inset 0 -1px 1px rgba(184, 134, 42, .18), inset 0 0 30px rgba(255, 255, 255, .45),
+    0 0 0 1px rgba(184, 134, 42, .22), 0 3px 8px rgba(22, 34, 29, .06), 0 40px 70px -34px rgba(22, 34, 29, .55);
+}
+.sobre__frase.card::before { opacity: 1; z-index: -1; background:
+  radial-gradient(120% 80% at 0% 0%, rgba(255, 255, 255, .95), rgba(255, 255, 255, 0) 55%),
+  radial-gradient(60% 70% at 100% 100%, rgba(230, 182, 81, .18), transparent 70%); }
+.sobre__frase.card::after { content: ""; position: absolute; z-index: -1; pointer-events: none; left: 8%; right: 8%; top: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 1), transparent); }
+.sobre__frase .sobre__aspas { width: 2.2rem; height: 2.2rem; color: #A87718; filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .9)); }
+.sobre__frase p { color: var(--terra-esc); font-weight: 500; font-size: 1.45rem; line-height: 1.2; text-shadow: 0 1px 0 rgba(255, 255, 255, .7); }
+.sobre__frase cite { display: inline-block; font-size: .9rem; letter-spacing: .02em; padding-top: .55rem; border-top: 1px solid rgba(184, 134, 42, .35); }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .sobre__frase.card { background: rgba(252, 251, 248, .96); } }
+/* bio: o nome já está na logo nova; o título fica só para leitores de tela e buscadores */
+.pag-bio .bio__nome { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
