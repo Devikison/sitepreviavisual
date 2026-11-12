@@ -565,3 +565,25 @@
   }
   requestAnimationFrame(laco);
 })();
+
+/* Reflexo dourado contínuo: cada palavra recebe sua distância até o início da frase,
+   para o brilho atravessar a frase inteira como uma faixa só. */
+(function () {
+  var root = document.documentElement;
+  if (!(window.CSS && CSS.registerProperty)) { root.classList.add("sem-brilho"); return; }
+  function medir() {
+    Array.prototype.forEach.call(document.querySelectorAll(".ouro"), function (el) {
+      var base = el.getBoundingClientRect().left;
+      var partes = el.querySelectorAll(".w > span");
+      Array.prototype.forEach.call(partes, function (s) {
+        s.style.setProperty("--wx", Math.round(s.parentNode.getBoundingClientRect().left - base) + "px");
+      });
+    });
+  }
+  var t;
+  function agendar() { clearTimeout(t); t = setTimeout(medir, 120); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", agendar); else agendar();
+  window.addEventListener("load", agendar);
+  window.addEventListener("resize", agendar);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(agendar);
+})();

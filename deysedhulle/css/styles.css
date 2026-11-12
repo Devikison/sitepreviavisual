@@ -1904,3 +1904,18 @@ h1, h2, h3, p, li, strong, small { overflow-wrap: break-word; }
 .ouro .w > span, .ouro:not(:has(.w)) { filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .7)) drop-shadow(0 1px 1.5px rgba(122, 84, 18, .38)); }
 .txt-ouro, .bio__nome, .flutua--a strong, .sobre__frase cite, .resultado__dra > span, .ouro-txt, .rodape__tit, .consulta-card small, .eyebrow-ouro { filter: drop-shadow(0 .5px .6px rgba(122, 84, 18, .35)); }
 .sobre__aspas, .sobre__frase .sobre__aspas, .resultado__prova .ic { color: #C49234; }
+
+/* ================= Reflexo dourado contínuo (lento, sutil, sem tranco) ================= */
+/* Um único reflexo atravessa a frase inteira. O padrão do gradiente se repete sem emenda
+   (começa e termina na mesma cor) e anda em velocidade constante: nunca pausa nem salta. */
+@property --brilho { syntax: "<length>"; inherits: true; initial-value: 0px; }
+:root { --ouro-loop: linear-gradient(100deg, #C49234 0%, #B8862A 18%, #C99A3E 36%, #DDB45C 43%, #F3D893 50%, #DDB45C 57%, #C99A3E 64%, #B8862A 82%, #C49234 100%); }
+.ouro .w > span, .ouro:not(:has(.w)) {
+  animation: none !important;
+  background-image: var(--ouro-loop) !important; background-repeat: repeat-x; background-size: 1400px 100% !important;
+  background-position: calc(var(--brilho) - var(--wx, 0px)) 0 !important;
+}
+.ouro { animation: brilhoOuro 9s linear infinite; }
+@keyframes brilhoOuro { from { --brilho: -700px; } to { --brilho: 700px; } }
+html.sem-brilho .ouro { animation: none; }
+@media (prefers-reduced-motion: reduce) { .ouro { animation: none; } }
