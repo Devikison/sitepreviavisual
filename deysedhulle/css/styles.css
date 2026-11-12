@@ -1919,3 +1919,13 @@ h1, h2, h3, p, li, strong, small { overflow-wrap: break-word; }
 @keyframes brilhoOuro { from { --brilho: -700px; } to { --brilho: 700px; } }
 html.sem-brilho .ouro { animation: none; }
 @media (prefers-reduced-motion: reduce) { .ouro { animation: none; } }
+
+/* ================= Link da bio: 4 botões iguais ================= */
+.bio-links { display: grid; gap: .85rem; width: 100%; max-width: 460px; margin: 1.6rem auto 0; }
+.bio-links .bio-cta { width: 100%; min-height: 76px; margin: 0; padding: .6rem .6rem .6rem 1.5rem; gap: .9rem; border-radius: 999px; }
+.bio-links .bio-cta__tx { flex: 1 1 auto; min-width: 0; display: grid; gap: .15rem; text-align: left; }
+.bio-links .bio-cta__tx strong { white-space: normal; font-size: clamp(1.05rem, 4.6vw, 1.22rem); line-height: 1.15; text-wrap: balance; }
+.bio-links .bio-cta__tx small { white-space: normal; font-size: clamp(.8rem, 3.4vw, .9rem); line-height: 1.25; text-wrap: pretty; }
+.bio-links .bio-cta__ic { order: 3; flex: none; width: 54px; height: 54px; border-radius: 50%; }
+.bio-links .bio-cta__ic .ic { width: 1.4rem; height: 1.4rem; }
+@media (max-width: 359px) { .bio-links .bio-cta { padding-left: 1.15rem; } .bio-links .bio-cta__ic { width: 48px; height: 48px; } }
