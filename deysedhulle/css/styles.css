@@ -1929,3 +1929,19 @@ html.sem-brilho .ouro { animation: none; }
 .bio-links .bio-cta__ic { order: 3; flex: none; width: 54px; height: 54px; border-radius: 50%; }
 .bio-links .bio-cta__ic .ic { width: 1.4rem; height: 1.4rem; }
 @media (max-width: 359px) { .bio-links .bio-cta { padding-left: 1.15rem; } .bio-links .bio-cta__ic { width: 48px; height: 48px; } }
+
+/* ================= Barra de rolagem dourada (mesmo dourado da logo) ================= */
+/* Chrome/Edge ignoram o estilo detalhado quando scrollbar-color existe; por isso ele fica só para o Firefox */
+html { scrollbar-color: auto; }
+@supports not selector(::-webkit-scrollbar) { html { scrollbar-color: #C99A3E #F3EFE6; scrollbar-width: thin; } }
+::-webkit-scrollbar { width: 14px; height: 14px; }
+::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+::-webkit-scrollbar-track { background: linear-gradient(90deg, #EFEAE0, #F7F4EE 50%, #EFEAE0); box-shadow: inset 1px 0 0 rgba(184, 134, 42, .18); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #A97A22 0%, #C99A3E 22%, #E8C576 45%, #F7E2A4 55%, #D6A947 75%, #B07F28 100%);
+  border: 3px solid transparent; background-clip: padding-box; border-radius: 999px; min-height: 48px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5);
+}
+::-webkit-scrollbar-thumb:hover { background-image: linear-gradient(90deg, #B07F28 0%, #D6A947 22%, #F0D38A 45%, #FBEBC0 55%, #E0B55C 75%, #B8862A 100%); }
+::-webkit-scrollbar-thumb:active { background-image: linear-gradient(90deg, #9A6D1C, #C49234 40%, #E3BC65 55%, #B8862A); }
+::-webkit-scrollbar-corner { background: #F3EFE6; }
