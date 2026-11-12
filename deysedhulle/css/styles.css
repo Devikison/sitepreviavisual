@@ -1861,3 +1861,40 @@ p strong, li strong, dd strong { font-weight: 600; }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .sobre__frase.card { background: rgba(252, 251, 248, .96); } }
 /* bio: o nome já está na logo nova; o título fica só para leitores de tela e buscadores */
 .pag-bio .bio__nome { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* botão "Saiba como é" do card da Consulta: espaçamento e acabamento iguais aos botões dourados */
+.consulta-card .trat-card__ir { margin: 0; min-height: 54px; padding: .4rem .4rem .4rem 1.4rem; gap: 1rem; border-radius: 999px; white-space: nowrap;
+  color: #1A241F; background: var(--ouro-metal); border: 1px solid var(--ouro-4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .75), inset 0 -3px 0 rgba(110, 75, 15, .22), 0 2px 4px rgba(80, 55, 10, .18), 0 16px 30px -14px rgba(170, 120, 30, .65); }
+.consulta-card .trat-card__seta { width: 44px; height: 44px; flex: none; color: var(--terra-esc); box-shadow: 0 4px 10px -4px rgba(80, 55, 10, .45); }
+@media (max-width: 640px) { .consulta-card .trat-card__ir { width: 100%; } }
+/* nomes longos nos cards da bio não podem cortar no celular */
+.bio-trat strong { overflow-wrap: anywhere; hyphens: auto; }
+.destaques-grade .bio-trat strong { font-size: clamp(.9rem, 4.1vw, 1rem); letter-spacing: -.01em; }
+
+/* ================= Blindagem mobile (98% do público no celular) ================= */
+/* nada pode ser mais largo que a tela ou que o card onde está */
+.pg-cta__in { grid-template-columns: minmax(0, 1fr); }
+.pg-cta__in > *, .pg-cta__acoes, [class*="grade"] > *, [class*="__grid"] > *, .wrap > * { min-width: 0; max-width: 100%; }
+.btn { max-width: 100%; }
+h1, h2, h3, p, li, strong, small { overflow-wrap: break-word; }
+@media (max-width: 640px) {
+  .pg-cta__acoes { width: 100%; }
+  .pg-cta__acoes .btn, .hero__acoes .btn, .pg-hero__acoes .btn, .linha-acoes .btn, .rodape__cta .btn, .contato__cta .btn { width: 100%; }
+  .btn { white-space: normal; text-align: center; line-height: 1.2; padding-block: .3rem; }
+  .btn .btn__tx { flex: 1 1 auto; min-width: 0; }
+  .btn .btn__ic { flex: none; }
+  .pg-cta__in { padding: 2rem 1.25rem; }
+}
+/* títulos com palavras longas (Microagulhamento, Dermatofuncional...) cabem em qualquer celular */
+@media (max-width: 430px) {
+  h1 { font-size: clamp(1.85rem, 9vw, 2.5rem) !important; }
+  h2 { font-size: clamp(1.65rem, 8.2vw, 2.2rem) !important; }
+  .pg-cta__in h2 { font-size: clamp(1.6rem, 7.6vw, 2.1rem) !important; }
+}
+@media (max-width: 359px) {
+  .passo, .passo__card, .lista-btn, .lista-btn__tx { min-width: 0; max-width: 100%; }
+  .passos .passo { grid-template-columns: 44px minmax(0, 1fr); }
+  .passo__n { width: 44px; height: 44px; }
+  .lista-btn__tx strong, .lista-btn__tx small { overflow-wrap: anywhere; }
+}
