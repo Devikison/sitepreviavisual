@@ -1945,3 +1945,7 @@ html { scrollbar-color: auto; }
 ::-webkit-scrollbar-thumb:hover { background-image: linear-gradient(90deg, #B07F28 0%, #D6A947 22%, #F0D38A 45%, #FBEBC0 55%, #E0B55C 75%, #B8862A 100%); }
 ::-webkit-scrollbar-thumb:active { background-image: linear-gradient(90deg, #9A6D1C, #C49234 40%, #E3BC65 55%, #B8862A); }
 ::-webkit-scrollbar-corner { background: #F3EFE6; }
+
+/* rodapé da bio: direitos autorais em 3 linhas */
+.pag-bio .bio__rodape .bio__copy { display: grid; justify-items: center; gap: .15rem; margin: .2rem 0 1rem; font-size: .86rem; line-height: 1.45; font-weight: 600; color: var(--tinta-2); }
+.pag-bio .bio__rodape .bio__copy span:first-child { font-weight: 700; color: var(--tinta); }
