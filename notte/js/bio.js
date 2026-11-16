@@ -15,6 +15,16 @@
       a.href = u.toString();
     } catch (e) {}
   });
+  // Títulos dos botões numa linha só: todos com o mesmo tamanho, o maior que couber
+  var titulos = document.querySelectorAll(".elo__txt strong"), raiz = document.documentElement;
+  function ajustar() {
+    var fs = 19; raiz.style.setProperty("--elo-fs", fs + "px");
+    var cabe = function () { for (var i = 0; i < titulos.length; i++) { if (titulos[i].scrollWidth > titulos[i].parentNode.clientWidth + 0.5) return false; } return true; };
+    while (!cabe() && fs > 12) { fs -= 0.5; raiz.style.setProperty("--elo-fs", fs + "px"); }
+  }
+  ajustar();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajustar);
+  window.addEventListener("resize", ajustar);
   var leque = document.querySelector(".bio__leque");
   if (leque) setTimeout(function () { leque.classList.add("is-aberto"); }, 300);
 
