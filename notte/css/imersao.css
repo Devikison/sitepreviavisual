@@ -66,7 +66,7 @@
 .roteiro__foto.is-ativo .roteiro__img { transform: scale(1.0); }
 .roteiro__foto::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(36, 9, 15, 0) 45%, rgba(36, 9, 15, .85) 100%); }
 .roteiro__piramide { position: absolute; z-index: 4; left: 50%; bottom: 34px; transform: translateX(-50%); display: grid; justify-items: center; gap: 6px; width: min(78%, 320px); }
-.roteiro__nivel { display: block; text-align: center; padding: 7px 0; font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: rgba(242, 235, 223, .7); border: 1px solid rgba(241, 196, 126, .3); border-radius: 999px; background: rgba(36, 9, 15, .45); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); transition: background-color .8s var(--ease), color .8s var(--ease), border-color .8s var(--ease); }
+.roteiro__nivel { display: block; text-align: center; padding: 7px 0; font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: #FFFFFF; border: 1px solid rgba(241, 196, 126, .45); border-radius: 999px; background: rgba(36, 9, 15, .72); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); transition: background-color .8s var(--ease), color .8s var(--ease), border-color .8s var(--ease); }
 .roteiro__nivel:nth-child(1) { width: 52%; } .roteiro__nivel:nth-child(2) { width: 76%; } .roteiro__nivel:nth-child(3) { width: 100%; }
 .roteiro__nivel.is-ativo { background: linear-gradient(135deg, #F8E2B0, #D9963A); color: #3A1406; border-color: rgba(255, 238, 205, .6); }
 
@@ -83,10 +83,10 @@
 .passo.is-ativo .passo__corpo::before { transform: scaleY(1); }
 .passo__nota { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--ambar-claro); }
 .passo__gota { width: 9px; height: 13px; background: linear-gradient(180deg, #F8E2B0, #D9963A); border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; transform: rotate(180deg); }
-.passo h3 { margin-top: 14px; font-size: clamp(34px, 3.6vw, 52px); color: var(--off); }
+.passo h3 { margin-top: 14px; font-size: clamp(34px, 3.6vw, 52px); color: #FFFFFF; }
 .passo__txt { margin-top: 14px; font-size: 18px; color: var(--txt-inv-2); max-width: 46ch; }
 .passo__det { list-style: none; margin: 26px 0 0; padding: 22px 0 0; border-top: 1px solid rgba(241, 196, 126, .2); display: flex; flex-wrap: wrap; gap: 10px; }
-.passo__det li { padding: 8px 16px; font-size: 14px; color: var(--off); border: 1px solid rgba(241, 196, 126, .3); border-radius: 999px; }
+.passo__det li { padding: 8px 16px; font-size: 14px; color: #FFFFFF; border: 1px solid rgba(241, 196, 126, .3); border-radius: 999px; }
 
 /* ---------- Formatos ---------- */
 .formatos { margin-top: var(--s-7); display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); }
@@ -117,7 +117,7 @@
   border-color: rgba(241, 196, 126, .35); }
 .ocasioes__lista i { flex: none; width: 56px; height: 56px; display: grid; place-items: center; font-size: 26px; color: #3A1406; border-radius: 50%;
   background: linear-gradient(135deg, #F8E2B0, #D9963A 60%, #B8742A); box-shadow: 0 10px 22px -10px rgba(217, 150, 58, .8), inset 0 1px 0 rgba(255, 250, 236, .8); }
-.ocasioes__lista strong { display: block; font-family: var(--serif); font-weight: 500; font-size: 24px; color: var(--off); line-height: 1.2; margin-bottom: 6px; }
+.ocasioes__lista strong { display: block; font-family: var(--serif); font-weight: 500; font-size: 24px; color: #FFFFFF; line-height: 1.2; margin-bottom: 6px; }
 .ocasioes__lista li:first-child strong { font-size: 28px; }
 .ocasioes__lista span { color: var(--txt-inv-2); font-size: 16px; line-height: 1.5; }
 @media (hover: hover) {
@@ -130,7 +130,7 @@
 .quem__foto::before { content: ""; position: absolute; inset: 22px -22px -22px 22px; border: 1px solid rgba(168, 106, 30, .55); border-radius: 8px; z-index: 0; }
 .quem__foto img { position: relative; z-index: 1; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 20%; border-radius: 8px;
   box-shadow: 0 2px 4px rgba(60, 35, 15, .12), 0 30px 60px -28px rgba(60, 35, 15, .55); filter: contrast(1.04); }
-.quem__foto figcaption { position: absolute; z-index: 2; left: 22px; bottom: 22px; padding: 12px 20px; border-radius: 999px; font-family: var(--serif); font-size: 18px; color: var(--off);
+.quem__foto figcaption { position: absolute; z-index: 2; left: 22px; bottom: 22px; padding: 12px 20px; border-radius: 999px; font-family: var(--serif); font-size: 18px; color: #FFFFFF;
   background: rgba(22, 17, 14, .62); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid rgba(241, 196, 126, .3); line-height: 1.2; }
 .quem__foto figcaption span { display: block; font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ambar-claro); }
 .quem__texto .apoio + .apoio { margin-top: var(--s-4); }
@@ -148,7 +148,7 @@
   box-shadow: inset 0 1px 0 rgba(255, 236, 205, .1), 0 18px 34px -20px rgba(8, 2, 4, .9); }
 .passos i { position: relative; z-index: 1; width: 52px; height: 52px; display: grid; place-items: center; font-size: 24px; color: #3A1406; border-radius: 50%;
   background: linear-gradient(135deg, #F8E2B0, #D9963A 60%, #B8742A); box-shadow: 0 8px 18px -8px rgba(217, 150, 58, .8), inset 0 1px 0 rgba(255, 250, 236, .8); }
-.passos strong { display: block; font-family: var(--serif); font-weight: 500; font-size: 21px; color: var(--off); line-height: 1.2; margin-bottom: 4px; }
+.passos strong { display: block; font-family: var(--serif); font-weight: 500; font-size: 21px; color: #FFFFFF; line-height: 1.2; margin-bottom: 4px; }
 .passos span { color: var(--txt-inv-2); font-size: 15px; line-height: 1.5; }
 .proposta__selo { display: flex; align-items: center; gap: 16px; margin-top: 22px; padding: 18px 22px; border-radius: 999px; border: 1px dashed rgba(241, 196, 126, .4); }
 .proposta__selo img { flex: none; width: 56px; height: 56px; border-radius: 50%; background: var(--ink); padding: 7px; box-shadow: 0 8px 18px -8px rgba(0, 0, 0, .8); }

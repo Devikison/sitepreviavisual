@@ -6,12 +6,12 @@
 .bio__monograma { width: 112px; height: 112px; margin-bottom: 22px; filter: drop-shadow(0 10px 24px rgba(217, 150, 58, .25)); }
 .bio__nome { font-size: clamp(46px, 13vw, 58px); letter-spacing: .3em; margin-right: -.3em; font-weight: 500; line-height: 1; }
 .bio__sub { margin-top: 10px; font-size: 13px; font-weight: 600; letter-spacing: .3em; text-transform: uppercase; color: var(--ambar-claro); margin-right: -.3em; }
-.bio__linha { margin-top: 20px; font-family: var(--serif); font-style: italic; font-size: 20px; line-height: 1.35; color: var(--off); max-width: 30ch; }
+.bio__linha { margin-top: 20px; font-family: var(--serif); font-style: italic; font-size: 20px; line-height: 1.35; color: #FFFFFF; max-width: 30ch; }
 .bio__linha span { display: block; margin-top: 8px; font-family: var(--sans); font-style: normal; font-size: 15px; color: var(--txt-inv-2); }
 
 .bio__links { margin-top: 32px; display: grid; gap: 14px; }
 /* Pílulas finas: texto à esquerda, seta em círculo à direita, reflexo que atravessa no toque/hover */
-.elo { position: relative; overflow: hidden; isolation: isolate; display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 68px; padding: 10px 10px 10px 26px; text-decoration: none; color: var(--off);
+.elo { position: relative; overflow: hidden; isolation: isolate; display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 68px; padding: 10px 10px 10px 26px; text-decoration: none; color: #FFFFFF;
   background: linear-gradient(135deg, rgba(242, 235, 223, .07), rgba(242, 235, 223, .02)); border: 1px solid rgba(241, 196, 126, .3); border-radius: 999px;
   box-shadow: 0 12px 26px -16px rgba(0, 0, 0, .8); transition: transform .5s var(--ease), border-color .5s var(--ease), background-color .5s var(--ease); -webkit-tap-highlight-color: transparent; }
 .elo::before { content: ""; position: absolute; top: 0; left: -120px; width: 110px; height: 100%; z-index: -1; pointer-events: none; opacity: .35;
