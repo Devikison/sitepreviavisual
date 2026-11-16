@@ -30,4 +30,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://www.sitepreviavisual.site/deysedhulle/sitemap.xml
+Sitemap: https://www.dradeysedhulle.com.br/sitemap.xml
