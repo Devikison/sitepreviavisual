@@ -38,7 +38,7 @@
   }
 
   window.addEventListener("wheel", function (e) {
-    if (e.ctrlKey || e.defaultPrevented || rolavelDentro(e.target, e.deltaY)) return;
+    if (e.ctrlKey || e.defaultPrevented || document.documentElement.classList.contains("menu-aberto") || rolavelDentro(e.target, e.deltaY)) return;
     var dy = e.deltaMode === 1 ? e.deltaY * 32 : e.deltaMode === 2 ? e.deltaY * window.innerHeight : e.deltaY;
     e.preventDefault();
     if (!rodando) { alvo = atual = window.scrollY; }

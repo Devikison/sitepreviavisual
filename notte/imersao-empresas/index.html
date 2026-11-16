@@ -30,8 +30,9 @@
   <link rel="preload" as="image" href="../assets/img/hero-mobile-540.webp" media="(max-width: 767px)" fetchpriority="high">
   <link rel="preload" href="../fonts/playfair-display.woff2 as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
-  <link rel="stylesheet" href="../css/notte.css?v=20261116t">
-  <link rel="stylesheet" href="../css/imersao.css?v=20261116t">
+  <link rel="stylesheet" href="../css/notte.css?v=20261116w">
+  <link rel="stylesheet" href="../css/menu.css?v=20261116w">
+  <link rel="stylesheet" href="../css/imersao.css?v=20261116w">
 
   <script type="application/ld+json">
   {
@@ -54,10 +55,10 @@
   }
   </script>
 
-  <script src="../js/consent.js?v=20261116t" defer></script>
-  <script src="../js/rastreio.js?v=20261116t" defer></script>
-  <script src="../js/rolagem.js?v=20261116t" defer></script>
-  <script src="../js/main.js?v=20261116t" defer></script>
+  <script src="../js/consent.js?v=20261116w" defer></script>
+  <script src="../js/rastreio.js?v=20261116w" defer></script>
+  <script src="../js/rolagem.js?v=20261116w" defer></script>
+  <script src="../js/main.js?v=20261116w" defer></script>
   <!-- Google Tag Manager GTM-XXXXXXX: carregado por js/consent.js somente após o aceite de cookies -->
 </head>
 <body ontouchstart="">
@@ -68,9 +69,46 @@
       <img class="marca__mono" src="../assets/img/monograma-96.webp" srcset="../assets/img/monograma-96.webp 1x, ../assets/img/monograma-192.webp 2x" width="44" height="44" alt="">
       <span class="marca__txt"><span class="marca__nome">NOTTE</span><span class="marca__sub">Curadoria olfativa</span></span>
     </a>
-    <a class="btn btn-fita" href="#proposta" data-btn="topo-proposta">Pedir proposta <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <div class="topo__acoes">
+      <a class="btn btn-fita" href="#proposta" data-btn="topo-proposta">Pedir proposta <span class="btn__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <button class="hamb" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu" data-menu-abrir><span></span><span></span></button>
+    </div>
   </div>
 </header>
+
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu da NOTTE" data-menu hidden>
+  <div class="menu__veu" data-menu-fechar></div>
+  <nav class="menu__painel">
+    <div class="menu__cab">
+      <a class="menu__inicio" href="#topo" data-menu-link><img src="../assets/img/monograma-96.webp" width="40" height="40" alt=""><span>Início</span></a>
+      <button class="menu__fechar" type="button" aria-label="Fechar menu" data-menu-fechar><i class="ph ph-x" aria-hidden="true"></i></button>
+    </div>
+
+    <p class="menu__grupo">A imersão</p>
+    <ul class="menu__grade">
+      <li><a href="#como" data-menu-link data-btn="menu-como"><i class="ph ph-flask" aria-hidden="true"></i><span><strong>Como acontece</strong>Chegada, criação e lembrança</span></a></li>
+      <li><a href="#formatos" data-menu-link data-btn="menu-formatos"><i class="ph ph-users-four" aria-hidden="true"></i><span><strong>Formatos</strong>À mesa ou estação rotativa</span></a></li>
+      <li><a href="#eventos" data-menu-link data-btn="menu-eventos"><i class="ph ph-calendar-star" aria-hidden="true"></i><span><strong>Para quais eventos</strong>Clientes, fim de ano, lançamentos</span></a></li>
+      <li><a href="#mell" data-menu-link data-btn="menu-mell"><i class="ph ph-user-circle" aria-hidden="true"></i><span><strong>Quem conduz</strong>Mell Marini Dias</span></a></li>
+      <li><a href="#duvidas" data-menu-link data-btn="menu-duvidas"><i class="ph ph-question" aria-hidden="true"></i><span><strong>Dúvidas</strong>Preço, local, duração</span></a></li>
+      <li><a href="#proposta" data-menu-link data-btn="menu-ficha"><i class="ph ph-clipboard-text" aria-hidden="true"></i><span><strong>Ficha do evento</strong>Pedido de proposta</span></a></li>
+    </ul>
+
+    <p class="menu__grupo">NOTTE</p>
+    <ul class="menu__grade">
+      <li><a href="#" data-wa data-btn="menu-identidade" data-wa-msg="Olá! Vim pela página da NOTTE e quero saber sobre a Identidade Olfativa para a minha marca ou espaço."><i class="ph ph-storefront" aria-hidden="true"></i><span><strong>Identidade Olfativa</strong>Um cheiro próprio para sua marca</span></a></li>
+      <li><a href="../bio/" data-btn="menu-bio"><i class="ph ph-link-simple" aria-hidden="true"></i><span><strong>Todos os links</strong>Canais da NOTTE</span></a></li>
+    </ul>
+
+    <div class="menu__base">
+      <a class="btn btn-fita menu__cta" href="#proposta" data-menu-link data-btn="menu-proposta">Pedir proposta</a>
+      <div class="menu__redes">
+        <a href="https://www.instagram.com/notte_labs/" target="_blank" rel="noopener" data-btn="menu-instagram" aria-label="Instagram da NOTTE"><i class="ph ph-instagram-logo" aria-hidden="true"></i></a>
+        <a href="#" data-wa data-btn="menu-whatsapp" data-wa-msg="Olá! Vim pela página da Imersão Olfativa para Empresas e quero conversar com a NOTTE." aria-label="WhatsApp da NOTTE"><i class="ph ph-whatsapp-logo" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </nav>
+</div>
 
 <main id="topo">
 
@@ -211,13 +249,13 @@
   </section>
 
   <!-- OCASIÕES -->
-  <section class="secao tom-ink">
+  <section class="secao tom-ink" id="eventos">
     <div class="wrap ocasioes">
       <div>
         <h2 class="titulo split" data-split>Para empresas que recebem <em>quem importa.</em></h2>
         <p class="apoio rev">Feita para marcas que atendem um público exigente e querem que o encontro seja lembrado pelo que se viveu, não pelo que se serviu.</p>
       </div>
-      <ul class="ocasioes__lista" data-luz>
+      <ul class="ocasioes__lista">
         <li class="rev"><i class="ph ph-handshake" aria-hidden="true"></i><span><strong>Relacionamento com clientes</strong>Encontros com a carteira de alta renda, private e convidados especiais.</span></li>
         <li class="rev" style="--d:.06s"><i class="ph ph-calendar-star" aria-hidden="true"></i><span><strong>Fim de ano</strong>Confraternização de equipe ou de clientes com algo que todos levam.</span></li>
         <li class="rev" style="--d:.12s"><i class="ph ph-megaphone" aria-hidden="true"></i><span><strong>Lançamentos</strong>Coleção, produto ou espaço novo apresentado pelos sentidos.</span></li>
@@ -228,7 +266,7 @@
   </section>
 
   <!-- QUEM CONDUZ -->
-  <section class="secao tom-papel">
+  <section class="secao tom-papel" id="mell">
     <div class="wrap quem">
       <figure class="quem__foto rev">
         <img src="../assets/img/mell-retrato-480.webp" srcset="../assets/img/mell-retrato-480.webp 480w, ../assets/img/mell-retrato-960.webp 960w" sizes="(min-width: 1001px) 38vw, 92vw" width="480" height="615" alt="Mell Marini Dias, perfumista da NOTTE, segurando frascos de perfume numerados" loading="lazy" decoding="async">

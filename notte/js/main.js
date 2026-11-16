@@ -115,6 +115,29 @@
     });
   }
 
+  /* Menu hambúrguer */
+  var menu = document.querySelector("[data-menu]"), abrirBt = document.querySelector("[data-menu-abrir]");
+  if (menu && abrirBt) {
+    var abrir = function () {
+      menu.hidden = false; document.documentElement.classList.add("menu-aberto");
+      abrirBt.setAttribute("aria-expanded", "true"); abrirBt.setAttribute("aria-label", "Fechar menu");
+      requestAnimationFrame(function () { requestAnimationFrame(function () { menu.classList.add("is-aberto"); }); });
+      var f = menu.querySelector(".menu__fechar"); if (f) f.focus({ preventScroll: true });
+    };
+    var fechar = function (voltarFoco) {
+      menu.classList.remove("is-aberto"); document.documentElement.classList.remove("menu-aberto");
+      abrirBt.setAttribute("aria-expanded", "false"); abrirBt.setAttribute("aria-label", "Abrir menu");
+      setTimeout(function () { if (!menu.classList.contains("is-aberto")) menu.hidden = true; }, reduz ? 0 : 700);
+      if (voltarFoco) abrirBt.focus({ preventScroll: true });
+    };
+    abrirBt.addEventListener("click", function () { if (menu.classList.contains("is-aberto")) fechar(true); else abrir(); });
+    menu.addEventListener("click", function (e) {
+      if (e.target.closest("[data-menu-fechar]")) fechar(true);
+      else if (e.target.closest("a")) fechar(false);
+    });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && menu.classList.contains("is-aberto")) fechar(true); });
+  }
+
   /* Pré-formulário: valida e abre o WhatsApp com as respostas */
   var form = document.querySelector("[data-whats-form]");
   if (form) {
