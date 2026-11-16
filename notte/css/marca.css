@@ -248,3 +248,11 @@ body { font-size: 16px; }
   .faq__resp p { margin: 0 8px 8px; padding: 16px 16px; border-radius: 14px; font-size: 15.5px; }
 }
 @media (max-width: 767px) { .faq__item[open] summary, .faq__item.is-aberto summary { padding-left: 18px; } }
+
+/* ---------- Fechamento com a imagem da marca ao fundo, em desfoque sutil ---------- */
+.fecho { position: relative; overflow: hidden; isolation: isolate; padding: clamp(110px, 14vw, 170px) 0; }
+.fecho__fundo { position: absolute; inset: -24px; z-index: -1; }
+.fecho__fundo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; filter: blur(3px) saturate(.9); transform: scale(1.04); }
+.fecho__fundo::after { content: ""; position: absolute; inset: 0;
+  background: radial-gradient(70% 70% at 50% 50%, rgba(24, 29, 32, .5) 0%, rgba(24, 29, 32, .58) 100%), linear-gradient(180deg, #181D20 0%, rgba(24, 29, 32, 0) 18%, rgba(24, 29, 32, 0) 82%, #181D20 100%); }
+@media (max-width: 767px) { .fecho__fundo img { object-position: 42% 45%; filter: blur(2px) saturate(.9); } }
