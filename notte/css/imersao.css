@@ -1,9 +1,15 @@
 /* Página: Imersão Olfativa para Empresas */
 
-/* ---------- Hero ---------- */
-.hero { min-height: 100dvh; display: flex; align-items: center; padding: 108px 0 56px; position: relative; overflow: hidden; }
-.hero::before { content: ""; position: absolute; inset: auto -10% -30% 30%; height: 70%; background: linear-gradient(180deg, transparent, rgba(74, 21, 34, .55)); pointer-events: none; }
-.hero__grid { position: relative; display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: var(--s-6); }
+/* ---------- Hero: capa em tela cheia (16:9 no computador, 9:16 no celular) ---------- */
+.hero { position: relative; min-height: 100dvh; display: flex; align-items: center; padding: 108px 0 64px; overflow: hidden; background: #120C0A; }
+.hero__capa { position: absolute; inset: 0; z-index: 0; }
+.hero__capa img { width: 100%; height: 100%; object-fit: cover; object-position: 72% 50%; animation: capa 2.6s var(--ease) both; }
+@keyframes capa { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: none; } }
+/* véu para leitura: mais forte à esquerda, onde fica o texto */
+.hero::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(90deg, rgba(18, 12, 10, .92) 0%, rgba(18, 12, 10, .7) 34%, rgba(18, 12, 10, 0) 62%), linear-gradient(0deg, rgba(18, 12, 10, .65) 0%, rgba(18, 12, 10, 0) 26%); }
+.hero__grid { position: relative; z-index: 2; display: block; }
+.hero__texto { max-width: 640px; }
 .hero__titulo { font-size: clamp(40px, 4.6vw, 68px); max-width: none; }
 .hero__titulo .linha { display: block; }
 @media (min-width: 1001px) { .hero__titulo .linha { white-space: nowrap; } }
@@ -11,13 +17,6 @@
 .hero__apoio { margin-top: var(--s-5); max-width: 40ch; font-size: clamp(17px, 1.4vw, 20px); color: var(--txt-inv-2); }
 .hero__acao { margin-top: var(--s-6); display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
 .hero__nota { font-size: 15px; color: var(--txt-inv-2); }
-
-.hero__leque { position: relative; height: min(68dvh, 600px); }
-.hero__leque .fita { height: 80%; bottom: 15%; transition: transform 1.6s var(--ease); }
-.hero__leque:not(.is-aberto) .fita { transform: translateX(-50%) rotate(0deg); }
-.hero__leque .fita:nth-child(2) { transition-delay: .05s; } .hero__leque .fita:nth-child(4) { transition-delay: .05s; }
-.hero__leque .fita:nth-child(1), .hero__leque .fita:nth-child(5) { transition-delay: .12s; }
-.hero__legenda { position: absolute; left: 0; right: 0; bottom: 0; text-align: center; font-family: var(--serif); font-style: italic; font-size: 17px; color: var(--txt-inv-2); }
 
 /* ---------- Dor ---------- */
 .dor { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-6) var(--s-7); }
@@ -172,9 +171,6 @@
   .passo__img { width: 100%; height: 100%; object-fit: cover; }
   .passo__foto::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(44, 11, 20, 0) 55%, #2C0B14 100%); }
   .passo { box-shadow: 0 -20px 40px -24px rgba(8, 2, 4, .9); border-radius: 6px; }
-  .hero__grid { grid-template-columns: 1fr; }
-  .hero__leque { height: 300px; order: -1; margin-top: -8px; }
-  .hero { align-items: flex-start; padding-top: 92px; }
   .dor, .ocasioes, .quem, .proposta, .faq, .citacao { grid-template-columns: 1fr; }
   .quem__foto { max-width: 460px; }
 }
@@ -185,11 +181,9 @@
   .marca__mono { width: 38px; height: 38px; }
   .marca__sub { font-size: 10px; letter-spacing: .2em; }
   .topo .btn { display: none; }
-  .hero { padding: 76px 0 40px; min-height: auto; }
-  .hero__leque { height: 190px; }
-  .hero__leque .fita { height: 92%; bottom: 0; }
-  .hero__leque .fita { width: 30px; }
-  .hero__legenda { display: none; }
+  .hero { min-height: 100svh; align-items: flex-end; padding: 0 0 calc(28px + env(safe-area-inset-bottom)); }
+  .hero__capa img { object-position: 50% 0%; }
+  .hero::after { background: linear-gradient(180deg, rgba(18, 12, 10, 0) 30%, rgba(18, 12, 10, .55) 46%, rgba(18, 12, 10, .96) 62%, #120C0A 100%); }
   .hero__titulo { font-size: clamp(34px, 9.6vw, 46px); }
   .hero__acao { margin-top: var(--s-5); }
   .hero__acao .btn { width: 100%; }

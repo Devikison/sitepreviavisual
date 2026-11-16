@@ -26,10 +26,12 @@
   <link rel="icon" href="../assets/favicon/favicon-32.png" sizes="32x32">
   <link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
 
-  <link rel="preload" href="../fonts/playfair-display.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" href="../assets/img/hero-desktop-1280.webp" media="(min-width: 768px)" fetchpriority="high">
+  <link rel="preload" as="image" href="../assets/img/hero-mobile-540.webp" media="(max-width: 767px)" fetchpriority="high">
+  <link rel="preload" href="../fonts/playfair-display.woff2 as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
-  <link rel="stylesheet" href="../css/notte.css?v=20261116c">
-  <link rel="stylesheet" href="../css/imersao.css?v=20261116c">
+  <link rel="stylesheet" href="../css/notte.css?v=20261116d">
+  <link rel="stylesheet" href="../css/imersao.css?v=20261116d">
 
   <script type="application/ld+json">
   {
@@ -52,10 +54,10 @@
   }
   </script>
 
-  <script src="../js/consent.js?v=20261116c" defer></script>
-  <script src="../js/rastreio.js?v=20261116c" defer></script>
-  <script src="../js/rolagem.js?v=20261116c" defer></script>
-  <script src="../js/main.js?v=20261116c" defer></script>
+  <script src="../js/consent.js?v=20261116d" defer></script>
+  <script src="../js/rastreio.js?v=20261116d" defer></script>
+  <script src="../js/rolagem.js?v=20261116d" defer></script>
+  <script src="../js/main.js?v=20261116d" defer></script>
   <!-- Google Tag Manager GTM-XXXXXXX: carregado por js/consent.js somente após o aceite de cookies -->
 </head>
 <body ontouchstart="">
@@ -74,6 +76,10 @@
 
   <!-- HERO -->
   <section class="hero tom-ink">
+    <picture class="hero__capa">
+      <source media="(max-width: 767px)" srcset="../assets/img/hero-mobile-540.webp 540w, ../assets/img/hero-mobile-941.webp 941w" sizes="100vw" width="540" height="959">
+      <img src="../assets/img/hero-desktop-1280.webp" srcset="../assets/img/hero-desktop-1280.webp 1280w, ../assets/img/hero-desktop-1672.webp 1672w" sizes="100vw" width="1280" height="720" alt="Mãos dosando essência num frasco de perfume, com frascos âmbar, fitas olfativas e velas sobre a mesa" fetchpriority="high" decoding="async">
+    </picture>
     <div class="wrap hero__grid">
       <div class="hero__texto">
         <h1 class="hero__titulo split" data-split><span class="linha">Um evento em que</span> <span class="linha">cada convidado cria</span> <em class="linha">o seu próprio perfume.</em></h1>
@@ -84,14 +90,6 @@
         </div>
       </div>
 
-      <div class="hero__leque" aria-hidden="true" data-leque>
-        <div class="fita" style="--rot:-34deg;--tinta:#7A2436"><span class="fita__papel"></span><span class="fita__mancha" style="background:linear-gradient(180deg,rgba(122,36,54,.55),rgba(122,36,54,0))"></span><span class="fita__nota">rosa damascena</span><span class="fita__furo"></span></div>
-        <div class="fita" style="--rot:-17deg"><span class="fita__papel"></span><span class="fita__mancha" style="background:linear-gradient(180deg,rgba(92,107,69,.6),rgba(92,107,69,0))"></span><span class="fita__nota">vetiver</span><span class="fita__furo"></span></div>
-        <div class="fita" style="--rot:0deg"><span class="fita__papel"></span><span class="fita__mancha" style="background:linear-gradient(180deg,rgba(217,150,58,.75),rgba(217,150,58,0))"></span><span class="fita__nota">âmbar</span><span class="fita__furo"></span></div>
-        <div class="fita" style="--rot:17deg"><span class="fita__papel"></span><span class="fita__mancha" style="background:linear-gradient(180deg,rgba(201,163,92,.6),rgba(201,163,92,0))"></span><span class="fita__nota">bergamota</span><span class="fita__furo"></span></div>
-        <div class="fita" style="--rot:34deg"><span class="fita__papel"></span><span class="fita__mancha" style="background:linear-gradient(180deg,rgba(120,72,40,.55),rgba(120,72,40,0))"></span><span class="fita__nota">cedro</span><span class="fita__furo"></span></div>
-        <p class="hero__legenda">Cada fita, uma nota. Cada convidado, uma combinação.</p>
-      </div>
     </div>
   </section>
 
