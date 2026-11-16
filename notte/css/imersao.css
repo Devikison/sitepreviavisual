@@ -132,13 +132,22 @@
 .quem__insta i { font-size: 20px; }
 
 /* ---------- Proposta ---------- */
-.proposta { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-6) var(--s-7); align-items: start; }
+.proposta { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-6) var(--s-7); align-items: center; }
 .proposta .titulo { max-width: 15ch; }
-.passos { list-style: none; margin: var(--s-6) 0 0; padding: 0; display: grid; gap: 22px; }
-.passos li { display: grid; grid-template-columns: 48px 1fr; gap: 16px; align-items: start; }
-.passos i { width: 48px; height: 48px; display: grid; place-items: center; font-size: 24px; color: var(--ambar-claro); border: 1px solid rgba(241, 196, 126, .4); border-radius: var(--r); }
-.passos strong { display: block; font-size: 18px; color: var(--off); }
-.passos span { color: var(--txt-inv-2); }
+.passos { position: relative; list-style: none; margin: var(--s-6) 0 0; padding: 0; display: grid; gap: 14px; }
+.passos::before { content: ""; position: absolute; left: 47px; top: 40px; bottom: 40px; width: 1px; background: linear-gradient(180deg, rgba(241, 196, 126, .7), rgba(241, 196, 126, .15)); }
+.passos li { position: relative; display: grid; grid-template-columns: 52px 1fr; gap: 18px; align-items: center; padding: 18px 22px; border-radius: 10px;
+  background: linear-gradient(150deg, rgba(255, 236, 210, .08), rgba(255, 236, 210, .02) 60%), #3A1019;
+  border: 1px solid rgba(241, 196, 126, .2);
+  box-shadow: inset 0 1px 0 rgba(255, 236, 205, .1), 0 18px 34px -20px rgba(8, 2, 4, .9); }
+.passos i { position: relative; z-index: 1; width: 52px; height: 52px; display: grid; place-items: center; font-size: 24px; color: #3A1406; border-radius: 50%;
+  background: linear-gradient(135deg, #F8E2B0, #D9963A 60%, #B8742A); box-shadow: 0 8px 18px -8px rgba(217, 150, 58, .8), inset 0 1px 0 rgba(255, 250, 236, .8); }
+.passos strong { display: block; font-family: var(--serif); font-weight: 500; font-size: 21px; color: var(--off); line-height: 1.2; margin-bottom: 4px; }
+.passos span { color: var(--txt-inv-2); font-size: 15px; line-height: 1.5; }
+.proposta__selo { display: flex; align-items: center; gap: 16px; margin-top: 22px; padding: 18px 22px; border-radius: 999px; border: 1px dashed rgba(241, 196, 126, .4); }
+.proposta__selo img { flex: none; width: 56px; height: 56px; border-radius: 50%; background: var(--ink); padding: 7px; box-shadow: 0 8px 18px -8px rgba(0, 0, 0, .8); }
+.proposta__selo p { margin: 0; color: var(--txt-inv-2); font-size: 15px; line-height: 1.45; }
+.proposta__selo strong { display: block; color: var(--ambar-claro); font-size: 16px; }
 
 .ficha { background: var(--off); color: var(--txt); padding: clamp(24px, 3.4vw, 40px); border-radius: var(--r); box-shadow: 0 34px 70px -30px rgba(12, 3, 6, .7); position: relative; }
 .ficha::before { content: ""; position: absolute; left: clamp(24px, 3.4vw, 40px); top: -14px; width: 120px; height: 28px; background: var(--ambar); clip-path: polygon(0 0, 84% 0, 100% 50%, 84% 100%, 0 100%); }
@@ -224,6 +233,10 @@
   .comp__cab { display: none; }
   .ocasioes > div:first-child { position: static; }
   .ocasioes__lista { grid-template-columns: 1fr; gap: 12px; }
+  .passos li { padding: 16px; gap: 14px; grid-template-columns: 46px 1fr; }
+  .passos i { width: 46px; height: 46px; font-size: 21px; }
+  .passos::before { left: 39px; }
+  .proposta__selo { border-radius: 14px; }
   .ocasioes__lista li, .ocasioes__lista li:first-child { flex-direction: row; align-items: flex-start; gap: 16px; padding: 22px 20px; }
   .ocasioes__lista i { width: 48px; height: 48px; font-size: 22px; }
   .ocasioes__lista strong, .ocasioes__lista li:first-child strong { font-size: 22px; }
