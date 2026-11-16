@@ -67,3 +67,4 @@
   .elo__seta svg { width: 15px; height: 15px; } .elo__seta i { font-size: 17px; }
 }
 @media (max-width: 360px) { .elo__foto { width: 44px; height: 44px; } }
+.elo__foto--logo { object-fit: contain; padding: 6px; background: var(--ink); }
