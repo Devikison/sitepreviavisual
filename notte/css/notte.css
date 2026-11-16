@@ -78,11 +78,12 @@ p { margin: 0; text-wrap: pretty; }
   overflow: hidden; border-radius: 999px; padding: 0 10px 0 30px; gap: 14px;
   color: #3A1406; font-weight: 600; letter-spacing: .12em;
   background: linear-gradient(135deg, #F8E2B0 0%, #EBBE72 28%, #D9963A 62%, #B8742A 100%);
-  border: 2px solid rgba(255, 238, 205, .5);
-  box-shadow: 0 12px 28px -10px rgba(170, 95, 20, .6), 0 2px 4px rgba(20, 10, 4, .25), inset 0 1px 0 rgba(255, 250, 236, .75);
+  border: 0; background-clip: padding-box; transform: translateZ(0);
+  /* anel interno no lugar da borda: sem sobrepor o dourado, o canto arredondado fica limpo */
+  box-shadow: inset 0 0 0 1.5px rgba(255, 240, 210, .55), inset 0 1px 0 rgba(255, 250, 236, .75), 0 12px 28px -10px rgba(170, 95, 20, .6), 0 2px 4px rgba(20, 10, 4, .25);
   transition: transform .5s var(--ease), border-color .5s var(--ease), box-shadow .5s var(--ease);
 }
-.btn-fita::before { content: ""; position: absolute; top: 0; left: -120px; width: 110px; height: 100%; z-index: -1; pointer-events: none;
+.btn-fita::before { content: ""; position: absolute; border-radius: inherit; top: 0; left: -120px; width: 110px; height: 100%; z-index: -1; pointer-events: none;
   background-image: linear-gradient(120deg, rgba(255, 255, 255, 0) 30%, rgba(255, 252, 240, .85), rgba(255, 255, 255, 0) 70%); opacity: .65;
   animation: brilho 5.5s ease-out 2s infinite; }
 .btn-fita::after { content: none; }
@@ -91,13 +92,13 @@ p { margin: 0; text-wrap: pretty; }
 .btn-fita .i { display: none; }
 .btn-linha { color: currentColor; padding: 0 26px; border: 1px solid currentColor; border-radius: 999px; background: transparent; }
 @media (hover: hover) {
-  .btn-fita:hover { transform: scale(1.035); border-color: rgba(255, 246, 228, .9); box-shadow: 0 18px 36px -12px rgba(170, 95, 20, .75), 0 2px 4px rgba(20, 10, 4, .25), inset 0 1px 0 rgba(255, 250, 236, .8); }
+  .btn-fita:hover { transform: scale(1.035) translateZ(0); box-shadow: inset 0 0 0 1.5px rgba(255, 246, 228, .9), inset 0 1px 0 rgba(255, 250, 236, .8), 0 18px 36px -12px rgba(170, 95, 20, .75), 0 2px 4px rgba(20, 10, 4, .25); }
   .btn-fita:hover::before { animation: brilho 1.5s ease-out infinite; }
   .btn-fita:hover .btn__ic { transform: translateX(4px); }
   .btn-linha:hover { background: rgba(217, 150, 58, .12); }
 }
 @keyframes brilho { 0% { left: -120px; } 60%, 100% { left: 100%; } }
-.btn-fita:active { transform: scale(.99); }
+.btn-fita:active { transform: scale(.99) translateZ(0); }
 .btn:active { transform: translateY(1px) scale(.99); }
 
 /* ---------- Topo ---------- */
