@@ -15,12 +15,12 @@
   --ambar: #181D20; --ambar-claro: #FFFFFF; --ambar-escuro: #181D20;
   --txt: #181D20; --txt-2: #181D20; --txt-inv: #FFFFFF; --txt-inv-2: #FFFFFF;
   --linha: rgba(24, 29, 32, .16); --linha-inv: rgba(255, 255, 255, .16);
-  --serif: "Italiana", "Didot", "Bodoni 72", Georgia, serif;
+  --serif: "Playfair Display", "Didot", "Bodoni 72", Georgia, serif;
   --sans: "Lexend", "Segoe UI", system-ui, sans-serif;
   --sombra-papel: 0 22px 44px -26px rgba(24, 29, 32, .35);
 }
 body { font-family: var(--sans); font-weight: 400; letter-spacing: .015em; background: var(--ink); }
-h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: .01em; line-height: 1.12; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; letter-spacing: -.005em; line-height: 1.12; }
 h1 em, h2 em, h3 em, .tom-ink h1 em, .tom-ink h2 em, .tom-vinho h1 em, .tom-vinho h2 em { font-style: normal; color: inherit; }
 .tom-off { background: var(--off); } .tom-papel { background: #FFFFFF; }
 .tom-vinho { background: var(--ink-3); }
@@ -209,3 +209,9 @@ h1 em, h2 em, h3 em, .tom-ink h1 em, .tom-ink h2 em, .tom-vinho h1 em, .tom-vinh
 @media (hover: hover) { .consent__btn--sim:hover { background: #2B3236; } .consent__btn--nao:hover { border-color: #181D20; } }
 .consent__btn:active { transform: scale(.97); }
 .consent__btn:focus-visible { outline: 2px solid #181D20; outline-offset: 3px; }
+
+/* Serifada legível (Playfair Display) em títulos, perguntas e citação */
+.faq__item summary, .passo h3, .formato h3, .ocasioes__lista strong, .passos strong, .elo__txt strong, .menu__grade strong, .ficha__cab, .consent__title { font-family: var(--serif); font-weight: 500; }
+.citacao blockquote { font-style: italic; font-weight: 400; }
+
+@media (min-width: 768px) { .titulo--2l .linha { white-space: nowrap; } }
