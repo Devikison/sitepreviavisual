@@ -405,3 +405,6 @@
 /* capa do celular um pouco mais abaixo (pode encostar de leve no título) */
 @media (max-width: 767px) { .hero__capa { inset: clamp(-20px, calc(100svh - 92.4vw - 375px), 150px) 0 auto 0; } }
 @media (max-width: 767px) and (max-height: 700px) { .hero__capa { inset: clamp(-20px, calc(100svh - 92.4vw - 375px), 150px) 0 auto 0; } }
+
+/* sem a fita dourada no topo da ficha */
+.ficha::before { content: none; }
