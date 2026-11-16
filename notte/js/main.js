@@ -69,23 +69,31 @@
   if (topo) topo.addEventListener("focusin", function () { topo.classList.remove("is-oculto"); });
   tick();
 
-  /* FAQ: abre e fecha animando a altura, um por vez */
-  document.querySelectorAll("[data-faq] details").forEach(function (d) {
-    var sum = d.querySelector("summary"), resp = d.querySelector(".faq__resp");
-    sum.addEventListener("click", function (e) {
+  /* FAQ: abre e fecha animando a altura, um por vez; cliques repetidos cancelam a animação anterior (sem travar) */
+  var faqs = document.querySelectorAll("[data-faq] details");
+  function parar(d) { if (d._anim) { d._anim.cancel(); d._anim = null; } }
+  function abrirFaq(d) {
+    var r = d.querySelector(".faq__resp"), de = r.getBoundingClientRect().height;
+    parar(d); d.open = true; d.classList.add("is-aberto");
+    if (reduz || !r.animate) return;
+    var ate = r.scrollHeight;
+    d._anim = r.animate([{ height: de + "px", opacity: de ? 1 : 0 }, { height: ate + "px", opacity: 1 }], { duration: 600, easing: "cubic-bezier(.22,.8,.24,1)" });
+    d._anim.onfinish = function () { d._anim = null; };
+  }
+  function fecharFaq(d) {
+    if (!d.open) return;
+    var r = d.querySelector(".faq__resp"), de = r.getBoundingClientRect().height;
+    parar(d); d.classList.remove("is-aberto");
+    if (reduz || !r.animate) { d.open = false; return; }
+    d._anim = r.animate([{ height: de + "px", opacity: 1 }, { height: "0px", opacity: 0 }], { duration: 450, easing: "cubic-bezier(.22,.8,.24,1)", fill: "forwards" });
+    d._anim.onfinish = function () { d.open = false; if (d._anim) { d._anim.cancel(); d._anim = null; } };
+  }
+  faqs.forEach(function (d) {
+    d.querySelector("summary").addEventListener("click", function (e) {
       e.preventDefault();
-      if (d.open) fechar(d); else {
-        document.querySelectorAll("[data-faq] details[open]").forEach(fechar);
-        d.open = true;
-        if (!reduz && resp.animate) resp.animate([{ height: "0px", opacity: 0 }, { height: resp.scrollHeight + "px", opacity: 1 }], { duration: 700, easing: "cubic-bezier(.22,.8,.24,1)" });
-      }
+      if (d.classList.contains("is-aberto")) fecharFaq(d);
+      else { faqs.forEach(function (o) { if (o !== d) fecharFaq(o); }); abrirFaq(d); }
     });
-    function fechar(el) {
-      var r = el.querySelector(".faq__resp");
-      if (reduz || !r.animate) { el.open = false; return; }
-      var a = r.animate([{ height: r.scrollHeight + "px", opacity: 1 }, { height: "0px", opacity: 0 }], { duration: 500, easing: "cubic-bezier(.22,.8,.24,1)" });
-      a.onfinish = function () { el.open = false; };
-    }
   });
 
   /* Como acontece: o card no centro da tela define a foto e o nível da pirâmide */
