@@ -1,0 +1,188 @@
+/* =====================================================================
+   NOTTE | identidade oficial (Estratégia Olfativa, jun/26)
+   Paleta: Black Night #181D20 · Warm Grey #EEEAEA · Pure White #FFFFFF
+   Fontes da marca: La Luxes Serif (títulos) e BD Sans (textos), licenças pagas.
+   Até chegarem os arquivos com licença web: Italiana e Lexend (Google Fonts, OFL).
+   Carregar este arquivo POR ÚLTIMO: ele sobrepõe as cores e fontes antigas.
+   ===================================================================== */
+@font-face { font-family: "Italiana"; font-style: normal; font-weight: 400; font-display: swap; src: url("../fonts/italiana.woff2") format("woff2"); }
+@font-face { font-family: "Lexend"; font-style: normal; font-weight: 300 500; font-display: swap; src: url("../fonts/lexend.woff2") format("woff2"); }
+
+:root {
+  --ink: #181D20; --ink-2: #14181A; --ink-3: #22282B;
+  --vinho: #22282B; --vinho-2: #1D2225;
+  --off: #EEEAEA; --papel: #FFFFFF; --papel-2: #DEDADA;
+  --ambar: #181D20; --ambar-claro: #FFFFFF; --ambar-escuro: #181D20;
+  --txt: #181D20; --txt-2: #181D20; --txt-inv: #FFFFFF; --txt-inv-2: #FFFFFF;
+  --linha: rgba(24, 29, 32, .16); --linha-inv: rgba(255, 255, 255, .16);
+  --serif: "Italiana", "Didot", "Bodoni 72", Georgia, serif;
+  --sans: "Lexend", "Segoe UI", system-ui, sans-serif;
+  --sombra-papel: 0 22px 44px -26px rgba(24, 29, 32, .35);
+}
+body { font-family: var(--sans); font-weight: 400; letter-spacing: .015em; background: var(--ink); }
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: .01em; line-height: 1.12; }
+h1 em, h2 em, h3 em, .tom-ink h1 em, .tom-ink h2 em, .tom-vinho h1 em, .tom-vinho h2 em { font-style: normal; color: inherit; }
+.tom-off { background: var(--off); } .tom-papel { background: #FFFFFF; }
+.tom-vinho { background: var(--ink-3); }
+
+/* Fotos em preto e branco, como na apresentação da marca */
+.hero__capa img, .roteiro__img, .passo__img, .formato__foto img, .quem__foto img, .elo__foto:not(.elo__foto--logo) { filter: grayscale(1) contrast(1.06) !important; }
+
+/* Logos oficiais */
+.marca__logo { display: block; height: 40px; width: auto; }
+.rodape__logo { display: block; height: 78px; width: auto; }
+@media (max-width: 767px) { .marca__logo { height: 32px; } .rodape__logo { height: 68px; margin: 0 auto; } }
+
+/* ---------- Botões: pílula branca no escuro, pílula preta no claro ---------- */
+.btn-fita { color: #181D20; background: #FFFFFF; text-shadow: none;
+  box-shadow: inset 0 0 0 1px rgba(24, 29, 32, .08), 0 14px 30px -14px rgba(0, 0, 0, .55); }
+.btn-fita::before { background-image: linear-gradient(120deg, rgba(255, 255, 255, 0) 30%, rgba(24, 29, 32, .08), rgba(255, 255, 255, 0) 70%); opacity: 1; }
+.btn-fita .btn__ic { background: #181D20; color: #FFFFFF; }
+@media (hover: hover) { .btn-fita:hover { box-shadow: inset 0 0 0 1px rgba(24, 29, 32, .12), 0 18px 36px -14px rgba(0, 0, 0, .6); } }
+.ficha .btn-fita, .tom-off .btn-fita, .tom-papel .btn-fita, .menu .btn-fita, .pag .btn-fita { color: #FFFFFF; background: #181D20; box-shadow: 0 14px 30px -16px rgba(24, 29, 32, .7); }
+.ficha .btn-fita .btn__ic, .tom-off .btn-fita .btn__ic, .menu .btn-fita .btn__ic { background: #FFFFFF; color: #181D20; }
+.ficha .btn-fita::before, .menu .btn-fita::before { background-image: linear-gradient(120deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, .22), rgba(255, 255, 255, 0) 70%); }
+.consent { background: #FFFFFF; border-color: var(--papel-2); }
+.consent .btn-gold { color: #FFFFFF !important; background: #181D20 !important; border: 0 !important; box-shadow: none !important; }
+.consent .btn-outline { border-color: #181D20; color: #181D20; }
+
+/* ---------- Topo e menu ---------- */
+.topo .wrap { background: rgba(24, 29, 32, .55); border-color: rgba(255, 255, 255, .14); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08), 0 18px 40px -18px rgba(0, 0, 0, .7); }
+.topo.is-vidro .wrap { background: rgba(24, 29, 32, .82); border-color: rgba(255, 255, 255, .2); }
+.topo__nav a, .topo__nav a[aria-current="true"] { color: #FFFFFF; }
+.topo__nav a::after { background: #FFFFFF; }
+@media (hover: hover) { .topo__nav a:hover { background: rgba(255, 255, 255, .1); color: #FFFFFF; } }
+.hamb { border-color: rgba(255, 255, 255, .35); background: rgba(255, 255, 255, .05); }
+.hamb[aria-expanded="true"] span { background: #FFFFFF; }
+.menu__veu { background: rgba(24, 29, 32, .5); }
+.menu__painel { background: linear-gradient(170deg, #FFFFFF 0%, #F6F3F3 55%, #EEEAEA 100%); }
+.menu__grade a { background: #FFFFFF; border-color: rgba(24, 29, 32, .1); box-shadow: 0 10px 22px -18px rgba(24, 29, 32, .45); }
+.menu__grade i { background: #181D20; color: #FFFFFF; }
+.menu__inicio img { background: transparent; padding: 0; border-radius: 0; height: 34px; width: auto; }
+.menu__fechar, .menu__redes a { color: #181D20; background: #FFFFFF; }
+
+/* ---------- Abertura ---------- */
+.hero { background: #181D20; }
+.hero::after { background: linear-gradient(90deg, rgba(24, 29, 32, .92) 0%, rgba(24, 29, 32, .7) 34%, rgba(24, 29, 32, 0) 62%), linear-gradient(0deg, rgba(24, 29, 32, .65) 0%, rgba(24, 29, 32, 0) 26%); }
+@media (max-width: 767px) { .hero::after { background: linear-gradient(180deg, rgba(24, 29, 32, 0) 0%, rgba(24, 29, 32, 0) 44%, rgba(24, 29, 32, .7) 54%, rgba(24, 29, 32, .97) 64%, #181D20 100%); } }
+
+/* ---------- Problema: comparação e citação ---------- */
+.comp__antes { background: rgba(24, 29, 32, .04); border-color: rgba(24, 29, 32, .12); }
+.comp__antes i { color: #8C8888; }
+.comp__depois { background: #FFFFFF; border-color: #181D20; box-shadow: 0 14px 30px -22px rgba(24, 29, 32, .45); }
+.comp__depois i, .comp__depois > span::before { color: #181D20; }
+.citacao { background: linear-gradient(160deg, #FFFFFF 0%, #F7F5F5 60%, #F0EDED 100%); border-color: rgba(255, 255, 255, .8);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .9) inset, 0 2px 4px rgba(24, 29, 32, .06), 0 18px 36px -14px rgba(24, 29, 32, .22); }
+.citacao::before { background: #181D20; }
+.citacao::after { color: rgba(24, 29, 32, .06); }
+.citacao__ic { background: #181D20; color: #FFFFFF; box-shadow: none; }
+.citacao blockquote { color: #181D20; }
+.citacao figcaption { border-top-color: rgba(24, 29, 32, .14); }
+.citacao__mono { background: #181D20; padding: 9px; }
+
+/* ---------- Como acontece ---------- */
+.roteiro::before { background: linear-gradient(180deg, #22282B 0%, #1D2225 55%, #181D20 100%); }
+.roteiro__moldura { background: #14181A; box-shadow: 0 40px 80px -40px rgba(0, 0, 0, .9), 0 0 0 1px rgba(255, 255, 255, .14); }
+.roteiro__moldura::after { border-color: rgba(255, 255, 255, .28); }
+.roteiro__foto::after { background: linear-gradient(180deg, rgba(24, 29, 32, 0) 70%, rgba(24, 29, 32, .55) 100%); }
+.roteiro__piramide { background: rgba(24, 29, 32, .6); border-color: rgba(255, 255, 255, .22); }
+.roteiro__nivel.is-ativo { background: #FFFFFF; color: #181D20; }
+.passo__corpo { background: linear-gradient(150deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02) 60%), #1D2225; border-color: rgba(255, 255, 255, .14); }
+.passo.is-ativo .passo__corpo { border-color: rgba(255, 255, 255, .4); }
+.passo__corpo::before { background: linear-gradient(180deg, #FFFFFF, rgba(255, 255, 255, .4) 60%, transparent); }
+.passo__gota { background: #FFFFFF; }
+.passo__det { border-top-color: rgba(255, 255, 255, .16); }
+.passo__det li { border-color: rgba(255, 255, 255, .3); }
+@media (max-width: 1000px) {
+  .passo { background: #1D2225; border-color: rgba(255, 255, 255, .18); }
+  .passo__foto { border-bottom-color: rgba(255, 255, 255, .3); }
+}
+
+/* ---------- Formatos ---------- */
+.formato { background: #FFFFFF; border-color: #E2DEDE; }
+.formato__cap { color: #181D20; }
+
+/* ---------- Para quais eventos ---------- */
+.ocasioes__lista li { background: linear-gradient(160deg, #22282B 0%, #1C2124 100%); border-color: rgba(255, 255, 255, .12); }
+.ocasioes__lista li:first-child { background: linear-gradient(135deg, #2C3336 0%, #22282B 100%); border-color: rgba(255, 255, 255, .22); }
+.ocasioes__lista i, .passos i { background: transparent; color: #FFFFFF; border-color: rgba(255, 255, 255, .4); }
+@media (hover: hover) { .ocasioes__lista li.is-on:hover { border-color: rgba(255, 255, 255, .34); } }
+
+/* ---------- Quem conduz ---------- */
+.quem__foto::before { border-color: rgba(24, 29, 32, .3); }
+.quem__foto figcaption { background: rgba(24, 29, 32, .66); border-color: rgba(255, 255, 255, .22); }
+.quem__foto figcaption span { color: #FFFFFF; }
+.quem__insta { color: #181D20; }
+
+/* ---------- Proposta e ficha ---------- */
+.passos::before { background: linear-gradient(180deg, rgba(255, 255, 255, .5), rgba(255, 255, 255, .1)); }
+.passos li { background: linear-gradient(150deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02) 60%), #2A3034; border-color: rgba(255, 255, 255, .14); }
+.passos i { background: #22282B; }
+.proposta__selo { border-color: rgba(255, 255, 255, .3); }
+.proposta__selo img { background: #181D20; padding: 10px; }
+.proposta__selo strong { color: #FFFFFF; }
+.ficha { background: #FFFFFF; box-shadow: 0 34px 70px -30px rgba(0, 0, 0, .7); }
+.campo input, .campo select, .campo textarea { background-color: #FFFFFF; border-color: #C9C4C4; }
+.campo input:focus, .campo select:focus, .campo textarea:focus { border-color: #181D20; box-shadow: 0 0 0 3px rgba(24, 29, 32, .12); }
+.campo input::placeholder { color: #8C8888; }
+
+/* ---------- Dúvidas ---------- */
+.faq__item[open] { background: rgba(24, 29, 32, .05); }
+.faq__item[open] summary { color: #181D20; }
+.faq__item summary i { color: #181D20; }
+.faq__resp p { border-left-color: #181D20; }
+
+/* ---------- Rodapé ---------- */
+.rodape { background: #14181A; }
+.rodape__icones a { color: #FFFFFF; border-color: rgba(255, 255, 255, .35); background: rgba(255, 255, 255, .03); }
+@media (hover: hover) { .rodape__icones a:hover { background: #FFFFFF; color: #181D20; } }
+
+/* ---------- Barra de rolagem ---------- */
+::-webkit-scrollbar-track { background: #181D20; }
+::-webkit-scrollbar-thumb { background: #EEEAEA; border-color: #181D20; }
+::-webkit-scrollbar-thumb:hover { background: #FFFFFF; }
+::-webkit-scrollbar-corner { background: #181D20; }
+@supports not selector(::-webkit-scrollbar) { html { scrollbar-color: #EEEAEA #181D20; } }
+
+/* ---------- Páginas de apoio ---------- */
+.pag { background: var(--off); }
+.pag__topo, .pag__rodape { background: #181D20; }
+
+/* ---------- Link na bio ---------- */
+.bio { background: #14181A; }
+.bio::before { filter: blur(70px);
+  background:
+    radial-gradient(40% 32% at 50% 14%, rgba(238, 234, 234, .10) 0%, rgba(238, 234, 234, 0) 70%),
+    radial-gradient(40% 32% at 30% 80%, rgba(238, 234, 234, .06) 0%, rgba(238, 234, 234, 0) 70%),
+    radial-gradient(36% 28% at 76% 62%, rgba(120, 128, 132, .10) 0%, rgba(120, 128, 132, 0) 70%); }
+@media (min-width: 768px) { .bio::before { background:
+    radial-gradient(26% 32% at 50% 16%, rgba(238, 234, 234, .11) 0%, rgba(238, 234, 234, 0) 70%),
+    radial-gradient(24% 30% at 40% 76%, rgba(238, 234, 234, .06) 0%, rgba(238, 234, 234, 0) 70%),
+    radial-gradient(22% 28% at 62% 60%, rgba(120, 128, 132, .10) 0%, rgba(120, 128, 132, 0) 70%); } }
+.bio__estojo { background: linear-gradient(160deg, rgba(255, 255, 255, .09) 0%, rgba(255, 255, 255, .03) 45%, rgba(255, 255, 255, .05) 100%); border-color: rgba(255, 255, 255, .16); }
+.bio__titulo { margin: 0; line-height: 0; }
+.bio__logo { display: block; width: min(250px, 66vw); height: auto; margin: 0 auto; }
+.bio__filete::before { background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .6) 30%, rgba(255, 255, 255, .6) 70%, transparent); }
+.bio__filete::after { background: #1F2427; border-color: rgba(255, 255, 255, .85); }
+.bio__assina { margin: 14px 0 0; line-height: 0; }
+.bio__assinatura { display: block; height: 42px; width: auto; margin: 0 auto; }
+.bio__linha { margin-top: 10px; font-size: 14px; letter-spacing: .06em; }
+.elo { background: rgba(20, 24, 26, .42); border-color: rgba(255, 255, 255, .12); }
+.elo__foto { box-shadow: 0 0 0 1px rgba(255, 255, 255, .22), 0 8px 18px -10px rgba(0, 0, 0, .9); }
+.elo__foto--logo { background: #181D20; padding: 9px; }
+.elo__seta { color: #FFFFFF; border-color: rgba(255, 255, 255, .45); }
+@media (hover: hover) { .elo:not(.elo--destaque):hover { border-color: rgba(255, 255, 255, .4); } .elo:hover .elo__seta { background: #FFFFFF; color: #181D20; } }
+.elo--destaque { color: #181D20; background: #FFFFFF; box-shadow: 0 16px 34px -18px rgba(0, 0, 0, .8); }
+.elo--destaque::before { background-image: linear-gradient(120deg, rgba(255, 255, 255, 0) 30%, rgba(24, 29, 32, .07), rgba(255, 255, 255, 0) 70%); }
+.elo--destaque .elo__txt strong { color: #181D20; }
+.elo--destaque .elo__foto { box-shadow: 0 0 0 1px rgba(24, 29, 32, .15); }
+.elo--destaque .elo__seta, .elo--destaque:hover .elo__seta { background: #181D20; color: #FFFFFF; }
+@media (hover: hover) { .elo--destaque:hover { box-shadow: 0 22px 40px -18px rgba(0, 0, 0, .85); } }
+.bio__rodape i { color: #FFFFFF; }
+@media (min-width: 768px) { .bio__logo { width: clamp(160px, 30vh, 250px); } .bio__assinatura { height: clamp(30px, 5vh, 42px); } }
+
+/* Italiana não tem itálico: nada de itálico falso */
+.citacao blockquote, .ficha__cab, .bio__linha, .fita__nota, .hero__legenda, h1 em, h2 em, h3 em { font-style: normal; }
+.citacao::after { content: none; }
+/* reflexo do botão escuro mais discreto */
+.ficha .btn-fita::before, .menu .btn-fita::before, .tom-off .btn-fita::before { background-image: linear-gradient(120deg, rgba(255, 255, 255, 0) 35%, rgba(255, 255, 255, .1), rgba(255, 255, 255, 0) 65%); }
