@@ -332,3 +332,7 @@
 .apoio--linhas { max-width: none; text-align: center; }
 .apoio--linhas span { display: block; }
 @media (min-width: 768px) { .apoio--linhas span { white-space: nowrap; } }
+
+/* Título em 2 linhas fixas (Dúvidas) */
+.titulo--2l .linha { display: block; }
+.titulo--2l em { color: var(--vinho); }
