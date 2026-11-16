@@ -215,3 +215,9 @@ h1 em, h2 em, h3 em, .tom-ink h1 em, .tom-ink h2 em, .tom-vinho h1 em, .tom-vinh
 .citacao blockquote { font-style: italic; font-weight: 400; }
 
 @media (min-width: 768px) { .titulo--2l .linha { white-space: nowrap; } }
+
+/* Dúvidas: título centralizado e lista centralizada abaixo */
+.faq { grid-template-columns: 1fr; justify-items: center; gap: 56px; }
+.faq > div:first-child { text-align: center; }
+.faq .titulo { margin-left: auto; margin-right: auto; }
+.faq__lista { width: 100%; max-width: 820px; text-align: left; }
