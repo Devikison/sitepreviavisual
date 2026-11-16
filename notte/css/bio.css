@@ -8,7 +8,7 @@
 .bio__leque:not(.is-aberto) .fita { transform: translateX(-50%) rotate(0deg); }
 .bio__nome { font-size: clamp(46px, 13vw, 58px); letter-spacing: .3em; margin-right: -.3em; font-weight: 500; line-height: 1; }
 .bio__sub { margin-top: 10px; font-size: 13px; font-weight: 600; letter-spacing: .3em; text-transform: uppercase; color: var(--ambar-claro); margin-right: -.3em; }
-.bio__linha { margin-top: 20px; font-family: var(--serif); font-size: 20px; line-height: 1.35; color: var(--off); max-width: 30ch; }
+.bio__linha { margin-top: 20px; font-family: var(--serif); font-style: italic; font-size: 20px; line-height: 1.35; color: var(--off); max-width: 30ch; }
 .bio__linha span { display: block; margin-top: 8px; font-family: var(--sans); font-style: normal; font-size: 15px; color: var(--txt-inv-2); }
 
 .bio__links { margin-top: 30px; display: grid; gap: 12px; }
