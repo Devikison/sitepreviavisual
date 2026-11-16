@@ -327,3 +327,8 @@
 .titulo--centro { max-width: none; text-align: center; margin-left: auto; margin-right: auto; }
 .titulo--centro .linha { display: block; }
 @media (min-width: 768px) { .titulo--centro .linha { white-space: nowrap; } }
+
+/* Apoio em 2 linhas fixas (Como acontece) */
+.apoio--linhas { max-width: none; text-align: center; }
+.apoio--linhas span { display: block; }
+@media (min-width: 768px) { .apoio--linhas span { white-space: nowrap; } }
