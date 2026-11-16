@@ -174,3 +174,24 @@
 @media (max-width: 480px) { .bio__cantos { inset: 5px; --l: 18px; } .bio__estojo { padding-top: 34px; } .bio__cab::before { top: 48px; } }
 @media (min-width: 768px) { .bio__estojo { padding-top: clamp(24px, 4.2vh, 40px); } .bio__monograma { margin-top: 0; } .bio__cab::before { top: calc(clamp(56px, 10vh, 104px) / 2); } }
 @media (prefers-reduced-motion: reduce) { .bio__cab::before { animation: none; } }
+
+/* ---------- Luxo silencioso: sem luz girando, sem ondas; acabamento fino ---------- */
+.bio__estojo::after { content: none; animation: none; }
+.bio__cab::before { content: none; animation: none; }
+.bio__estojo {
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .9 0 0 0 0 .75 0 0 0 .03 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(110% 45% at 50% 0%, rgba(217, 150, 58, .07) 0%, rgba(217, 150, 58, 0) 65%),
+    linear-gradient(175deg, #221915 0%, #1A1310 55%, #1F0D13 100%);
+  border-color: rgba(241, 196, 126, .26);
+  box-shadow: inset 0 1px 0 rgba(255, 236, 205, .06), 0 50px 90px -40px rgba(0, 0, 0, .95); }
+.bio__estojo::before { border-color: rgba(241, 196, 126, .12); }
+.bio__cantos { --c: rgba(241, 196, 126, .55); --t: 1px; --l: 16px; }
+.bio__fecho { width: 64px; height: 5px; border-radius: 0 0 6px 6px; box-shadow: none; }
+.bio__monograma { padding: 6px; background: #17110E; box-shadow: 0 0 0 1px rgba(241, 196, 126, .4), 0 12px 26px -16px rgba(0, 0, 0, .9); }
+/* filete dourado com losango, como gravação em frasco */
+.bio__filete { position: relative; display: block; width: 120px; height: 9px; margin: 16px auto 0; }
+.bio__filete::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: linear-gradient(90deg, transparent, rgba(241, 196, 126, .75) 30%, rgba(241, 196, 126, .75) 70%, transparent); }
+.bio__filete::after { content: ""; position: absolute; left: 50%; top: 50%; width: 7px; height: 7px; background: #1C1411; border: 1px solid rgba(241, 196, 126, .9); transform: translate(-50%, -50%) rotate(45deg); }
+.bio__linha { margin-top: 12px; }
+@media (min-width: 768px) { .bio__filete { margin-top: clamp(8px, 1.6vh, 16px); } .bio__linha { margin-top: clamp(6px, 1.2vh, 12px); } }
