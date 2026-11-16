@@ -1,0 +1,137 @@
+/* NOTTE Curadoria Olfativa | sistema visual
+   Direção: ateliê de perfumaria noturno. Assinatura: a fita olfativa (mouillette),
+   a tira de papel de teste do perfumista, usada em botões, marcadores e no hero.
+   Cores: Ink, Off-white, Âmbar (resina), Vinho, Botânico. Cantos retos. */
+
+@font-face { font-family: "Young Serif"; font-style: normal; font-weight: 400; font-display: swap; src: url("../fonts/young-serif.woff2") format("woff2"); }
+@font-face { font-family: "Red Hat Text"; font-style: normal; font-weight: 500 600; font-display: swap; src: url("../fonts/red-hat-text.woff2") format("woff2"); }
+
+:root {
+  --ink: #16110E;
+  --ink-2: #1F1814;
+  --ink-3: #2A211C;
+  --vinho: #4A1522;
+  --vinho-2: #33101A;
+  --off: #F2EBDF;
+  --papel: #E7DCC9;
+  --papel-2: #DCCFB8;
+  --ambar: #D9963A;
+  --ambar-claro: #F1C47E;
+  --ambar-escuro: #A86A1E;
+  --botanico: #5C6B45;
+  --botanico-claro: #A9B78A;
+
+  --txt: #251B16;
+  --txt-2: #4F4038;
+  --txt-inv: #F2EBDF;
+  --txt-inv-2: #D6C8B6;
+  --linha: rgba(37, 27, 22, .16);
+  --linha-inv: rgba(242, 235, 223, .18);
+
+  --serif: "Young Serif", Georgia, "Times New Roman", serif;
+  --sans: "Red Hat Text", "Segoe UI", system-ui, sans-serif;
+
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px; --s-6: 40px; --s-7: 64px; --s-8: 112px;
+  --wrap: 1200px;
+  --gut: clamp(20px, 5vw, 56px);
+  --r: 2px;
+  --ease: cubic-bezier(.22, .8, .24, 1);
+  --sombra-ink: 0 18px 40px -18px rgba(10, 6, 4, .55);
+  --sombra-papel: 0 22px 44px -26px rgba(74, 43, 18, .45);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; overflow-x: clip; scroll-behavior: smooth; scroll-padding-top: 88px; }
+body { margin: 0; overflow-x: clip; font-family: var(--sans); font-weight: 500; font-size: 17px; line-height: 1.65; color: var(--txt); background: var(--ink); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.1; letter-spacing: -.01em; margin: 0; text-wrap: balance; }
+h1 em, h2 em, h3 em { font-style: normal; color: var(--vinho); }
+.tom-ink h1 em, .tom-ink h2 em, .tom-vinho h1 em, .tom-vinho h2 em { color: var(--ambar-claro); }
+p { margin: 0; text-wrap: pretty; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+:focus-visible { outline: 2px solid var(--ambar); outline-offset: 3px; }
+
+.wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gut); }
+.secao { padding: clamp(72px, 10vw, var(--s-8)) 0; position: relative; }
+.tom-ink { background: var(--ink); color: var(--txt-inv); }
+.tom-off { background: var(--off); color: var(--txt); }
+.tom-papel { background: var(--papel); color: var(--txt); }
+.tom-vinho { background: var(--vinho); color: var(--txt-inv); }
+
+/* Rótulo de seção: pequena fita olfativa na frente do texto */
+.rotulo { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--ambar-escuro); margin-bottom: var(--s-4); }
+.tom-ink .rotulo, .tom-vinho .rotulo { color: var(--ambar-claro); }
+.rotulo::before { content: ""; width: 26px; height: 7px; background: currentColor; clip-path: polygon(0 0, 78% 0, 100% 50%, 78% 100%, 0 100%); flex: none; }
+
+.titulo { font-size: clamp(34px, 5.2vw, 64px); max-width: 17ch; }
+.apoio { margin-top: var(--s-4); max-width: 58ch; font-size: 18px; color: var(--txt-2); }
+.tom-ink .apoio, .tom-vinho .apoio { color: var(--txt-inv-2); }
+
+/* ---------- Botões ---------- */
+.btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 56px; padding: 0 38px 0 26px; font-family: var(--sans); font-weight: 600; font-size: 15px; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; border: 0; cursor: pointer; isolation: isolate; transition: transform .7s var(--ease), filter .7s var(--ease); -webkit-tap-highlight-color: transparent; }
+/* Botão principal: âmbar de resina em relevo metálico (base: "Golden Button" do Uiverse,
+   adaptado à NOTTE: tons de âmbar e mel, texto marrom-vinho, cantos retos do projeto) */
+.btn-fita {
+  padding: 0 28px; border-radius: var(--r); border: 1px solid #9A520F; color: #5A2208;
+  text-shadow: 0 1px 1px rgba(255, 230, 170, .9);
+  background-image: linear-gradient(160deg, #8F4410 0%, #B7741C 22%, #F4D493 48%, #C58A2E 72%, #8F4410 100%);
+  background-size: 100% 100%; background-position: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .18), 0 10px 22px -8px rgba(140, 72, 14, .55),
+    inset 0 -2px 5px 1px rgba(118, 52, 8, .95), inset 0 -1px 1px 3px rgba(248, 218, 150, .95);
+  transition: background-size .8s var(--ease), box-shadow .8s var(--ease), transform .8s var(--ease), color .6s var(--ease);
+}
+/* reflexo que atravessa o botão no hover */
+.btn-fita::after { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: linear-gradient(105deg, transparent 32%, rgba(255, 248, 228, .5) 47%, transparent 62%) no-repeat; background-size: 260% 100%; background-position: 135% 0; transition: background-position 1.1s var(--ease); pointer-events: none; }
+.btn-fita .i { font-size: 20px; text-shadow: none; }
+.btn-linha { color: currentColor; padding: 0 26px; border: 1px solid currentColor; background: transparent; }
+@media (hover: hover) {
+  .btn-fita:hover { transform: translateY(-2px); background-size: 150% 150%; color: #4A1A06;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .22), 0 18px 30px -10px rgba(140, 72, 14, .6),
+      inset 0 -2px 5px 1px #A8691A, inset 0 -1px 1px 3px rgba(248, 218, 150, .95); }
+  .btn-fita:hover::after { background-position: -35% 0; }
+  .btn-linha:hover { background: rgba(217, 150, 58, .12); }
+}
+.btn-fita:focus-visible { background-size: 150% 150%; }
+.btn-fita:active { transform: translateY(1px); box-shadow: 0 3px 6px rgba(0, 0, 0, .18), inset 0 -2px 5px 1px #A8691A, inset 0 -1px 1px 3px rgba(248, 218, 150, .95); }
+.btn:active { transform: translateY(1px) scale(.99); }
+
+/* ---------- Topo ---------- */
+.topo { position: fixed; inset: 0 0 auto 0; z-index: 50; color: var(--txt-inv); transition: background-color .6s var(--ease), border-color .6s var(--ease), transform .6s var(--ease); border-bottom: 1px solid transparent; }
+.topo.is-vidro { background: rgba(22, 17, 14, .72); -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2); border-bottom-color: var(--linha-inv); }
+.topo .wrap { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); min-height: 76px; }
+.marca { display: inline-flex; flex-direction: column; text-decoration: none; line-height: 1; }
+.marca__nome { font-family: var(--serif); font-size: 26px; letter-spacing: .32em; font-weight: 500; margin-right: -.32em; }
+.marca__sub { margin-top: 6px; font-size: 11px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--ambar-claro); }
+.topo .btn { min-height: 46px; font-size: 13px; padding: 0 20px; }
+
+/* ---------- Fita olfativa (elemento-assinatura) ---------- */
+.fita { --rot: 0deg; position: absolute; left: 50%; bottom: 0; width: clamp(34px, 3.6vw, 48px); height: 86%; transform-origin: 50% 100%; transform: translateX(-50%) rotate(var(--rot)); }
+.fita__papel { position: absolute; inset: 0; background: linear-gradient(90deg, #E9DFCC, #F6F0E4 45%, #E4D8C2); clip-path: polygon(0 9%, 50% 0, 100% 9%, 100% 100%, 0 100%); box-shadow: var(--sombra-ink); }
+.fita__mancha { position: absolute; left: 0; right: 0; top: 0; height: 30%; clip-path: polygon(0 30%, 50% 0, 100% 30%, 100% 100%, 0 100%); }
+.fita__nota { position: absolute; left: 50%; bottom: 22%; transform: translateX(-50%) rotate(180deg); writing-mode: vertical-rl; font-family: var(--serif); font-size: clamp(14px, 1.3vw, 18px); color: #3B2A1F; white-space: nowrap; }
+.fita__furo { position: absolute; left: 50%; bottom: 7%; width: 7px; height: 7px; border-radius: 50%; transform: translateX(-50%); background: rgba(59, 42, 31, .35); }
+
+/* ---------- Revelação ---------- */
+.rev { opacity: 0; transform: translateY(22px); transition: opacity 1s var(--ease), transform 1s var(--ease); transition-delay: var(--d, 0s); }
+.rev.is-on { opacity: 1; transform: none; }
+.split .w { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .08em; margin-bottom: -.08em; }
+.split .w > span { display: inline-block; transform: translateY(105%); transition: transform 1.1s var(--ease); transition-delay: calc(var(--i) * 55ms); }
+.split.is-on .w > span { transform: none; }
+
+/* ---------- Aviso de cookies (kit) ---------- */
+.consent { position: fixed; z-index: 90; left: 16px; right: 16px; bottom: 16px; max-width: 460px; padding: 22px; background: var(--off); color: var(--txt); border: 1px solid var(--papel-2); border-radius: var(--r); box-shadow: 0 24px 60px -20px rgba(10, 6, 4, .6); transform: translateY(140%); transition: transform .8s var(--ease); font-size: 15px; }
+.consent.is-on { transform: none; }
+.consent__title { font-family: var(--serif); font-size: 22px; margin-bottom: 6px; }
+.consent__text { color: var(--txt-2); }
+.consent__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.consent .btn { min-height: 48px; font-size: 13px; }
+.consent .btn-gold { color: #5A2208; border: 1px solid #9A520F; background-image: linear-gradient(160deg, #8F4410, #B7741C 22%, #F4D493 48%, #C58A2E 72%, #8F4410); box-shadow: inset 0 -2px 5px 1px rgba(118,52,8,.95), inset 0 -1px 1px 3px rgba(248,218,150,.95); padding: 0 22px; }
+.consent .btn-outline { border: 1px solid var(--txt); background: transparent; padding: 0 20px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+  html { scroll-behavior: auto; }
+  .rev, .split .w > span { opacity: 1; transform: none; }
+}

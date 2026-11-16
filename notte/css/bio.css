@@ -1,0 +1,50 @@
+/* Página: link na bio */
+.bio { min-height: 100dvh; color: var(--txt-inv); background: linear-gradient(180deg, var(--ink) 0%, var(--ink) 55%, #2A0E17 100%); }
+.bio__col { max-width: 460px; min-height: 100dvh; margin: 0 auto; padding: 40px 20px calc(28px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; }
+
+.bio__cab { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.bio__leque { position: relative; width: 120px; height: 104px; margin-bottom: 18px; }
+.bio__leque .fita { width: 20px; height: 100%; transition: transform 1.4s var(--ease); }
+.bio__leque:not(.is-aberto) .fita { transform: translateX(-50%) rotate(0deg); }
+.bio__nome { font-size: clamp(46px, 13vw, 58px); letter-spacing: .3em; margin-right: -.3em; font-weight: 500; line-height: 1; }
+.bio__sub { margin-top: 10px; font-size: 13px; font-weight: 600; letter-spacing: .3em; text-transform: uppercase; color: var(--ambar-claro); margin-right: -.3em; }
+.bio__linha { margin-top: 20px; font-family: var(--serif); font-size: 20px; line-height: 1.35; color: var(--off); max-width: 30ch; }
+.bio__linha span { display: block; margin-top: 8px; font-family: var(--sans); font-style: normal; font-size: 15px; color: var(--txt-inv-2); }
+
+.bio__links { margin-top: 30px; display: grid; gap: 12px; }
+.elo { display: grid; grid-template-columns: 44px 1fr 22px; align-items: center; gap: 14px; min-height: 76px; padding: 14px 18px; text-decoration: none; color: var(--off); background: rgba(242, 235, 223, .05); border: 1px solid var(--linha-inv); border-radius: var(--r); transition: transform .7s var(--ease), background-color .7s var(--ease), border-color .7s var(--ease); -webkit-tap-highlight-color: transparent; }
+.elo__ic { width: 44px; height: 44px; display: grid; place-items: center; font-size: 24px; color: var(--ambar-claro); border: 1px solid rgba(241, 196, 126, .35); border-radius: var(--r); }
+.elo__txt { display: grid; gap: 2px; line-height: 1.3; }
+.elo__txt strong { font-family: var(--serif); font-weight: 400; font-size: 19px; }
+.elo__txt span { font-size: 14px; color: var(--txt-inv-2); }
+.elo__seta { font-size: 20px; color: var(--ambar-claro); transition: transform .7s var(--ease); }
+@media (hover: hover) {
+  .elo:hover { transform: translateY(-3px); background: rgba(242, 235, 223, .09); border-color: rgba(241, 196, 126, .45); }
+  .elo:hover .elo__seta { transform: translateX(3px); }
+}
+.elo:active { transform: scale(.99); }
+
+/* Destaque: o mesmo relevo âmbar do botão principal */
+.elo--destaque { color: #4A1A06; border: 1px solid #9A520F; min-height: 88px;
+  background-image: linear-gradient(160deg, #8F4410 0%, #B7741C 22%, #F4D493 48%, #C58A2E 72%, #8F4410 100%); background-size: 100% 100%; background-position: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .25), 0 14px 26px -12px rgba(140, 72, 14, .6), inset 0 -2px 5px 1px rgba(118, 52, 8, .95), inset 0 -1px 1px 3px rgba(248, 218, 150, .95);
+  transition: transform .7s var(--ease), background-size .8s var(--ease); }
+.elo--destaque .elo__txt strong { font-size: 20px; text-shadow: 0 1px 1px rgba(255, 230, 170, .8); }
+.elo--destaque .elo__txt span { color: #5A2A0C; font-weight: 600; }
+.elo--destaque .elo__ic { color: #5A2208; border-color: rgba(90, 34, 8, .45); }
+.elo--destaque .elo__seta { color: #5A2208; }
+@media (hover: hover) { .elo--destaque:hover { background-size: 150% 150%; background-color: transparent; border-color: #9A520F; } }
+
+.bio__rodape { margin-top: auto; padding-top: 36px; text-align: center; font-size: 14px; color: var(--txt-inv-2); display: grid; gap: 10px; }
+.bio__rodape p { display: inline-flex; justify-content: center; align-items: center; gap: 6px; flex-wrap: wrap; }
+.bio__rodape i { color: var(--ambar-claro); font-size: 16px; }
+.bio__legal { gap: 6px 18px !important; }
+.bio__legal a { text-decoration: none; } .bio__legal a:hover { color: var(--ambar-claro); }
+
+/* Entrada em cascata */
+.bio__cab, .elo, .bio__rodape { animation: sobe 1s var(--ease) both; }
+.elo:nth-child(1) { animation-delay: .15s; } .elo:nth-child(2) { animation-delay: .22s; } .elo:nth-child(3) { animation-delay: .29s; } .elo:nth-child(4) { animation-delay: .36s; }
+.bio__rodape { animation-delay: .45s; }
+@keyframes sobe { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+@media (max-height: 740px) and (min-width: 768px) { .bio__col { padding-top: 24px; } .bio__leque { height: 80px; margin-bottom: 12px; } }
