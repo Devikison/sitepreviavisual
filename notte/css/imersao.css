@@ -117,6 +117,8 @@
 .fecho .btn { margin-top: var(--s-6); }
 .rodape { padding: var(--s-6) 0 calc(var(--s-6) + env(safe-area-inset-bottom)); border-top: 1px solid var(--linha-inv); background: var(--ink-2); }
 .rodape__grid { display: grid; grid-template-columns: 1fr auto; gap: var(--s-5); align-items: start; }
+.rodape__marca { display: flex; align-items: center; gap: 18px; }
+.rodape__mono { width: 64px; height: 64px; flex: none; }
 .rodape .marca__nome { font-size: 30px; }
 .rodape__sub { margin-top: 6px; color: var(--txt-inv-2); font-size: 15px; }
 .rodape__links { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; font-size: 15px; color: var(--txt-inv-2); }
@@ -141,6 +143,7 @@
   body { font-size: 17px; }
   .topo .wrap { min-height: 66px; }
   .marca__nome { font-size: 22px; }
+  .marca__mono { width: 38px; height: 38px; }
   .marca__sub { font-size: 10px; letter-spacing: .2em; }
   .topo .btn { display: none; }
   .hero { padding: 76px 0 40px; min-height: auto; }

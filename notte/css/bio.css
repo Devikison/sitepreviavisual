@@ -3,9 +3,7 @@
 .bio__col { max-width: 460px; min-height: 100dvh; margin: 0 auto; padding: 40px 20px calc(28px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; }
 
 .bio__cab { text-align: center; display: flex; flex-direction: column; align-items: center; }
-.bio__leque { position: relative; width: 120px; height: 104px; margin-bottom: 18px; }
-.bio__leque .fita { width: 20px; height: 100%; transition: transform 1.4s var(--ease); }
-.bio__leque:not(.is-aberto) .fita { transform: translateX(-50%) rotate(0deg); }
+.bio__monograma { width: 112px; height: 112px; margin-bottom: 22px; filter: drop-shadow(0 10px 24px rgba(217, 150, 58, .25)); }
 .bio__nome { font-size: clamp(46px, 13vw, 58px); letter-spacing: .3em; margin-right: -.3em; font-weight: 500; line-height: 1; }
 .bio__sub { margin-top: 10px; font-size: 13px; font-weight: 600; letter-spacing: .3em; text-transform: uppercase; color: var(--ambar-claro); margin-right: -.3em; }
 .bio__linha { margin-top: 20px; font-family: var(--serif); font-style: italic; font-size: 20px; line-height: 1.35; color: var(--off); max-width: 30ch; }
@@ -53,4 +51,4 @@
 .bio__rodape { animation-delay: .45s; }
 @keyframes sobe { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 
-@media (max-height: 740px) and (min-width: 768px) { .bio__col { padding-top: 24px; } .bio__leque { height: 80px; margin-bottom: 12px; } }
+@media (max-height: 740px) and (min-width: 768px) { .bio__col { padding-top: 24px; } .bio__monograma { width: 88px; height: 88px; margin-bottom: 14px; } }

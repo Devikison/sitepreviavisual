@@ -104,9 +104,11 @@ p { margin: 0; text-wrap: pretty; }
 .topo { position: fixed; inset: 0 0 auto 0; z-index: 50; color: var(--txt-inv); transition: background-color .6s var(--ease), border-color .6s var(--ease), transform .6s var(--ease); border-bottom: 1px solid transparent; }
 .topo.is-vidro { background: rgba(22, 17, 14, .72); -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2); border-bottom-color: var(--linha-inv); }
 .topo .wrap { display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); min-height: 76px; }
-.marca { display: inline-flex; flex-direction: column; text-decoration: none; line-height: 1; }
+.marca { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; line-height: 1; }
+.marca__mono { width: 44px; height: 44px; flex: none; }
+.marca__txt { display: inline-flex; flex-direction: column; }
 .marca__nome { font-family: var(--serif); font-size: 26px; letter-spacing: .32em; font-weight: 500; margin-right: -.32em; }
-.marca__sub { margin-top: 6px; font-size: 11px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--ambar-claro); }
+.marca__sub { margin-top: 6px; display: block; font-size: 11px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--ambar-claro); }
 .topo .btn { min-height: 46px; font-size: 12px; padding: 0 6px 0 20px; gap: 10px; }
 .topo .btn .btn__ic { width: 30px; height: 30px; }
 
