@@ -138,6 +138,48 @@
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && menu.classList.contains("is-aberto")) fechar(true); });
   }
 
+  /* Deslize luxuoso até a seção ao clicar num link interno (#...) */
+  var animando = null;
+  function cancelarIr() { if (animando) { cancelAnimationFrame(animando); animando = null; } }
+  ["wheel", "touchstart", "keydown"].forEach(function (ev) { window.addEventListener(ev, cancelarIr, { passive: true }); });
+  function suave(t) { return t < .5 ? 16 * t * t * t * t * t : 1 - Math.pow(-2 * t + 2, 5) / 2; } // entra e freia bem devagar
+  function irPara(alvo) {
+    var y0 = window.scrollY, y1 = Math.max(0, Math.min(alvo.getBoundingClientRect().top + y0, document.documentElement.scrollHeight - window.innerHeight));
+    var dist = Math.abs(y1 - y0); if (dist < 2) return;
+    if (reduz) { window.scrollTo({ top: y1, behavior: "instant" }); return; }
+    var dur = Math.max(900, Math.min(1700, 600 + dist * 0.35)), t0 = null;
+    cancelarIr();
+    (function passo(agora) {
+      if (t0 === null) t0 = agora;
+      var k = Math.min(1, (agora - t0) / dur);
+      window.scrollTo({ top: y0 + (y1 - y0) * suave(k), behavior: "instant" });
+      if (k < 1) animando = requestAnimationFrame(passo); else { animando = null; alvo.classList.add("is-chegou"); setTimeout(function () { alvo.classList.remove("is-chegou"); }, 1600); }
+    })(performance.now());
+    animando = animando || 1;
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest('a[href^="#"]'); if (!a) return;
+    var id = a.getAttribute("href"); if (id.length < 2) return;
+    var alvo = document.querySelector(id); if (!alvo) return;
+    e.preventDefault();
+    var esperar = document.documentElement.classList.contains("menu-aberto") ? 380 : 0;
+    setTimeout(function () { irPara(alvo); history.replaceState(null, "", id); }, esperar);
+  });
+
+  /* Link da barra marca a seção em que a pessoa está */
+  var navLinks = document.querySelectorAll(".topo__nav a");
+  if (navLinks.length && "IntersectionObserver" in window) {
+    var ioN = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        navLinks.forEach(function (l) { l.setAttribute("aria-current", l.getAttribute("href") === "#" + e.target.id ? "true" : "false"); });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    navLinks.forEach(function (l) { var s = document.querySelector(l.getAttribute("href")); if (s) ioN.observe(s); });
+    var heroEl = document.querySelector(".hero");
+    if (heroEl) new IntersectionObserver(function (es) { if (es[0].isIntersecting) navLinks.forEach(function (l) { l.setAttribute("aria-current", "false"); }); }, { rootMargin: "-45% 0px -50% 0px" }).observe(heroEl);
+  }
+
   /* Pré-formulário: valida e abre o WhatsApp com as respostas */
   var form = document.querySelector("[data-whats-form]");
   if (form) {

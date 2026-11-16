@@ -150,3 +150,7 @@ p { margin: 0; text-wrap: pretty; }
   html { scroll-behavior: auto; }
   .rev, .split .w > span { opacity: 1; transform: none; }
 }
+
+/* Chegada na seção após clicar num link: o título acende de leve */
+.is-chegou .titulo, .is-chegou .fecho__titulo { animation: chegada 1.4s var(--ease); }
+@keyframes chegada { 0% { opacity: .35; transform: translateY(10px); } 100% { opacity: 1; transform: none; } }
