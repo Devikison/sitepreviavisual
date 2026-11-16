@@ -263,3 +263,10 @@ body { font-size: 16px; }
   .hero__capa img { object-position: 100% 50%; }
   .hero::after { background: linear-gradient(90deg, rgba(24, 29, 32, .95) 0%, rgba(24, 29, 32, .85) 38%, rgba(24, 29, 32, .35) 58%, rgba(24, 29, 32, 0) 72%), linear-gradient(0deg, rgba(24, 29, 32, .6) 0%, rgba(24, 29, 32, 0) 24%); }
 }
+
+/* Celular: capa ~60px mais abaixo (sai de trás da barra) e texto mais perto da base */
+@media (max-width: 767px) {
+  .hero__capa { inset: clamp(-50px, calc(100svh - 110vw - 340px), 100px) 0 auto 0 !important; }
+  .hero { padding-bottom: calc(40px + env(safe-area-inset-bottom)) !important; }
+}
+@media (max-width: 767px) and (max-height: 700px) { .hero { padding-bottom: calc(24px + env(safe-area-inset-bottom)) !important; } }
