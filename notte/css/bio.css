@@ -11,29 +11,35 @@
 .bio__linha { margin-top: 20px; font-family: var(--serif); font-style: italic; font-size: 20px; line-height: 1.35; color: var(--off); max-width: 30ch; }
 .bio__linha span { display: block; margin-top: 8px; font-family: var(--sans); font-style: normal; font-size: 15px; color: var(--txt-inv-2); }
 
-.bio__links { margin-top: 30px; display: grid; gap: 12px; }
-.elo { display: grid; grid-template-columns: 44px 1fr 22px; align-items: center; gap: 14px; min-height: 76px; padding: 14px 18px; text-decoration: none; color: var(--off); background: rgba(242, 235, 223, .05); border: 1px solid var(--linha-inv); border-radius: var(--r); transition: transform .7s var(--ease), background-color .7s var(--ease), border-color .7s var(--ease); -webkit-tap-highlight-color: transparent; }
-.elo__ic { width: 44px; height: 44px; display: grid; place-items: center; font-size: 24px; color: var(--ambar-claro); border: 1px solid rgba(241, 196, 126, .35); border-radius: var(--r); }
-.elo__txt { display: grid; gap: 2px; line-height: 1.3; }
-.elo__txt strong { font-family: var(--serif); font-weight: 400; font-size: 19px; }
-.elo__txt span { font-size: 14px; color: var(--txt-inv-2); }
-.elo__seta { font-size: 20px; color: var(--ambar-claro); transition: transform .7s var(--ease); }
+.bio__links { margin-top: 32px; display: grid; gap: 14px; }
+/* Pílulas finas: texto à esquerda, seta em círculo à direita, reflexo que atravessa no toque/hover */
+.elo { position: relative; overflow: hidden; isolation: isolate; display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 68px; padding: 10px 10px 10px 26px; text-decoration: none; color: var(--off);
+  background: linear-gradient(135deg, rgba(242, 235, 223, .07), rgba(242, 235, 223, .02)); border: 1px solid rgba(241, 196, 126, .3); border-radius: 999px;
+  box-shadow: 0 12px 26px -16px rgba(0, 0, 0, .8); transition: transform .5s var(--ease), border-color .5s var(--ease), background-color .5s var(--ease); -webkit-tap-highlight-color: transparent; }
+.elo::before { content: ""; position: absolute; top: 0; left: -120px; width: 110px; height: 100%; z-index: -1; pointer-events: none; opacity: .35;
+  background-image: linear-gradient(120deg, rgba(255, 255, 255, 0) 30%, rgba(255, 244, 220, .8), rgba(255, 255, 255, 0) 70%); }
+.elo__txt { display: grid; gap: 1px; line-height: 1.25; min-width: 0; }
+.elo__txt strong { font-family: var(--serif); font-weight: 500; font-size: 18px; letter-spacing: .005em; }
+.elo__txt span { font-size: 13px; color: var(--txt-inv-2); letter-spacing: .02em; }
+.elo__seta { flex: none; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: var(--ambar-claro); border: 1px solid rgba(241, 196, 126, .45); transition: transform .5s var(--ease), background-color .5s var(--ease), color .5s var(--ease); }
+.elo__seta svg { width: 18px; height: 18px; } .elo__seta i { font-size: 20px; }
 @media (hover: hover) {
-  .elo:hover { transform: translateY(-3px); background: rgba(242, 235, 223, .09); border-color: rgba(241, 196, 126, .45); }
-  .elo:hover .elo__seta { transform: translateX(3px); }
+  .elo:hover { transform: scale(1.02); border-color: rgba(241, 196, 126, .75); }
+  .elo:hover::before { animation: brilho 1.5s ease-out infinite; }
+  .elo:hover .elo__seta { transform: translateX(3px); background: var(--ambar); color: #3A1406; }
 }
-.elo:active { transform: scale(.99); }
+.elo:active { transform: scale(.985); }
+.elo:active::before { animation: brilho 1s ease-out; }
 
-/* Destaque: o mesmo relevo âmbar do botão principal */
-.elo--destaque { color: #4A1A06; border: 1px solid #9A520F; min-height: 88px;
-  background-image: linear-gradient(160deg, #8F4410 0%, #B7741C 22%, #F4D493 48%, #C58A2E 72%, #8F4410 100%); background-size: 100% 100%; background-position: center;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, .25), 0 14px 26px -12px rgba(140, 72, 14, .6), inset 0 -2px 5px 1px rgba(118, 52, 8, .95), inset 0 -1px 1px 3px rgba(248, 218, 150, .95);
-  transition: transform .7s var(--ease), background-size .8s var(--ease); }
-.elo--destaque .elo__txt strong { font-size: 20px; text-shadow: 0 1px 1px rgba(255, 230, 170, .8); }
+/* Destaque: a mesma pílula âmbar acetinada do botão principal do site */
+.elo--destaque { min-height: 74px; color: #3A1406; border: 2px solid rgba(255, 238, 205, .55);
+  background: linear-gradient(135deg, #F8E2B0 0%, #EBBE72 28%, #D9963A 62%, #B8742A 100%);
+  box-shadow: 0 16px 34px -14px rgba(170, 95, 20, .7), inset 0 1px 0 rgba(255, 250, 236, .75); }
+.elo--destaque::before { opacity: .65; animation: brilho 5.5s ease-out 1.6s infinite; }
+.elo--destaque .elo__txt strong { font-size: 19px; }
 .elo--destaque .elo__txt span { color: #5A2A0C; font-weight: 600; }
-.elo--destaque .elo__ic { color: #5A2208; border-color: rgba(90, 34, 8, .45); }
-.elo--destaque .elo__seta { color: #5A2208; }
-@media (hover: hover) { .elo--destaque:hover { background-size: 150% 150%; background-color: transparent; border-color: #9A520F; } }
+.elo--destaque .elo__seta { background: rgba(58, 20, 6, .9); color: var(--ambar-claro); border-color: transparent; }
+@media (hover: hover) { .elo--destaque:hover { border-color: rgba(255, 246, 228, .95); } .elo--destaque:hover .elo__seta { background: #3A1406; color: var(--ambar-claro); } }
 
 .bio__rodape { margin-top: auto; padding-top: 36px; text-align: center; font-size: 14px; color: var(--txt-inv-2); display: grid; gap: 10px; }
 .bio__rodape p { display: inline-flex; justify-content: center; align-items: center; gap: 6px; flex-wrap: wrap; }
