@@ -92,7 +92,9 @@
 .formatos { margin-top: var(--s-7); display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); }
 .formato { background: #FBF6EE; border: 1px solid var(--papel-2); border-radius: var(--r); box-shadow: var(--sombra-papel); overflow: hidden; transition: transform .8s var(--ease), box-shadow .8s var(--ease), opacity 1s var(--ease); }
 @media (hover: hover) { .formato.is-on:hover { transform: translateY(-5px); box-shadow: 0 30px 50px -26px rgba(74, 43, 18, .55); } }
-.formato__foto { aspect-ratio: 16 / 10; }
+.formato__foto { aspect-ratio: 16 / 10; margin: 0; overflow: hidden; }
+.formato__foto img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+@media (hover: hover) { .formato.is-on:hover .formato__foto img { transform: scale(1.04); } }
 .formato__corpo { padding: 28px 30px 34px; }
 .formato__cap { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ambar-escuro); }
 .formato__cap i { font-size: 20px; }
