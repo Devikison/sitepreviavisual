@@ -521,3 +521,24 @@ ul.bonus__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-i
   .pc__preco{font-size:62px}
   .pc__lista li{font-size:16px}
 }
+
+/* ---------- Garantia: card dourado ---------- */
+.garantia__card{position:relative;overflow:hidden;isolation:isolate;
+  background:radial-gradient(55% 130% at 14% 50%,#FFF1C4 0%,rgba(255,241,196,0) 62%),linear-gradient(135deg,#FFFDF7 0%,#FBF6E8 55%,#F4EDD8 100%);
+  border:1.5px solid rgba(214,168,62,.55);box-shadow:0 0 0 6px rgba(226,179,60,.09),0 1px 2px rgba(120,90,20,.06),0 30px 64px rgba(120,90,20,.16)}
+.garantia__card::after{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;
+  background:repeating-linear-gradient(135deg,rgba(214,168,62,.05) 0 2px,transparent 2px 14px)}
+.garantia__selo{position:relative;display:grid;place-items:center}
+.garantia__selo::before{content:"";position:absolute;width:150%;aspect-ratio:1;border-radius:50%;z-index:-1;
+  background:repeating-conic-gradient(rgba(226,179,60,.22) 0deg 6deg,transparent 6deg 18deg);
+  -webkit-mask:radial-gradient(circle,#000 30%,transparent 70%);mask:radial-gradient(circle,#000 30%,transparent 70%);animation:gira 40s linear infinite}
+.garantia__selo::after{content:"";position:absolute;width:105%;aspect-ratio:1;border-radius:50%;z-index:-1;background:radial-gradient(circle,rgba(255,214,102,.55) 0%,rgba(255,214,102,0) 65%)}
+.garantia__selo img{filter:drop-shadow(0 20px 26px rgba(140,95,10,.35))}
+.garantia h2{color:var(--ink)}
+.garantia__txt p{color:#4E5A45}
+.garantia__selos{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px}
+.garantia__selos li{display:inline-flex;align-items:center;gap:8px;padding:8px 14px 8px 10px;border-radius:999px;background:#fff;border:1px solid rgba(214,168,62,.4);font-size:15px;font-weight:600;color:#5A4410;box-shadow:0 6px 14px rgba(140,95,10,.08)}
+.garantia__selos i{font-size:20px;color:#C9962A}
+@keyframes gira{to{transform:rotate(360deg)}}
+@media (max-width:860px){.garantia__selos{justify-content:center}}
+@media (max-width:600px){.garantia__selos li{font-size:14px}}
