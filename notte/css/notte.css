@@ -167,3 +167,11 @@ p { margin: 0; text-wrap: pretty; }
 /* rolagem interna do menu claro */
 .menu__painel::-webkit-scrollbar-track { background: transparent; }
 .menu__painel::-webkit-scrollbar-thumb { border-color: #F2EBDF; }
+
+/* Botões nunca quebram o texto */
+.btn { white-space: nowrap; }
+@media (max-width: 420px) {
+  .btn-fita { font-size: 13px; letter-spacing: .08em; padding-left: 22px; gap: 10px; }
+  .btn-fita .btn__ic { width: 32px; height: 32px; }
+}
+@media (max-width: 340px) { .btn-fita { font-size: 12px; letter-spacing: .05em; padding-left: 16px; } }
