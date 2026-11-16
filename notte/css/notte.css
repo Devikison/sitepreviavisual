@@ -154,3 +154,16 @@ p { margin: 0; text-wrap: pretty; }
 /* Chegada na seção após clicar num link: o título acende de leve */
 .is-chegou .titulo, .is-chegou .fecho__titulo { animation: chegada 1.4s var(--ease); }
 @keyframes chegada { 0% { opacity: .35; transform: translateY(10px); } 100% { opacity: 1; transform: none; } }
+
+/* ---------- Barra de rolagem nas cores da NOTTE (sem as setinhas) ---------- */
+/* Firefox: só cor e espessura (Chrome/Edge/Safari usam o ::-webkit-scrollbar abaixo; scrollbar-color neles desligaria o estilo e traria as setas de volta) */
+@supports not selector(::-webkit-scrollbar) { html { scrollbar-color: #C58A2E #16110E; scrollbar-width: thin; } }
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: #16110E; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #F1C47E, #D9963A 55%, #A86A1E); border-radius: 999px; border: 3px solid #16110E; }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #F8E2B0, #E1A64E 55%, #B8742A); }
+::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+::-webkit-scrollbar-corner { background: #16110E; }
+/* rolagem interna do menu claro */
+.menu__painel::-webkit-scrollbar-track { background: transparent; }
+.menu__painel::-webkit-scrollbar-thumb { border-color: #F2EBDF; }
