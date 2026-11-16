@@ -50,12 +50,21 @@
   if (proposta && "IntersectionObserver" in window) {
     new IntersectionObserver(function (es) { naProposta = es[0].isIntersecting; tick(); }, { threshold: 0.05 }).observe(proposta);
   }
+  var hero = document.querySelector(".hero"), ultimoY = window.scrollY;
   function tick() {
-    var y = window.scrollY;
-    if (topo) topo.classList.toggle("is-vidro", y > 24);
+    var y = window.scrollY, dy = y - ultimoY;
+    if (topo) {
+      topo.classList.toggle("is-vidro", y > 24);
+      var fimHero = hero ? hero.offsetHeight * 0.85 : window.innerHeight * 0.85;
+      // some só depois da primeira seção, descendo; volta ao subir (com folga para não piscar)
+      if (y > fimHero && dy > 6) topo.classList.add("is-oculto");
+      else if (dy < -6 || y <= fimHero) topo.classList.remove("is-oculto");
+    }
+    if (Math.abs(dy) > 6) ultimoY = y;
     if (flutua) flutua.classList.toggle("is-on", y > window.innerHeight * 0.7 && !naProposta);
   }
   window.addEventListener("scroll", tick, { passive: true });
+  if (topo) topo.addEventListener("focusin", function () { topo.classList.remove("is-oculto"); });
   tick();
 
   /* FAQ: abre e fecha animando a altura, um por vez */
