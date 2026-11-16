@@ -180,6 +180,28 @@
     if (heroEl) new IntersectionObserver(function (es) { if (es[0].isIntersecting) navLinks.forEach(function (l) { l.setAttribute("aria-current", "false"); }); }, { rootMargin: "-45% 0px -50% 0px" }).observe(heroEl);
   }
 
+  /* Como acontece no celular: o card de trás encolhe, escurece e vai para o fundo conforme o próximo sobe */
+  var pilha = document.querySelectorAll(".passo");
+  if (pilha.length > 1 && !reduz) {
+    var pedido = false;
+    var empilhar = function () {
+      pedido = false;
+      var celular = window.innerWidth <= 1000;
+      for (var k = 0; k < pilha.length; k++) {
+        var el = pilha[k];
+        if (!celular || k === pilha.length - 1) { el.style.transform = ""; el.style.filter = ""; continue; }
+        var r = el.getBoundingClientRect(), n = pilha[k + 1].getBoundingClientRect();
+        var p = Math.max(0, Math.min(1, (r.bottom - n.top) / (r.height * 0.85)));
+        el.style.transform = "scale(" + (1 - p * 0.08).toFixed(4) + ") translateY(" + (-p * 10).toFixed(1) + "px)";
+        el.style.filter = "brightness(" + (1 - p * 0.5).toFixed(3) + ") saturate(" + (1 - p * 0.3).toFixed(3) + ")";
+      }
+    };
+    var pedir = function () { if (!pedido) { pedido = true; requestAnimationFrame(empilhar); } };
+    window.addEventListener("scroll", pedir, { passive: true });
+    window.addEventListener("resize", pedir);
+    empilhar();
+  }
+
   /* Pré-formulário: valida e abre o WhatsApp com as respostas */
   var form = document.querySelector("[data-whats-form]");
   if (form) {
