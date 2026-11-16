@@ -25,8 +25,8 @@ h1 em, h2 em, h3 em, .tom-ink h1 em, .tom-ink h2 em, .tom-vinho h1 em, .tom-vinh
 .tom-off { background: var(--off); } .tom-papel { background: #FFFFFF; }
 .tom-vinho { background: var(--ink-3); }
 
-/* Fotos em preto e branco, como na apresentação da marca */
-.hero__capa img, .roteiro__img, .passo__img, .formato__foto img, .quem__foto img, .elo__foto:not(.elo__foto--logo) { filter: grayscale(1) contrast(1.06) !important; }
+/* Fotos coloridas (pedido do cliente) */
+.hero__capa img, .roteiro__img, .passo__img, .formato__foto img, .quem__foto img, .elo__foto { filter: none !important; }
 
 /* Logos oficiais */
 .marca__logo { display: block; height: 40px; width: auto; }
