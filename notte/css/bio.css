@@ -195,3 +195,34 @@
 .bio__filete::after { content: ""; position: absolute; left: 50%; top: 50%; width: 7px; height: 7px; background: #1C1411; border: 1px solid rgba(241, 196, 126, .9); transform: translate(-50%, -50%) rotate(45deg); }
 .bio__linha { margin-top: 12px; }
 @media (min-width: 768px) { .bio__filete { margin-top: clamp(8px, 1.6vh, 16px); } .bio__linha { margin-top: clamp(6px, 1.2vh, 12px); } }
+
+/* ---------- Vidro fosco (estilo Apple) sobre luzes suaves de âmbar e vinho ---------- */
+.bio__cantos { display: none; }
+.bio { background: #120D0B; position: relative; }
+.bio::before { content: ""; position: fixed; inset: -10%; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(38% 30% at 22% 18%, rgba(217, 150, 58, .55) 0%, rgba(217, 150, 58, 0) 70%),
+    radial-gradient(42% 34% at 82% 78%, rgba(122, 36, 54, .75) 0%, rgba(122, 36, 54, 0) 70%),
+    radial-gradient(30% 24% at 78% 26%, rgba(168, 106, 30, .35) 0%, rgba(168, 106, 30, 0) 70%),
+    radial-gradient(34% 28% at 18% 84%, rgba(74, 21, 34, .6) 0%, rgba(74, 21, 34, 0) 70%);
+  filter: blur(30px); }
+.bio__col { position: relative; z-index: 1; }
+.bio__estojo { background: linear-gradient(160deg, rgba(255, 255, 255, .10) 0%, rgba(255, 255, 255, .04) 45%, rgba(255, 255, 255, .06) 100%);
+  -webkit-backdrop-filter: blur(28px) saturate(1.5); backdrop-filter: blur(28px) saturate(1.5);
+  border: 1px solid rgba(255, 255, 255, .16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22), inset 0 -1px 0 rgba(255, 255, 255, .04), 0 30px 70px -30px rgba(0, 0, 0, .8); }
+.bio__estojo::before { content: none; }
+/* botões escuros viram vidro mais denso dentro do vidro */
+.elo:not(.elo--destaque) { background: rgba(18, 12, 10, .38); border-color: rgba(255, 255, 255, .12); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+@media (hover: hover) { .elo:not(.elo--destaque):hover { background: rgba(18, 12, 10, .5); border-color: rgba(241, 196, 126, .45); } }
+.bio__monograma { background: rgba(18, 12, 10, .55); }
+.bio__filete::after { background: #2A1D18; }
+.bio__estojo .bio__rodape { border-top-color: rgba(255, 255, 255, .12); }
+@media (min-width: 768px) {
+  .bio::before { inset: 0;
+    background:
+      radial-gradient(22% 30% at 40% 22%, rgba(217, 150, 58, .6) 0%, rgba(217, 150, 58, 0) 70%),
+      radial-gradient(24% 34% at 60% 78%, rgba(122, 36, 54, .85) 0%, rgba(122, 36, 54, 0) 70%),
+      radial-gradient(16% 22% at 62% 30%, rgba(168, 106, 30, .4) 0%, rgba(168, 106, 30, 0) 70%),
+      radial-gradient(18% 26% at 38% 74%, rgba(74, 21, 34, .7) 0%, rgba(74, 21, 34, 0) 70%); }
+}
