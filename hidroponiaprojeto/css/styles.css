@@ -37,7 +37,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 h1,h2,h3{font-weight:900;letter-spacing:-.03em;line-height:1}
 .wrap{padding-inline:var(--m)}
 .sec{position:relative}
-.sec>*:not(.lf){position:relative;z-index:1}
+.sec>*:not(.lf):not(.onda){position:relative;z-index:1}
 [class^="ph-"],[class*=" ph-"]{line-height:1}
 
 /* ---------- Folhas flutuantes (sutis, ao fundo) ---------- */
