@@ -95,6 +95,17 @@
     passos.forEach(function (el) { ioR.observe(el); });
   }
 
+  /* Luz que segue o mouse nos cards (só com mouse) */
+  if (window.matchMedia("(hover: hover)").matches) {
+    document.querySelectorAll("[data-luz] > li").forEach(function (card) {
+      card.addEventListener("pointermove", function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", (e.clientX - r.left) + "px");
+        card.style.setProperty("--my", (e.clientY - r.top) + "px");
+      });
+    });
+  }
+
   /* Pré-formulário: valida e abre o WhatsApp com as respostas */
   var form = document.querySelector("[data-whats-form]");
   if (form) {

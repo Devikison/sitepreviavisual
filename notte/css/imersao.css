@@ -34,11 +34,19 @@
 .comp__antes i { color: #9A8778; }
 .comp__depois { background: #FBF6EE; color: var(--txt); font-weight: 600; border: 1px solid rgba(217, 150, 58, .55); box-shadow: 0 14px 30px -22px rgba(120, 70, 20, .55); }
 .comp__depois i { color: var(--ambar-escuro); }
-.citacao { grid-column: 1 / -1; position: relative; margin: var(--s-6) 0 0; padding: 36px 40px 34px 92px; background: #EAE0CF; border-left: 3px solid var(--ambar); border-radius: 0 6px 6px 0; }
-.citacao__ic { position: absolute; left: 32px; top: 30px; font-size: 40px; color: var(--ambar-escuro); }
-.citacao blockquote { margin: 0; font-family: var(--serif); font-style: italic; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.3; color: var(--vinho); max-width: 40ch; }
-.citacao figcaption { margin-top: 14px; font-size: 15px; color: var(--txt-2); }
-.citacao figcaption strong { color: var(--txt); }
+.citacao { grid-column: 1 / -1; position: relative; overflow: hidden; margin: var(--s-6) 0 0; padding: 48px 56px 44px 116px; border-radius: 10px;
+  background: linear-gradient(160deg, #FBF6EC 0%, #F1E6D3 55%, #E6D7BE 100%);
+  border: 1px solid rgba(255, 255, 255, .7);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .9) inset, 0 -2px 0 rgba(160, 120, 70, .18) inset,
+    0 2px 4px rgba(90, 55, 25, .08), 0 18px 36px -14px rgba(90, 55, 25, .28), 0 44px 80px -40px rgba(74, 21, 34, .35); }
+.citacao::before { content: ""; position: absolute; left: 0; top: 18px; bottom: 18px; width: 4px; border-radius: 0 4px 4px 0; background: linear-gradient(180deg, #F8E2B0, #D9963A 55%, #A86A1E); }
+.citacao::after { content: "“"; position: absolute; right: 28px; top: -46px; font-family: var(--serif); font-size: 300px; line-height: 1; color: rgba(168, 106, 30, .1); pointer-events: none; }
+.citacao__ic { position: absolute; left: 40px; top: 42px; width: 52px; height: 52px; display: grid; place-items: center; font-size: 26px; color: #3A1406; border-radius: 50%;
+  background: linear-gradient(135deg, #F8E2B0, #D9963A 60%, #B8742A); box-shadow: 0 8px 18px -8px rgba(170, 95, 20, .7), inset 0 1px 0 rgba(255, 250, 236, .8); }
+.citacao blockquote { position: relative; margin: 0; font-family: var(--serif); font-style: italic; font-size: clamp(24px, 2.4vw, 34px); line-height: 1.3; color: var(--vinho); max-width: 38ch; }
+.citacao figcaption { position: relative; display: flex; align-items: center; gap: 14px; margin-top: 22px; padding-top: 20px; border-top: 1px solid rgba(168, 106, 30, .25); font-size: 15px; color: var(--txt-2); }
+.citacao__mono { width: 44px; height: 44px; border-radius: 50%; background: var(--ink); padding: 6px; box-shadow: 0 6px 14px -6px rgba(20, 10, 4, .6); }
+.citacao figcaption strong { display: block; color: var(--txt); font-size: 16px; }
 
 /* ---------- Como acontece: roteiro por rolagem ---------- */
 .cab-centro { text-align: center; display: flex; flex-direction: column; align-items: center; }
@@ -97,11 +105,24 @@
 
 /* ---------- Ocasiões ---------- */
 .ocasioes { display: grid; grid-template-columns: .9fr 1.1fr; gap: var(--s-6) var(--s-7); align-items: start; }
-.ocasioes__lista { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linha-inv); }
-.ocasioes__lista li { display: grid; grid-template-columns: 44px 1fr; gap: 16px; padding: 22px 0; border-bottom: 1px solid var(--linha-inv); }
-.ocasioes__lista i { font-size: 28px; color: var(--ambar-claro); }
-.ocasioes__lista strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 24px; color: var(--off); line-height: 1.2; margin-bottom: 2px; }
-.ocasioes__lista span { color: var(--txt-inv-2); }
+.ocasioes > div:first-child { position: sticky; top: 120px; }
+.ocasioes__lista { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.ocasioes__lista li { --mx: 50%; --my: 0%; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 18px; padding: 28px 26px 30px; border-radius: 10px;
+  background: radial-gradient(420px circle at var(--mx) var(--my), rgba(241, 196, 126, .12), transparent 45%), linear-gradient(160deg, #2A201B 0%, #1E1713 60%, #181210 100%);
+  border: 1px solid rgba(241, 196, 126, .18);
+  box-shadow: inset 0 1px 0 rgba(255, 236, 205, .1), inset 0 -1px 0 rgba(0, 0, 0, .4), 0 22px 40px -22px rgba(0, 0, 0, .9);
+  transition: transform .7s var(--ease), border-color .7s var(--ease), box-shadow .7s var(--ease), opacity 1s var(--ease); }
+.ocasioes__lista li:first-child { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 24px; padding: 34px 32px;
+  background: radial-gradient(520px circle at var(--mx) var(--my), rgba(241, 196, 126, .16), transparent 50%), linear-gradient(135deg, #4A1522 0%, #33101A 60%, #24090F 100%);
+  border-color: rgba(241, 196, 126, .35); }
+.ocasioes__lista i { flex: none; width: 56px; height: 56px; display: grid; place-items: center; font-size: 26px; color: #3A1406; border-radius: 50%;
+  background: linear-gradient(135deg, #F8E2B0, #D9963A 60%, #B8742A); box-shadow: 0 10px 22px -10px rgba(217, 150, 58, .8), inset 0 1px 0 rgba(255, 250, 236, .8); }
+.ocasioes__lista strong { display: block; font-family: var(--serif); font-weight: 500; font-size: 24px; color: var(--off); line-height: 1.2; margin-bottom: 6px; }
+.ocasioes__lista li:first-child strong { font-size: 28px; }
+.ocasioes__lista span { color: var(--txt-inv-2); font-size: 16px; line-height: 1.5; }
+@media (hover: hover) {
+  .ocasioes__lista li.is-on:hover { transform: translateY(-5px); border-color: rgba(241, 196, 126, .5); box-shadow: inset 0 1px 0 rgba(255, 236, 205, .14), 0 30px 50px -24px rgba(0, 0, 0, .95), 0 0 0 1px rgba(241, 196, 126, .1); }
+}
 
 /* ---------- Quem conduz ---------- */
 .quem { display: grid; grid-template-columns: .8fr 1.2fr; gap: var(--s-7); align-items: center; }
@@ -201,12 +222,18 @@
   .hero__acao .btn { width: 100%; }
   .formatos { grid-template-columns: 1fr; }
   .comp__cab { display: none; }
+  .ocasioes > div:first-child { position: static; }
+  .ocasioes__lista { grid-template-columns: 1fr; gap: 12px; }
+  .ocasioes__lista li, .ocasioes__lista li:first-child { flex-direction: row; align-items: flex-start; gap: 16px; padding: 22px 20px; }
+  .ocasioes__lista i { width: 48px; height: 48px; font-size: 22px; }
+  .ocasioes__lista strong, .ocasioes__lista li:first-child strong { font-size: 22px; }
   .comp__linha { grid-template-columns: 1fr; gap: 6px; padding-bottom: 6px; }
   .comp__antes { padding: 12px 16px !important; font-size: 15px !important; }
   .comp__antes > span::before { content: "Hoje: "; font-weight: 600; }
   .comp__depois > span::before { content: "Na imersão: "; color: var(--ambar-escuro); }
-  .citacao { padding: 64px 22px 26px; }
-  .citacao__ic { left: 22px; top: 20px; }
+  .citacao { padding: 88px 22px 28px 26px; }
+  .citacao__ic { left: 24px; top: 22px; width: 46px; height: 46px; }
+  .citacao::after { font-size: 200px; right: 10px; top: -30px; }
   .campo-duplo { grid-template-columns: 1fr; }
   .rodape__grid { grid-template-columns: 1fr; }
   .rodape { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
