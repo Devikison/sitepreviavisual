@@ -64,10 +64,10 @@
     banner.setAttribute("aria-label", "Aviso de cookies");
     banner.innerHTML =
       '<p class="consent__title">Sua privacidade</p>' +
-      '<p class="consent__text">Usamos cookies essenciais para o site funcionar e, com a sua permissão, cookies de medição para entender as visitas. Você pode mudar a escolha quando quiser. Saiba mais na <a href="politica-de-cookies.html">Política de Cookies</a>.</p>' +
+      '<p class="consent__text">Usamos cookies para entender as visitas e melhorar sua experiência. <a href="politica-de-cookies.html">Saiba mais</a></p>' +
       '<div class="consent__actions">' +
-      '<button type="button" class="btn btn-gold" data-consent="accept">Aceitar</button>' +
-      '<button type="button" class="btn btn-outline" data-consent="reject">Somente essenciais</button>' +
+      '<button type="button" class="consent__btn consent__btn--sim" data-consent="accept">Aceitar</button>' +
+      '<button type="button" class="consent__btn consent__btn--nao" data-consent="reject">Recusar</button>' +
       "</div>";
     banner.addEventListener("click", function (e) {
       var b = e.target.closest("[data-consent]");

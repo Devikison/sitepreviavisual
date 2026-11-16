@@ -190,3 +190,22 @@ h1 em, h2 em, h3 em, .tom-ink h1 em, .tom-ink h2 em, .tom-vinho h1 em, .tom-vinh
 /* enquadramento das fotos reais */
 .formato__img--mell { object-position: 50% 28% !important; }
 .quem__foto img { object-position: 50% 30%; }
+
+/* ---------- Aviso de cookies: cartão pequeno e flutuante no centro ---------- */
+.consent { position: fixed; z-index: 95; left: 50%; top: 50%; right: auto; bottom: auto; width: min(340px, calc(100% - 40px)); max-width: none;
+  padding: 26px 22px 20px; text-align: center; border-radius: 22px; border: 1px solid rgba(24, 29, 32, .08); background: #FFFFFF; color: #181D20;
+  box-shadow: 0 30px 70px -20px rgba(0, 0, 0, .55), 0 0 0 100vmax rgba(10, 12, 14, 0);
+  transform: translate(-50%, -46%) scale(.96); opacity: 0; visibility: hidden;
+  transition: transform .6s var(--ease), opacity .6s var(--ease), box-shadow .6s var(--ease), visibility 0s linear .6s; }
+.consent.is-on { transform: translate(-50%, -50%); opacity: 1; visibility: visible; transition-delay: 0s;
+  box-shadow: 0 30px 70px -20px rgba(0, 0, 0, .55), 0 0 0 100vmax rgba(10, 12, 14, .45); }
+.consent__title { font-family: var(--serif); font-size: 26px; line-height: 1.1; margin: 0 0 8px; }
+.consent__text { font-size: 14px; line-height: 1.55; color: #181D20; margin: 0 auto; max-width: 30ch; }
+.consent__text a { color: #181D20; font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+.consent__actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+.consent__btn { min-height: 48px; border-radius: 999px; font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; transition: background-color .4s var(--ease), color .4s var(--ease), transform .3s var(--ease); -webkit-tap-highlight-color: transparent; }
+.consent__btn--sim { background: #181D20; color: #FFFFFF; border: 1px solid #181D20; }
+.consent__btn--nao { background: #FFFFFF; color: #181D20; border: 1px solid rgba(24, 29, 32, .35); }
+@media (hover: hover) { .consent__btn--sim:hover { background: #2B3236; } .consent__btn--nao:hover { border-color: #181D20; } }
+.consent__btn:active { transform: scale(.97); }
+.consent__btn:focus-visible { outline: 2px solid #181D20; outline-offset: 3px; }
