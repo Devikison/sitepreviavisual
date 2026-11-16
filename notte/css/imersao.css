@@ -373,3 +373,12 @@
   .hero { padding-bottom: calc(26px + env(safe-area-inset-bottom)); }
   .hero__apoio { font-size: 15.5px; }
 }
+
+/* Rodapé: contatos em ícones redondos com contorno âmbar */
+.rodape__grid { align-items: center; }
+.rodape__icones { list-style: none; margin: 0; padding: 0; display: flex; gap: 12px; }
+.rodape__icones a { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; font-size: 22px; color: var(--ambar-claro); text-decoration: none;
+  border: 1px solid rgba(241, 196, 126, .45); background: rgba(241, 196, 126, .04); transition: transform .5s var(--ease), background-color .5s var(--ease), color .5s var(--ease), border-color .5s var(--ease); }
+@media (hover: hover) { .rodape__icones a:hover { transform: translateY(-3px); background: linear-gradient(135deg, #F8E2B0, #D9963A 60%, #B8742A); color: #3A1406; border-color: transparent; } }
+.rodape__icones a:active { transform: scale(.94); }
+@media (max-width: 767px) { .rodape__grid { justify-items: center; text-align: center; } .rodape__marca { flex-direction: column; justify-content: center; gap: 12px; } .rodape__legal { justify-content: center; } }
