@@ -186,3 +186,7 @@ h1 em, h2 em, h3 em, .tom-ink h1 em, .tom-ink h2 em, .tom-vinho h1 em, .tom-vinh
 .citacao::after { content: none; }
 /* reflexo do botão escuro mais discreto */
 .ficha .btn-fita::before, .menu .btn-fita::before, .tom-off .btn-fita::before { background-image: linear-gradient(120deg, rgba(255, 255, 255, 0) 35%, rgba(255, 255, 255, .1), rgba(255, 255, 255, 0) 65%); }
+
+/* enquadramento das fotos reais */
+.formato__img--mell { object-position: 50% 28% !important; }
+.quem__foto img { object-position: 50% 30%; }
