@@ -256,3 +256,10 @@ body { font-size: 16px; }
 .fecho__fundo::after { content: ""; position: absolute; inset: 0;
   background: radial-gradient(70% 70% at 50% 50%, rgba(24, 29, 32, .5) 0%, rgba(24, 29, 32, .58) 100%), linear-gradient(180deg, #181D20 0%, rgba(24, 29, 32, 0) 18%, rgba(24, 29, 32, 0) 82%, #181D20 100%); }
 @media (max-width: 767px) { .fecho__fundo img { object-position: 42% 45%; filter: blur(2px) saturate(.9); } }
+
+/* capa do brinde no celular: a cena vai até ~62% da altura; sobe a imagem o suficiente para o brinde aparecer inteiro */
+@media (max-width: 767px) { .hero__capa, .hero__capa { inset: clamp(-110px, calc(100svh - 110vw - 400px), 40px) 0 auto 0 !important; } }
+@media (min-width: 768px) {
+  .hero__capa img { object-position: 100% 50%; }
+  .hero::after { background: linear-gradient(90deg, rgba(24, 29, 32, .95) 0%, rgba(24, 29, 32, .85) 38%, rgba(24, 29, 32, .35) 58%, rgba(24, 29, 32, 0) 72%), linear-gradient(0deg, rgba(24, 29, 32, .6) 0%, rgba(24, 29, 32, 0) 24%); }
+}

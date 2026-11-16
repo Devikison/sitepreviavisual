@@ -4,6 +4,7 @@
   "use strict";
 
   var WHATSAPP = "5511995354212"; // [CONFIRMAR] WhatsApp oficial da NOTTE
+  var WEBHOOK = "https://n8n-n8n-start.dnjlb7.easypanel.host/webhook/meldias-pagina"; // n8n da 2!H: recebe cada ficha enviada
   var reduz = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var root = document.documentElement.getAttribute("data-root") || "";
 
@@ -247,6 +248,16 @@
       if (window.gtag) window.gtag("event", "generate_lead", { form: "imersao_empresas", convidados: conv });
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: "lead_imersao", convidados: conv, tipo_evento: v("tipo") });
+
+      // envia a ficha para o n8n (formulário simples, sem atrasar a abertura do WhatsApp)
+      try {
+        var dados = new URLSearchParams();
+        ["nome", "empresa", "cargo", "tipo", "convidados", "data", "local", "obs"].forEach(function (k) { dados.append(k, v(k) || ""); });
+        ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "gclid", "fbclid"].forEach(function (k) { if (utm[k]) dados.append(k, utm[k]); });
+        dados.append("pagina", location.href.split("#")[0]);
+        dados.append("enviado_em", new Date().toISOString());
+        fetch(WEBHOOK, { method: "POST", mode: "no-cors", keepalive: true, body: dados }).catch(function () {});
+      } catch (err) {}
 
       window.open("https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(linhas.join("\n")), "_blank", "noopener");
     });

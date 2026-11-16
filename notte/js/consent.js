@@ -5,7 +5,7 @@
   "use strict";
 
   var CONFIG = {
-    gtm: "GTM-XXXXXXX", // [GTM_NOTTE] pedir ao Douglas; carrega só após "Aceitar"
+    gtm: "GTM-WQXHQFDJ", // GTM da NOTTE (2!H); carrega só após "Aceitar"
     ga4: "",        // ex.: "G-XXXXXXXXXX"
     metaPixel: "",  // [PIXEL_META_NOTTE] pedir ao Douglas
     vercelAnalytics: false
