@@ -23,9 +23,9 @@
   <link rel="icon" href="assets/favicon/favicon-32.png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
   <link rel="preload" href="fonts/gabarito.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/img/alface-hidroponia.webp" as="image">
-  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css">
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
   <link rel="stylesheet" href="css/styles.css">
   <script>document.documentElement.classList.add('js')</script>
   <script type="application/ld+json">
@@ -59,7 +59,7 @@
   <script src="js/main.js" defer></script>
 </head>
 <body ontouchstart="">
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
     <symbol id="logo" viewBox="0 0 120 120"><defs><clipPath id="pc-casa"><path d="M60 9.6 L106.2 45.6 Q110 48.6 110 53.4 V100 Q110 107.2 102.8 107.2 H17.2 Q10 107.2 10 100 V53.4 Q10 48.6 13.8 45.6 Z"/></clipPath></defs>
   <path style="fill:var(--casa,#19392C)" d="M60 9.6 L106.2 45.6 Q110 48.6 110 53.4 V100 Q110 107.2 102.8 107.2 H17.2 Q10 107.2 10 100 V53.4 Q10 48.6 13.8 45.6 Z" fill="#19392C"/>
@@ -78,48 +78,81 @@
   <path d="M66.4 51 C70.4 45 75.6 41 81.2 39" fill="none" stroke="#19392C" stroke-width="1.1" stroke-linecap="round"/>
   <path d="M44.9 65.9 H76.1 L70.5 83.4 H50.6 Z" fill="#FFFFFF"/>
   <rect x="55.7" y="70.3" width="2.4" height="8" rx="1.2" fill="#19392C"/><rect x="62.8" y="70.3" width="2.4" height="8" rx="1.2" fill="#19392C"/></symbol>
-    <symbol id="alface" viewBox="0 0 60 48"><ellipse cx="13" cy="34" rx="13" ry="10" fill="#88C63F"/><ellipse cx="47" cy="34" rx="13" ry="10" fill="#88C63F"/><ellipse cx="22" cy="24" rx="14" ry="12" fill="#AEDD5B"/><ellipse cx="38" cy="24" rx="14" ry="12" fill="#AEDD5B"/><ellipse cx="30" cy="32" rx="16" ry="14" fill="#88C63F"/><path d="M30 46 V30 M30 38 C26 34 22 33 18 34 M30 36 C34 32 38 31 42 32" stroke="#5E8F22" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
-    <symbol id="copo" viewBox="0 0 30 26"><path d="M0 0 H30 L25 26 H5 Z" fill="#FFFFFF"/><rect x="10" y="6" width="3" height="10" rx="1.5" fill="#19392C"/><rect x="17" y="6" width="3" height="10" rx="1.5" fill="#19392C"/></symbol>
-    <symbol id="raiz" viewBox="0 0 30 40"><path d="M15 0 V40 M10 0 C9 14 5 24 1 32 M20 0 C21 14 25 24 29 32" stroke="#AFDF67" stroke-width="2.4" fill="none" stroke-linecap="round"/></symbol>
-    <symbol id="tomateiro" viewBox="0 0 60 120"><path d="M30 120 V10 M30 40 L12 26 M30 64 L48 50 M30 88 L14 76" stroke="#5E8F22" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse cx="12" cy="22" rx="12" ry="7" fill="#88C63F"/><ellipse cx="48" cy="46" rx="12" ry="7" fill="#AEDD5B"/><ellipse cx="14" cy="72" rx="12" ry="7" fill="#88C63F"/><ellipse cx="30" cy="8" rx="9" ry="8" fill="#AEDD5B"/><circle cx="42" cy="70" r="8" fill="#D9483B"/><circle cx="20" cy="46" r="7" fill="#D9483B"/><circle cx="40" cy="96" r="7" fill="#D9483B"/></symbol>
+    
+<linearGradient id="g-cano" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#EEF2F3"/><stop offset="1" stop-color="#C9D4D7"/></linearGradient>
+<linearGradient id="g-agua" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5AD6D8"/><stop offset="1" stop-color="#0E8E92"/></linearGradient>
+<linearGradient id="g-vidro" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E9F6F8" stop-opacity=".95"/><stop offset=".5" stop-color="#F8FDFE" stop-opacity=".8"/><stop offset="1" stop-color="#D3E9EE" stop-opacity=".95"/></linearGradient>
+<linearGradient id="g-escuro" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2F654E"/><stop offset="1" stop-color="#15362A"/></linearGradient>
+<linearGradient id="g-balde" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1D4134"/><stop offset=".45" stop-color="#3C7059"/><stop offset="1" stop-color="#1A3A2E"/></linearGradient>
+<linearGradient id="g-azul" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5BB3EA"/><stop offset="1" stop-color="#2369B0"/></linearGradient>
+<linearGradient id="g-isopor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#E3E8E4"/></linearGradient>
+<radialGradient id="g-folha" cx=".38" cy=".3" r=".8"><stop offset="0" stop-color="#D2F28A"/><stop offset=".6" stop-color="#8CCB45"/><stop offset="1" stop-color="#5C9E2C"/></radialGradient>
+<radialGradient id="g-folha2" cx=".5" cy=".35" r=".8"><stop offset="0" stop-color="#A9DD5E"/><stop offset="1" stop-color="#3F8424"/></radialGradient>
+<radialGradient id="g-tomate" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#FF8A78"/><stop offset=".6" stop-color="#E5483A"/><stop offset="1" stop-color="#B2281E"/></radialGradient>
+<symbol id="alface" viewBox="0 0 100 80">
+  <path d="M50 72 C18 72 4 54 12 37 C17 27 28 29 31 35 C28 20 40 9 50 17 C60 9 72 20 69 35 C72 29 83 27 88 37 C96 54 82 72 50 72Z" fill="url(#g-folha2)"/>
+  <path d="M50 74 C32 74 19 63 21 50 C23 41 34 40 39 47 C38 38 47 33 52 42 C50 55 52 66 50 74Z" fill="url(#g-folha)"/>
+  <path d="M50 74 C68 74 81 63 79 50 C77 41 66 40 61 47 C62 38 53 33 48 42 C50 55 48 66 50 74Z" fill="url(#g-folha)"/>
+  <path d="M50 74 C41 61 39 43 50 29 C61 43 59 61 50 74Z" fill="#C3EB78"/>
+  <path d="M50 72 V34 M50 56 L37 48 M50 50 L63 42 M50 64 L33 59 M50 62 L67 56" stroke="#F6FFE6" stroke-opacity=".75" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+</symbol>
+<symbol id="copinho" viewBox="0 0 40 30"><path d="M0 0 H40 L33 30 H7 Z" fill="url(#g-cano)"/><path d="M0 0 H40 V4 H0Z" fill="#FFFFFF"/><rect x="13" y="8" width="4" height="15" rx="2" fill="#7E9198"/><rect x="23" y="8" width="4" height="15" rx="2" fill="#7E9198"/></symbol>
+<symbol id="raizes" viewBox="0 0 40 60"><g stroke="#E9F7C9" stroke-width="2.4" fill="none" stroke-linecap="round"><path d="M20 0 V56"/><path d="M14 0 C13 18 8 32 3 44"/><path d="M26 0 C27 18 32 32 37 44"/><path d="M11 22 C7 24 4 28 2 32"/><path d="M29 22 C33 24 36 28 38 32"/><path d="M17 8 C16 24 14 36 13 50"/><path d="M23 8 C24 24 26 36 27 50"/></g></symbol>
+<symbol id="tomateiro" viewBox="0 0 80 160">
+  <path d="M40 160 V12" stroke="#4E8A2A" stroke-width="3.2" stroke-linecap="round"/>
+  <g stroke="#4E8A2A" stroke-width="2.4" stroke-linecap="round" fill="none"><path d="M40 34 L18 22"/><path d="M40 62 L62 48"/><path d="M40 92 L16 80"/><path d="M40 120 L64 108"/></g>
+  <g fill="url(#g-folha)"><ellipse cx="14" cy="20" rx="14" ry="8" transform="rotate(-20 14 20)"/><ellipse cx="66" cy="46" rx="14" ry="8" transform="rotate(20 66 46)"/><ellipse cx="12" cy="78" rx="14" ry="8" transform="rotate(-20 12 78)"/><ellipse cx="68" cy="106" rx="14" ry="8" transform="rotate(20 68 106)"/><ellipse cx="40" cy="10" rx="11" ry="10"/></g>
+  <g><circle cx="54" cy="70" r="10" fill="url(#g-tomate)"/><circle cx="24" cy="48" r="9" fill="url(#g-tomate)"/><circle cx="52" cy="132" r="9" fill="url(#g-tomate)"/><circle cx="28" cy="104" r="8" fill="url(#g-tomate)"/></g>
+  <g fill="#FFFFFF" opacity=".7"><circle cx="51" cy="66" r="2.6"/><circle cx="21" cy="45" r="2.4"/><circle cx="49" cy="128" r="2.4"/><circle cx="25" cy="101" r="2.2"/></g>
+  <g fill="#3E7A22"><path d="M54 60 l-3 -3 3 1 3 -1z"/><path d="M24 39 l-3 -3 3 1 3 -1z"/></g>
+</symbol>
+
     <symbol id="folha-a" viewBox="0 0 64 64"><path d="M10 54 C6 30 24 10 56 8 C58 36 40 56 10 54 Z" fill="var(--lf,#88C63F)"/><path d="M12 52 C24 40 36 28 50 14" stroke="var(--lv,#5E8F22)" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M24 40 L22 30 M32 32 L40 34 M38 24 L36 18" stroke="var(--lv,#5E8F22)" stroke-width="1.4" fill="none" stroke-linecap="round"/></symbol>
     <symbol id="folha-b" viewBox="0 0 64 64"><path d="M32 6 C50 18 54 40 32 60 C10 40 14 18 32 6 Z" fill="var(--lf,#AEDD5B)"/><path d="M32 10 V58 M32 26 L22 20 M32 26 L42 20 M32 40 L20 34 M32 40 L44 34" stroke="var(--lv,#6FA12E)" stroke-width="1.6" fill="none" stroke-linecap="round"/></symbol>
   </defs>
 </svg>
 
-<header class="nav" aria-label="Topo">
+<a class="pular" href="#topo">Pular para o conteúdo</a>
+
+<!-- BARRA FLUTUANTE -->
+<header class="barra" id="barra">
   <a class="marca" href="#topo" aria-label="Plantar em Casa, início"><svg aria-hidden="true"><use href="#logo"/></svg><span>plantar<span>em casa</span></span></a>
-  <ul>
-    <li><a class="l" href="#sistemas">Projetos</a></li>
-    <li><a class="l" href="#bonus">Bônus</a></li>
-    <li><a class="l" href="#duvidas">Dúvidas</a></li>
-    <li><a class="pill-nav" href="#planos" data-btn="nav-planos">Planos <i class="ph-bold ph-arrow-right" aria-hidden="true"></i></a></li>
-  </ul>
+  <nav aria-label="Seções"><ul>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#como-funciona">Como funciona</a></li>
+    <li><a href="#bonus">Bônus</a></li>
+    <li><a href="#duvidas">Dúvidas</a></li>
+  </ul></nav>
+  <a class="btn btn--mini" href="#planos" data-btn="barra-planos"><span>Quero começar</span></a>
 </header>
 
 <main id="topo">
   <!-- HERO -->
   <section class="hero" aria-labelledby="h1">
-    <svg class="lf" style="--w:70px;top:16%;left:44%;opacity:.5;filter:blur(1px);animation-delay:-3s" aria-hidden="true"><use href="#folha-a"/></svg>
-    <svg class="lf lf--d" style="--w:96px;bottom:10%;left:-28px;opacity:.28;filter:blur(3px);animation-duration:14s;animation-delay:-6s" aria-hidden="true"><use href="#folha-b"/></svg>
-    <div class="hero__txt">
-      <h1 id="h1" class="rv">Projetos prontos de hidroponia caseira</h1>
-      <p class="rv" style="--i:1">Mais de 40 sistemas com medidas, lista de materiais e montagem passo a passo. Do pote na janela à horta da família, sem terra e sem chute.</p>
-      <div class="hero__acoes rv" style="--i:2">
-        <a class="btn" href="#planos" data-btn="hero-ver-planos"><span>Ver os planos</span><i class="btn__ic ph-bold ph-arrow-right" aria-hidden="true"></i></a>
-        <p class="hero__nota"><i class="ph-duotone ph-shield-check" aria-hidden="true"></i>15 dias de garantia</p>
+    <svg class="lf" style="--w:72px;top:18%;left:46%;opacity:.45;filter:blur(1px);animation-delay:-3s" aria-hidden="true"><use href="#folha-a"/></svg>
+    <svg class="lf lf--d" style="--w:96px;bottom:6%;left:-28px;opacity:.26;filter:blur(3px);animation-duration:14s;animation-delay:-6s" aria-hidden="true"><use href="#folha-b"/></svg>
+    <div class="hero__in wrap">
+      <div class="hero__img rv">
+        <div class="ph ph--hero" role="img" aria-label="Espaço reservado para a foto principal">
+          <i class="ph-duotone ph-image" aria-hidden="true"></i>
+          <strong>Adicionar imagem aqui!</strong>
+          <span>Foto principal: horta hidropônica pronta em casa · 1200 x 1000 px</span>
+        </div>
+        <span class="chip chip--1"><i class="ph-duotone ph-plant" aria-hidden="true"></i>+40 projetos</span>
+        <span class="chip chip--2"><i class="ph-duotone ph-ruler" aria-hidden="true"></i>Medidas exatas</span>
       </div>
-    </div>
-    <div class="hero__casa" aria-hidden="true">
-      <div class="hero__foto"><img src="assets/img/alface-hidroponia.webp" width="1600" height="900" alt="" fetchpriority="high"></div>
-      <div class="hero__agua">
-        <svg class="onda" viewBox="0 0 1200 24" preserveAspectRatio="none"><path d="M0 12 Q75 0 150 12 T300 12 T450 12 T600 12 T750 12 T900 12 T1050 12 T1200 12 V24 H0 Z"/></svg>
-        <svg class="raizes" viewBox="0 0 30 40" preserveAspectRatio="xMidYMin meet"><use href="#raiz"/></svg>
+      <div class="hero__txt">
+        <h1 id="h1" class="rv">Projetos prontos de hidroponia caseira</h1>
+        <p class="hero__sub rv" style="--i:1">Monte sua horta sem terra em casa com mais de 40 projetos desenhados, medidos e explicados passo a passo. Do pote na janela à horta da família.</p>
+        <div class="hero__acao rv" style="--i:2">
+          <a class="btn btn--grande" href="#planos" data-btn="hero-quero-comecar"><span>Quero meus projetos</span><i class="btn__ic ph-bold ph-arrow-right" aria-hidden="true"></i></a>
+        </div>
+        <ul class="confianca rv" style="--i:3">
+          <li><i class="ph-duotone ph-lightning" aria-hidden="true"></i>Acesso imediato</li>
+          <li><i class="ph-duotone ph-shield-check" aria-hidden="true"></i>15 dias de garantia</li>
+          <li><i class="ph-duotone ph-lock-key" aria-hidden="true"></i>Compra segura</li>
+        </ul>
       </div>
-    </div>
-    <div class="hero__chips" aria-hidden="true">
-      <span class="chip chip--1"><i class="ph-duotone ph-ruler"></i>Medidas exatas</span>
-      <span class="chip chip--2"><i class="ph-duotone ph-plant"></i>+40 projetos</span>
     </div>
   </section>
 
@@ -131,194 +164,286 @@
     </div>
   </div>
 
-  <!-- SISTEMAS: o simulador -->
-  <section class="sec sistemas wrap" id="sistemas" aria-labelledby="h-sis">
-    <svg class="lf" style="--w:80px;top:6%;right:3%;opacity:.32;filter:blur(1.5px);animation-duration:12s;animation-delay:-2s" aria-hidden="true"><use href="#folha-b"/></svg>
-    <svg class="lf" style="--w:52px;bottom:8%;left:42%;opacity:.3;filter:blur(2px);animation-duration:10s;animation-delay:-7s" aria-hidden="true"><use href="#folha-a"/></svg>
-    <div class="sistemas__palco rv" aria-live="polite">
-      <div class="palco__casa" id="palcoCasa"></div>
-      <svg class="palco__desenho" id="palcoDesenho" viewBox="0 0 400 360" role="img" aria-labelledby="palcoTitulo"><title id="palcoTitulo">Desenho do sistema Kratky no pote</title><g id="palcoG"></g></svg>
+  <!-- PROJETOS -->
+  <section class="sec projetos wrap" id="projetos" aria-labelledby="h-proj">
+    <svg class="lf" style="--w:80px;top:2%;right:3%;opacity:.3;filter:blur(1.5px);animation-duration:12s;animation-delay:-2s" aria-hidden="true"><use href="#folha-b"/></svg>
+    <div class="topo-sec rv">
+      <h2 id="h-proj">Tem um projeto para o seu espaço</h2>
+      <p>Do peitoril da janela ao quintal. Veja alguns dos mais de 40 projetos que você recebe.</p>
     </div>
-    <div class="sistemas__lista rv" style="--i:1">
-      <h2 id="h-sis">Qual sistema cabe aí?</h2>
-      <p class="sistemas__intro">Toque em um sistema e veja onde ele cabe na sua casa.</p>
-      <div role="tablist" aria-label="Sistemas de hidroponia">
-        <button role="tab" aria-selected="true" data-s="kratky"><i class="ph-duotone ph-drop" aria-hidden="true"></i>Kratky no pote</button>
-        <button role="tab" aria-selected="false" data-s="caixa"><i class="ph-duotone ph-package" aria-hidden="true"></i>Caixa flutuante</button>
-        <button role="tab" aria-selected="false" data-s="nft6"><i class="ph-duotone ph-pipe" aria-hidden="true"></i>NFT de 6 pés</button>
-        <button role="tab" aria-selected="false" data-s="nft18"><i class="ph-duotone ph-rows" aria-hidden="true"></i>Bancada NFT 18</button>
-        <button role="tab" aria-selected="false" data-s="torre"><i class="ph-duotone ph-buildings" aria-hidden="true"></i>Torre vertical</button>
-        <button role="tab" aria-selected="false" data-s="balde"><i class="ph-duotone ph-paint-bucket" aria-hidden="true"></i>Balde holandês</button>
-      </div>
+    <div class="proj-grid">
+      <article class="proj card rv">
+        <div class="proj__ilu proj__ilu--1"><svg viewBox="0 0 400 300" role="img" aria-label="Ilustração do sistema Kratky no pote"><ellipse cx="200" cy="284" rx="92" ry="9" fill="#19392C" opacity=".12"/><rect x="138" y="108" width="124" height="174" rx="20" fill="url(#g-vidro)" stroke="#BFD9DF" stroke-width="2"/><path d="M141 176 Q170 168 200 176 T259 176 V262 Q259 279 242 279 H158 Q141 279 141 262Z" fill="url(#g-agua)" opacity=".92"/><use href="#raizes" x="176" y="120" width="48" height="120"/><rect x="150" y="120" width="10" height="146" rx="5" fill="#FFFFFF" opacity=".55"/><rect x="128" y="96" width="144" height="20" rx="7" fill="url(#g-escuro)"/><use href="#copinho" x="176" y="84" width="48" height="36"/><use href="#alface" x="120" y="2" width="160" height="128"/></svg></div>
+        <div class="proj__txt">
+          <span class="nivel nivel--facil">Mais fácil</span>
+          <h3>Kratky no pote</h3>
+          <p>O jeito mais simples de começar. Fica na janela e não precisa de energia.</p>
+          <ul class="dados">
+            <li><i class="ph-duotone ph-house-line" aria-hidden="true"></i><span><b>Onde:</b> janela ou bancada</span></li>
+            <li><i class="ph-duotone ph-plant" aria-hidden="true"></i><span><b>Rende:</b> 1 a 4 pés</span></li>
+            <li><i class="ph-duotone ph-lightning-slash" aria-hidden="true"></i><span><b>Energia:</b> não usa</span></li>
+          </ul>
+        </div>
+      </article>
+      <article class="proj card rv" style="--i:1">
+        <div class="proj__ilu proj__ilu--2"><svg viewBox="0 0 400 300" role="img" aria-label="Ilustração do sistema Caixa flutuante"><ellipse cx="200" cy="284" rx="160" ry="9" fill="#19392C" opacity=".12"/><path d="M62 150 H338 L326 276 Q325 282 318 282 H82 Q75 282 74 276Z" fill="url(#g-escuro)"/><rect x="86" y="172" width="228" height="86" rx="12" fill="url(#g-agua)"/><path d="M86 184 Q120 176 154 184 T222 184 T290 184 T314 184" stroke="#BFF3F4" stroke-width="2" fill="none" opacity=".7"/><use href="#raizes" x="104" y="164" width="42" height="84"/><use href="#raizes" x="179" y="164" width="42" height="84"/><use href="#raizes" x="254" y="164" width="42" height="84"/><circle cx="130" cy="238" r="4" fill="#FFFFFF" opacity=".75"/><circle cx="142" cy="222" r="3" fill="#FFFFFF" opacity=".75"/><circle cx="205" cy="244" r="4" fill="#FFFFFF" opacity=".75"/><circle cx="214" cy="226" r="3" fill="#FFFFFF" opacity=".75"/><circle cx="282" cy="236" r="4" fill="#FFFFFF" opacity=".75"/><circle cx="292" cy="220" r="3" fill="#FFFFFF" opacity=".75"/><circle cx="168" cy="250" r="3" fill="#FFFFFF" opacity=".75"/><rect x="50" y="138" width="300" height="22" rx="7" fill="url(#g-isopor)" stroke="#D3DAD5"/><use href="#copinho" x="100" y="126" width="50" height="36"/><use href="#alface" x="70" y="40" width="110" height="92"/><use href="#copinho" x="175" y="126" width="50" height="36"/><use href="#alface" x="145" y="40" width="110" height="92"/><use href="#copinho" x="250" y="126" width="50" height="36"/><use href="#alface" x="220" y="40" width="110" height="92"/><rect x="328" y="246" width="54" height="34" rx="9" fill="url(#g-cano)" stroke="#C9D4D7"/><circle cx="345" cy="263" r="5" fill="#2DB46B"/><path d="M330 256 C312 256 316 240 300 240" stroke="#8FA4AA" stroke-width="4" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="proj__txt">
+          <span class="nivel nivel--facil">Mais fácil</span>
+          <h3>Caixa flutuante</h3>
+          <p>Uma caixa com a placa boiando na água. Ótima para a área de serviço.</p>
+          <ul class="dados">
+            <li><i class="ph-duotone ph-house-line" aria-hidden="true"></i><span><b>Onde:</b> lavanderia ou varanda</span></li>
+            <li><i class="ph-duotone ph-plant" aria-hidden="true"></i><span><b>Rende:</b> 6 a 12 pés</span></li>
+            <li><i class="ph-duotone ph-lightning" aria-hidden="true"></i><span><b>Energia:</b> bombinha de ar</span></li>
+          </ul>
+        </div>
+      </article>
+      <article class="proj card rv" style="--i:2">
+        <div class="proj__ilu proj__ilu--3"><svg viewBox="0 0 400 300" role="img" aria-label="Ilustração do sistema NFT de 6 pés"><ellipse cx="200" cy="284" rx="170" ry="9" fill="#19392C" opacity=".12"/><rect x="78" y="176" width="13" height="104" rx="4" fill="url(#g-escuro)"/><rect x="309" y="176" width="13" height="104" rx="4" fill="url(#g-escuro)"/><rect x="150" y="220" width="100" height="60" rx="12" fill="url(#g-azul)"/><rect x="150" y="220" width="100" height="12" rx="6" fill="#8BCFF5"/><path d="M168 222 C150 200 92 214 60 190" stroke="#1F7A7C" stroke-width="5" fill="none" stroke-linecap="round"/><rect x="40" y="150" width="320" height="36" rx="18" fill="url(#g-cano)" stroke="#C9D4D7"/><rect x="34" y="147" width="16" height="42" rx="7" fill="#D5DEE1"/><rect x="350" y="147" width="16" height="42" rx="7" fill="#D5DEE1"/><use href="#copinho" x="56" y="140" width="34" height="26"/><use href="#alface" x="38" y="72" width="70" height="58"/><use href="#copinho" x="106" y="140" width="34" height="26"/><use href="#alface" x="88" y="72" width="70" height="58"/><use href="#copinho" x="156" y="140" width="34" height="26"/><use href="#alface" x="138" y="72" width="70" height="58"/><use href="#copinho" x="206" y="140" width="34" height="26"/><use href="#alface" x="188" y="72" width="70" height="58"/><use href="#copinho" x="256" y="140" width="34" height="26"/><use href="#alface" x="238" y="72" width="70" height="58"/><use href="#copinho" x="306" y="140" width="34" height="26"/><use href="#alface" x="288" y="72" width="70" height="58"/></svg></div>
+        <div class="proj__txt">
+          <span class="nivel nivel--medio">Intermediário</span>
+          <h3>Cano de 6 pés</h3>
+          <p>O clássico cano branco com a água correndo por dentro. Cabe na varanda.</p>
+          <ul class="dados">
+            <li><i class="ph-duotone ph-house-line" aria-hidden="true"></i><span><b>Onde:</b> varanda ou parede</span></li>
+            <li><i class="ph-duotone ph-plant" aria-hidden="true"></i><span><b>Rende:</b> 6 pés por vez</span></li>
+            <li><i class="ph-duotone ph-lightning" aria-hidden="true"></i><span><b>Energia:</b> bomba com timer</span></li>
+          </ul>
+        </div>
+      </article>
+      <article class="proj card rv">
+        <div class="proj__ilu proj__ilu--2"><svg viewBox="0 0 400 300" role="img" aria-label="Ilustração do sistema Bancada de 18 pés"><ellipse cx="200" cy="284" rx="170" ry="9" fill="#19392C" opacity=".12"/><path d="M70 280 L96 52 M330 280 L304 52" stroke="url(#g-escuro)" stroke-width="12" stroke-linecap="round"/><rect x="150" y="240" width="100" height="42" rx="10" fill="url(#g-azul)"/><rect x="150" y="240" width="100" height="10" rx="5" fill="#8BCFF5"/><rect x="54" y="98" width="292" height="26" rx="13" fill="url(#g-cano)" stroke="#C9D4D7"/><use href="#copinho" x="68" y="91" width="26" height="20"/><use href="#alface" x="54" y="50" width="52" height="44"/><use href="#copinho" x="114" y="91" width="26" height="20"/><use href="#alface" x="100" y="50" width="52" height="44"/><use href="#copinho" x="160" y="91" width="26" height="20"/><use href="#alface" x="146" y="50" width="52" height="44"/><use href="#copinho" x="206" y="91" width="26" height="20"/><use href="#alface" x="192" y="50" width="52" height="44"/><use href="#copinho" x="252" y="91" width="26" height="20"/><use href="#alface" x="238" y="50" width="52" height="44"/><use href="#copinho" x="298" y="91" width="26" height="20"/><use href="#alface" x="284" y="50" width="52" height="44"/><rect x="54" y="158" width="292" height="26" rx="13" fill="url(#g-cano)" stroke="#C9D4D7"/><use href="#copinho" x="68" y="151" width="26" height="20"/><use href="#alface" x="54" y="110" width="52" height="44"/><use href="#copinho" x="114" y="151" width="26" height="20"/><use href="#alface" x="100" y="110" width="52" height="44"/><use href="#copinho" x="160" y="151" width="26" height="20"/><use href="#alface" x="146" y="110" width="52" height="44"/><use href="#copinho" x="206" y="151" width="26" height="20"/><use href="#alface" x="192" y="110" width="52" height="44"/><use href="#copinho" x="252" y="151" width="26" height="20"/><use href="#alface" x="238" y="110" width="52" height="44"/><use href="#copinho" x="298" y="151" width="26" height="20"/><use href="#alface" x="284" y="110" width="52" height="44"/><rect x="54" y="218" width="292" height="26" rx="13" fill="url(#g-cano)" stroke="#C9D4D7"/><use href="#copinho" x="68" y="211" width="26" height="20"/><use href="#alface" x="54" y="170" width="52" height="44"/><use href="#copinho" x="114" y="211" width="26" height="20"/><use href="#alface" x="100" y="170" width="52" height="44"/><use href="#copinho" x="160" y="211" width="26" height="20"/><use href="#alface" x="146" y="170" width="52" height="44"/><use href="#copinho" x="206" y="211" width="26" height="20"/><use href="#alface" x="192" y="170" width="52" height="44"/><use href="#copinho" x="252" y="211" width="26" height="20"/><use href="#alface" x="238" y="170" width="52" height="44"/><use href="#copinho" x="298" y="211" width="26" height="20"/><use href="#alface" x="284" y="170" width="52" height="44"/></svg></div>
+        <div class="proj__txt">
+          <span class="nivel nivel--medio">Intermediário</span>
+          <h3>Bancada de 18 pés</h3>
+          <p>Três canos em escada para colher toda semana. Para quem tem mais espaço.</p>
+          <ul class="dados">
+            <li><i class="ph-duotone ph-house-line" aria-hidden="true"></i><span><b>Onde:</b> quintal ou laje</span></li>
+            <li><i class="ph-duotone ph-plant" aria-hidden="true"></i><span><b>Rende:</b> 18 pés por vez</span></li>
+            <li><i class="ph-duotone ph-lightning" aria-hidden="true"></i><span><b>Energia:</b> bomba com timer</span></li>
+          </ul>
+        </div>
+      </article>
+      <article class="proj card rv" style="--i:1">
+        <div class="proj__ilu proj__ilu--1"><svg viewBox="0 0 400 300" role="img" aria-label="Ilustração do sistema Torre vertical"><ellipse cx="200" cy="284" rx="96" ry="9" fill="#19392C" opacity=".12"/><path d="M140 236 H260 L252 280 Q251 284 246 284 H154 Q149 284 148 280Z" fill="url(#g-azul)"/><rect x="138" y="230" width="124" height="14" rx="6" fill="#8BCFF5"/><rect x="182" y="22" width="36" height="214" rx="18" fill="url(#g-cano)" stroke="#C9D4D7"/><path d="M184 50 L166 40 L170 58Z" fill="#E1E8EA"/><use href="#alface" x="118" y="12" width="72" height="58"/><path d="M216 84 L234 74 L230 92Z" fill="#E1E8EA"/><use href="#alface" x="210" y="46" width="72" height="58"/><path d="M184 118 L166 108 L170 126Z" fill="#E1E8EA"/><use href="#alface" x="118" y="80" width="72" height="58"/><path d="M216 152 L234 142 L230 160Z" fill="#E1E8EA"/><use href="#alface" x="210" y="114" width="72" height="58"/><path d="M184 186 L166 176 L170 194Z" fill="#E1E8EA"/><use href="#alface" x="118" y="148" width="72" height="58"/><path d="M216 220 L234 210 L230 228Z" fill="#E1E8EA"/><use href="#alface" x="210" y="182" width="72" height="58"/><rect x="190" y="30" width="6" height="196" rx="3" fill="#FFFFFF" opacity=".8"/></svg></div>
+        <div class="proj__txt">
+          <span class="nivel nivel--medio">Intermediário</span>
+          <h3>Torre vertical</h3>
+          <p>Planta para cima e ocupa menos de um metro quadrado no chão.</p>
+          <ul class="dados">
+            <li><i class="ph-duotone ph-house-line" aria-hidden="true"></i><span><b>Onde:</b> canto da varanda</span></li>
+            <li><i class="ph-duotone ph-plant" aria-hidden="true"></i><span><b>Rende:</b> 12 a 24 pés</span></li>
+            <li><i class="ph-duotone ph-lightning" aria-hidden="true"></i><span><b>Energia:</b> bomba com timer</span></li>
+          </ul>
+        </div>
+      </article>
+      <article class="proj card rv" style="--i:2">
+        <div class="proj__ilu proj__ilu--3"><svg viewBox="0 0 400 300" role="img" aria-label="Ilustração do sistema Balde holandês"><ellipse cx="200" cy="284" rx="170" ry="9" fill="#19392C" opacity=".12"/><rect x="44" y="266" width="312" height="14" rx="7" fill="url(#g-cano)" stroke="#C9D4D7"/><path d="M78 186 H178 L168 270 Q167 276 161 276 H95 Q89 276 88 270Z" fill="url(#g-balde)"/><rect x="74" y="180" width="108" height="14" rx="6" fill="#2F654E"/><path d="M158 186 V30" stroke="#B88A5A" stroke-width="4" stroke-linecap="round"/><use href="#tomateiro" x="90" y="26" width="78" height="160"/><path d="M222 186 H322 L312 270 Q311 276 305 276 H239 Q233 276 232 270Z" fill="url(#g-balde)"/><rect x="218" y="180" width="108" height="14" rx="6" fill="#2F654E"/><path d="M302 186 V30" stroke="#B88A5A" stroke-width="4" stroke-linecap="round"/><use href="#tomateiro" x="234" y="26" width="78" height="160"/></svg></div>
+        <div class="proj__txt">
+          <span class="nivel nivel--avancado">Para frutos</span>
+          <h3>Balde para tomate</h3>
+          <p>Para plantas maiores: tomate, pimentão e pepino, cada um no seu balde.</p>
+          <ul class="dados">
+            <li><i class="ph-duotone ph-house-line" aria-hidden="true"></i><span><b>Onde:</b> lugar com sol forte</span></li>
+            <li><i class="ph-duotone ph-plant" aria-hidden="true"></i><span><b>Rende:</b> 2 a 6 plantas</span></li>
+            <li><i class="ph-duotone ph-lightning" aria-hidden="true"></i><span><b>Energia:</b> bomba com timer</span></li>
+          </ul>
+        </div>
+      </article>
     </div>
-    <div class="sistemas__fato card rv" style="--i:2" id="fato">
-      <h3 id="fatoNome">Kratky no pote</h3>
-      <dl>
-        <div><dt><i class="ph-duotone ph-house-line" aria-hidden="true"></i>Onde cabe</dt><dd id="fatoOnde">Peitoril da janela ou bancada da cozinha</dd></div>
-        <div><dt><i class="ph-duotone ph-plant" aria-hidden="true"></i>Quantos pés</dt><dd id="fatoPes">1 a 4 pés de alface ou tempero</dd></div>
-        <div><dt><i class="ph-duotone ph-lightning" aria-hidden="true"></i>Energia</dt><dd id="fatoEnergia">Nenhuma. Sem bomba e sem tomada</dd></div>
-      </dl>
+    <p class="projetos__mais rv">E mais 34 projetos, do vaso de tempero à horta completa da família.</p>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="sec como wrap" id="como-funciona" aria-labelledby="h-como">
+    <div class="topo-sec rv">
+      <h2 id="h-como">Como funciona</h2>
+      <p>Você não precisa entender de hidroponia. É só seguir o projeto.</p>
     </div>
+    <ol class="passos">
+      <li class="passo card rv"><span class="passo__n">1</span><span class="medal"><i class="ph-duotone ph-cursor-click"></i></span><h3>Escolha o seu projeto</h3><p>Veja qual cabe no seu espaço: janela, varanda ou quintal.</p></li>
+      <li class="passo card rv" style="--i:1"><span class="passo__n">2</span><span class="medal medal--agua"><i class="ph-duotone ph-shopping-cart"></i></span><h3>Compre as peças</h3><p>Leve a lista pronta para a loja de material de construção.</p></li>
+      <li class="passo card rv" style="--i:2"><span class="passo__n">3</span><span class="medal"><i class="ph-duotone ph-plant"></i></span><h3>Monte e colha</h3><p>Siga os desenhos, coloque as mudas e acompanhe crescer.</p></li>
+    </ol>
   </section>
 
   <!-- COMPARAÇÃO -->
   <section class="sec agua" aria-labelledby="h-comp">
     <svg class="onda" viewBox="0 0 1200 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 12 Q75 0 150 12 T300 12 T450 12 T600 12 T750 12 T900 12 T1050 12 T1200 12 V24 H0 Z"/></svg>
-    <svg class="lf lf--claro" style="--w:120px;top:14%;right:-40px;opacity:.09;filter:blur(1px);animation-duration:13s" aria-hidden="true"><use href="#folha-a"/></svg>
-    <svg class="lf lf--claro" style="--w:56px;bottom:10%;left:4%;opacity:.12;filter:blur(1.5px);animation-duration:11s;animation-delay:-5s" aria-hidden="true"><use href="#folha-b"/></svg>
-    <div class="agua__topo">
-      <h2 id="h-comp" class="rv">Tentar sozinho sai mais caro</h2>
-      <p class="rv" style="--i:1">Quem monta no chute paga duas vezes: o material errado e o tempo perdido.</p>
-    </div>
-    <div class="compara">
-      <div class="compara__sem card rv" style="--i:1">
-        <div class="card__topo"><span class="medal medal--erro"><i class="ph-duotone ph-warning-circle"></i></span><h3>Montando no chute</h3></div>
-        <ul>
-          <li><i class="ic ic--x ph-bold ph-x" aria-hidden="true"></i>Vídeo atrás de vídeo e nenhum mostra a medida</li>
-          <li><i class="ic ic--x ph-bold ph-x" aria-hidden="true"></i>Cano, conexão e bomba comprados errado</li>
-          <li><i class="ic ic--x ph-bold ph-x" aria-hidden="true"></i>Vazamento na primeira semana</li>
-          <li><i class="ic ic--x ph-bold ph-x" aria-hidden="true"></i>Sistema grande demais ou pequeno demais para o espaço</li>
-          <li><i class="ic ic--x ph-bold ph-x" aria-hidden="true"></i>Muda que amarela e morre sem você saber por quê</li>
-        </ul>
+    <svg class="lf lf--claro" style="--w:120px;top:12%;right:-40px;opacity:.09;filter:blur(1px);animation-duration:13s" aria-hidden="true"><use href="#folha-a"/></svg>
+    <div class="wrap">
+      <div class="topo-sec topo-sec--claro rv">
+        <h2 id="h-comp">Tentar sozinho sai mais caro</h2>
+        <p>Quem monta no chute paga duas vezes: no material errado e no tempo perdido.</p>
       </div>
-      <div class="compara__com card rv" style="--i:2">
-        <div class="card__topo"><span class="medal"><i class="ph-duotone ph-check-circle"></i></span><h3>Seguindo o projeto</h3></div>
-        <ul>
-          <li><i class="ic ph-bold ph-check" aria-hidden="true"></i>Você sabe o que comprar antes de sair de casa</li>
-          <li><i class="ic ph-bold ph-check" aria-hidden="true"></i>Cada corte tem a medida escrita no desenho</li>
-          <li><i class="ic ph-bold ph-check" aria-hidden="true"></i>A inclinação e a vazão já vêm calculadas</li>
-          <li><i class="ic ph-bold ph-check" aria-hidden="true"></i>Você escolhe o sistema pelo espaço que tem</li>
-          <li><i class="ic ph-bold ph-check" aria-hidden="true"></i>Monta uma vez, do jeito certo, e colhe</li>
-        </ul>
+      <div class="vs">
+        <div class="vs__card vs__card--sem rv">
+          <div class="vs__topo"><span class="vs__ic"><i class="ph-bold ph-x"></i></span><div><h3>Montando no chute</h3><p>Sem projeto</p></div></div>
+          <ul>
+            <li><i class="ph-duotone ph-x-circle" aria-hidden="true"></i>Vídeo atrás de vídeo e nenhum mostra a medida</li>
+            <li><i class="ph-duotone ph-x-circle" aria-hidden="true"></i>Cano, conexão e bomba comprados errado</li>
+            <li><i class="ph-duotone ph-x-circle" aria-hidden="true"></i>Vazamento já na primeira semana</li>
+            <li><i class="ph-duotone ph-x-circle" aria-hidden="true"></i>Sistema que não cabe no seu espaço</li>
+            <li><i class="ph-duotone ph-x-circle" aria-hidden="true"></i>Muda que amarela sem você saber por quê</li>
+          </ul>
+        </div>
+        <span class="vs__selo" aria-hidden="true">VS</span>
+        <div class="vs__card vs__card--com rv" style="--i:1">
+          <div class="vs__topo"><span class="vs__ic"><i class="ph-bold ph-check"></i></span><div><h3>Seguindo o projeto</h3><p>Com o Plantar em Casa</p></div></div>
+          <ul>
+            <li><i class="ph-duotone ph-check-circle" aria-hidden="true"></i>Você sabe o que comprar antes de sair de casa</li>
+            <li><i class="ph-duotone ph-check-circle" aria-hidden="true"></i>Cada corte tem a medida escrita no desenho</li>
+            <li><i class="ph-duotone ph-check-circle" aria-hidden="true"></i>A inclinação e a água já vêm calculadas</li>
+            <li><i class="ph-duotone ph-check-circle" aria-hidden="true"></i>Você escolhe o sistema pelo espaço que tem</li>
+            <li><i class="ph-duotone ph-check-circle" aria-hidden="true"></i>Monta uma vez, do jeito certo, e colhe</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- O QUE VEM EM CADA PROJETO -->
-  <section class="sec quadro wrap" aria-labelledby="h-quadro">
-    <svg class="lf" style="--w:76px;top:2%;right:6%;opacity:.3;filter:blur(1.5px);animation-duration:12s;animation-delay:-4s" aria-hidden="true"><use href="#folha-a"/></svg>
-    <svg class="lf lf--d" style="--w:60px;bottom:4%;left:-16px;opacity:.26;filter:blur(2px);animation-duration:10s;animation-delay:-1s" aria-hidden="true"><use href="#folha-b"/></svg>
-    <div class="quadro__topo">
-      <h2 id="h-quadro" class="rv">Dentro de cada projeto</h2>
-      <p class="rv" style="--i:1">Tudo desenhado e medido, para você imprimir ou abrir no celular na hora de montar.</p>
+  <!-- DENTRO DE CADA PROJETO -->
+  <section class="sec dentro wrap" aria-labelledby="h-dentro">
+    <svg class="lf" style="--w:76px;top:4%;left:2%;opacity:.3;filter:blur(1.5px);animation-duration:12s;animation-delay:-4s" aria-hidden="true"><use href="#folha-a"/></svg>
+    <div class="topo-sec rv">
+      <h2 id="h-dentro">O que vem em cada projeto</h2>
+      <p>Cada projeto é uma ficha completa. Você abre no celular ou imprime e monta olhando.</p>
     </div>
-    <div class="quadro__grid">
-      <div class="t card rv"><span class="medal"><i class="ph-duotone ph-ruler"></i></span><h3>Medidas exatas</h3><p>Comprimento de cada cano e distância entre os furos.</p></div>
-      <div class="t card rv" style="--i:1"><span class="medal medal--agua"><i class="ph-duotone ph-list-checks"></i></span><h3>Lista de materiais</h3><p>Peça por peça, para levar na loja de construção.</p></div>
-      <figure class="t t--foto t--alta rv" style="--i:2"><img src="assets/img/nft-caseiro.webp" width="1067" height="1600" alt="Dois sistemas NFT caseiros de cano branco montados num quintal, com mudas nos furos" loading="lazy" decoding="async"><figcaption><i class="ph-duotone ph-pipe"></i>NFT de quintal</figcaption></figure>
-      <div class="t card rv" style="--i:3"><span class="medal"><i class="ph-duotone ph-scissors"></i></span><h3>Plano de corte</h3><p>Onde serrar e onde furar, sem desperdiçar cano.</p></div>
-      <figure class="t t--foto rv"><img src="assets/img/conexao-nft.webp" width="1600" height="1067" alt="Mãos encaixando a conexão de rosca da mangueira no cano do sistema" loading="lazy" decoding="async"><figcaption><i class="ph-duotone ph-wrench"></i>Cada conexão mostrada</figcaption></figure>
-      <div class="t card rv" style="--i:1"><span class="medal medal--agua"><i class="ph-duotone ph-angle"></i></span><h3>Inclinação certa</h3><p>O caimento que faz a água correr sem empoçar.</p></div>
-      <div class="t card rv" style="--i:2"><span class="medal"><i class="ph-duotone ph-drop-half-bottom"></i></span><h3>Bomba e reservatório</h3><p>O tamanho de cada um para o número de pés.</p></div>
-      <figure class="t t--foto t--alta rv" style="--i:3"><img src="assets/img/torre-vertical.webp" width="1200" height="1600" alt="Torre vertical de hidroponia carregada de alfaces roxas" loading="lazy" decoding="async"><figcaption><i class="ph-duotone ph-buildings"></i>Torre vertical</figcaption></figure>
-      <div class="t card rv"><span class="medal medal--agua"><i class="ph-duotone ph-steps"></i></span><h3>Passo a passo visual</h3><p>A montagem em ordem, desenho por desenho.</p></div>
-      <div class="t card rv" style="--i:1"><span class="medal"><i class="ph-duotone ph-arrows-clockwise"></i></span><h3>Rotina da água</h3><p>Quando completar, trocar e limpar o sistema.</p></div>
+    <div class="dentro__grid">
+      <div class="dentro__ficha rv"><svg class="ficha-svg" viewBox="0 0 440 560" role="img" aria-label="Exemplo de página de projeto com desenho medido, lista de materiais e etapas de montagem"><rect x="0" y="0" width="440" height="560" rx="22" fill="#FFFFFF"/><rect x="0" y="0" width="440" height="72" rx="22" fill="#19392C"/><rect x="0" y="50" width="440" height="22" fill="#19392C"/><text x="28" y="34" fill="#AEDD5B" font-family="Gabarito,sans-serif" font-weight="700" font-size="14">Projeto 12</text><text x="28" y="56" fill="#FFFFFF" font-family="Gabarito,sans-serif" font-weight="900" font-size="20">NFT de 6 pés para varanda</text><rect x="22" y="92" width="396" height="196" rx="14" fill="#F3F7F4"/><g transform="translate(96 96) scale(.62)"><ellipse cx="200" cy="284" rx="170" ry="9" fill="#19392C" opacity=".12"/><rect x="78" y="176" width="13" height="104" rx="4" fill="url(#g-escuro)"/><rect x="309" y="176" width="13" height="104" rx="4" fill="url(#g-escuro)"/><rect x="150" y="220" width="100" height="60" rx="12" fill="url(#g-azul)"/><rect x="150" y="220" width="100" height="12" rx="6" fill="#8BCFF5"/><path d="M168 222 C150 200 92 214 60 190" stroke="#1F7A7C" stroke-width="5" fill="none" stroke-linecap="round"/><rect x="40" y="150" width="320" height="36" rx="18" fill="url(#g-cano)" stroke="#C9D4D7"/><rect x="34" y="147" width="16" height="42" rx="7" fill="#D5DEE1"/><rect x="350" y="147" width="16" height="42" rx="7" fill="#D5DEE1"/><use href="#copinho" x="56" y="140" width="34" height="26"/><use href="#alface" x="38" y="72" width="70" height="58"/><use href="#copinho" x="106" y="140" width="34" height="26"/><use href="#alface" x="88" y="72" width="70" height="58"/><use href="#copinho" x="156" y="140" width="34" height="26"/><use href="#alface" x="138" y="72" width="70" height="58"/><use href="#copinho" x="206" y="140" width="34" height="26"/><use href="#alface" x="188" y="72" width="70" height="58"/><use href="#copinho" x="256" y="140" width="34" height="26"/><use href="#alface" x="238" y="72" width="70" height="58"/><use href="#copinho" x="306" y="140" width="34" height="26"/><use href="#alface" x="288" y="72" width="70" height="58"/></g><g stroke="#15A3A5" stroke-width="1.6" fill="none"><path d="M121 274 H319"/><path d="M121 268 V280 M319 268 V280"/></g><rect x="180" y="264" width="80" height="20" rx="10" fill="#15A3A5"/><text x="220" y="278" text-anchor="middle" fill="#FFFFFF" font-family="Gabarito,sans-serif" font-weight="700" font-size="12">120 cm</text><rect x="36" y="104" width="112" height="22" rx="11" fill="#FFFFFF" stroke="#15A3A5"/><text x="92" y="119" text-anchor="middle" fill="#0E6B6D" font-family="Gabarito,sans-serif" font-weight="700" font-size="11">furo a cada 20 cm</text><text x="28" y="320" fill="#19392C" font-family="Gabarito,sans-serif" font-weight="900" font-size="15">Lista de materiais</text><rect x="28" y="340" width="14" height="14" rx="4" fill="#EAF5DA" stroke="#88C63F"/><path d="M31 347 l3 3 5 -6" stroke="#4F8A1F" stroke-width="2" fill="none" stroke-linecap="round"/><text x="52" y="352" fill="#3A5547" font-family="Gabarito,sans-serif" font-weight="500" font-size="13">Cano PVC 75 mm</text><text x="232" y="352" text-anchor="end" fill="#19392C" font-family="Gabarito,sans-serif" font-weight="700" font-size="13">1,2 m</text><rect x="28" y="366" width="14" height="14" rx="4" fill="#EAF5DA" stroke="#88C63F"/><path d="M31 373 l3 3 5 -6" stroke="#4F8A1F" stroke-width="2" fill="none" stroke-linecap="round"/><text x="52" y="378" fill="#3A5547" font-family="Gabarito,sans-serif" font-weight="500" font-size="13">Tampa 75 mm</text><text x="232" y="378" text-anchor="end" fill="#19392C" font-family="Gabarito,sans-serif" font-weight="700" font-size="13">2 un.</text><rect x="28" y="392" width="14" height="14" rx="4" fill="#EAF5DA" stroke="#88C63F"/><path d="M31 399 l3 3 5 -6" stroke="#4F8A1F" stroke-width="2" fill="none" stroke-linecap="round"/><text x="52" y="404" fill="#3A5547" font-family="Gabarito,sans-serif" font-weight="500" font-size="13">Copinho para muda</text><text x="232" y="404" text-anchor="end" fill="#19392C" font-family="Gabarito,sans-serif" font-weight="700" font-size="13">6 un.</text><rect x="28" y="418" width="14" height="14" rx="4" fill="#EAF5DA" stroke="#88C63F"/><path d="M31 425 l3 3 5 -6" stroke="#4F8A1F" stroke-width="2" fill="none" stroke-linecap="round"/><text x="52" y="430" fill="#3A5547" font-family="Gabarito,sans-serif" font-weight="500" font-size="13">Bomba 300 L/h</text><text x="232" y="430" text-anchor="end" fill="#19392C" font-family="Gabarito,sans-serif" font-weight="700" font-size="13">1 un.</text><rect x="28" y="444" width="14" height="14" rx="4" fill="#EAF5DA" stroke="#88C63F"/><path d="M31 451 l3 3 5 -6" stroke="#4F8A1F" stroke-width="2" fill="none" stroke-linecap="round"/><text x="52" y="456" fill="#3A5547" font-family="Gabarito,sans-serif" font-weight="500" font-size="13">Mangueira 1/2"</text><text x="232" y="456" text-anchor="end" fill="#19392C" font-family="Gabarito,sans-serif" font-weight="700" font-size="13">1,5 m</text><text x="262" y="320" fill="#19392C" font-family="Gabarito,sans-serif" font-weight="900" font-size="15">Montagem</text><rect x="262" y="336" width="154" height="36" rx="10" fill="#F3F7F4"/><circle cx="282" cy="354" r="11" fill="#88C63F"/><text x="282" y="358" text-anchor="middle" fill="#19392C" font-family="Gabarito,sans-serif" font-weight="900" font-size="12">1</text><text x="302" y="359" fill="#19392C" font-family="Gabarito,sans-serif" font-weight="700" font-size="13">Cortar</text><rect x="262" y="380" width="154" height="36" rx="10" fill="#F3F7F4"/><circle cx="282" cy="398" r="11" fill="#88C63F"/><text x="282" y="402" text-anchor="middle" fill="#19392C" font-family="Gabarito,sans-serif" font-weight="900" font-size="12">2</text><text x="302" y="403" fill="#19392C" font-family="Gabarito,sans-serif" font-weight="700" font-size="13">Furar</text><rect x="262" y="424" width="154" height="36" rx="10" fill="#F3F7F4"/><circle cx="282" cy="442" r="11" fill="#88C63F"/><text x="282" y="446" text-anchor="middle" fill="#19392C" font-family="Gabarito,sans-serif" font-weight="900" font-size="12">3</text><text x="302" y="447" fill="#19392C" font-family="Gabarito,sans-serif" font-weight="700" font-size="13">Montar</text><rect x="22" y="486" width="396" height="50" rx="12" fill="#EAF5DA"/><text x="40" y="516" fill="#2C6B45" font-family="Gabarito,sans-serif" font-weight="700" font-size="13">Dica: deixe 2% de caimento para a água correr.</text></svg></div>
+      <ul class="dentro__lista">
+        <li class="item rv"><span class="medal medal--sm"><i class="ph-duotone ph-ruler"></i></span><div><h3>Desenho com as medidas</h3><p>O tamanho de cada cano e a distância entre os furos.</p></div></li>
+        <li class="item rv" style="--i:1"><span class="medal medal--sm medal--agua"><i class="ph-duotone ph-list-checks"></i></span><div><h3>Lista de materiais</h3><p>Peça por peça, com a quantidade, para levar na loja.</p></div></li>
+        <li class="item rv" style="--i:2"><span class="medal medal--sm"><i class="ph-duotone ph-scissors"></i></span><div><h3>Onde cortar e furar</h3><p>Sem desperdiçar cano e sem errar o furo.</p></div></li>
+        <li class="item rv"><span class="medal medal--sm medal--agua"><i class="ph-duotone ph-drop-half-bottom"></i></span><div><h3>Bomba e caixa d'água certas</h3><p>O tamanho de cada uma para a quantidade de plantas.</p></div></li>
+        <li class="item rv" style="--i:1"><span class="medal medal--sm"><i class="ph-duotone ph-steps"></i></span><div><h3>Montagem em etapas</h3><p>Um desenho para cada passo, na ordem certa.</p></div></li>
+        <li class="item rv" style="--i:2"><span class="medal medal--sm medal--agua"><i class="ph-duotone ph-arrows-clockwise"></i></span><div><h3>Cuidados com a água</h3><p>Quando completar, trocar e limpar o sistema.</p></div></li>
+      </ul>
     </div>
   </section>
 
   <!-- BÔNUS -->
   <section class="sec bonus wrap" id="bonus" aria-labelledby="h-bonus">
-    <svg class="lf" style="--w:84px;top:8%;right:2%;opacity:.3;filter:blur(1.5px);animation-duration:13s;animation-delay:-8s" aria-hidden="true"><use href="#folha-b"/></svg>
-    <figure class="bonus__foto rv"><img src="assets/img/hidroponia-casa.webp" width="1600" height="1200" alt="Agricultor segurando uma bandeja de mudas pronta para ir ao sistema hidropônico" loading="lazy" decoding="async"></figure>
-    <div class="bonus__txt">
-      <h2 id="h-bonus" class="rv">6 bônus no plano Completo</h2>
-      <p class="bonus__intro rv" style="--i:1">Os guias que respondem o que os projetos não mostram: por onde começar, o que comprar e o que evitar.</p>
-      <ul>
-        <li class="row rv"><span class="medal medal--sm"><i class="ph-duotone ph-map-trifold"></i></span><div><h3>Roteiro da primeira montagem</h3><p>Do zero até a primeira muda na água, em ordem.</p></div></li>
-        <li class="row rv" style="--i:1"><span class="medal medal--sm medal--agua"><i class="ph-duotone ph-signpost"></i></span><div><h3>Qual sistema escolher</h3><p>Um mapa pelo espaço, pela luz e por quanto você quer colher.</p></div></li>
-        <li class="row rv"><span class="medal medal--sm"><i class="ph-duotone ph-toolbox"></i></span><div><h3>Ferramentas da montagem</h3><p>O que ter na mão antes de cortar o primeiro cano.</p></div></li>
-        <li class="row rv" style="--i:1"><span class="medal medal--sm medal--agua"><i class="ph-duotone ph-shopping-cart"></i></span><div><h3>Lista de compras pronta</h3><p>Para conferir na loja e não voltar por causa de uma peça.</p></div></li>
-        <li class="row rv"><span class="medal medal--sm"><i class="ph-duotone ph-warning"></i></span><div><h3>7 erros de quem começa</h3><p>O que faz a muda amarelar e como evitar cada um.</p></div></li>
-        <li class="row rv" style="--i:1"><span class="medal medal--sm medal--agua"><i class="ph-duotone ph-sparkle"></i></span><div><h3>Limpeza e manutenção</h3><p>Como deixar o sistema limpo entre uma colheita e outra.</p></div></li>
+    <svg class="lf" style="--w:84px;top:6%;right:2%;opacity:.3;filter:blur(1.5px);animation-duration:13s;animation-delay:-8s" aria-hidden="true"><use href="#folha-b"/></svg>
+    <div class="topo-sec rv">
+      <span class="selo-bonus"><i class="ph-duotone ph-gift" aria-hidden="true"></i>Só no plano Completo</span>
+      <h2 id="h-bonus">Você ainda ganha 6 bônus</h2>
+      <p>Os guias que respondem o que todo iniciante pergunta: por onde começar, o que comprar e o que evitar.</p>
+    </div>
+    <div class="bonus__grid">
+      <div class="ph ph--bonus rv" role="img" aria-label="Espaço reservado para a imagem dos bônus">
+        <i class="ph-duotone ph-image" aria-hidden="true"></i>
+        <strong>Adicionar imagem aqui!</strong>
+        <span>Mockup dos 6 bônus (capas dos guias) · 1000 x 1000 px</span>
+      </div>
+      <ul class="bonus__lista">
+        <li class="bonus-card card rv"><span class="medal medal--sm"><i class="ph-duotone ph-map-trifold"></i></span><div><h3>Roteiro da primeira montagem</h3><p>Do zero até a primeira muda na água, em ordem.</p></div></li>
+        <li class="bonus-card card rv" style="--i:1"><span class="medal medal--sm medal--agua"><i class="ph-duotone ph-signpost"></i></span><div><h3>Qual sistema escolher</h3><p>Um mapa pelo espaço, pela luz e por quanto quer colher.</p></div></li>
+        <li class="bonus-card card rv"><span class="medal medal--sm"><i class="ph-duotone ph-toolbox"></i></span><div><h3>Ferramentas da montagem</h3><p>O que ter na mão antes de cortar o primeiro cano.</p></div></li>
+        <li class="bonus-card card rv" style="--i:1"><span class="medal medal--sm medal--agua"><i class="ph-duotone ph-shopping-cart"></i></span><div><h3>Lista de compras pronta</h3><p>Para conferir na loja e não voltar por causa de uma peça.</p></div></li>
+        <li class="bonus-card card rv"><span class="medal medal--sm"><i class="ph-duotone ph-warning"></i></span><div><h3>7 erros de quem começa</h3><p>O que faz a muda amarelar e como evitar cada um.</p></div></li>
+        <li class="bonus-card card rv" style="--i:1"><span class="medal medal--sm medal--agua"><i class="ph-duotone ph-sparkle"></i></span><div><h3>Limpeza e manutenção</h3><p>Como manter o sistema limpo entre uma colheita e outra.</p></div></li>
       </ul>
     </div>
   </section>
 
   <!-- PLANOS -->
-  <section class="sec planos wrap" id="planos" aria-labelledby="h-planos">
-    <svg class="lf" style="--w:72px;top:4%;left:4%;opacity:.3;filter:blur(1.5px);animation-duration:11s;animation-delay:-3s" aria-hidden="true"><use href="#folha-a"/></svg>
-    <svg class="lf lf--d" style="--w:100px;bottom:6%;right:-30px;opacity:.24;filter:blur(3px);animation-duration:14s;animation-delay:-9s" aria-hidden="true"><use href="#folha-b"/></svg>
-    <div class="planos__topo">
-      <h2 id="h-planos" class="rv">Escolha seu plano</h2>
-      <p class="rv" style="--i:1">Pagamento único. O acesso chega no seu e-mail assim que o pagamento é aprovado.</p>
-    </div>
-    <div class="planos__grid">
-      <article class="plano plano--1 rv" style="--i:1" aria-labelledby="h-p1">
-        <div class="plano__cabeca"><h3 id="h-p1">Essencial</h3><p>Para começar com um sistema simples</p></div>
-        <p class="preco"><span class="preco__moeda">R$</span>27<span class="preco__cent">,90</span></p>
-        <p class="preco__vez">pagamento único</p>
-        <ul>
-          <li><i class="ic ph-bold ph-check" aria-hidden="true"></i>6 projetos de entrada: Kratky, caixa flutuante e NFT inicial</li>
-          <li><i class="ic ph-bold ph-check" aria-hidden="true"></i>Lista de materiais e medidas</li>
-          <li><i class="ic ph-bold ph-check" aria-hidden="true"></i>Passo a passo visual da montagem</li>
-          <li class="nao"><i class="ic ic--nao ph-bold ph-minus" aria-hidden="true"></i>Sem os 6 bônus</li>
-        </ul>
-        <a class="btn btn--claro btn--bloco" href="#planos" data-link="checkoutEssencial" data-btn="plano-essencial"><span>Quero o Essencial</span><i class="btn__ic ph-bold ph-arrow-right" aria-hidden="true"></i></a>
-      </article>
-      <article class="plano plano--2 rv" style="--i:2" aria-labelledby="h-p2">
-        <span class="plano__selo"><i class="ph-duotone ph-star"></i>O mais escolhido</span>
-        <div class="plano__cabeca"><h3 id="h-p2">Completo + 6 bônus</h3><p>Todos os projetos, do pote à horta completa</p></div>
-        <p class="preco"><span class="preco__moeda">R$</span>47<span class="preco__cent">,90</span></p>
-        <p class="preco__vez">pagamento único, acesso vitalício</p>
-        <ul>
-          <li><i class="ic ph-bold ph-check" aria-hidden="true"></i>Mais de 40 projetos visuais completos</li>
-          <li><i class="ic ph-bold ph-check" aria-hidden="true"></i>Materiais, plano de corte e medidas de cada um</li>
-          <li><i class="ic ph-bold ph-check" aria-hidden="true"></i>Passo a passo visual da montagem</li>
-          <li><i class="ic ph-bold ph-check" aria-hidden="true"></i>Os 6 bônus</li>
-          <li><i class="ic ph-bold ph-check" aria-hidden="true"></i>Projetos novos sem custo</li>
-          <li><i class="ic ph-bold ph-check" aria-hidden="true"></i>Suporte com prioridade</li>
-        </ul>
-        <a class="btn btn--folha btn--bloco" href="#planos" data-link="checkoutCompleto" data-btn="plano-completo"><span>Quero o Completo</span><i class="btn__ic ph-bold ph-arrow-right" aria-hidden="true"></i></a>
-        <p class="plano__seguro"><i class="ph-duotone ph-lock-key" aria-hidden="true"></i>Pagamento seguro · Pix ou cartão</p>
-      </article>
+  <section class="sec planos" id="planos" aria-labelledby="h-planos">
+    <svg class="lf lf--claro" style="--w:110px;top:8%;left:3%;opacity:.08;filter:blur(1.5px);animation-duration:11s;animation-delay:-3s" aria-hidden="true"><use href="#folha-a"/></svg>
+    <svg class="lf lf--claro" style="--w:70px;bottom:10%;right:4%;opacity:.1;filter:blur(2px);animation-duration:14s;animation-delay:-9s" aria-hidden="true"><use href="#folha-b"/></svg>
+    <div class="wrap">
+      <div class="topo-sec topo-sec--claro rv">
+        <h2 id="h-planos">Escolha seu plano</h2>
+        <p>Pagamento único, sem mensalidade. O acesso chega no seu e-mail assim que o pagamento é aprovado.</p>
+      </div>
+      <div class="planos__grid">
+        <article class="plano plano--1 rv" aria-labelledby="h-p1">
+          <div class="plano__cabeca"><span class="plano__ic"><i class="ph-duotone ph-plant"></i></span><div><h3 id="h-p1">Essencial</h3><p>Para montar o primeiro sistema</p></div></div>
+          <div class="plano__preco"><p class="preco"><span class="preco__moeda">R$</span>27<span class="preco__cent">,90</span></p><p class="preco__nota">pagamento único · R$ 4,65 por projeto</p></div>
+          <ul>
+            <li><i class="ok ph-bold ph-check" aria-hidden="true"></i>6 projetos para começar</li>
+            <li><i class="ok ph-bold ph-check" aria-hidden="true"></i>Desenhos com as medidas</li>
+            <li><i class="ok ph-bold ph-check" aria-hidden="true"></i>Lista de materiais</li>
+            <li><i class="ok ph-bold ph-check" aria-hidden="true"></i>Montagem passo a passo</li>
+            <li class="nao"><i class="ok ok--nao ph-bold ph-x" aria-hidden="true"></i>Sem os 6 bônus</li>
+            <li class="nao"><i class="ok ok--nao ph-bold ph-x" aria-hidden="true"></i>Sem os projetos novos</li>
+          </ul>
+          <a class="btn btn--escuro btn--bloco" href="#planos" data-link="checkoutEssencial" data-btn="plano-essencial"><span>Quero o Essencial</span><i class="btn__ic ph-bold ph-arrow-right" aria-hidden="true"></i></a>
+        </article>
+        <article class="plano plano--2 rv" style="--i:1" aria-labelledby="h-p2">
+          <span class="plano__fita"><i class="ph-fill ph-star" aria-hidden="true"></i>O mais escolhido</span>
+          <div class="plano__cabeca"><span class="plano__ic plano__ic--claro"><i class="ph-duotone ph-crown-simple"></i></span><div><h3 id="h-p2">Completo + 6 bônus</h3><p>Todos os projetos, do pote à horta completa</p></div></div>
+          <div class="plano__preco"><p class="preco"><span class="preco__moeda">R$</span>47<span class="preco__cent">,90</span></p><p class="preco__nota">pagamento único · menos de R$ 1,20 por projeto</p></div>
+          <ul>
+            <li><i class="ok ph-bold ph-check" aria-hidden="true"></i><b>Mais de 40 projetos</b> completos</li>
+            <li><i class="ok ph-bold ph-check" aria-hidden="true"></i>Desenhos, medidas e plano de corte</li>
+            <li><i class="ok ph-bold ph-check" aria-hidden="true"></i>Lista de materiais de cada um</li>
+            <li><i class="ok ph-bold ph-check" aria-hidden="true"></i>Montagem passo a passo</li>
+            <li><i class="ok ph-bold ph-check" aria-hidden="true"></i><b>Os 6 bônus</b> inclusos</li>
+            <li><i class="ok ph-bold ph-check" aria-hidden="true"></i>Projetos novos sem pagar a mais</li>
+            <li><i class="ok ph-bold ph-check" aria-hidden="true"></i>Suporte com prioridade</li>
+          </ul>
+          <a class="btn btn--grande btn--bloco" href="#planos" data-link="checkoutCompleto" data-btn="plano-completo"><span>Quero o Completo</span><i class="btn__ic ph-bold ph-arrow-right" aria-hidden="true"></i></a>
+          <p class="plano__seguro"><i class="ph-duotone ph-lock-key" aria-hidden="true"></i>Compra segura · Pix ou cartão</p>
+        </article>
+      </div>
     </div>
   </section>
 
   <!-- GARANTIA -->
   <section class="sec garantia wrap" aria-labelledby="h-gar">
     <div class="garantia__card card rv">
-      <span class="medal medal--grande"><i class="ph-duotone ph-shield-check"></i></span>
-      <h2 id="h-gar">15 dias para testar sem risco</h2>
-      <p>Abra os projetos, escolha o seu e comece a montar. Se em 15 dias achar que não é para você, peça o reembolso e devolvemos todo o valor, sem pergunta.</p>
+      <div class="garantia__selo"><svg class="selo-svg" viewBox="0 0 220 220" role="img" aria-label="Selo de garantia de 15 dias"><defs><path id="selo-arco" d="M110 110 m-78 0 a78 78 0 1 1 156 0 a78 78 0 1 1 -156 0"/><radialGradient id="g-selo" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#7BE59B"/><stop offset=".6" stop-color="#22C55E"/><stop offset="1" stop-color="#148A40"/></radialGradient></defs><circle cx="110" cy="110" r="104" fill="#19392C"/><circle cx="110" cy="110" r="94" fill="none" stroke="#AEDD5B" stroke-width="2" stroke-dasharray="3 6"/><text fill="#AEDD5B" font-family="Gabarito,sans-serif" font-weight="700" font-size="15" letter-spacing="4"><textPath href="#selo-arco" startOffset="0">GARANTIA INCONDICIONAL · RISCO ZERO ·</textPath></text><circle cx="110" cy="110" r="62" fill="url(#g-selo)"/><circle cx="110" cy="110" r="62" fill="none" stroke="#FFFFFF" stroke-opacity=".35" stroke-width="2"/><text x="110" y="118" text-anchor="middle" fill="#0E2A1C" font-family="Gabarito,sans-serif" font-weight="900" font-size="54" letter-spacing="-2">15</text><text x="110" y="142" text-anchor="middle" fill="#0E2A1C" font-family="Gabarito,sans-serif" font-weight="900" font-size="16">DIAS</text></svg></div>
+      <div class="garantia__txt">
+        <h2 id="h-gar">15 dias para testar sem risco</h2>
+        <p>Abra os projetos, escolha o seu e comece a montar. Se em 15 dias achar que não é para você, é só pedir o reembolso. Devolvemos todo o valor, sem perguntas.</p>
+      </div>
     </div>
-    <figure class="garantia__foto rv" style="--i:2"><img src="assets/img/plantando-mudas.webp" width="1600" height="1067" alt="Homem colocando mudas de couve nos copinhos de um sistema hidropônico no quintal" loading="lazy" decoding="async"></figure>
   </section>
 
   <!-- DÚVIDAS -->
   <section class="sec duvidas wrap" id="duvidas" aria-labelledby="h-duv">
-    <svg class="lf" style="--w:64px;top:10%;right:8%;opacity:.3;filter:blur(1.5px);animation-duration:12s;animation-delay:-5s" aria-hidden="true"><use href="#folha-b"/></svg>
-    <div class="duvidas__topo">
-      <h2 id="h-duv" class="rv">Dúvidas frequentes</h2>
-      <p class="rv" style="--i:1">Ficou alguma pergunta? Fale com o suporte pelo WhatsApp no rodapé.</p>
+    <svg class="lf" style="--w:64px;top:4%;right:6%;opacity:.3;filter:blur(1.5px);animation-duration:12s;animation-delay:-5s" aria-hidden="true"><use href="#folha-b"/></svg>
+    <div class="topo-sec rv">
+      <h2 id="h-duv">Dúvidas frequentes</h2>
+      <p>Ficou alguma pergunta? Fale com o suporte pelo WhatsApp no fim da página.</p>
     </div>
     <div class="fichas">
-      <div class="ficha card rv"><button class="ficha__q" aria-expanded="true" aria-controls="r1" id="q1"><span>Preciso saber alguma coisa de hidroponia antes?</span><i class="ficha__mais ph-bold ph-plus" aria-hidden="true"></i></button><div class="ficha__r" id="r1" role="region" aria-labelledby="q1"><p>Não. Os projetos começam do zero, com cada peça mostrada em desenho, a medida escrita e a ordem de montagem. Se você sabe usar uma serra e uma furadeira simples, consegue.</p></div></div>
-      <div class="ficha card rv"><button class="ficha__q" aria-expanded="false" aria-controls="r2" id="q2"><span>Moro em apartamento. Funciona?</span><i class="ficha__mais ph-bold ph-plus" aria-hidden="true"></i></button><div class="ficha__r" id="r2" role="region" aria-labelledby="q2" hidden><p>Funciona. Vários sistemas cabem num peitoril de janela, numa bancada ou num canto da varanda. O guia de escolha ajuda a achar o que cabe no seu espaço e na luz que ele recebe.</p></div></div>
-      <div class="ficha card rv"><button class="ficha__q" aria-expanded="false" aria-controls="r3" id="q3"><span>O que eu recebo exatamente?</span><i class="ficha__mais ph-bold ph-plus" aria-hidden="true"></i></button><div class="ficha__r" id="r3" role="region" aria-labelledby="q3" hidden><p>Projetos digitais em PDF com desenho, medidas, lista de materiais, plano de corte e montagem passo a passo. Não é um kit físico: você compra as peças na loja de construção da sua cidade.</p></div></div>
-      <div class="ficha card rv"><button class="ficha__q" aria-expanded="false" aria-controls="r4" id="q4"><span>Como recebo o material?</span><i class="ficha__mais ph-bold ph-plus" aria-hidden="true"></i></button><div class="ficha__r" id="r4" role="region" aria-labelledby="q4" hidden><p>Assim que o pagamento é aprovado, o acesso chega no seu e-mail. No Pix é na hora; no cartão, em poucos minutos. Você abre no celular ou no computador.</p></div></div>
-      <div class="ficha card rv"><button class="ficha__q" aria-expanded="false" aria-controls="r5" id="q5"><span>E se eu não gostar?</span><i class="ficha__mais ph-bold ph-plus" aria-hidden="true"></i></button><div class="ficha__r" id="r5" role="region" aria-labelledby="q5" hidden><p>Você tem 15 dias para pedir o dinheiro de volta, sem precisar explicar o motivo. Basta responder o e-mail de acesso.</p></div></div>
-      <div class="ficha card rv"><button class="ficha__q" aria-expanded="false" aria-controls="r6" id="q6"><span>Qual a diferença entre o Essencial e o Completo?</span><i class="ficha__mais ph-bold ph-plus" aria-hidden="true"></i></button><div class="ficha__r" id="r6" role="region" aria-labelledby="q6" hidden><p>O Essencial traz 6 projetos de entrada para montar o primeiro sistema. O Completo traz todos os projetos, do pote à horta completa, os 6 bônus, projetos novos sem custo e suporte com prioridade.</p></div></div>
+      <div class="ficha card aberta rv"><h3><button class="ficha__q" aria-expanded="true" aria-controls="r1" id="q1"><span>Preciso saber alguma coisa de hidroponia antes?</span><i class="ficha__mais ph-bold ph-plus" aria-hidden="true"></i></button></h3><div class="ficha__r" id="r1" role="region" aria-labelledby="q1"><div><p>Não. Os projetos começam do zero, com cada peça mostrada em desenho, a medida escrita e a ordem de montagem. Se você sabe usar uma serra e uma furadeira simples, consegue.</p></div></div></div>
+      <div class="ficha card rv"><h3><button class="ficha__q" aria-expanded="false" aria-controls="r2" id="q2"><span>Moro em apartamento. Funciona?</span><i class="ficha__mais ph-bold ph-plus" aria-hidden="true"></i></button></h3><div class="ficha__r" id="r2" role="region" aria-labelledby="q2"><div><p>Funciona. Vários projetos cabem numa janela, numa bancada ou num canto da varanda. O guia de escolha ajuda a achar o que cabe no seu espaço e na luz que ele recebe.</p></div></div></div>
+      <div class="ficha card rv"><h3><button class="ficha__q" aria-expanded="false" aria-controls="r3" id="q3"><span>O que eu recebo exatamente?</span><i class="ficha__mais ph-bold ph-plus" aria-hidden="true"></i></button></h3><div class="ficha__r" id="r3" role="region" aria-labelledby="q3"><div><p>Projetos digitais em PDF com desenho, medidas, lista de materiais, onde cortar e montagem passo a passo. Não é um kit físico: você compra as peças na loja de material de construção da sua cidade.</p></div></div></div>
+      <div class="ficha card rv"><h3><button class="ficha__q" aria-expanded="false" aria-controls="r4" id="q4"><span>Como recebo o material?</span><i class="ficha__mais ph-bold ph-plus" aria-hidden="true"></i></button></h3><div class="ficha__r" id="r4" role="region" aria-labelledby="q4"><div><p>Assim que o pagamento é aprovado, o acesso chega no seu e-mail. No Pix é na hora; no cartão, em poucos minutos. Você abre no celular ou no computador.</p></div></div></div>
+      <div class="ficha card rv"><h3><button class="ficha__q" aria-expanded="false" aria-controls="r5" id="q5"><span>E se eu não gostar?</span><i class="ficha__mais ph-bold ph-plus" aria-hidden="true"></i></button></h3><div class="ficha__r" id="r5" role="region" aria-labelledby="q5"><div><p>Você tem 15 dias para pedir o dinheiro de volta, sem precisar explicar o motivo. Basta responder o e-mail de acesso.</p></div></div></div>
+      <div class="ficha card rv"><h3><button class="ficha__q" aria-expanded="false" aria-controls="r6" id="q6"><span>Qual a diferença entre o Essencial e o Completo?</span><i class="ficha__mais ph-bold ph-plus" aria-hidden="true"></i></button></h3><div class="ficha__r" id="r6" role="region" aria-labelledby="q6"><div><p>O Essencial traz 6 projetos para montar o primeiro sistema. O Completo traz todos os mais de 40 projetos, os 6 bônus, os projetos novos que forem lançados e suporte com prioridade.</p></div></div></div>
+      
+    </div>
+  </section>
+
+  <!-- CHAMADA FINAL -->
+  <section class="sec final wrap" aria-labelledby="h-final">
+    <div class="final__card rv">
+      <svg class="lf lf--claro" style="--w:90px;top:-10px;right:6%;opacity:.12;filter:blur(1px)" aria-hidden="true"><use href="#folha-a"/></svg>
+      <h2 id="h-final">Comece sua horta com o projeto certo</h2>
+      <p>Escolha o plano, receba o acesso agora e monte ainda esta semana.</p>
+      <a class="btn btn--grande" href="#planos" data-btn="final-quero-comecar"><span>Ver os planos</span><i class="btn__ic ph-bold ph-arrow-up" aria-hidden="true"></i></a>
     </div>
   </section>
 </main>
 
 <footer class="rodape">
   <svg class="onda" viewBox="0 0 1200 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0 12 Q75 0 150 12 T300 12 T450 12 T600 12 T750 12 T900 12 T1050 12 T1200 12 V24 H0 Z"/></svg>
-  <svg class="lf lf--claro" style="--w:110px;top:18%;right:4%;opacity:.08;filter:blur(1px);animation-duration:13s" aria-hidden="true"><use href="#folha-a"/></svg>
-  <div class="rodape__marca">
-    <svg viewBox="0 0 120 120" aria-hidden="true"><use href="#logo"/></svg>
-    <p>plantar <span>em casa</span></p>
-  </div>
-  <div class="rodape__cols">
-    <div><h3>Página</h3><ul><li><a href="#sistemas">Projetos</a></li><li><a href="#bonus">Bônus</a></li><li><a href="#planos">Planos</a></li><li><a href="#duvidas">Dúvidas</a></li></ul></div>
-    <div><h3>Legal</h3><ul><li><a href="politica-de-privacidade.html">Política de privacidade</a></li><li><a href="politica-de-cookies.html">Política de cookies</a></li><li><button type="button" data-cookie-settings>Preferências de cookies</button></li></ul></div>
-    <div><h3>Suporte</h3><ul><li><a href="mailto:[EMAIL_SUPORTE]">[EMAIL_SUPORTE]</a></li><li><a href="#" data-wa data-btn="rodape-whatsapp" data-wa-msg="Olá! Comprei o Plantar em Casa e preciso de ajuda com o acesso.">WhatsApp do suporte</a></li></ul></div>
-    <div><h3>Siga</h3><ul><li><a href="#" data-link="instagram">Instagram</a></li></ul></div>
-  </div>
-  <p class="rodape__creditos">Fotos: <a href="https://commons.wikimedia.org/w/index.php?curid=196165066" rel="noopener" target="_blank">Hydroponics Lettuce</a>, MarvinBikolano, <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener license" target="_blank">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/w/index.php?curid=52682207" rel="noopener" target="_blank">Vertical Hydroponics Lettuce</a>, Battledp, <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener license" target="_blank">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/w/index.php?curid=6218932" rel="noopener" target="_blank">2009-03-07 Rix Dobbs&#x27; NFT hydro set-up</a>, Ildar Sagdejev (Specious), <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener license" target="_blank">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/w/index.php?curid=6218951" rel="noopener" target="_blank">2009-03-07 Rix Dobbs planting veggies in hydro system</a>, Ildar Sagdejev (Specious), <a href="https://creativecommons.org/licenses/by-sa/4.0" rel="noopener license" target="_blank">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/w/index.php?curid=147778138" rel="noopener" target="_blank">Hydroponics for Home Growers</a>, Paulina on earth, <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.en/" rel="noopener license" target="_blank">CC0</a>; <a href="https://commons.wikimedia.org/w/index.php?curid=6442491" rel="noopener" target="_blank">2009-03-30 NFT tube hose connection</a>, Ildar Sagdejev (Specious), <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener license" target="_blank">CC BY-SA 4.0</a>. Fotos ilustrativas de sistemas hidropônicos.</p>
-  <div class="rodape__fim">
-    <span>© 2026 Plantar em Casa. Produto digital. O acesso é liberado após a confirmação do pagamento.</span>
-    <span>Este site não tem vínculo com Facebook, Instagram ou outra rede social. Resultados variam conforme espaço, luz e cuidado.</span>
+  <div class="rodape__in">
+    <div class="rodape__marca">
+      <svg viewBox="0 0 120 120" aria-hidden="true"><use href="#logo"/></svg>
+      <p>plantar <span>em casa</span></p>
+    </div>
+    <div class="rodape__cols">
+      <div><h3>Página</h3><ul><li><a href="#projetos">Projetos</a></li><li><a href="#como-funciona">Como funciona</a></li><li><a href="#planos">Planos</a></li><li><a href="#duvidas">Dúvidas</a></li></ul></div>
+      <div><h3>Legal</h3><ul><li><a href="politica-de-privacidade.html">Política de privacidade</a></li><li><a href="politica-de-cookies.html">Política de cookies</a></li><li><button type="button" data-cookie-settings>Preferências de cookies</button></li></ul></div>
+      <div><h3>Suporte</h3><ul><li><a href="mailto:[EMAIL_SUPORTE]">[EMAIL_SUPORTE]</a></li><li><a href="#" data-wa data-btn="rodape-whatsapp" data-wa-msg="Olá! Tenho uma dúvida sobre o Plantar em Casa.">WhatsApp do suporte</a></li></ul></div>
+      <div><h3>Siga</h3><ul><li><a href="#" data-link="instagram">Instagram</a></li></ul></div>
+    </div>
+    <p class="rodape__fim">© 2026 Plantar em Casa. Produto digital. O acesso é liberado após a confirmação do pagamento.</p>
   </div>
 </footer>
 
@@ -329,7 +454,7 @@
     <h2 id="h-saida">Antes de sair: você viu o Completo?</h2>
     <p>Por R$ 20 a mais você leva todos os projetos, do pote à horta completa, e os 6 bônus.</p>
     <div class="saida__acoes">
-      <a class="btn btn--folha" href="#planos" data-link="checkoutCompleto" data-btn="saida-completo"><span>Quero o Completo</span><i class="btn__ic ph-bold ph-arrow-right" aria-hidden="true"></i></a>
+      <a class="btn" href="#planos" data-link="checkoutCompleto" data-btn="saida-completo"><span>Quero o Completo</span><i class="btn__ic ph-bold ph-arrow-right" aria-hidden="true"></i></a>
       <a class="saida__nao" href="#planos" data-link="checkoutEssencial" data-btn="saida-essencial">Prefiro o Essencial de R$ 27,90</a>
     </div>
   </div>
