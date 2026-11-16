@@ -77,6 +77,24 @@
     }
   });
 
+  /* Como acontece: o card no centro da tela define a foto e o nível da pirâmide */
+  var roteiro = document.querySelector("[data-roteiro]");
+  if (roteiro && "IntersectionObserver" in window) {
+    var passos = roteiro.querySelectorAll("[data-passo]");
+    var fotos = roteiro.querySelectorAll("[data-foto]");
+    var niveis = roteiro.querySelectorAll("[data-nivel]");
+    var ativar = function (n) {
+      passos.forEach(function (el) { el.classList.toggle("is-ativo", el.getAttribute("data-passo") === n); });
+      fotos.forEach(function (el) { el.classList.toggle("is-ativo", el.getAttribute("data-foto") === n); });
+      niveis.forEach(function (el) { el.classList.toggle("is-ativo", el.getAttribute("data-nivel") === n); });
+    };
+    ativar("0");
+    var ioR = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) ativar(e.target.getAttribute("data-passo")); });
+    }, { rootMargin: "-45% 0px -45% 0px" });
+    passos.forEach(function (el) { ioR.observe(el); });
+  }
+
   /* Pré-formulário: valida e abre o WhatsApp com as respostas */
   var form = document.querySelector("[data-whats-form]");
   if (form) {
