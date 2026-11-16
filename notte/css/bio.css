@@ -145,3 +145,32 @@
 @media (max-width: 767px) { .bio__monograma { width: 96px; height: 96px; margin-bottom: 16px; } }
 @media (min-width: 768px) { .bio__capa { height: clamp(90px, 16.5vh, 180px); } .bio__col { padding-top: 1.6vh; padding-bottom: 1.6vh; } }
 @media (max-width: 480px) { .bio__col { padding-top: 10px; padding-bottom: calc(8px + env(safe-area-inset-bottom)); } }
+
+/* ---------- Estojo sem foto: veludo com grão, ondas de aroma e cantoneiras douradas ---------- */
+.bio__estojo { padding-top: 40px;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .9 0 0 0 0 .75 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(120% 55% at 50% 0%, rgba(217, 150, 58, .16) 0%, rgba(217, 150, 58, 0) 60%),
+    radial-gradient(90% 50% at 50% 110%, rgba(122, 36, 54, .45) 0%, rgba(122, 36, 54, 0) 70%),
+    linear-gradient(170deg, #261B17 0%, #1B1411 50%, #240C14 100%); }
+.bio__capa { display: none; }
+/* ondas de aroma saindo do monograma */
+.bio__cab { position: relative; }
+.bio__cab::before { content: ""; position: absolute; left: 50%; top: 52px; width: 420px; height: 420px; transform: translate(-50%, -50%); pointer-events: none; z-index: 0;
+  background: repeating-radial-gradient(circle, rgba(241, 196, 126, .16) 0 1px, transparent 1.5px 22px);
+  -webkit-mask-image: radial-gradient(circle, #000 18%, transparent 62%); mask-image: radial-gradient(circle, #000 18%, transparent 62%);
+  animation: ondas 7s ease-in-out infinite alternate; }
+@keyframes ondas { from { transform: translate(-50%, -50%) scale(.96); opacity: .7; } to { transform: translate(-50%, -50%) scale(1.04); opacity: 1; } }
+.bio__cab > * { position: relative; z-index: 1; }
+.bio__monograma { margin-top: 0; padding: 8px; background: radial-gradient(circle at 50% 35%, #2A1F1A, #15100D 70%);
+  box-shadow: 0 0 0 1px rgba(241, 196, 126, .55), 0 0 0 7px rgba(241, 196, 126, .06), 0 16px 34px -14px rgba(0, 0, 0, .95); }
+/* cantoneiras douradas nos 4 cantos da moldura interna */
+.bio__cantos { position: absolute; inset: 9px; pointer-events: none; z-index: 2; --c: rgba(241, 196, 126, .85); --t: 1.5px; --l: 22px;
+  background:
+    linear-gradient(var(--c), var(--c)) top left / var(--l) var(--t) no-repeat, linear-gradient(var(--c), var(--c)) top left / var(--t) var(--l) no-repeat,
+    linear-gradient(var(--c), var(--c)) top right / var(--l) var(--t) no-repeat, linear-gradient(var(--c), var(--c)) top right / var(--t) var(--l) no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom left / var(--l) var(--t) no-repeat, linear-gradient(var(--c), var(--c)) bottom left / var(--t) var(--l) no-repeat,
+    linear-gradient(var(--c), var(--c)) bottom right / var(--l) var(--t) no-repeat, linear-gradient(var(--c), var(--c)) bottom right / var(--t) var(--l) no-repeat; }
+@media (max-width: 480px) { .bio__cantos { inset: 5px; --l: 18px; } .bio__estojo { padding-top: 34px; } .bio__cab::before { top: 48px; } }
+@media (min-width: 768px) { .bio__estojo { padding-top: clamp(24px, 4.2vh, 40px); } .bio__monograma { margin-top: 0; } .bio__cab::before { top: calc(clamp(56px, 10vh, 104px) / 2); } }
+@media (prefers-reduced-motion: reduce) { .bio__cab::before { animation: none; } }

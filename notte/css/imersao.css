@@ -386,3 +386,6 @@
 /* Celular: capa um pouco mais abaixo, livre da barra do topo */
 @media (max-width: 767px) { .hero__capa { inset: clamp(46px, calc(100svh - 690px), 150px) 0 auto 0; } }
 @media (max-width: 767px) and (max-height: 700px) { .hero__capa { inset: 34px 0 auto 0; } }
+/* capa nova do celular (cena vai até ~52% da altura): posição recalibrada */
+@media (max-width: 767px) { .hero__capa { inset: clamp(0px, calc(100svh - 740px), 110px) 0 auto 0; } }
+@media (max-width: 767px) and (max-height: 700px) { .hero__capa { inset: -6px 0 auto 0; } }
