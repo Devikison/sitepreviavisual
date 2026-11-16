@@ -28,7 +28,9 @@
   });
 
   /* Revelação pela rolagem */
-  var alvos = document.querySelectorAll(".rev, .split");
+  // A abertura aparece sempre ao carregar (o botão fica na base da tela e não pode depender da rolagem)
+  document.querySelectorAll(".hero .rev, .hero .split").forEach(function (el) { el.classList.add("is-on"); });
+  var alvos = document.querySelectorAll(".rev:not(.is-on), .split:not(.is-on)");
   if (reduz || !("IntersectionObserver" in window)) {
     alvos.forEach(function (el) { el.classList.add("is-on"); });
   } else {

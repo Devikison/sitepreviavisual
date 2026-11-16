@@ -389,3 +389,16 @@
 /* capa nova do celular (cena vai até ~52% da altura): posição recalibrada */
 @media (max-width: 767px) { .hero__capa { inset: clamp(0px, calc(100svh - 740px), 110px) 0 auto 0; } }
 @media (max-width: 767px) and (max-height: 700px) { .hero__capa { inset: -6px 0 auto 0; } }
+
+/* Celular: bloco da abertura mais alto, botão sempre visível ao carregar */
+@media (max-width: 767px) {
+  .hero { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
+  .hero__capa { inset: clamp(-20px, calc(100svh - 780px), 90px) 0 auto 0; }
+}
+@media (max-width: 767px) and (max-height: 700px) {
+  .hero { padding-bottom: calc(40px + env(safe-area-inset-bottom)); }
+  .hero__capa { inset: -24px 0 auto 0; }
+}
+/* posição da capa pela altura útil e pela largura (a cena cresce com a largura) */
+@media (max-width: 767px) { .hero__capa { inset: clamp(-60px, calc(100svh - 92.4vw - 420px), 110px) 0 auto 0; } }
+@media (max-width: 767px) and (max-height: 700px) { .hero__capa { inset: clamp(-60px, calc(100svh - 92.4vw - 420px), 110px) 0 auto 0; } }
