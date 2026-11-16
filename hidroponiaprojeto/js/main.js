@@ -3,25 +3,9 @@
   "use strict";
   var reduz = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- Barra flutuante: some ao descer depois da 2ª seção, volta ao subir ---------- */
-  var barra = document.getElementById("barra");
-  var marco = document.getElementById("projetos");
-  if (barra && marco) {
-    var ultimo = window.scrollY, pedido = false;
-    var atualiza = function () {
-      pedido = false;
-      var y = window.scrollY;
-      var limite = marco.offsetTop + marco.offsetHeight * 0.35;
-      var desceu = y > ultimo + 4, subiu = y < ultimo - 4;
-      if (y < limite || subiu) barra.classList.remove("oculta");
-      else if (desceu) barra.classList.add("oculta");
-      if (desceu || subiu) ultimo = y;
-    };
-    window.addEventListener("scroll", function () {
-      if (!pedido) { pedido = true; requestAnimationFrame(atualiza); }
-    }, { passive: true });
-    barra.addEventListener("focusin", function () { barra.classList.remove("oculta"); });
-  }
+  /* ---------- Aviso do topo: data de hoje ---------- */
+  var d = new Date(), dd = ("0" + d.getDate()).slice(-2), mm = ("0" + (d.getMonth() + 1)).slice(-2);
+  document.querySelectorAll("[data-hoje]").forEach(function (el) { el.textContent = dd + "/" + mm + "/" + d.getFullYear(); });
 
   /* ---------- Entradas por seção ---------- */
   var itens = document.querySelectorAll(".rv");
