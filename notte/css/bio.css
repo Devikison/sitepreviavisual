@@ -112,3 +112,36 @@
   .elo__seta { width: clamp(30px, 4.6vh, 38px); height: clamp(30px, 4.6vh, 38px); }
   .bio__estojo .bio__rodape { margin-top: clamp(12px, 2.2vh, 22px); padding-top: clamp(10px, 1.8vh, 18px); gap: 6px; font-size: 13px; }
 }
+
+/* ---------- Estojo de referência: capa de foto, monograma como selo e luz percorrendo a borda ---------- */
+.bio__estojo { padding-top: 0; overflow: hidden; }
+.bio__capa { position: relative; margin: 0 -22px; height: clamp(120px, 26vw, 176px); overflow: hidden; border-radius: 27px 27px 0 0; }
+.bio__capa img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; transform: scale(1.04); animation: capaBio 2.4s var(--ease) both; }
+@keyframes capaBio { from { transform: scale(1.12); opacity: 0; } to { transform: scale(1.04); opacity: 1; } }
+.bio__capa::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(36, 26, 22, 0) 30%, rgba(36, 26, 22, .75) 78%, #241A16 100%); }
+.bio__fecho { z-index: 3; }
+.bio__estojo::before { z-index: 2; }
+/* monograma como selo apoiado na borda da capa */
+.bio__monograma { position: relative; z-index: 2; margin-top: -56px; padding: 7px; border-radius: 50%; background: #1C1411;
+  box-shadow: 0 0 0 1px rgba(241, 196, 126, .55), 0 14px 30px -12px rgba(0, 0, 0, .9); }
+/* luz que percorre o contorno, devagar */
+@property --giro { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.bio__estojo::after { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.2px; pointer-events: none; z-index: 3;
+  background: conic-gradient(from var(--giro), transparent 0deg, transparent 290deg, rgba(248, 226, 176, .95) 330deg, transparent 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
+  animation: giro 9s linear infinite; }
+@keyframes giro { to { --giro: 360deg; } }
+@media (prefers-reduced-motion: reduce) { .bio__estojo::after { animation: none; opacity: 0; } }
+@media (max-width: 480px) { .bio__capa { margin: 0 -10px; border-radius: 23px 23px 0 0; } .bio__monograma { margin-top: -52px; } }
+@media (min-width: 768px) {
+  .bio__capa { margin: 0 -18px; height: clamp(84px, 15vh, 160px); }
+  .bio__monograma { margin-top: calc(clamp(56px, 10vh, 104px) * -0.55); }
+}
+.bio__capa { height: clamp(150px, 44vw, 200px); }
+.bio__capa img { object-position: 60% 62%; filter: brightness(1.12) contrast(1.05); }
+.bio__capa::after { background: linear-gradient(180deg, rgba(36, 26, 22, .15) 0%, rgba(36, 26, 22, 0) 25%, rgba(36, 26, 22, 0) 58%, rgba(36, 26, 22, .8) 86%, #241A16 100%); }
+@media (min-width: 768px) { .bio__capa { height: clamp(100px, 19vh, 190px); } }
+.bio__capa { height: clamp(140px, 40vw, 180px); }
+@media (max-width: 767px) { .bio__monograma { width: 96px; height: 96px; margin-bottom: 16px; } }
+@media (min-width: 768px) { .bio__capa { height: clamp(90px, 16.5vh, 180px); } .bio__col { padding-top: 1.6vh; padding-bottom: 1.6vh; } }
+@media (max-width: 480px) { .bio__col { padding-top: 10px; padding-bottom: calc(8px + env(safe-area-inset-bottom)); } }
