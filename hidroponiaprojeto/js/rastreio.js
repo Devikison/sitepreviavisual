@@ -12,8 +12,8 @@
     msgPadrao: "Olá! Vim pelo site e gostaria de mais informações.",
     links: {
       // CHAVE: "url"  -> usado por <a data-link="CHAVE">
-      checkoutEssencial: "",  // [LINK_CHECKOUT_ESSENCIAL] Hotmart/Kiwify
-      checkoutCompleto: "",   // [LINK_CHECKOUT_COMPLETO]
+      checkoutEssencial: "https://pay.cakto.com.br/zxzw88k_1336345",  // Cakto, plano Essencial R$ 27,90
+      checkoutCompleto: "https://pay.cakto.com.br/wumky3s",   // Cakto, plano Completo R$ 47,90
       instagram: ""           // [LINK_INSTAGRAM]
     }
   };
