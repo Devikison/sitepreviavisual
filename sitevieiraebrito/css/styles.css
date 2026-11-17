@@ -626,3 +626,94 @@ h1 em, h2 em, h3 em { color: var(--ouro-esc); }
 .cam li a { font-size: 16.5px; }
 .linhas a { color: #F7F2E8; }
 .consent .btn-gold { color: #3A1A02; }
+
+/* =====================================================================
+   BARRA SUPERIOR flutuante em vidro (estrutura do Couto, acabamento Vieira & Brito)
+   Larga e transparente sobre a capa; ao rolar, encolhe e vira uma
+   placa de vidro tinta com filete dourado, cantos de 14px e sombra.
+   ===================================================================== */
+.topo { position: fixed; inset: 0 0 auto; z-index: 50; height: auto; padding: 14px var(--gut) 0; background: none !important; box-shadow: none !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; pointer-events: none; transition: padding .9s var(--ease); }
+.topo__in { pointer-events: auto; width: min(100%, 1240px); height: auto; min-height: 64px; margin-inline: auto; display: flex; align-items: center; gap: 18px; padding: 8px 10px 8px 18px; border-radius: 14px; border: 1px solid transparent; background: transparent; transition: background .9s var(--ease), border-color .9s var(--ease), box-shadow .9s var(--ease), width .9s var(--ease), padding .9s var(--ease); }
+.topo.is-solid { padding-top: 10px; }
+.topo.is-solid .topo__in { width: min(100%, 1080px); padding: 6px 8px 6px 16px; background: rgba(21, 28, 39, .84); border-color: rgba(226, 198, 144, .3); -webkit-backdrop-filter: blur(22px) saturate(160%); backdrop-filter: blur(22px) saturate(160%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), 0 18px 44px -20px rgba(2, 6, 16, .85); }
+.topo__logo img { height: 42px; transition: height .9s var(--ease); }
+.topo.is-solid .topo__logo img { height: 38px; }
+.nav { margin-inline: auto; gap: 2px; }
+.nav a:not(.selo) { padding: 11px 15px; border-radius: 10px; font: 600 15px/1 var(--sans); letter-spacing: .02em; transition: background .5s var(--ease), color .5s; }
+.nav a:not(.selo)::after { left: 50%; right: auto; width: 18px; margin-left: -9px; bottom: 4px; height: 2px; border-radius: 2px; background: var(--ouro); transform: scaleX(0); }
+.nav a[aria-current="page"] { background: rgba(255, 255, 255, .1); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08); }
+.nav a[aria-current="page"]::after { transform: scaleX(1); }
+@media (hover: hover) { .nav a:not(.selo):hover { background: rgba(255, 255, 255, .08); } .nav a:not(.selo):hover::after { transform: scaleX(1); } }
+.topo__cta { min-height: 46px; font-size: 13px; padding: 0 1.15em; flex: none; }
+.burger { display: none; margin-left: auto; width: 48px; height: 48px; border-radius: 12px; border: 1px solid rgba(226, 198, 144, .45); background: rgba(255, 255, 255, .07); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12); color: var(--claro); }
+.burger span { left: 13px; right: 13px; height: 2px; border-radius: 2px; background: currentColor; transition: transform .7s var(--ease), top .7s var(--ease), opacity .4s; }
+.burger span:nth-child(1) { top: 16px; }
+.burger span:nth-child(2) { top: 22.5px; left: 13px; }
+.burger span:nth-child(3) { top: 29px; left: 19px; }
+.burger[aria-expanded="true"] span { background: var(--ouro-2); left: 13px; }
+.burger[aria-expanded="true"] span:nth-child(1) { top: 22.5px; transform: rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: none; }
+.burger[aria-expanded="true"] span:nth-child(3) { top: 22.5px; transform: rotate(-45deg); }
+
+/* menu do celular: vidro escuro com cards de link em relevo, entrando em cascata */
+.menu { z-index: 45; justify-content: center; gap: 10px; padding: 108px var(--gut) 28px; background: rgba(13, 18, 28, .88); -webkit-backdrop-filter: blur(26px) saturate(150%); backdrop-filter: blur(26px) saturate(150%); transition: opacity .7s var(--ease), visibility .7s; }
+.menu__nav { display: grid; gap: 10px; }
+.menu a.menu__l { display: grid; grid-template-columns: 44px 1fr 22px; align-items: center; gap: 14px; min-height: 66px; padding: 10px 16px 10px 12px; border: 0; border-radius: 14px; font: 700 19px/1.2 var(--sans); color: var(--claro); background: linear-gradient(180deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .03)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1), inset 0 0 0 1px rgba(226, 198, 144, .2), 0 14px 26px -16px rgba(0, 0, 0, .8); opacity: 0; transform: translateY(22px); transition: opacity .8s var(--ease), transform .9s var(--ease), box-shadow .5s; transition-delay: calc(var(--i) * 60ms); }
+.menu a.menu__l[aria-current="page"] { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), inset 0 0 0 1px rgba(226, 198, 144, .65), 0 14px 26px -16px rgba(0, 0, 0, .8); color: var(--ouro-2); }
+.menu__seta { color: var(--ouro-2); display: grid; }
+.menu__seta svg { width: 20px; height: 20px; }
+.menu__cta, .menu__info { opacity: 0; transform: translateY(22px); transition: opacity .8s var(--ease), transform .9s var(--ease); transition-delay: calc(var(--i, 5) * 60ms); }
+.menu__cta { margin-top: 8px; }
+.menu__cta .selo { margin: 0; }
+.menu__info { --i: 5; margin-top: 18px; text-align: center; }
+.menu.is-open a.menu__l, .menu.is-open .menu__cta, .menu.is-open .menu__info { opacity: 1; transform: none; }
+
+/* selo de ícone (tile): ícone Phosphor duotone em ouro metálico sobre placa tinta em relevo */
+.tile { flex: none; width: 56px; height: 56px; border-radius: 14px; display: grid; place-items: center; background: radial-gradient(circle at 30% 22%, #46557A 0%, #26314A 45%, #161D2B 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22), inset 0 0 0 1px rgba(226, 198, 144, .6), inset 0 -3px 6px rgba(0, 0, 0, .45), 0 8px 16px -6px rgba(0, 0, 0, .6); }
+.tile svg { width: 58%; height: 58%; fill: url(#og); filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .55)); }
+.tile--m { width: 44px; height: 44px; border-radius: 11px; }
+.tile--g { width: 72px; height: 72px; border-radius: 16px; margin-bottom: 20px; }
+.idx a { grid-template-columns: 64px 1fr 44px; }
+.idx .tile { width: 64px; height: 64px; }
+.linhas a { grid-template-columns: 42px 1fr 40px; }
+.linhas .tile { width: 42px; height: 42px; border-radius: 10px; }
+
+/* setas em disco: placa tinta com aro dourado e seta dourada clara (contraste alto, mesmo acabamento dos ícones) */
+.circ, .dark .circ, .relevo-esc .circ { width: 44px; height: 44px; background: radial-gradient(circle at 32% 25%, #46557A 0%, #26314A 50%, #161D2B 100%); color: #F4DB9C; box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), inset 0 0 0 1.5px rgba(226, 198, 144, .75), 0 6px 14px -6px rgba(0, 0, 0, .65); }
+.circ svg { width: 20px; height: 20px; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .5)); }
+.cam li .circ, .linhas .circ { width: 40px; height: 40px; }
+@media (hover: hover) { a:hover > .circ { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .25), inset 0 0 0 1.5px #F4DB9C, 0 8px 18px -6px rgba(0, 0, 0, .7); } }
+
+/* barra de rolagem lateral no dourado do botão */
+html { scrollbar-color: #C9973A #151C27; scrollbar-width: auto; }
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: #151C27; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #b47e11, #fef1a2 45%, #bc881b 70%, #a54e07); border-radius: 8px; border: 2px solid #151C27; box-shadow: inset 0 1px 1px rgba(255, 245, 200, .8); }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #c48d1c, #fff4b8 45%, #cf9a2a 70%, #b0590a); }
+::-webkit-scrollbar-corner { background: #151C27; }
+
+/* capa: sem faixa na borda da foto e títulos sem corte durante a entrada */
+.hero__media { overflow: hidden; }
+.hero__media img { animation: heroIn2 2.2s var(--ease) both; }
+@keyframes heroIn2 { from { transform: scale(1.06); } to { transform: none; } }
+.tsplit .w { overflow: visible; padding: 0; margin: 0; }
+.tsplit .w > span { opacity: 0; transform: translate3d(0, .45em, 0); filter: blur(4px); transition: opacity .9s var(--ease), transform 1s var(--ease), filter .9s var(--ease); transition-delay: calc(var(--i, 0) * 45ms + var(--d, 0s)); }
+.tsplit.in .w > span { opacity: 1; transform: none; filter: none; }
+
+@media (max-width: 1080px) {
+  .nav, .topo__cta { display: none; }
+  .burger { display: block; }
+}
+@media (max-width: 900px) {
+  .topo { padding: 10px 10px 0; }
+  .topo__in { padding: 6px 6px 6px 12px; min-height: 60px; }
+  .topo.is-solid .topo__in { padding: 5px 6px 5px 12px; }
+  .topo__logo img, .topo.is-solid .topo__logo img { height: 34px; }
+  .idx a { grid-template-columns: 54px 1fr 40px; }
+  .idx .tile { width: 54px; height: 54px; }
+  .area__id .tile--g { width: 56px; height: 56px; margin: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tsplit .w > span { opacity: 1; transform: none; filter: none; }
+  .menu a.menu__l, .menu__cta, .menu__info { opacity: 1; transform: none; }
+}
