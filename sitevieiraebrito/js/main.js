@@ -28,13 +28,56 @@
     matchMedia("(min-width: 1081px)").addEventListener("change", function (m) { if (m.matches) fecha(); });
   }
 
-  /* Revelação ao rolar */
-  var rev = document.querySelectorAll("[data-r]");
-  if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  /* Revelação ao rolar
+     - títulos: cada palavra sobe de dentro de uma máscara, em sequência
+     - textos, cards, linhas e fotos: entram em cascata, um depois do outro
+     Tudo por IntersectionObserver; desligado em prefers-reduced-motion. */
+  var anima = "IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function quebraPalavras(el) {
+    var n = 0;
+    (function anda(no) {
+      Array.prototype.slice.call(no.childNodes).forEach(function (f) {
+        if (f.nodeType === 3) {
+          var partes = f.textContent.split(/(\s+)/), frag = document.createDocumentFragment();
+          partes.forEach(function (p) {
+            if (!p) return;
+            if (/^\s+$/.test(p)) { frag.appendChild(document.createTextNode(" ")); return; }
+            var w = document.createElement("span"); w.className = "w";
+            var i = document.createElement("span"); i.textContent = p; i.style.setProperty("--i", n++);
+            w.appendChild(i); frag.appendChild(w);
+          });
+          f.parentNode.replaceChild(frag, f);
+        } else if (f.nodeType === 1) { anda(f); }
+      });
+    })(el);
+    el.classList.add("tsplit");
+  }
+
+  if (anima) {
+    document.querySelectorAll("main h1, main h2").forEach(quebraPalavras);
+    /* textos de apoio e itens de grade ganham entrada própria, em cascata */
+    document.querySelectorAll("main .eyebrow, main .lead, main .sec__head p, main .ph p, main .hero p, main .hero__ctas, main .final p").forEach(function (el) {
+      if (!el.hasAttribute("data-r")) { el.setAttribute("data-r", "t"); el.style.setProperty("--d", ".18s"); }
+    });
+    [".idx a", ".passos li", ".qa details", ".cam li", ".princ li", ".canais > div", ".linhas li", ".fatos > div", ".area__cols > div", ".gal figure", ".area"].forEach(function (sel) {
+      var grupos = new Map();
+      document.querySelectorAll(sel).forEach(function (el) {
+        var pai = el.parentElement, k = grupos.get(pai) || 0; grupos.set(pai, k + 1);
+        el.setAttribute("data-r", "c"); el.style.setProperty("--d", (k * .09) + "s");
+      });
+    });
+  }
+
+  var rev = document.querySelectorAll("[data-r], .tsplit");
+  if (anima) {
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-    }, { rootMargin: "0px 0px -8% 0px", threshold: .08 });
+    }, { rootMargin: "0px 0px -10% 0px", threshold: .12 });
     rev.forEach(function (el) { io.observe(el); });
+    /* capa: entra logo ao abrir */
+    var h1 = document.querySelector(".hero h1, .ph h1");
+    if (h1) requestAnimationFrame(function () { setTimeout(function () { h1.classList.add("in"); }, 120); });
   } else { rev.forEach(function (el) { el.classList.add("in"); }); }
 
   /* Página de áreas: marca o grupo visível na barra de troca */

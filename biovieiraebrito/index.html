@@ -20,7 +20,7 @@
 @font-face{font-family:"Bodoni Moda";src:url(fonts/bodoni-moda.woff2) format("woff2");font-weight:400 900;font-display:swap}
 @font-face{font-family:"Bodoni Moda";src:url(fonts/bodoni-moda-italic.woff2) format("woff2");font-weight:400 900;font-style:italic;font-display:swap}
 @font-face{font-family:"Source Sans 3";src:url(fonts/source-sans-3.woff2) format("woff2");font-weight:200 900;font-display:swap}
-:root{--tinta:#1E2836;--tinta-2:#151C27;--tinta-3:#273244;--ouro:#CDAA70;--ouro-2:#E2C690;--claro:#F3EEE5;--claro-2:#D9D2C5;--fio:rgba(205,170,112,.3);--ease:cubic-bezier(.2,.7,.1,1);--v:18px}
+:root{--tinta:#1E2836;--tinta-2:#151C27;--tinta-3:#273244;--ouro:#CDAA70;--ouro-2:#E2C690;--claro:#F3EEE5;--claro-2:#D9D2C5;--fio:rgba(205,170,112,.3);--metal:linear-gradient(160deg,#a54e07,#b47e11,#fef1a2,#bc881b,#a54e07);--ease:cubic-bezier(.2,.7,.1,1);--v:18px}
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;overflow-x:clip}
 body{margin:0;min-height:100dvh;background:var(--tinta-2);color:var(--claro-2);font:500 16.5px/1.5 "Source Sans 3","Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip}
@@ -36,25 +36,25 @@ h1 em{color:var(--ouro-2)}
 .id p{margin:0 auto;max-width:34ch;color:var(--claro-2)}
 .id .reg{display:block;margin-top:8px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro)}
 .lista{display:grid;gap:12px;padding:26px 18px 8px}
-.pl{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:44px 1fr 54px;align-items:center;gap:14px;min-height:72px;padding-left:14px;background:var(--tinta-3);color:var(--claro);text-decoration:none;box-shadow:inset 0 0 0 1px var(--fio);-webkit-tap-highlight-color:transparent;transition:transform .25s var(--ease),color .6s var(--ease);opacity:0;transform:translateY(14px);animation:sobe .9s var(--ease) forwards}
+.pl{position:relative;isolation:isolate;overflow:hidden;border-radius:8px;display:grid;grid-template-columns:44px 1fr 50px;align-items:center;gap:14px;min-height:72px;padding-left:14px;background:linear-gradient(180deg,#2E3A4E,#232D3E);color:var(--claro);text-decoration:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),inset 0 0 0 1px var(--fio),0 12px 24px -12px rgba(0,0,0,.7);-webkit-tap-highlight-color:transparent;transition:transform .25s var(--ease),color .6s var(--ease);opacity:0;transform:translateY(14px);animation:sobe .9s var(--ease) forwards}
 .pl:nth-child(2){animation-delay:.07s}.pl:nth-child(3){animation-delay:.14s}.pl:nth-child(4){animation-delay:.21s}.pl:nth-child(5){animation-delay:.28s}
 .pl img,.pl i{width:44px;height:44px;box-shadow:0 0 0 1px var(--fio)}
 .pl i{display:grid;place-items:center;color:var(--tinta);background:var(--claro);box-shadow:none}
 .pl i svg{width:24px;height:24px}
 .pl__t b{display:block;font:500 19.5px/1.2 "Bodoni Moda",Georgia,serif;color:inherit}
 .pl__t small{display:block;font-size:14.5px;color:var(--claro-2);margin-top:3px;line-height:1.35;transition:color .6s var(--ease)}
-.pl__pt{align-self:stretch;display:grid;place-items:center;padding-right:8px;background:var(--ouro);color:var(--tinta);clip-path:polygon(0 0,100% 0,74% 50%,100% 100%,0 100%)}
+.pl__pt{width:40px;height:40px;margin-right:10px;border-radius:50%;display:grid;place-items:center;background-image:var(--metal);color:rgb(120,50,5);box-shadow:0 3px 6px rgba(0,0,0,.3),inset 0 -2px 4px rgba(139,66,8,.9),inset 0 -1px 1px 2px rgba(250,227,133,1)}
 .pl__pt svg{width:20px;height:20px;transition:transform .6s var(--ease)}
-.pl::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--ouro);transform:scaleX(0);transform-origin:right;transition:transform .8s var(--ease)}
-.pl--ouro{background:var(--ouro);color:var(--tinta);box-shadow:none}
-.pl--ouro .pl__t small{color:#3A3324}
-.pl--ouro .pl__pt{background:var(--claro)}
-.pl--ouro::before{background:var(--claro)}
-@media (hover:hover){.pl:hover{color:var(--tinta)}.pl:hover::before{transform:scaleX(1)}.pl:hover .pl__t small{color:#3A3324}.pl:hover .pl__pt svg{transform:translateX(3px)}}
+.pl::before{display:none}
+.pl--ouro{background-image:var(--metal);color:rgb(120,50,5);text-shadow:0 1px 1px rgba(250,227,133,1);border:1px solid #a55d07;border-radius:.3em;box-shadow:0 3px 6px rgba(0,0,0,.25),0 3px 6px rgba(110,80,20,.4),inset 0 -2px 5px 1px rgba(139,66,8,1),inset 0 -1px 1px 3px rgba(250,227,133,1);background-size:100% 100%;transition:background-size .35s ease-in-out,box-shadow .25s,transform .2s}
+.pl--ouro .pl__t small{color:#5A3A0E;text-shadow:none}.pl--ouro .pl__t b{color:#3E1C02;text-shadow:0 1px 1px rgba(250,227,133,.9)}.pl--ouro i{background:var(--tinta);color:var(--ouro-2)}
+.pl--ouro .pl__pt{background:var(--tinta);color:var(--ouro-2);box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 4px 10px -4px rgba(0,0,0,.6)}
+.pl--ouro:hover{background-size:150% 150%}
+@media (hover:hover){.pl:hover{transform:translateY(-3px);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),inset 0 0 0 1px rgba(205,170,112,.6),0 18px 30px -14px rgba(0,0,0,.8)}.pl--ouro:hover{box-shadow:0 10px 20px rgba(0,0,0,.25),0 6px 6px rgba(0,0,0,.23),inset 0 -2px 5px 1px #b17d10,inset 0 -1px 1px 3px rgba(250,227,133,1)}.pl:hover .pl__pt svg{transform:translateX(3px)}}
 .pl:active{transform:scale(.985)}
 .pl:focus-visible{outline:2px solid var(--ouro-2);outline-offset:3px}
 .mini{display:flex;justify-content:center;gap:10px;padding:14px 18px 0}
-.mini a{min-height:48px;display:inline-flex;align-items:center;padding:0 16px;color:var(--claro);text-decoration:none;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;box-shadow:inset 0 0 0 1px var(--fio)}
+.mini a{min-height:48px;display:inline-flex;align-items:center;padding:0 18px;border-radius:8px;background:linear-gradient(180deg,#2E3A4E,#232D3E);color:var(--claro);text-decoration:none;font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;box-shadow:inset 0 0 0 1px var(--fio)}
 .rod{margin-top:auto;padding:26px 22px 28px;text-align:center;font-size:14px;line-height:1.6;color:var(--claro-2)}
 .rod a{color:var(--claro);text-decoration:none;border-bottom:1px solid var(--fio)}
 .rod .logo{width:150px;margin:0 auto 14px;opacity:.95}
@@ -67,7 +67,7 @@ h1 em{color:var(--ouro-2)}
 .consent.is-on{transform:none;opacity:1;visibility:visible;transition:transform .6s var(--ease),opacity .6s var(--ease)}
 .consent__title{font:500 21px/1.2 "Bodoni Moda",Georgia,serif;color:#1E2836;margin:0 0 6px}.consent__text{margin:0 0 14px}.consent__text a{color:#1E2836}
 .consent__actions{display:flex;flex-wrap:wrap;gap:8px}.consent .btn{min-height:46px;padding:0 18px;border:0;border-radius:0;font:700 13.5px/1 "Source Sans 3",sans-serif;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
-.consent .btn-gold{background:#1E2836;color:#F3EEE5}.consent .btn-outline{background:transparent;color:#1E2836;box-shadow:inset 0 0 0 1px #1E2836}
+.consent .btn-gold{background-image:var(--metal);color:rgb(120,50,5);border:1px solid #a55d07;border-radius:.3em}.consent .btn-outline{background:transparent;color:#1E2836;box-shadow:inset 0 0 0 1px #1E2836}
 </style>
 <script src="consent.js" defer></script>
 <script src="rastreio.js" defer></script>
