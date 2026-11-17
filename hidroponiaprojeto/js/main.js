@@ -1,4 +1,4 @@
-/* Plantar em Casa: barra flutuante, entradas, dúvidas e pop-up de saída */
+/* Plantando em Casa: barra flutuante, entradas, dúvidas e pop-up de saída */
 (function () {
   "use strict";
   var reduz = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

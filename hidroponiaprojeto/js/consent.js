@@ -57,25 +57,18 @@
     banner.setAttribute("aria-live", "polite");
     banner.setAttribute("aria-label", "Aviso de cookies");
     banner.innerHTML =
-      '<p class="consent__title">Sua privacidade</p>' +
-      '<p class="consent__text">Usamos cookies essenciais para o site funcionar e, com a sua permissão, cookies de medição para entender as visitas. Você pode mudar a escolha quando quiser. Saiba mais na <a href="politica-de-cookies.html">Política de Cookies</a>.</p>' +
-      '<div class="consent__actions">' +
-      '<button type="button" class="btn btn-gold" data-consent="accept">Aceitar</button>' +
-      '<button type="button" class="btn btn-outline" data-consent="reject">Somente essenciais</button>' +
-      "</div>";
+      '<p class="consent__text">Usamos cookies para o site funcionar e para medir as visitas e os anúncios. Ao continuar navegando, você concorda com a nossa <a href="politica-de-cookies.html">Política de Cookies</a>.</p>' +
+      '<button type="button" class="consent__ok" data-consent="ok">Entendi</button>';
     banner.addEventListener("click", function (e) {
-      var b = e.target.closest("[data-consent]");
-      if (!b) return;
-      var accepted = b.getAttribute("data-consent") === "accept";
-      save(accepted);
-      if (accepted) loadAnalytics();
+      if (!e.target.closest("[data-consent]")) return;
+      save(true);
       hide();
     });
     document.body.appendChild(banner);
   }
   function show() {
     if (!banner) build();
-    requestAnimationFrame(function () { banner.classList.add("is-on"); });
+    setTimeout(function () { banner.classList.add("is-on"); }, 30);
   }
   function hide() { if (banner) banner.classList.remove("is-on"); }
 
@@ -84,8 +77,9 @@
     if (e.target.closest("[data-cookie-settings]")) { e.preventDefault(); show(); }
   });
 
+  /* Medição carrega sempre; o aviso apenas informa (com link para a política). */
+  loadAnalytics();
   var choice = read();
-  if (choice && choice.analytics) loadAnalytics();
   if (!choice) {
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { setTimeout(show, 900); });
     else setTimeout(show, 900);
