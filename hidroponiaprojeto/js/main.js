@@ -138,6 +138,12 @@
     });
   }
 
+  /* ---------- Proteção das imagens: sem menu do botão direito, toque longo ou arrastar ---------- */
+  var protegido = "img, video, picture, .car, .lb__fig, .video, .garantia__selo, .bonus-card__img, .pc__img, .dentro__ficha";
+  document.addEventListener("contextmenu", function (e) { if (e.target.closest && e.target.closest(protegido)) e.preventDefault(); });
+  document.addEventListener("dragstart", function (e) { if (e.target.closest && e.target.closest(protegido)) e.preventDefault(); });
+  [].forEach.call(document.querySelectorAll("img"), function (im) { im.setAttribute("draggable", "false"); });
+
   /* ---------- Entradas por seção ---------- */
   var itens = document.querySelectorAll(".rv");
   if ("IntersectionObserver" in window && !reduz) {

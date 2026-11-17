@@ -574,3 +574,15 @@ html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
 .lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
 .lenis.lenis-stopped{overflow:hidden}
+
+/* ---------- Barra de rolagem nas cores do site ---------- */
+html{scrollbar-color:#4FA82E #E7ECE2;scrollbar-width:auto}
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track{background:#E7ECE2}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#5FE08A 0%,#22C55E 50%,#1A9E4A 100%);border-radius:999px;border:3px solid #E7ECE2}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#4ACB75 0%,#1BAE51 50%,#12873C 100%)}
+::-webkit-scrollbar-button{display:none;width:0;height:0}
+::-webkit-scrollbar-corner{background:#E7ECE2}
+
+/* ---------- Imagens protegidas (sem salvar, arrastar ou menu de toque longo) ---------- */
+img,video,.car__btn,.ph,.lb__fig{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-user-drag:none}
