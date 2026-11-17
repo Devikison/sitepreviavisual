@@ -736,3 +736,94 @@ html { scrollbar-color: #C9973A #151C27; scrollbar-width: auto; }
 #empresas.sec, #pessoas.sec { padding-top: clamp(110px, 12vw, 160px); }
 .area__id { top: calc(var(--head) + 96px); }
 @media (max-width: 900px) { .troca__in { transform: translate3d(0, 80px, 0); } .troca a { padding: 0 14px; font-size: 12.5px; } }
+
+/* troca de áreas: fixa no lugar, logo abaixo do título da página (não acompanha a rolagem) */
+.troca { position: relative; top: auto; height: auto; padding: 36px 0 0; background: var(--pedra); }
+.troca__in, .topo-oculto .troca__in { transform: none; }
+#empresas.sec { padding-top: clamp(48px, 6vw, 72px); }
+#pessoas.sec { padding-top: clamp(80px, 10vw, 140px); }
+@media (max-width: 900px) { .troca__in { transform: none; } .troca { padding-top: 28px; } }
+
+/* etapas: algarismos romanos maiúsculos e seta dourada centralizada entre os cards */
+.passos { gap: 40px; }
+.passos .n, .princ .n { font-style: normal; font-weight: 600; letter-spacing: .04em; }
+.passos .n { font-size: 22px; padding-bottom: 0; }
+.passos li:not(:last-child)::after {
+  content: ""; position: absolute; top: 45px; left: calc(100% + 6px); width: 28px; height: 28px; border-radius: 50%; opacity: 1;
+  background: radial-gradient(circle at 32% 25%, #46557A 0%, #26314A 50%, #161D2B 100%) ;
+  box-shadow: inset 0 0 0 1.5px rgba(226, 198, 144, .75), 0 4px 10px -4px rgba(0, 0, 0, .5);
+  -webkit-mask: none; mask: none;
+}
+.passos li:not(:last-child)::before {
+  content: ""; position: absolute; z-index: 1; top: 54px; left: calc(100% + 16px); width: 10px; height: 10px;
+  background: #F4DB9C; clip-path: polygon(0 0, 100% 50%, 0 100%, 30% 50%);
+}
+@media (max-width: 900px) {
+  .passos { gap: 40px 18px; }
+  .passos li:not(:last-child)::after, .passos li:not(:last-child)::before { display: none; }
+}
+@media (max-width: 560px) {
+  .passos { gap: 36px; }
+  .passos li:not(:last-child)::after, .passos li:not(:last-child)::before { display: block; left: 50%; top: auto; }
+  .passos li:not(:last-child)::after { bottom: -32px; margin-left: -14px; }
+  .passos li:not(:last-child)::before { bottom: -23px; margin-left: -5px; transform: rotate(90deg); }
+}
+
+/* e-mail e endereços: quebra natural de palavra, nunca no meio */
+.linhas a, .canais dd { overflow-wrap: normal; word-break: normal; }
+
+/* FAQ: ícone gira junto e o card ganha destaque com a mesma calma */
+.qa details { transition: box-shadow .7s var(--ease); }
+.qa summary i { transition: transform .7s cubic-bezier(.22,.61,.24,1); }
+.qa summary i::after { transition: transform .7s cubic-bezier(.22,.61,.24,1); }
+.qa details.fechando summary i { transform: none; }
+.qa details.fechando summary i::after { transform: rotate(90deg); }
+.qa details.fechando { box-shadow: var(--sombra-claro); }
+
+/* página de áreas: cabeçalho de cada grupo centralizado */
+#empresas .grupo__head, #pessoas .grupo__head { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 16px; max-width: 760px; margin-inline: auto; padding-bottom: 20px; }
+#empresas .grupo__head .lead, #pessoas .grupo__head .lead { margin-inline: auto; max-width: 60ch; }
+
+/* FAQ centralizado: título e apoio no centro, perguntas abaixo numa coluna central */
+.faq { grid-template-columns: 1fr; gap: clamp(32px, 4vw, 48px); max-width: 860px; margin-inline: auto; }
+.faq__head { position: static; text-align: center; max-width: 640px; margin-inline: auto; }
+.faq__head h2 { text-wrap: balance; }
+.qa { width: 100%; }
+
+/* capa: título em 3 linhas fixas, coluna de texto própria à esquerda e foto começando depois dela */
+.hero h1 .l { display: block; white-space: nowrap; }
+.hero__txt > * { max-width: none; }
+.hero__txt { width: var(--w); }
+.hero__txt .hero__col { max-width: 100%; }
+@media (min-width: 901px) {
+  .hero__media { inset: 0 0 0 47%; }
+  .hero__media::after { background: linear-gradient(90deg, var(--tinta) 0%, rgba(30, 40, 54, .55) 9%, rgba(30, 40, 54, 0) 26%), linear-gradient(0deg, rgba(30, 40, 54, .5) 0%, rgba(30, 40, 54, 0) 28%); }
+  .hero__media img { object-position: 42% 20%; }
+  .hero__txt > * { max-width: calc(47vw - max(var(--gut), (100vw - 1200px) / 2) - 28px); }
+  .hero h1 { font-size: clamp(38px, 3.9vw, 64px); line-height: 1.06; margin-bottom: 26px; }
+  .hero p { font-size: clamp(17.5px, 1.3vw, 20px); }
+}
+@media (max-width: 900px) {
+  .hero__txt { width: calc(100% - 40px); }
+  .hero h1 { font-size: clamp(30px, 9.2vw, 52px); line-height: 1.07; letter-spacing: -.02em; margin-bottom: 18px; }
+  .hero p { max-width: none; }
+}
+
+/* capa (ajuste): foto a partir de 52%; fonte calculada pela largura da coluna para as 3 linhas nunca invadirem a foto */
+@media (min-width: 901px) {
+  .hero__media { inset: 0 0 0 52%; }
+  .hero__txt > * { max-width: calc(52vw - max(var(--gut), (100vw - 1200px) / 2) - 36px); }
+  .hero h1 { font-size: min(64px, calc((52vw - max(var(--gut), (100vw - 1200px) / 2) - 36px) / 13.2)); }
+}
+
+/* capa (tamanho final): título preenche a coluna, sem tocar na foto; no celular usa a largura toda com 20px de margem */
+@media (min-width: 901px) {
+  .hero h1 { font-size: min(68px, calc((52vw - max(var(--gut), (100vw - 1200px) / 2) - 36px) / 8.4)); }
+}
+@media (max-width: 900px) {
+  .hero h1 { font-size: min(54px, calc((100vw - 40px) / 8.25)); }
+}
+
+/* títulos de seção centralizados na tela */
+.sec__head { margin-inline: auto; text-align: center; }
+.sec__head .lead, .sec__head p { margin-inline: auto; }

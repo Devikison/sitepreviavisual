@@ -137,6 +137,31 @@
     });
   }
 
+  /* FAQ: abre e fecha devagar e suave (altura + opacidade), sem pulo */
+  var calmo = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll(".qa details").forEach(function (d) {
+    var s = d.querySelector("summary"), r = d.querySelector(".r"), anim = null;
+    if (!s || !r || !calmo || !r.animate) return;
+    var ease = "cubic-bezier(.22,.61,.24,1)";
+    s.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (anim) anim.cancel();
+      r.style.overflow = "hidden";
+      if (!d.open) {
+        d.open = true; d.classList.add("abrindo");
+        var h = r.scrollHeight;
+        var cs = getComputedStyle(r), pb = cs.paddingBottom;
+        anim = r.animate([{ height: "0px", paddingBottom: "0px", opacity: 0, transform: "translateY(-6px)" }, { height: h + "px", paddingBottom: pb, opacity: 1, transform: "none" }], { duration: 720, easing: ease });
+        anim.onfinish = function () { anim = null; r.style.overflow = ""; d.classList.remove("abrindo"); };
+      } else {
+        d.classList.add("fechando");
+        var a = r.animate([{ height: r.offsetHeight + "px", paddingBottom: getComputedStyle(r).paddingBottom, opacity: 1 }, { height: "0px", paddingBottom: "0px", opacity: 0 }], { duration: 560, easing: ease, fill: "forwards" });
+        anim = a;
+        a.onfinish = function () { d.open = false; a.cancel(); anim = null; r.style.overflow = ""; d.classList.remove("fechando"); };
+      }
+    });
+  });
+
   /* Ano no rodapé */
   document.querySelectorAll("[data-ano]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 })();
