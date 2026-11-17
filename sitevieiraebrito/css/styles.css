@@ -616,3 +616,13 @@ h1 em, h2 em, h3 em { color: var(--ouro-esc); }
   .tsplit .w > span { transform: none; }
   .js .moldura[data-r] img, .js .gal figure[data-r] img { transform: none; }
 }
+
+/* ---- Legibilidade dos clicáveis: fonte de texto, peso forte, cor cheia ---- */
+.selo, .selo--ouro { color: #3A1A02; text-shadow: 0 1px 0 rgba(250, 227, 133, .85); letter-spacing: .05em; }
+.selo:focus-visible, .selo:hover { color: #2A1201; }
+.idx b { font: 700 clamp(18px, 1.5vw, 21px)/1.25 var(--sans); letter-spacing: .005em; color: #F7F2E8; }
+.idx small { color: #DCD5C8; }
+.qa summary { font: 700 clamp(17px, 1.3vw, 19px)/1.35 var(--sans); color: var(--texto); }
+.cam li a { font-size: 16.5px; }
+.linhas a { color: #F7F2E8; }
+.consent .btn-gold { color: #3A1A02; }
