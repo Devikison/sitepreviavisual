@@ -586,3 +586,16 @@ html{scrollbar-color:#4FA82E #E7ECE2;scrollbar-width:auto}
 
 /* ---------- Imagens protegidas (sem salvar, arrastar ou menu de toque longo) ---------- */
 img,video,.car__btn,.ph,.lb__fig{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-user-drag:none}
+
+/* ---------- Primeira dobra no computador: cabe inteira na tela ---------- */
+.aviso{background:linear-gradient(180deg,#F23C2E 0%,#DC2A1D 100%)}
+@media (min-width:861px){
+  :root{--aviso-h:54px}
+  .aviso{padding:13px var(--m);min-height:var(--aviso-h);display:flex;align-items:center;justify-content:center}
+  .aviso p{max-width:none;font-size:clamp(16px,1.35vw,21px)}
+  .hero{min-height:calc(100vh - var(--aviso-h));min-height:calc(100dvh - var(--aviso-h));padding:28px 0 32px;display:flex;align-items:center}
+  .hero__in{width:100%}
+  .hero__img{max-width:min(440px,calc((100dvh - var(--aviso-h) - 84px) * .75));justify-self:end;margin-right:24px}
+  .chip--1{left:-30px}
+  .chip--2{right:-24px}
+}
