@@ -72,13 +72,14 @@
 
   /* FAQ: abre e fecha animando a altura, um por vez; cliques repetidos cancelam a animação anterior (sem travar) */
   var faqs = document.querySelectorAll("[data-faq] details");
+  var FAQ_DUR = 850, FAQ_CURVA = "cubic-bezier(.65,0,.35,1)"; // mesma velocidade para abrir e fechar
   function parar(d) { if (d._anim) { d._anim.cancel(); d._anim = null; } }
   function abrirFaq(d) {
-    var r = d.querySelector(".faq__resp"), de = r.getBoundingClientRect().height;
+    var r = d.querySelector(".faq__resp"), de = d.open ? r.getBoundingClientRect().height : 0;
     parar(d); d.open = true; d.classList.add("is-aberto");
     if (reduz || !r.animate) return;
     var ate = r.scrollHeight;
-    d._anim = r.animate([{ height: de + "px", opacity: de ? 1 : 0 }, { height: ate + "px", opacity: 1 }], { duration: 600, easing: "cubic-bezier(.22,.8,.24,1)" });
+    d._anim = r.animate([{ height: de + "px", opacity: de ? 1 : 0 }, { height: ate + "px", opacity: 1 }], { duration: FAQ_DUR, easing: FAQ_CURVA });
     d._anim.onfinish = function () { d._anim = null; };
   }
   function fecharFaq(d) {
@@ -86,7 +87,7 @@
     var r = d.querySelector(".faq__resp"), de = r.getBoundingClientRect().height;
     parar(d); d.classList.remove("is-aberto");
     if (reduz || !r.animate) { d.open = false; return; }
-    d._anim = r.animate([{ height: de + "px", opacity: 1 }, { height: "0px", opacity: 0 }], { duration: 450, easing: "cubic-bezier(.22,.8,.24,1)", fill: "forwards" });
+    d._anim = r.animate([{ height: de + "px", opacity: 1 }, { height: "0px", opacity: 0 }], { duration: FAQ_DUR, easing: FAQ_CURVA, fill: "forwards" });
     d._anim.onfinish = function () { d.open = false; if (d._anim) { d._anim.cancel(); d._anim = null; } };
   }
   faqs.forEach(function (d) {

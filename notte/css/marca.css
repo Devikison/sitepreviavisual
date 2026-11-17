@@ -466,3 +466,56 @@ img { -webkit-user-drag: none; user-drag: none; -webkit-touch-callout: none; -we
   .galeria__foto { height: clamp(230px, 64vw, 300px); }
   .galeria__foto:nth-child(even) { transform: translateY(10px); }
 }
+/* Sombra das fotos da galeria inteira (sem corte) */
+.galeria__trilho { padding: 24px 0 84px; }
+.galeria { margin-bottom: -50px; }
+@media (max-width: 767px) { .galeria__trilho { padding: 14px 0 56px; } .galeria { margin-bottom: -34px; } }
+/* FAQ: ícone, borda e sombra no mesmo tempo e curva da abertura (850 ms) */
+.faq__item { transition: border-color .85s cubic-bezier(.65,0,.35,1), box-shadow .85s cubic-bezier(.65,0,.35,1); }
+.faq__item summary i { transition: transform .85s cubic-bezier(.65,0,.35,1), background-color .85s cubic-bezier(.65,0,.35,1); }
+/* Galeria: todas as fotos alinhadas, sem desnível */
+.galeria__foto:nth-child(even), .galeria__foto { transform: none !important; }
+/* Celular: títulos usam a largura toda, letra maior e linhas equilibradas */
+@media (max-width: 767px) {
+  .titulo, .cab-centro .titulo, .proposta .titulo, .fecho__titulo { max-width: none !important; margin-left: auto; margin-right: auto; text-wrap: balance; }
+  .titulo, .ocas__cab .titulo, .fecho__titulo { font-size: min(8.8vw, 42px) !important; line-height: 1.08; }
+  .titulo em, .fecho__titulo em { font-size: .8em; }
+}
+@media (max-width: 767px) {
+  .titulo.titulo--mell { font-size: min(7.4vw, 36px) !important; }
+  .fecho__titulo { font-size: min(7.3vw, 36px) !important; }
+  .fecho__titulo span.linha { white-space: nowrap; }
+  .ocas__link { white-space: normal; justify-content: center; text-align: center; line-height: 1.6; }
+}
+/* Direitos reservados no fim do rodapé */
+.rodape__copy { grid-column: 1 / -1; flex-basis: 100%; width: 100%; margin: 6px 0 0; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, .1); font-size: 12px; letter-spacing: .08em; line-height: 1.6; color: rgba(255, 255, 255, .55); text-align: center; }
+.bio__copy { font-size: 11px; letter-spacing: .06em; line-height: 1.5; opacity: .55; }
+.pag__rodape .copy { flex-basis: 100%; font-size: 12px; letter-spacing: .04em; opacity: .65; }
+.rodape__copy, .bio__copy, .pag__rodape .copy { text-wrap: balance; }
+@media (min-width: 768px) { .empresa__cnpj::before { content: ", "; } }
+/* Topo no computador: título contido à esquerda (máx. 4 linhas) e degradê mais forte atrás do texto */
+@media (min-width: 768px) {
+  .hero__texto { max-width: min(48vw, 660px); }
+  .hero__titulo { font-size: clamp(34px, 3.1vw, 50px) !important; line-height: 1.1; text-wrap: balance; }
+  .hero__titulo .linha { white-space: normal !important; }
+  .hero__apoio { max-width: 36ch; }
+  .hero::after { background: linear-gradient(90deg, rgba(24, 29, 32, .97) 0%, rgba(24, 29, 32, .92) 30%, rgba(24, 29, 32, .62) 48%, rgba(24, 29, 32, .12) 64%, rgba(24, 29, 32, 0) 74%), linear-gradient(0deg, rgba(24, 29, 32, .55) 0%, rgba(24, 29, 32, 0) 26%) !important; }
+}
+@media (min-width: 768px) and (max-width: 1100px) { .hero__texto { max-width: 74vw; } .hero__titulo { font-size: min(5vw, 46px) !important; } }
+@media (min-width: 1101px) {
+  .hero__texto { max-width: 720px; }
+  .hero__titulo { font-size: clamp(34px, 3.1vw, 46px) !important; text-wrap: initial; }
+  .hero__titulo .linha { white-space: nowrap !important; }
+}
+@media (min-width: 1101px) { .hero::after { background: linear-gradient(90deg, rgba(24, 29, 32, .97) 0%, rgba(24, 29, 32, .94) 38%, rgba(24, 29, 32, .8) 52%, rgba(24, 29, 32, .38) 64%, rgba(24, 29, 32, 0) 78%), linear-gradient(0deg, rgba(24, 29, 32, .55) 0%, rgba(24, 29, 32, 0) 26%) !important; } .hero__titulo { font-size: clamp(34px, 3vw, 44px) !important; } }
+/* Rodapé: linha legal centralizada no computador, vírgula colada no ME */
+@media (min-width: 768px) {
+  .rodape__legal { grid-column: 1 / -1; width: 100%; justify-content: center; text-align: center; }
+  .pag__rodape .wrap { justify-content: center; text-align: center; }
+  .empresa__cnpj::before { content: ", "; }
+}
+@media (max-width: 767px) { .empresa__cnpj::before { content: none; } }
+/* Fotos novas do roteiro (Mell, 17/11/2026): foco no assunto principal */
+img[src*="etapa-chegada-2"] { object-position: 50% 62% !important; }
+img[src*="etapa-criacao-2"] { object-position: 55% 55% !important; }
+img[src*="etapa-lembranca-2"] { object-position: 45% 70% !important; }
