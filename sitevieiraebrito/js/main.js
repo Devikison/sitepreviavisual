@@ -1,15 +1,33 @@
 /* Vieira & Brito Advogados: comportamento do site.
-   Sem escuta manual de rolagem para efeitos: tudo por IntersectionObserver. */
+   Revelações por IntersectionObserver; a barra superior usa uma escuta passiva de rolagem que só troca classes. */
 (function () {
   "use strict";
   var root = document.documentElement;
 
-  /* Topo: transparente sobre a capa, vidro escuro depois dela */
+  /* Topo:
+     - parado no início da página: largo e transparente
+     - ao primeiro movimento de rolagem: solta e vira a placa de vidro
+     - depois da segunda dobra, descendo: sai em desfoque lento
+     - subindo (ou de volta ao topo): volta com o mesmo desfoque
+     Só troca classes; o movimento é todo em CSS. */
   var topo = document.querySelector(".topo");
-  var marco = document.querySelector("[data-topo-marco]");
-  if (topo && marco && "IntersectionObserver" in window) {
-    new IntersectionObserver(function (e) { topo.classList.toggle("is-solid", !e[0].isIntersecting); }, { rootMargin: "-80px 0px 0px 0px" }).observe(marco);
-  } else if (topo) { topo.classList.add("is-solid"); }
+  if (topo) {
+    var ultimoY = scrollY, pedido = false, acum = 0;
+    function atualizaTopo() {
+      pedido = false;
+      var y = Math.max(0, scrollY), dy = y - ultimoY; ultimoY = y;
+      topo.classList.toggle("is-solid", y > 8 || root.classList.contains("lock"));
+      if (root.classList.contains("lock")) { topo.classList.remove("is-hidden"); return; }
+      /* acumula a direção para não piscar com tremidas pequenas */
+      acum = (dy > 0) === (acum > 0) ? acum + dy : dy;
+      var passouSegundaDobra = y > innerHeight * 2;
+      if (!passouSegundaDobra || acum < -24) topo.classList.remove("is-hidden");
+      else if (acum > 24) topo.classList.add("is-hidden");
+    }
+    addEventListener("scroll", function () { if (!pedido) { pedido = true; requestAnimationFrame(atualizaTopo); } }, { passive: true });
+    topo.addEventListener("focusin", function () { topo.classList.remove("is-hidden"); });
+    atualizaTopo();
+  }
 
   /* Menu do celular */
   var burger = document.querySelector(".burger"), menu = document.getElementById("menu");
