@@ -37,7 +37,7 @@ h1 em{color:var(--ouro-2)}
 .id .reg{display:block;margin-top:8px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro)}
 .lista{display:grid;gap:12px;padding:26px 18px 8px}
 .pl{position:relative;isolation:isolate;overflow:hidden;border-radius:8px;display:grid;grid-template-columns:44px 1fr 50px;align-items:center;gap:14px;min-height:72px;padding-left:14px;background:linear-gradient(180deg,#2E3A4E,#232D3E);color:var(--claro);text-decoration:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),inset 0 0 0 1px var(--fio),0 12px 24px -12px rgba(0,0,0,.7);-webkit-tap-highlight-color:transparent;transition:transform .25s var(--ease),color .6s var(--ease);opacity:0;transform:translateY(14px);animation:sobe .9s var(--ease) forwards}
-.pl:nth-child(2){animation-delay:.07s}.pl:nth-child(3){animation-delay:.14s}.pl:nth-child(4){animation-delay:.21s}.pl:nth-child(5){animation-delay:.28s}.pl:nth-child(6){animation-delay:.35s}.pl{min-height:64px;grid-template-columns:42px minmax(0,1fr) 48px;gap:12px;padding-left:12px}.pl img,.pl i{width:42px;height:42px}.pl__t{min-width:0}.pl__t b{font-size:20.5px;white-space:nowrap;overflow:hidden}.pl__t small{white-space:normal}.pl__pt{margin-right:8px}
+.pl:nth-child(2){animation-delay:.07s}.pl:nth-child(3){animation-delay:.14s}.pl:nth-child(4){animation-delay:.21s}.pl:nth-child(5){animation-delay:.28s}.pl:nth-child(6){animation-delay:.35s}.pl{min-height:64px;grid-template-columns:42px minmax(0,1fr) 48px;gap:12px;padding-left:12px}.pl img,.pl i{width:42px;height:42px}.pl__t{min-width:0}.pl .pl__t b{font:700 18px/1.2 "Source Sans 3","Segoe UI",system-ui,sans-serif;letter-spacing:.01em;color:#F7F2E8;white-space:nowrap;overflow:hidden}.pl__t small{white-space:normal}.pl__pt{margin-right:8px}
 .pl img,.pl i{width:44px;height:44px;box-shadow:0 0 0 1px var(--fio)}
 .pl i{display:grid;place-items:center;color:var(--tinta);background:var(--claro);box-shadow:none}
 .pl i svg{width:24px;height:24px}
@@ -47,7 +47,7 @@ h1 em{color:var(--ouro-2)}
 .pl__pt svg{width:20px;height:20px;transition:transform .6s var(--ease)}
 .pl::before{display:none}
 .pl--ouro{background-image:var(--metal);color:rgb(120,50,5);text-shadow:0 1px 1px rgba(250,227,133,1);border:1px solid #a55d07;border-radius:.3em;box-shadow:0 3px 6px rgba(0,0,0,.25),0 3px 6px rgba(110,80,20,.4),inset 0 -2px 5px 1px rgba(139,66,8,1),inset 0 -1px 1px 3px rgba(250,227,133,1);background-size:100% 100%;transition:background-size .35s ease-in-out,box-shadow .25s,transform .2s}
-.pl--ouro .pl__t small{color:#5A3A0E;text-shadow:none}.pl--ouro .pl__t b{color:#3E1C02;text-shadow:0 1px 1px rgba(250,227,133,.9)}.pl--ouro i{background:var(--tinta);color:var(--ouro-2)}
+.pl--ouro .pl__t small{color:#5A3A0E;text-shadow:none}.pl.pl--ouro .pl__t b{color:#2E1401;text-shadow:0 1px 0 rgba(250,227,133,.8)}.pl--ouro i{background:var(--tinta);color:var(--ouro-2)}
 .pl--ouro .pl__pt{background:var(--tinta);color:var(--ouro-2);box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 4px 10px -4px rgba(0,0,0,.6)}
 .pl--ouro:hover{background-size:150% 150%}
 @media (hover:hover){.pl:hover{transform:translateY(-3px);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),inset 0 0 0 1px rgba(205,170,112,.6),0 18px 30px -14px rgba(0,0,0,.8)}.pl--ouro:hover{box-shadow:0 10px 20px rgba(0,0,0,.25),0 6px 6px rgba(0,0,0,.23),inset 0 -2px 5px 1px #b17d10,inset 0 -1px 1px 3px rgba(250,227,133,1)}.pl:hover .pl__pt svg{transform:translateX(3px)}}
@@ -91,7 +91,7 @@ h1 em{color:var(--ouro-2)}
 </main>
 <script>
 /* títulos dos botões sempre em 1 linha: acha o maior tamanho em que todos cabem e aplica o mesmo em todos */
-(function(){var bs=[].slice.call(document.querySelectorAll('.pl__t b'));function ajusta(){var t=20.5;bs.forEach(function(b){b.style.fontSize=''});bs.forEach(function(b){b.style.whiteSpace=''});for(;t>=14;t-=.5){bs.forEach(function(b){b.style.fontSize=t+'px'});if(bs.every(function(b){return b.scrollWidth<=b.clientWidth+1}))return}bs.forEach(function(b){b.style.whiteSpace='normal'})}
+(function(){var bs=[].slice.call(document.querySelectorAll('.pl__t b'));function ajusta(){var t=18;bs.forEach(function(b){b.style.fontSize=''});bs.forEach(function(b){b.style.whiteSpace=''});for(;t>=14;t-=.5){bs.forEach(function(b){b.style.fontSize=t+'px'});if(bs.every(function(b){return b.scrollWidth<=b.clientWidth+1}))return}bs.forEach(function(b){b.style.whiteSpace='normal'})}
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(ajusta);ajusta();var r;addEventListener('resize',function(){clearTimeout(r);r=setTimeout(ajusta,120)})})();
 </script>
 </body>
