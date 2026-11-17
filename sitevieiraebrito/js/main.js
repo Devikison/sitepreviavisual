@@ -23,6 +23,7 @@
       var passouSegundaDobra = y > innerHeight * 2;
       if (!passouSegundaDobra || acum < -24) topo.classList.remove("is-hidden");
       else if (acum > 24) topo.classList.add("is-hidden");
+      root.classList.toggle("topo-oculto", topo.classList.contains("is-hidden"));
     }
     addEventListener("scroll", function () { if (!pedido) { pedido = true; requestAnimationFrame(atualizaTopo); } }, { passive: true });
     topo.addEventListener("focusin", function () { topo.classList.remove("is-hidden"); });
