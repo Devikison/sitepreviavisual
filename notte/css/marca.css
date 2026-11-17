@@ -270,3 +270,144 @@ body { font-size: 16px; }
   .hero { padding-bottom: calc(40px + env(safe-area-inset-bottom)) !important; }
 }
 @media (max-width: 767px) and (max-height: 700px) { .hero { padding-bottom: calc(24px + env(safe-area-inset-bottom)) !important; } }
+
+/* CTA champanhe suave (pedido do Douglas, 17/11/2026): mesmo botão em fundo escuro e claro */
+.btn-fita, .ficha .btn-fita, .tom-off .btn-fita, .tom-papel .btn-fita, .menu .btn-fita, .pag .btn-fita {
+  color: #181D20; background: linear-gradient(135deg, #F1E3C4 0%, #D9BE8A 55%, #C7A56A 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 250, 238, .7), 0 14px 30px -16px rgba(24, 29, 32, .55); text-shadow: none; }
+.btn-fita .btn__ic, .ficha .btn-fita .btn__ic, .tom-off .btn-fita .btn__ic, .menu .btn-fita .btn__ic { background: #181D20; color: #F1E3C4; }
+.btn-fita::before, .ficha .btn-fita::before, .menu .btn-fita::before, .tom-off .btn-fita::before { background-image: linear-gradient(120deg, rgba(255, 255, 255, 0) 32%, rgba(255, 255, 255, .35), rgba(255, 255, 255, 0) 68%); }
+@media (hover: hover) { .btn-fita:hover { box-shadow: inset 0 1px 0 rgba(255, 250, 238, .8), 0 18px 36px -14px rgba(24, 29, 32, .6); filter: brightness(1.03); } }
+.elo--destaque { color: #181D20; background: linear-gradient(135deg, #F1E3C4 0%, #D9BE8A 55%, #C7A56A 100%); }
+.elo--destaque .elo__seta, .elo--destaque:hover .elo__seta { background: #181D20; color: #F1E3C4; }
+
+/* Dourado mais vivo nos CTAs + detalhes dourados delicados (Douglas, 17/11/2026) */
+:root { --ouro-claro: #F6E2AC; --ouro: #DDB15A; --ouro-escuro: #A87A2A; }
+.btn-fita, .ficha .btn-fita, .tom-off .btn-fita, .tom-papel .btn-fita, .menu .btn-fita, .pag .btn-fita, .elo--destaque {
+  color: #181D20; background: linear-gradient(135deg, #F8E6B2 0%, #E6BE68 45%, #C9933A 100%); }
+.btn-fita, .ficha .btn-fita, .tom-off .btn-fita, .tom-papel .btn-fita, .menu .btn-fita, .pag .btn-fita {
+  box-shadow: inset 0 1px 0 rgba(255, 248, 225, .75), 0 14px 30px -14px rgba(176, 124, 40, .55); }
+.btn-fita .btn__ic, .ficha .btn-fita .btn__ic, .tom-off .btn-fita .btn__ic, .menu .btn-fita .btn__ic,
+.elo--destaque .elo__seta, .elo--destaque:hover .elo__seta { background: #181D20; color: var(--ouro-claro); }
+@media (hover: hover) { .btn-fita:hover { box-shadow: inset 0 1px 0 rgba(255, 248, 225, .85), 0 18px 36px -14px rgba(176, 124, 40, .65); } }
+/* faixinhas e linhas */
+.passo__corpo::before { background: linear-gradient(180deg, var(--ouro-claro), var(--ouro) 55%, transparent); }
+.passos::before { background: linear-gradient(180deg, rgba(221, 177, 90, .75), rgba(221, 177, 90, .12)); }
+.citacao::before { background: linear-gradient(180deg, var(--ouro), var(--ouro-escuro)); }
+.bio__filete::before { background: linear-gradient(90deg, transparent, rgba(221, 177, 90, .75) 30%, rgba(221, 177, 90, .75) 70%, transparent); }
+.bio__filete::after { border-color: var(--ouro); }
+/* ícones */
+.ocasioes__lista i, .passos i { color: var(--ouro-claro); border-color: rgba(221, 177, 90, .55); }
+.formato__cap i { color: var(--ouro-escuro); }
+.proposta__selo { border-color: rgba(221, 177, 90, .4); }
+.rodape__icones a { color: var(--ouro-claro); border-color: rgba(221, 177, 90, .45); }
+@media (hover: hover) { .rodape__icones a:hover { background: linear-gradient(135deg, #F8E6B2, #C9933A); color: #181D20; border-color: transparent; } }
+.passo__gota { background: linear-gradient(160deg, var(--ouro-claro), var(--ouro-escuro)) !important; }
+
+/* Rótulos de capítulo, como na proposta da NOTTE (17/11/2026) */
+.capitulo { display: flex; align-items: center; gap: 14px; margin: 0 0 18px; font-size: 11.5px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--ouro); }
+.capitulo b { font-weight: 400; color: rgba(221, 177, 90, .6); }
+.capitulo::after { content: ""; width: 44px; height: 1px; background: linear-gradient(90deg, var(--ouro), transparent); }
+.capitulo--centro { justify-content: center; }
+.capitulo--centro::before { content: ""; width: 44px; height: 1px; background: linear-gradient(270deg, var(--ouro), transparent); }
+.tom-off .capitulo, .tom-papel .capitulo, .ficha .capitulo { color: var(--ouro-escuro); }
+@media (max-width: 767px) { .capitulo { justify-content: center; font-size: 10.5px; letter-spacing: .22em; } .capitulo::before { content: ""; width: 28px; height: 1px; background: linear-gradient(270deg, var(--ouro), transparent); } .capitulo::after { width: 28px; } }
+/* A oficina de perto */
+.oficina__grade { display: grid; grid-template-columns: 1.8fr 1fr; grid-template-rows: auto auto; gap: 18px; margin-top: 48px; }
+.oficina__foto { margin: 0; position: relative; overflow: hidden; border-radius: 4px; box-shadow: 0 0 0 1px rgba(221, 177, 90, .28), 0 24px 50px -28px rgba(0, 0, 0, .9); }
+.oficina__foto img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.oficina__foto--a { grid-column: 1; grid-row: 1; aspect-ratio: 3 / 2; }
+.oficina__foto--b { grid-column: 2; grid-row: 1 / span 2; }
+.oficina__foto--c { grid-column: 1; grid-row: 2; aspect-ratio: 3 / 2; }
+.oficina__foto--c img { object-position: 50% 40%; }
+@media (max-width: 899px) { .oficina__grade { grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 32px; } .oficina__foto--a { grid-column: 1 / span 2; grid-row: 1; } .oficina__foto--b { grid-column: 1; grid-row: 2; aspect-ratio: 3 / 4; } .oficina__foto--c { grid-column: 2; grid-row: 2; aspect-ratio: 3 / 4; } }
+.bio__empresa { font-size: 11.5px; letter-spacing: .04em; line-height: 1.5; opacity: .7; text-align: center; }
+.empresa__cnpj { white-space: nowrap; } @media (max-width: 767px) { .empresa { display: block; flex-basis: 100%; text-align: center; } .empresa__cnpj { display: block; } }
+
+/* Vitrine de ocasiões: rolagem lateral (17/11/2026) */
+.vitrine { padding: 0; overflow: clip; }
+.vitrine__fixo { padding: clamp(72px, 10vw, 120px) 0; }
+.vitrine__cab { display: grid; grid-template-columns: 1.15fr .85fr; gap: 24px 64px; align-items: end; }
+.vitrine__cab .titulo { margin: 0; }
+.vitrine__lado .apoio { margin: 0 0 22px; }
+.vitrine__ritmo { display: flex; align-items: center; gap: 14px; font-size: 12px; letter-spacing: .22em; color: rgba(255, 255, 255, .55); }
+.vitrine__atual { color: var(--ouro); font-weight: 600; }
+.vitrine__barra { position: relative; flex: 1; max-width: 220px; height: 1px; background: rgba(255, 255, 255, .16); overflow: hidden; }
+.vitrine__barra i { position: absolute; inset: 0; background: linear-gradient(90deg, var(--ouro-claro), var(--ouro)); transform-origin: left center; transform: scaleX(.04); transition: transform .25s linear; }
+.vitrine__janela { margin-top: clamp(36px, 5vw, 56px); padding: 6px max(var(--gut), calc((100vw - var(--wrap)) / 2 + var(--gut))) 24px; }
+.vitrine__trilho { list-style: none; margin: 0; padding: 0; display: flex; gap: 22px; width: max-content; will-change: transform; }
+.vitrine__card { position: relative; flex: 0 0 auto; width: clamp(280px, 25vw, 360px); min-height: clamp(300px, 38vh, 380px); padding: 34px 30px 30px; display: flex; flex-direction: column;
+  border-radius: 6px; background: linear-gradient(165deg, #252B2E 0%, #1C2124 100%); border: 1px solid rgba(255, 255, 255, .09);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05), 0 26px 50px -30px rgba(0, 0, 0, .9);
+  transition: border-color .6s var(--ease), box-shadow .6s var(--ease); }
+.vitrine__card::after { content: ""; position: absolute; left: 30px; right: 30px; bottom: 0; height: 1px; background: linear-gradient(90deg, var(--ouro), transparent); opacity: .35; transition: opacity .6s var(--ease); }
+.vitrine__num { font-family: var(--serif); font-size: clamp(54px, 5vw, 72px); line-height: 1; letter-spacing: -.02em; color: transparent; -webkit-text-stroke: 1px rgba(221, 177, 90, .55); transition: -webkit-text-stroke-color .6s var(--ease); }
+.vitrine__card > i { position: absolute; top: 34px; right: 30px; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; font-size: 22px; color: var(--ouro-claro); border: 1px solid rgba(221, 177, 90, .5); }
+.vitrine__card h3 { margin: auto 0 10px; padding-top: 28px; font-family: var(--serif); font-weight: 500; font-size: clamp(24px, 2vw, 30px); line-height: 1.12; color: #FFFFFF; }
+.vitrine__card p { margin: 0; font-size: 15.5px; line-height: 1.6; color: rgba(255, 255, 255, .78); }
+.vitrine__card.is-ativo { border-color: rgba(221, 177, 90, .55); box-shadow: inset 0 1px 0 rgba(255, 240, 210, .08), 0 30px 60px -30px rgba(0, 0, 0, .95), 0 0 0 1px rgba(221, 177, 90, .12); }
+.vitrine__card.is-ativo::after { opacity: 1; }
+.vitrine__card.is-ativo .vitrine__num { -webkit-text-stroke-color: var(--ouro); }
+.vitrine__card--cta { background: linear-gradient(150deg, #F8E6B2 0%, #E6BE68 50%, #C9933A 100%); border-color: transparent; }
+.vitrine__card--cta > i { position: static; margin-bottom: 18px; color: #181D20; border-color: rgba(24, 29, 32, .35); }
+.vitrine__card--cta h3 { color: #181D20; margin-top: auto; padding-top: 0; }
+.vitrine__card--cta p { color: rgba(24, 29, 32, .8); }
+.vitrine__card--cta::after { display: none; }
+.vitrine__card--cta.is-ativo { border-color: transparent; }
+.vitrine__link { margin-top: 22px; display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; padding: 12px 18px; border-radius: 999px; background: #181D20; color: var(--ouro-claro); font-size: 12.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; }
+/* computador: presa na tela */
+.vitrine--fixa .vitrine__fixo { position: sticky; top: 0; height: 100dvh; display: flex; flex-direction: column; justify-content: center; padding: 84px 0 40px; }
+/* celular e tablet: carrossel de arrastar */
+.vitrine:not(.vitrine--fixa) .vitrine__janela { overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: var(--gut); -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.vitrine:not(.vitrine--fixa) .vitrine__janela::-webkit-scrollbar { display: none; }
+.vitrine:not(.vitrine--fixa) .vitrine__card { scroll-snap-align: start; }
+@media (max-width: 1023px) {
+  .vitrine__cab { grid-template-columns: 1fr; text-align: center; }
+  .vitrine__ritmo { justify-content: center; }
+  .vitrine__barra { max-width: 160px; }
+  .vitrine__card { width: min(78vw, 340px); min-height: 320px; padding: 28px 24px 26px; }
+  .vitrine__card > i { top: 28px; right: 24px; }
+  .vitrine__janela { padding-left: var(--gut); padding-right: var(--gut); }
+}
+@media (prefers-reduced-motion: reduce) { .vitrine__card, .vitrine__barra i, .vitrine__num { transition: none; } }
+
+/* Fontes oficiais da NOTTE (17/11/2026): La Luxes Serif nos títulos, Beautifully Delicious Sans no texto */
+@font-face { font-family: "La Luxes Serif"; font-style: normal; font-weight: 400; font-display: swap; src: url("../fonts/la-luxes-serif.woff2") format("woff2"); }
+@font-face { font-family: "BD Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url("../fonts/beautifully-delicious-sans.woff2") format("woff2"); }
+:root {
+  --serif: "La Luxes Serif", "Didot", "Bodoni 72", Georgia, serif;
+  --sans: "BD Sans", "Segoe UI", system-ui, sans-serif;
+}
+body { font-family: var(--sans); }
+h1, h2, h3, .titulo, .fecho__titulo, .hero__titulo { font-family: var(--serif); font-weight: 400; letter-spacing: .01em; }
+/* como no PDF: a segunda parte do título em caixa alta, fina e espaçada */
+.titulo em, .hero__titulo em, .fecho__titulo em { font-style: normal; text-transform: uppercase; letter-spacing: .05em; font-size: .82em; }
+.vitrine__num { font-family: var(--serif); }
+.capitulo, .vitrine__ritmo, .btn, .vitrine__link { font-family: var(--sans); }
+
+/* As fontes da marca só têm o peso regular: nada de negrito/itálico falso */
+html { font-synthesis: none; }
+.elo__txt strong, .elo--destaque .elo__txt strong { font-weight: 400; letter-spacing: .01em; }
+/* Celular: títulos em caixa alta são mais largos */
+@media (max-width: 767px) {
+  .hero__titulo { font-size: clamp(25px, 7.4vw, 34px) !important; line-height: 1.12; }
+  .hero__titulo .linha { white-space: normal !important; }
+  .titulo { font-size: clamp(27px, 7.6vw, 38px); line-height: 1.12; }
+  .fecho__titulo { font-size: clamp(27px, 7.6vw, 38px); }
+}
+
+/* Ajustes de celular com as fontes da marca */
+@media (max-width: 767px) {
+  .hero__titulo { font-size: min(6.9vw, 34px) !important; line-height: 1.14; }
+  .hero__titulo .linha { white-space: nowrap !important; }
+  .titulo { font-size: min(7.4vw, 38px); }
+  .titulo .linha, .fecho__titulo .linha { white-space: normal; }
+  .capitulo { white-space: nowrap; font-size: 9.5px; letter-spacing: .17em; gap: 10px; }
+  .capitulo::before, .capitulo::after { width: 18px; }
+  .vitrine__card h3 { font-size: 21px; overflow-wrap: anywhere; hyphens: auto; }
+  .faq__item summary { font-size: 15.5px; line-height: 1.3; }
+}
+/* Bio: título do botão pode ir para 2 linhas, sem encolher */
+.elo__txt strong, .elo--destaque .elo__txt strong { white-space: normal !important; font-size: 14.5px !important; line-height: 1.25; }
+.titulo em, .fecho__titulo em { display: block; margin-top: .08em; }
+@media (max-width: 767px) { .hero__titulo { font-size: min(6.3vw, 32px) !important; } }

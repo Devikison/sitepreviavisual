@@ -20,7 +20,7 @@
   function ajustar() {
     var fs = 19; raiz.style.setProperty("--elo-fs", fs + "px");
     var cabe = function () { for (var i = 0; i < titulos.length; i++) { if (titulos[i].scrollWidth > titulos[i].parentNode.clientWidth + 0.5) return false; } return true; };
-    while (!cabe() && fs > 12) { fs -= 0.5; raiz.style.setProperty("--elo-fs", fs + "px"); }
+    while (!cabe() && fs > 11) { fs -= 0.5; raiz.style.setProperty("--elo-fs", fs + "px"); }
   }
   ajustar();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajustar);
