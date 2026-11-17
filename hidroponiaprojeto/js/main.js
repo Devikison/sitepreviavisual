@@ -3,6 +3,13 @@
   "use strict";
   var reduz = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  /* ---------- Rolagem suave (Lenis): só na roda do mouse e no trackpad; no toque fica a rolagem nativa ---------- */
+  var lenis = null;
+  if (window.Lenis && !reduz) {
+    lenis = new window.Lenis({ lerp: 0.09, wheelMultiplier: 0.9, smoothWheel: true, anchors: { offset: -16 } });
+    (function passo(t) { lenis.raf(t); requestAnimationFrame(passo); })(0);
+  }
+
   /* ---------- Aviso do topo: data de hoje ---------- */
   var d = new Date(), dd = ("0" + d.getDate()).slice(-2), mm = ("0" + (d.getMonth() + 1)).slice(-2);
   document.querySelectorAll("[data-hoje]").forEach(function (el) { el.textContent = dd + "/" + mm + "/" + d.getFullYear(); });
@@ -87,6 +94,7 @@
       var n = 0; lista.forEach(function (x, k) { if (x.getAttribute("data-zoom") === alvo) n = k; });
       origem = lista[n];
       rolagem = window.scrollY;
+      if (lenis) lenis.stop();
       document.body.style.position = "fixed"; document.body.style.top = -rolagem + "px"; document.body.style.left = "0"; document.body.style.right = "0";
       mostra(n); lb.hidden = false;
       requestAnimationFrame(function () { lb.classList.add("aberto"); });
@@ -98,6 +106,7 @@
       var html = document.documentElement, antes = html.style.scrollBehavior;
       document.body.style.position = ""; document.body.style.top = ""; document.body.style.left = ""; document.body.style.right = "";
       html.style.scrollBehavior = "auto"; window.scrollTo(0, rolagem); html.style.scrollBehavior = antes;
+      if (lenis) { lenis.scrollTo(rolagem, { immediate: true, force: true }); lenis.start(); }
       if (origem) try { origem.focus({ preventScroll: true }); } catch (e) {}
     }
     document.addEventListener("click", function (e) {
