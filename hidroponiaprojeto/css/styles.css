@@ -599,3 +599,5 @@ img,video,.car__btn,.ph,.lb__fig{-webkit-user-select:none;user-select:none;-webk
   .chip--1{left:-30px}
   .chip--2{right:-24px}
 }
+
+.car__btn--fixo{cursor:inherit}

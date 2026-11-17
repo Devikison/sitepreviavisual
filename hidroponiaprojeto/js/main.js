@@ -89,7 +89,7 @@
     }
     function abre(botao) {
       var car = botao.closest(".car");
-      lista = [].slice.call(car.querySelectorAll(".car__btn")).filter(function (x) { return !x.closest('[aria-hidden="true"]'); });
+      lista = [].slice.call(car.querySelectorAll(".car__btn[data-zoom]")).filter(function (x) { return !x.closest('[aria-hidden="true"]'); });
       var alvo = botao.getAttribute("data-zoom");
       var n = 0; lista.forEach(function (x, k) { if (x.getAttribute("data-zoom") === alvo) n = k; });
       origem = lista[n];
@@ -110,7 +110,7 @@
       if (origem) try { origem.focus({ preventScroll: true }); } catch (e) {}
     }
     document.addEventListener("click", function (e) {
-      var b = e.target.closest && e.target.closest(".car__btn");
+      var b = e.target.closest && e.target.closest(".car__btn[data-zoom]");
       if (!b) return;
       e.preventDefault();
       abre(b);
