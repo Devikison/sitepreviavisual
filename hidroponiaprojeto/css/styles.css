@@ -749,3 +749,18 @@ img,video,.car__btn,.ph,.lb__fig{-webkit-user-select:none;user-select:none;-webk
 .btn--grande:has(.btn__ic){--ic:46px}
 @media (max-width:600px){.btn:has(.btn__ic),.btn--grande:has(.btn__ic){--ic:40px;padding-left:50px;padding-right:8px}}
 @media (max-width:360px){.btn:has(.btn__ic),.btn--grande:has(.btn__ic){--ic:36px;padding-left:44px}}
+
+/* ---------- Rodapé centralizado ---------- */
+.rodape__in{display:flex;flex-direction:column;align-items:center;text-align:center}
+.rodape__marca{justify-content:center;align-items:center;flex-direction:row;flex-wrap:nowrap}
+.rodape__cols{display:flex;justify-content:center;gap:24px 72px;margin-top:48px;grid-template-columns:none}
+.rodape__cols>div{display:flex;flex-direction:column;align-items:center}
+.rodape__cols ul{display:flex;flex-direction:column;align-items:center}
+.rodape__fim{text-align:center;margin-left:auto;margin-right:auto}
+@media (max-width:600px){
+  .rodape__marca{flex-direction:column;gap:14px}
+  .rodape__marca svg{width:84px}
+  .rodape__marca p{font-size:clamp(40px,12.5vw,54px);text-align:center;line-height:.95}
+  .rodape__cols{gap:24px 40px;margin-top:36px}
+}
+@media (max-width:600px){.rodape__marca p span{display:block}}
