@@ -144,6 +144,28 @@
   document.addEventListener("dragstart", function (e) { if (e.target.closest && e.target.closest(protegido)) e.preventDefault(); });
   [].forEach.call(document.querySelectorAll("img"), function (im) { im.setAttribute("draggable", "false"); });
 
+  /* ---------- Bônus no celular: o card de trás encolhe e escurece quando o próximo sobe ---------- */
+  var pilha = [].slice.call(document.querySelectorAll("ul.bonus__grid .bonus-card"));
+  var celular = window.matchMedia("(max-width: 600px)");
+  pilha.forEach(function (c, k) { c.style.setProperty("--k", k); });
+  function empilha() {
+    if (!celular.matches || reduz) { pilha.forEach(function (c) { c.style.transform = ""; c.style.filter = ""; }); return; }
+    pilha.forEach(function (c, k) {
+      var prox = pilha[k + 1];
+      if (!prox) { c.style.transform = ""; c.style.filter = ""; return; }
+      var a = c.getBoundingClientRect(), b = prox.getBoundingClientRect();
+      var p = Math.max(0, Math.min(1, (a.bottom - b.top) / a.height));
+      c.style.transform = "scale(" + (1 - 0.08 * p).toFixed(4) + ")";
+      c.style.filter = "brightness(" + (1 - 0.18 * p).toFixed(3) + ")";
+    });
+  }
+  if (pilha.length) {
+    var pedidoPilha = false;
+    window.addEventListener("scroll", function () { if (!pedidoPilha) { pedidoPilha = true; requestAnimationFrame(function () { pedidoPilha = false; empilha(); }); } }, { passive: true });
+    window.addEventListener("resize", empilha);
+    empilha();
+  }
+
   /* ---------- Entradas por seção ---------- */
   var itens = document.querySelectorAll(".rv");
   if ("IntersectionObserver" in window && !reduz) {
