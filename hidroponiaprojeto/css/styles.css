@@ -742,3 +742,10 @@ img,video,.car__btn,.ph,.lb__fig{-webkit-user-select:none;user-select:none;-webk
 
 /* preço inteiro (sem centavos): "/ pagamento único" encostado ao número */
 .pc__per{margin-left:.45em}
+
+/* ---------- Texto centralizado nos botões (a seta fica à direita e o lado esquerdo compensa) ---------- */
+.btn:has(.btn__ic){justify-content:space-between;padding-left:calc(var(--ic,42px) + 10px);padding-right:8px}
+.btn:has(.btn__ic) span{flex:1;text-align:center}
+.btn--grande:has(.btn__ic){--ic:46px}
+@media (max-width:600px){.btn:has(.btn__ic),.btn--grande:has(.btn__ic){--ic:40px;padding-left:50px;padding-right:8px}}
+@media (max-width:360px){.btn:has(.btn__ic),.btn--grande:has(.btn__ic){--ic:36px;padding-left:44px}}
