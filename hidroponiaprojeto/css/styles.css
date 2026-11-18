@@ -674,3 +674,6 @@ img,video,.car__btn,.ph,.lb__fig{-webkit-user-select:none;user-select:none;-webk
     box-shadow:0 -6px 18px rgba(25,57,44,.06),0 18px 40px rgba(25,57,44,.14)}
   .proj-grid .proj.rv{opacity:1;transform:none}
 }
+/* sombra dos cards dos carrosséis sem corte */
+.car--depo{padding-top:24px;padding-bottom:72px;margin-top:-12px;margin-bottom:-44px}
+.car:not(.car--depo){padding-bottom:40px;margin-bottom:-20px}
