@@ -739,3 +739,6 @@ img,video,.car__btn,.ph,.lb__fig{-webkit-user-select:none;user-select:none;-webk
 .pc--2 .pc__chips li{background:#fff;box-shadow:0 0 0 1px rgba(201,150,42,.35)}
 .pc--2 .pc__chips i{background:var(--vivo)}
 @media (max-width:600px){.pc__nome{padding:6px 18px 20px}.pc__nome h3{font-size:26px}}
+
+/* preço inteiro (sem centavos): "/ pagamento único" encostado ao número */
+.pc__per{margin-left:.45em}
