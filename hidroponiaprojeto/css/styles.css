@@ -613,3 +613,9 @@ img,video,.car__btn,.ph,.lb__fig{-webkit-user-select:none;user-select:none;-webk
 .pc--2 .pc__topo{padding-top:0!important}
 .pc--2 .pc__capa{border-radius:21px 21px 0 0}
 @media (max-width:600px){.pc__nome{padding:2px 18px 20px}}
+
+/* ---------- VSL vertical 9:16 ---------- */
+.video{aspect-ratio:9/16}
+.hero__img{max-width:400px}
+@media (min-width:861px){.hero__img{max-width:min(400px,calc((100dvh - var(--aviso-h) - 84px) * .5625))}}
+@media (max-width:860px){.hero__img{max-width:min(360px,86vw);margin-left:auto;margin-right:auto}}
