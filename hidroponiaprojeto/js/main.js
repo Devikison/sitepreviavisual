@@ -145,13 +145,14 @@
   [].forEach.call(document.querySelectorAll("img"), function (im) { im.setAttribute("draggable", "false"); });
 
   /* ---------- Bônus no celular: o card de trás encolhe e escurece quando o próximo sobe ---------- */
-  var pilha = [].slice.call(document.querySelectorAll("ul.bonus__grid .bonus-card"));
+  var grupos = [".proj-grid .proj", "ul.bonus__grid .bonus-card"].map(function (sel) { return [].slice.call(document.querySelectorAll(sel)); }).filter(function (g) { return g.length; });
+  var pilha = [].concat.apply([], grupos);
   var celular = window.matchMedia("(max-width: 600px)");
-  pilha.forEach(function (c, k) { c.style.setProperty("--k", k); });
+  grupos.forEach(function (g) { g.forEach(function (c, k) { c.style.setProperty("--k", k); c._prox = g[k + 1] || null; }); });
   function empilha() {
     if (!celular.matches || reduz) { pilha.forEach(function (c) { c.style.transform = ""; c.style.filter = ""; }); return; }
-    pilha.forEach(function (c, k) {
-      var prox = pilha[k + 1];
+    pilha.forEach(function (c) {
+      var prox = c._prox;
       if (!prox) { c.style.transform = ""; c.style.filter = ""; return; }
       var a = c.getBoundingClientRect(), b = prox.getBoundingClientRect();
       var p = Math.max(0, Math.min(1, (a.bottom - b.top) / a.height));

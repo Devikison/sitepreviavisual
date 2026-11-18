@@ -655,3 +655,14 @@ img,video,.car__btn,.ph,.lb__fig{-webkit-user-select:none;user-select:none;-webk
   ul.bonus__grid .bonus-card.rv{opacity:1;transform:none}
   ul.bonus__grid .bonus-card__img img{aspect-ratio:16/11}
 }
+
+/* ---------- Projetos no celular: cards empilhados na rolagem ---------- */
+@media (max-width:600px){
+  .proj-grid{display:block;max-width:420px;margin:0 auto}
+  .proj-grid .proj{position:sticky;top:calc(84px + var(--k,0) * 12px);margin-bottom:22px;transform-origin:50% 0;will-change:transform;
+    box-shadow:0 -6px 18px rgba(25,57,44,.06),0 18px 40px rgba(25,57,44,.14)}
+  .proj-grid .proj:last-child{margin-bottom:0}
+  .proj-grid .proj.rv{opacity:1;transform:none}
+  .proj__ilu{padding:12px 12px 0}
+  .proj__ilu svg{max-height:210px;margin:0 auto}
+}
