@@ -723,3 +723,19 @@ img,video,.car__btn,.ph,.lb__fig{-webkit-user-select:none;user-select:none;-webk
 }
 @media (max-width:360px){.btn,.btn--grande{padding-left:16px}.btn__ic,.btn--grande .btn__ic{width:36px;height:36px}}
 .wrap .wrap{padding-inline:0}
+
+/* ---------- Cabeçalho dos planos ---------- */
+.pc__nome{padding:8px 24px 24px;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.pc__tag{display:inline-flex;align-items:center;gap:6px;padding:5px 12px 5px 8px;border-radius:999px;background:#fff;border:1px solid rgba(25,57,44,.1);font-size:12.5px;font-weight:700;letter-spacing:.02em;color:var(--folha-escura);box-shadow:0 4px 10px rgba(25,57,44,.06)}
+.pc__tag i{font-size:15px}
+.pc__tag--ouro{background:linear-gradient(180deg,#FFF6D8,#FCE9B0);border-color:rgba(201,150,42,.45);color:#7A5410}
+.pc__tag--ouro i{color:#C9962A}
+.pc__nome h3{font-family:"Gabarito",system-ui,sans-serif;font-weight:900;font-size:clamp(26px,2.4vw,32px);letter-spacing:-.03em;line-height:1.05;color:var(--ink);margin-top:2px}
+.pc__mais{background:linear-gradient(180deg,#E8B43C,#B9861F);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.pc__nome p{margin:0;font-size:16px;line-height:1.5;color:var(--suave);max-width:30ch}
+.pc__chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.pc__chips li{display:inline-flex;align-items:center;gap:6px;padding:6px 11px 6px 8px;border-radius:999px;background:var(--folha-clara);color:var(--folha-escura);font-size:13.5px;font-weight:700}
+.pc__chips i{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:var(--folha-escura);color:#fff;font-size:10px}
+.pc--2 .pc__chips li{background:#fff;box-shadow:0 0 0 1px rgba(201,150,42,.35)}
+.pc--2 .pc__chips i{background:var(--vivo)}
+@media (max-width:600px){.pc__nome{padding:6px 18px 20px}.pc__nome h3{font-size:26px}}
