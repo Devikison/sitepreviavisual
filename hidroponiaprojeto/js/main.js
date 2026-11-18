@@ -145,25 +145,31 @@
   [].forEach.call(document.querySelectorAll("img"), function (im) { im.setAttribute("draggable", "false"); });
 
   /* ---------- Bônus no celular: o card de trás encolhe e escurece quando o próximo sobe ---------- */
-  var grupos = [".proj-grid .proj", "ul.bonus__grid .bonus-card"].map(function (sel) { return [].slice.call(document.querySelectorAll(sel)); }).filter(function (g) { return g.length; });
-  var pilha = [].concat.apply([], grupos);
+  var gProj = [].slice.call(document.querySelectorAll(".proj-grid .proj"));
+  var gBonus = [].slice.call(document.querySelectorAll("ul.bonus__grid .bonus-card"));
+  var pilha = gProj.concat(gBonus);
   var celular = window.matchMedia("(max-width: 600px)");
-  grupos.forEach(function (g) { g.forEach(function (c, k) { c.style.setProperty("--k", k); c._prox = g[k + 1] || null; }); });
+  function colunas(el) { var t = getComputedStyle(el).gridTemplateColumns; return (!t || t === "none") ? 1 : t.split(" ").length; }
+  function arma() {
+    var cProj = celular.matches ? 1 : colunas(gProj[0] ? gProj[0].parentNode : document.body);
+    gProj.forEach(function (c, k) { c.style.setProperty("--k", Math.floor(k / cProj)); c._prox = gProj[k + cProj] || null; c._ativo = true; });
+    gBonus.forEach(function (c, k) { c.style.setProperty("--k", k); c._prox = gBonus[k + 1] || null; c._ativo = celular.matches; });
+  }
   function empilha() {
-    if (!celular.matches || reduz) { pilha.forEach(function (c) { c.style.transform = ""; c.style.filter = ""; }); return; }
     pilha.forEach(function (c) {
       var prox = c._prox;
-      if (!prox) { c.style.transform = ""; c.style.filter = ""; return; }
+      if (reduz || !c._ativo || !prox) { c.style.transform = ""; c.style.filter = ""; return; }
       var a = c.getBoundingClientRect(), b = prox.getBoundingClientRect();
       var p = Math.max(0, Math.min(1, (a.bottom - b.top) / a.height));
       c.style.transform = "scale(" + (1 - 0.08 * p).toFixed(4) + ")";
       c.style.filter = "brightness(" + (1 - 0.18 * p).toFixed(3) + ")";
     });
   }
+  arma();
   if (pilha.length) {
     var pedidoPilha = false;
     window.addEventListener("scroll", function () { if (!pedidoPilha) { pedidoPilha = true; requestAnimationFrame(function () { pedidoPilha = false; empilha(); }); } }, { passive: true });
-    window.addEventListener("resize", empilha);
+    window.addEventListener("resize", function () { arma(); empilha(); });
     empilha();
   }
 

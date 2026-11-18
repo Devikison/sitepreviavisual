@@ -666,3 +666,11 @@ img,video,.car__btn,.ph,.lb__fig{-webkit-user-select:none;user-select:none;-webk
   .proj__ilu{padding:12px 12px 0}
   .proj__ilu svg{max-height:210px;margin:0 auto}
 }
+
+/* ---------- Projetos no computador e tablet: fileiras empilhadas na rolagem ---------- */
+@media (min-width:601px){
+  .proj-grid{align-items:start}
+  .proj-grid .proj{position:sticky;top:calc(28px + var(--k,0) * 16px);transform-origin:50% 0;will-change:transform;
+    box-shadow:0 -6px 18px rgba(25,57,44,.06),0 18px 40px rgba(25,57,44,.14)}
+  .proj-grid .proj.rv{opacity:1;transform:none}
+}
