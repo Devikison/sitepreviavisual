@@ -212,19 +212,4 @@
     });
   });
 
-  /* ---------- Pop-up de saída (computador, uma vez por sessão) ---------- */
-  var dlg = document.getElementById("saida");
-  if (dlg && dlg.showModal && window.matchMedia("(pointer: fine)").matches) {
-    var visto = false;
-    try { visto = sessionStorage.getItem("pec-saida") === "1"; } catch (e) {}
-    var pode = false;
-    setTimeout(function () { pode = true; }, 15000);
-    document.addEventListener("mouseout", function (e) {
-      if (visto || !pode || e.relatedTarget || e.clientY > 8) return;
-      visto = true;
-      try { sessionStorage.setItem("pec-saida", "1"); } catch (er) {}
-      dlg.showModal();
-    });
-    dlg.addEventListener("click", function (e) { if (e.target === dlg || e.target.closest("[data-fechar]")) dlg.close(); });
-  }
 })();
