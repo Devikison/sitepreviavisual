@@ -173,25 +173,6 @@
     empilha();
   }
 
-  /* ---------- Barra fixa de compra no celular: aparece depois do topo, some nos planos ---------- */
-  var barraC = document.getElementById("barraCompra"), heroS = document.querySelector(".hero"), planosS = document.getElementById("planos");
-  if (barraC && heroS && planosS) {
-    document.body.classList.add("tem-barra");
-    var mostraBarra = function () {
-      var hb = heroS.getBoundingClientRect().bottom, pr = planosS.getBoundingClientRect();
-      var nosPlanos = pr.top < innerHeight * 0.9 && pr.bottom > innerHeight * 0.1;
-      var aviso = document.querySelector(".consent.is-on");
-      var on = hb < 0 && !nosPlanos && !aviso;
-      barraC.classList.toggle("on", on);
-      barraC.setAttribute("aria-hidden", on ? "false" : "true");
-      barraC.querySelector("a").tabIndex = on ? 0 : -1;
-    };
-    var pedidoBarra = false;
-    window.addEventListener("scroll", function () { if (!pedidoBarra) { pedidoBarra = true; setTimeout(function () { pedidoBarra = false; mostraBarra(); }, 80); } }, { passive: true });
-    document.addEventListener("click", function () { setTimeout(mostraBarra, 450); });
-    mostraBarra();
-  }
-
   /* ---------- Entradas por seção ---------- */
   var itens = document.querySelectorAll(".rv");
   if ("IntersectionObserver" in window && !reduz) {
