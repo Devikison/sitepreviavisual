@@ -13,7 +13,7 @@
     links: {
       // CHAVE: "url"  -> usado por <a data-link="CHAVE">
       checkoutEssencial: "https://pay.cakto.com.br/zxzw88k_1336345",  // Cakto, plano Essencial R$ 27
-      checkoutCompleto: "https://pay.cakto.com.br/wumky3s",   // Cakto, plano Completo R$ 47
+      checkoutCompleto: "https://pay.cakto.com.br/hyigmfz",   // Cakto, plano Completo R$ 47
       instagram: ""           // [LINK_INSTAGRAM]
     }
   };
