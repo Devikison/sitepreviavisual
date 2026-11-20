@@ -613,6 +613,21 @@ html.js .hero__action { animation-delay: 0.84s; }
 ::-webkit-scrollbar-button:single-button:hover { background-color: #DCDAD3; }
 @supports not selector(::-webkit-scrollbar) { html { scrollbar-color: #E0202E #E9E8E3; } }
 
+/* ============ NOTA ABAIXO DOS BOTÕES: pílula de destaque ============ */
+.b1 { margin-bottom: 52px; }
+.b1__note {
+  left: 50%; right: auto; bottom: -46px; transform: translateX(-50%);
+  display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px 7px 10px; border-radius: 999px;
+  font-size: 0.9375rem; font-weight: 600; letter-spacing: 0.01em; white-space: nowrap;
+  background: #19b6571f; color: #0E7A3A; border: 1px solid #19b65766;
+  box-shadow: 0 4px 14px #19b65726; /* taste-skill-ignore: destaque pedido pelo cliente */
+}
+.b1__note::before {
+  content: ""; flex: 0 0 18px; width: 18px; height: 18px; border-radius: 50%;
+  background: #19B657 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 12px no-repeat;
+}
+.b1--dark .b1__note { background: #19b65733; color: #8CF5B4; border-color: #19b65780; }
+
 /* ============ TABLET ============ */
 @media (max-width: 1023px) {
   .descs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
