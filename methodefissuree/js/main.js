@@ -108,7 +108,9 @@
       pedido = false;
       var y = window.scrollY, desce = y > ultimoY + 2, sobe = y < ultimoY - 2;
       barraTopo.classList.toggle("is-solta", y > 12);
-      var limite = segunda ? segunda.offsetTop + segunda.offsetHeight : 1200;
+      var celular = window.matchMedia("(max-width: 767px)").matches;
+      var ref = celular ? $(".hero") : segunda;
+      var limite = ref ? ref.offsetTop + ref.offsetHeight : 1200;
       if (y < limite) barraTopo.classList.remove("is-oculta");
       else if (desce) barraTopo.classList.add("is-oculta");
       else if (sobe) barraTopo.classList.remove("is-oculta");
