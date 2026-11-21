@@ -650,6 +650,18 @@ html.js .hero__action { animation-delay: 0.84s; }
 }
 .b1--dark .b1__note { background: #19b65733; color: #8CF5B4; border-color: #19b65780; }
 
+/* ============ BOTÕES MAIORES NO COMPUTADOR (destaque; celular segue como estava) ============ */
+@media (min-width: 768px) {
+  .b1 { --h: 76px; --r: 24px; }
+  .b1__txt { font-size: 1.5rem; letter-spacing: 0.035em; }
+  .b1__dot { --dot: 11px; }
+  .b2 { --dist: 24px; }
+  .b2__btn { min-height: 72px; min-width: 260px; border-radius: 18px; padding: 0.25em 1.8em; }
+  .b2__txt { font-size: 1.625rem; }
+  .hero__action .b1 { --h: 84px; }
+  .hero__action .b1__txt { font-size: 1.75rem; }
+}
+
 /* ============ TABLET ============ */
 @media (max-width: 1023px) {
   .descs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -791,3 +803,4 @@ html.js .hero__action { animation-delay: 0.84s; }
 .legal__btn { display: inline-flex; align-items: center; min-height: 52px; padding: 0 24px; margin-top: 24px; border-radius: 999px; background: var(--cta); color: var(--cta-ink); text-decoration: none; font-family: var(--f-display); font-weight: 700; text-transform: uppercase; font-size: 1.125rem; }
 .legal__foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-block: 32px; font-size: var(--t-small); background: var(--surface); max-width: none; }
 .legal__foot a { margin-right: 16px; }
+
