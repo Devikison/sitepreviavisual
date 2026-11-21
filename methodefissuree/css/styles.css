@@ -804,3 +804,34 @@ html.js .hero__action { animation-delay: 0.84s; }
 .legal__foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-block: 32px; font-size: var(--t-small); background: var(--surface); max-width: none; }
 .legal__foot a { margin-right: 16px; }
 
+
+/* ============ VERSÃO EM INGLÊS (ordem da página antiga) ============ */
+.hero__sub { margin-top: 12px; max-width: 52ch; font-size: clamp(1rem, 0.92rem + 0.35vw, 1.1875rem); color: var(--muted); }
+.desc__q--ask { text-decoration: none; color: var(--ink); font-size: 1.1875rem; line-height: 1.3; max-width: 26ch; }
+@media (min-width: 768px) {
+  .descs { display: flex; flex-wrap: wrap; justify-content: center; }
+  .descs > .desc { flex: 0 1 calc((100% - 40px) / 3); }
+}
+@media (min-width: 768px) and (max-width: 1023px) { .descs > .desc { flex-basis: calc((100% - 20px) / 2); } }
+.itens--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 860px; margin-inline: auto; }
+.tudo { background: var(--surface); padding: var(--gap-section) 0; }
+.tudo__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 4vw, 64px); align-items: center; max-width: 1100px; margin: 0 auto; }
+.tudo__frame img { aspect-ratio: 3 / 4; object-fit: contain; background: #F4F4F1; }
+.tudo__card { padding: clamp(24px, 3vw, 40px); }
+.tudo__list { display: grid; gap: 14px; }
+.tudo__list li { position: relative; padding-left: 38px; font-size: 1.0625rem; line-height: 1.45; }
+.tudo__list li::before { content: ""; position: absolute; left: 0; top: 1px; width: 26px; height: 26px; border-radius: 50%; background: var(--green); }
+.tudo__list li::after { content: ""; position: absolute; left: 10px; top: 6px; width: 6px; height: 12px; border-right: 2.5px solid #fff; border-bottom: 2.5px solid #fff; transform: rotate(45deg); }
+.tudo__bonus { display: flex; align-items: center; gap: 16px; margin-top: 24px; padding: 14px; border-radius: 18px; background: #e0202e0f; border: 1.5px dashed #e0202e66; }
+.tudo__bonus img { width: 96px; height: 96px; flex: 0 0 96px; object-fit: cover; object-position: 63% 50%; border-radius: 14px; }
+.tudo__bonus .tag { margin-bottom: 6px; }
+.tudo__bonus-t { font-weight: 600; line-height: 1.4; }
+.tudo__btn { margin-top: 32px; }
+.rodape__logo--simbolo { width: clamp(110px, 10vw, 140px); filter: brightness(0) invert(1); }
+@media (max-width: 767px) {
+  .itens--2 { grid-template-columns: 1fr; }
+  .tudo__grid { grid-template-columns: 1fr; }
+  .tudo__frame { max-width: 340px; justify-self: center; width: 100%; }
+  .tudo__btn, .tudo__btn .b1__btn { width: 100%; }
+  .desc__q--ask { font-size: 1.0625rem; }
+}
