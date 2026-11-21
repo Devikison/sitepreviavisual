@@ -252,3 +252,36 @@
     medir();
   }
 })();
+
+/* VSL da hero: autoplay mudo, toque para ouvir, play/pausa, som, barra e tela cheia */
+(function () {
+  var box = document.querySelector("[data-vsl]"); if (!box) return;
+  var v = box.querySelector("video"), bar = box.querySelector("[data-vsl-track]"), fill = bar.firstElementChild;
+  var playBtn = box.querySelector("[data-vsl-play]"), muteBtn = box.querySelector("[data-vsl-mute]");
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (matchMedia("(pointer: coarse)").matches) box.classList.add("is-touch");
+  var sync = function () {
+    box.classList.toggle("is-paused", v.paused);
+    box.classList.toggle("is-sound", !v.muted);
+    playBtn.setAttribute("aria-label", v.paused ? "Play" : "Pause");
+    muteBtn.setAttribute("aria-label", v.muted ? "Turn sound on" : "Turn sound off");
+  };
+  var withSound = function () { v.muted = false; v.loop = false; v.currentTime = 0; v.play(); sync(); };
+  box.querySelector("[data-vsl-unmute]").addEventListener("click", withSound);
+  v.addEventListener("click", function () { if (v.muted && !box.classList.contains("is-sound")) return withSound(); v.paused ? v.play() : v.pause(); });
+  playBtn.addEventListener("click", function () { v.paused ? v.play() : v.pause(); });
+  muteBtn.addEventListener("click", function () { v.muted = !v.muted; sync(); });
+  box.querySelector("[data-vsl-full]").addEventListener("click", function () {
+    if (document.fullscreenElement) return document.exitFullscreen();
+    if (box.requestFullscreen) box.requestFullscreen(); else if (v.webkitEnterFullscreen) v.webkitEnterFullscreen();
+  });
+  var seek = function (e) { var r = bar.getBoundingClientRect(); var p = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)); if (v.duration) v.currentTime = p * v.duration; };
+  bar.addEventListener("pointerdown", function (e) { seek(e); bar.setPointerCapture(e.pointerId); bar.onpointermove = seek; });
+  bar.addEventListener("pointerup", function () { bar.onpointermove = null; });
+  bar.addEventListener("keydown", function (e) { if (e.key === "ArrowRight") v.currentTime += 5; if (e.key === "ArrowLeft") v.currentTime -= 5; });
+  v.addEventListener("timeupdate", function () { var p = v.duration ? v.currentTime / v.duration * 100 : 0; fill.style.width = p + "%"; bar.setAttribute("aria-valuenow", Math.round(p)); });
+  ["play", "pause", "volumechange"].forEach(function (ev) { v.addEventListener(ev, sync); });
+  v.addEventListener("ended", function () { v.muted = true; v.loop = true; v.play(); sync(); });
+  if (!reduce) { var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { if (v.muted) v.play().catch(function () {}); } else if (v.muted) v.pause(); }); }); io.observe(box); }
+  sync();
+})();

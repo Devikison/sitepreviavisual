@@ -854,3 +854,38 @@ html.has-sbar::-webkit-scrollbar { display: none; width: 0; height: 0; }
 .sbar.is-on .sbar__thumb { pointer-events: auto; }
 .sbar:not(.is-on) .sbar__thumb { pointer-events: none; }
 .sbar.is-drag .sbar__thumb::after { width: 10px; }
+
+/* ===== VSL vertical da hero ===== */
+.hero__center { display: grid; justify-items: center; grid-template-columns: minmax(0, 1fr); }
+.hero__name { flex-direction: column; }
+.vsl { position: relative; width: min(84vw, 380px); aspect-ratio: 9 / 16; margin: 22px auto 0; border-radius: 28px; overflow: hidden;
+  background: #071331; box-shadow: 0 0 0 6px #fff, 0 0 0 8px #0a286826, 0 30px 70px -20px #0a286880; isolation: isolate; }
+.vsl__video { width: 100%; height: 100%; object-fit: cover; display: block; cursor: pointer; }
+.vsl__unmute { position: absolute; left: 50%; top: 50%; translate: -50% -50%; display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 22px; border: 0; border-radius: 999px; background: var(--cta, #7CF51C); color: #0A1A44; font-family: inherit; font-weight: 800; font-size: 1.05rem; line-height: 1; white-space: nowrap;
+  text-transform: uppercase; letter-spacing: .02em; cursor: pointer; box-shadow: 0 0 0 6px #7cf51c40, 0 14px 30px #0008; animation: vslPulse 1.6s ease-in-out infinite; }
+.vsl__unmute svg { width: 24px; height: 24px; }
+.vsl.is-sound .vsl__unmute { display: none; }
+@keyframes vslPulse { 50% { box-shadow: 0 0 0 14px #7cf51c00, 0 14px 30px #0008; } }
+.vsl__bar { position: absolute; left: 10px; right: 10px; bottom: 10px; display: flex; align-items: center; gap: 6px; padding: 6px;
+  border-radius: 18px; background: #071331b3; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); color: #fff;
+  opacity: 0; transform: translateY(8px); transition: opacity .25s, transform .25s; }
+.vsl:hover .vsl__bar, .vsl:focus-within .vsl__bar, .vsl.is-paused .vsl__bar, .vsl.is-sound.is-touch .vsl__bar { opacity: 1; transform: none; }
+.vsl__btn { flex: 0 0 40px; height: 40px; display: grid; place-items: center; border: 0; border-radius: 12px; background: #ffffff14; color: #fff; cursor: pointer; }
+.vsl__btn:hover { background: #ffffff2e; }
+.vsl__btn svg { width: 22px; height: 22px; }
+.vsl__btn .i-play, .vsl.is-paused .vsl__btn .i-pause, .vsl__btn .i-on, .vsl.is-sound .vsl__btn .i-off { display: none; }
+.vsl.is-paused .vsl__btn .i-play, .vsl.is-sound .vsl__btn .i-on { display: block; }
+.vsl__track { flex: 1; height: 40px; display: flex; align-items: center; cursor: pointer; position: relative; }
+.vsl__track::before { content: ""; position: absolute; left: 0; right: 0; height: 6px; border-radius: 9px; background: #ffffff33; }
+.vsl__track i { position: relative; height: 6px; width: 0; border-radius: 9px; background: linear-gradient(90deg, var(--red, #E0202E), var(--cta, #7CF51C)); }
+.vsl:fullscreen { width: 100%; height: 100%; border-radius: 0; box-shadow: none; background: #000; }
+.vsl:fullscreen .vsl__video { object-fit: contain; }
+html.js .vsl { opacity: 0; animation: fade .8s var(--ease) .4s forwards; }
+@media (min-width: 1024px) {
+  .hero__center { grid-template-columns: minmax(0, 1fr) auto; column-gap: clamp(40px, 5vw, 88px); align-items: center; max-width: 1240px; width: 100%; }
+  .hero__center > * { grid-column: 1; }
+  .hero__center > .vsl { grid-column: 2; grid-row: 1 / span 6; width: auto; height: min(78vh, 680px); margin: 0; }
+  .hero__name { font-size: min(8.4vw, 17vh, 168px); }
+}
+@media (prefers-reduced-motion: reduce) { .vsl__unmute { animation: none; } html.js .vsl { opacity: 1; animation: none; } }

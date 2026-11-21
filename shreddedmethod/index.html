@@ -32,10 +32,9 @@
 
   <link rel="preload" href="fonts/barlow-condensed-800.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/barlow-500.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" as="image" href="assets/img/hero-mulher-16x9.webp" media="(max-width: 767px)" fetchpriority="high">
-  <link rel="preload" as="image" href="assets/img/hero-mulher-faixa.webp" media="(min-width: 768px)" fetchpriority="high">
+  <link rel="preload" as="image" href="assets/video/vsl-poster.webp" fetchpriority="high">
   <link rel="preconnect" href="https://cdn.utmify.com.br" crossorigin>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=vsl1">
 
   <script type="application/ld+json">
   {
@@ -54,7 +53,7 @@
 
   <script>document.documentElement.classList.add("js");</script>
   <script src="js/rastreio.js" defer></script>
-  <script src="js/main.js" defer></script>
+  <script src="js/main.js?v=vsl1" defer></script>
   <!-- Utmify: passes UTMs to the checkout (sales pixel off; see README) -->
   <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
 </head>
@@ -82,15 +81,30 @@
   <div class="hero__center">
     <h1 class="hero__name" id="hero-title">
       <span class="hero__word">Shredded</span>
-      <span class="hero__frame">
-        <picture>
-          <source media="(max-width: 767px)" srcset="assets/img/hero-mulher-16x9.webp" width="960" height="540">
-          <img src="assets/img/hero-mulher-faixa.webp" width="1000" height="476" fetchpriority="high"
-               alt="Woman sitting on a mat in her living room, showing the Shredded Method workout on her phone">
-        </picture>
-      </span>
       <span class="hero__word">Method</span>
     </h1>
+    <figure class="vsl" data-vsl>
+      <video class="vsl__video" src="assets/video/vsl.mp4" poster="assets/video/vsl-poster.webp" playsinline muted loop preload="metadata"
+             aria-label="Shredded Method presentation video, 47 seconds"></video>
+      <button class="vsl__unmute" type="button" data-vsl-unmute>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <span>Tap to hear</span>
+      </button>
+      <div class="vsl__bar">
+        <button class="vsl__btn" type="button" data-vsl-play aria-label="Pause">
+          <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor"/></svg>
+          <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        </button>
+        <div class="vsl__track" data-vsl-track role="slider" tabindex="0" aria-label="Video progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div>
+        <button class="vsl__btn" type="button" data-vsl-mute aria-label="Turn sound on">
+          <svg class="i-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <svg class="i-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path d="M16 9l5 6M21 9l-5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <button class="vsl__btn" type="button" data-vsl-full aria-label="Full screen">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </figure>
     <p class="hero__lead">Transform your body and impress everyone in 21 days, training at home with the most affordable plan online.</p>
     <p class="hero__sub">It's not magic: these are workout sheets that combine cardio and strength in a single 30-minute session.</p>
     <ul class="pills pills--center hero__pills">
