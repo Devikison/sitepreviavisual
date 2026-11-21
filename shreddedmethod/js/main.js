@@ -207,4 +207,48 @@
   var ehImagem = function (el) { return el && el.closest && el.closest("img, picture, .frame, .hero__frame, .item__img, .selo"); };
   document.addEventListener("contextmenu", function (e) { if (ehImagem(e.target)) e.preventDefault(); });
   document.addEventListener("dragstart", function (e) { if (ehImagem(e.target)) e.preventDefault(); });
+
+  /* ---------- Barra de rolagem vermelha no celular (o sistema não deixa pintar a nativa) ---------- */
+  if (window.matchMedia("(pointer: coarse)").matches) {
+    var trilho = document.createElement("div");
+    trilho.className = "sbar"; trilho.setAttribute("aria-hidden", "true");
+    var polegar = document.createElement("div");
+    polegar.className = "sbar__thumb";
+    trilho.appendChild(polegar); document.body.appendChild(trilho);
+    document.documentElement.classList.add("has-sbar");
+    var raizS = document.scrollingElement || document.documentElement, esconder = null, pedidoS = false, arrastando = false;
+    var medir = function () {
+      pedidoS = false;
+      var total = raizS.scrollHeight, vis = window.innerHeight, altT = trilho.clientHeight;
+      if (total <= vis + 4) { trilho.classList.remove("is-on"); return; }
+      var h = Math.max(44, altT * vis / total);
+      var pos = (altT - h) * (raizS.scrollTop / (total - vis));
+      polegar.style.height = h + "px";
+      polegar.style.transform = "translateY(" + pos + "px)";
+    };
+    var mostrar = function () {
+      trilho.classList.add("is-on");
+      clearTimeout(esconder);
+      if (!arrastando) esconder = setTimeout(function () { trilho.classList.remove("is-on"); }, 1100);
+      if (!pedidoS) { pedidoS = true; requestAnimationFrame(medir); }
+    };
+    window.addEventListener("scroll", mostrar, { passive: true });
+    window.addEventListener("resize", function () { requestAnimationFrame(medir); });
+    var inicioY = 0, inicioTopo = 0;
+    polegar.addEventListener("touchstart", function (e) {
+      arrastando = true; trilho.classList.add("is-drag", "is-on"); clearTimeout(esconder);
+      inicioY = e.touches[0].clientY; inicioTopo = raizS.scrollTop;
+    }, { passive: true });
+    polegar.addEventListener("touchmove", function (e) {
+      if (!arrastando) return;
+      e.preventDefault();
+      var total = raizS.scrollHeight, vis = window.innerHeight, altT = trilho.clientHeight, h = polegar.offsetHeight;
+      var dy = e.touches[0].clientY - inicioY;
+      raizS.style.scrollBehavior = "auto";
+      window.scrollTo(0, inicioTopo + dy * (total - vis) / Math.max(1, altT - h));
+    }, { passive: false });
+    var soltarS = function () { if (!arrastando) return; arrastando = false; trilho.classList.remove("is-drag"); raizS.style.scrollBehavior = ""; mostrar(); };
+    polegar.addEventListener("touchend", soltarS); polegar.addEventListener("touchcancel", soltarS);
+    medir();
+  }
 })();
