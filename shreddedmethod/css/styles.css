@@ -889,3 +889,16 @@ html.js .vsl { opacity: 0; animation: fade .8s var(--ease) .4s forwards; }
   .hero__name { font-size: min(8.4vw, 17vh, 168px); }
 }
 @media (prefers-reduced-motion: reduce) { .vsl__unmute { animation: none; } html.js .vsl { opacity: 1; animation: none; } }
+
+/* Título: METHOD com a mesma largura de SHREDDED (o JS acerta o tamanho exato) */
+.hero__word { display: block; }
+.hero__word--fit { font-size: 1.27em; line-height: 0.86; }
+@media (min-width: 1024px) {
+  .hero__center { justify-items: start; text-align: left; }
+  .hero__center > .vsl { justify-self: end; }
+  .hero__name { align-items: flex-start; font-size: min(7.2vw, 14.5vh, 150px); }
+  .hero__lead { max-width: 30ch; }
+  .hero__sub { max-width: 46ch; }
+  .hero__pills { justify-content: flex-start; }
+  .hero__action .b1__note { left: 0; right: auto; transform: none; }
+}

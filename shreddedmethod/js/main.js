@@ -285,3 +285,18 @@
   if (!reduce) { var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { if (v.muted) v.play().catch(function () {}); } else if (v.muted) v.pause(); }); }); io.observe(box); }
   sync();
 })();
+
+/* Ajusta METHOD para ter exatamente a largura de SHREDDED */
+(function () {
+  var fit = document.querySelector(".hero__word--fit"); if (!fit) return;
+  var ref = fit.parentNode.querySelector(".hero__word:not(.hero__word--fit)");
+  var go = function () {
+    fit.style.fontSize = "";
+    var base = parseFloat(getComputedStyle(fit.parentNode).fontSize);
+    fit.style.fontSize = base + "px"; fit.style.display = "inline-block"; ref.style.display = "inline-block";
+    var r = ref.getBoundingClientRect().width / fit.getBoundingClientRect().width;
+    fit.style.fontSize = (base * r).toFixed(2) + "px"; fit.style.display = ""; ref.style.display = "";
+  };
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(go);
+  addEventListener("resize", go);
+})();
