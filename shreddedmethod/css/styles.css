@@ -835,3 +835,11 @@ html.js .hero__action { animation-delay: 0.84s; }
   .tudo__btn, .tudo__btn .b1__btn { width: 100%; }
   .desc__q--ask { font-size: 1.0625rem; }
 }
+
+/* barra de rolagem em telas estreitas: fina, sem setas, estilo app */
+@media (max-width: 767px) {
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #E0202E; border: 0; border-radius: 999px; min-height: 40px; }
+  ::-webkit-scrollbar-button { display: none; height: 0; width: 0; }
+}
