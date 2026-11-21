@@ -4,9 +4,9 @@
   "use strict";
 
   var CHECKOUT = {
-    basico: "[LINK_CHECKOUT_BASICO_10_EUR]",
-    premium: "[LINK_CHECKOUT_PREMIUM_20_EUR]",
-    premium14: "[LINK_CHECKOUT_PREMIUM_14_EUR]"
+    basico: "https://pay.cakto.com.br/izqqq2v",
+    premium: "https://pay.cakto.com.br/7633tir",
+    premium14: "https://pay.cakto.com.br/swozpwg"
   };
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

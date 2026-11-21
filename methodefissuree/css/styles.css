@@ -473,6 +473,9 @@ html.js .fase.is-in .frame__track span { transform: scaleX(1); }
 .plan__list li.bonus .plan__chk, .plan--top .plan__chk { stroke: var(--green); }
 @media (max-width: 767px) { .plan--top { order: -1; } .plan .b2 { margin-inline: 22px; } }
 
+.plan__usd { margin-top: -6px; font-size: 0.8125rem; color: var(--on-dark-soft); }
+.oferta__usd { margin-top: 8px !important; font-size: 0.8125rem; color: var(--muted); }
+
 /* ============ GARANTIA ============ */
 .garantia { background: var(--surface); padding: var(--gap-section) 0; }
 .garantia__card { max-width: 860px; margin: 0 auto; padding: clamp(36px, 5vw, 64px) clamp(24px, 4vw, 56px); text-align: center; }
