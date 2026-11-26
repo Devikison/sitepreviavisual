@@ -194,7 +194,7 @@
   /* empilhamento: o card coberto recua e escurece de leve */
   (function () {
     var listas = [];
-    doc.querySelectorAll("[data-stack]").forEach(function (s) { listas.push({ itens: [].slice.call(s.children), so: false }); });
+    doc.querySelectorAll("[data-stack]").forEach(function (s) { listas.push({ itens: [].slice.call(s.children), so: false, fundo: s.hasAttribute("data-fundo") }); });
     doc.querySelectorAll("[data-stack-m]").forEach(function (s) { listas.push({ itens: [].slice.call(s.children), so: true }); });
     if (!listas.length || reduced) return;
     var pendente = false;
@@ -206,6 +206,11 @@
           if (prox && (!l.so || celular.matches)) {
             var r = el.getBoundingClientRect(), n = prox.getBoundingClientRect();
             p = Math.min(1, Math.max(0, (r.bottom - n.top) / r.height));
+          }
+          if (l.fundo) {
+            var d = 0, ri = el.getBoundingClientRect();
+            for (var j = i + 1; j < l.itens.length; j++) { var rj = l.itens[j].getBoundingClientRect(); d += Math.min(1, Math.max(0, (ri.bottom - rj.top) / ri.height)); }
+            el.style.setProperty("--d", Math.min(d, 3).toFixed(3));
           }
           el.style.setProperty("--s", (1 - p * .06).toFixed(4));
           el.style.setProperty("--b", (1 - p * .1).toFixed(3));
