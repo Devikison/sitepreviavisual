@@ -23,10 +23,11 @@
         if (acum < -40) topo.classList.remove("is-hidden");
       }
       ultimo = y;
+      doc.body.classList.toggle("topo-oculto", topo.classList.contains("is-hidden"));
     };
     addEventListener("scroll", aoRolar, { passive: true });
     aoRolar();
-    topo.addEventListener("focusin", function () { topo.classList.remove("is-hidden"); });
+    topo.addEventListener("focusin", function () { topo.classList.remove("is-hidden"); doc.body.classList.remove("topo-oculto"); });
   }
 
   /* indicador deslizante (menu do topo e abas de tratamentos) */
@@ -246,11 +247,16 @@
       var a = ind.ativo(); ind.mover(a);
       if (a) abas.scrollTo({ left: a.offsetLeft - abas.clientWidth / 2 + a.offsetWidth / 2, behavior: reduced ? "auto" : "smooth" });
     };
-    marca(links[0].getAttribute("href").slice(1));
-    var ioA = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) marca(e.target.id); });
-    }, { rootMargin: "-45% 0px -50% 0px" });
-    doc.querySelectorAll(".bloco").forEach(function (b) { ioA.observe(b); });
+    var blocos = [].slice.call(doc.querySelectorAll(".bloco")), atual = null, pend = false;
+    var confere = function () {
+      pend = false;
+      var id = blocos[0].id, linha = innerHeight * .45;
+      blocos.forEach(function (b) { if (b.getBoundingClientRect().top <= linha) id = b.id; });
+      if (id !== atual) { atual = id; marca(id); }
+    };
+    addEventListener("scroll", function () { if (!pend) { pend = true; requestAnimationFrame(confere); } }, { passive: true });
+    addEventListener("resize", confere);
+    confere();
   }
 
   /* formulário: abre o WhatsApp com a mensagem pronta */

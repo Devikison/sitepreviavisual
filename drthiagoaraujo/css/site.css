@@ -505,3 +505,9 @@ html:not(.js) [data-reveal] { opacity: 1; translate: none; }
   .rod__id i { display: none; }
   .rod__cred { padding-bottom: 64px; }
 }
+
+/* abas acompanham a barra superior: sobem quando ela some */
+.abas { transition: transform 1s var(--ease); }
+body.topo-oculto .abas { transform: translateY(calc(-1 * (var(--th) + 12px))); }
+.sec--abas { padding-top: 0; }
+.sec--abas .blocos { margin-top: clamp(28px, 4vw, 48px); }
