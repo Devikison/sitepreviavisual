@@ -486,3 +486,21 @@ html:not(.js) [data-reveal] { opacity: 1; translate: none; }
   .btn--acao:hover { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), inset 0 -3px 7px rgba(0, 60, 25, .3), 0 2px 3px rgba(0, 60, 25, .25), 0 24px 40px -14px rgba(19, 140, 69, .9); }
   .btn--acao:hover .btn__ic svg { transform: scale(1.08); }
 }
+
+/* rodapé: base centralizada e organizada */
+.rod__base { padding-top: 28px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; font-size: 13.5px; line-height: 1.6; }
+.rod__base p { max-width: 82ch; }
+.rod__id { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px 14px; color: #FBF3E6; font-weight: 600; }
+.rod__id i { width: 5px; height: 5px; border-radius: 50%; background: #EFC16C; }
+.rod__cred { margin-top: 6px; padding-top: 14px; border-top: 1px solid rgba(251, 243, 230, .1); color: rgba(227, 205, 174, .8); font-size: 12.5px; }
+@media (max-width: 767px) {
+  .rod { padding: 60px 0 calc(32px + env(safe-area-inset-bottom)); }
+  .rod__grid { grid-template-columns: 1fr; gap: 34px; text-align: center; justify-items: center; }
+  .rod__marca { display: flex; flex-direction: column; align-items: center; }
+  .rod__marca p:last-child { margin-inline: auto; }
+  .rod ul { justify-items: center; }
+  .rod li { justify-content: center; }
+  .rod__id { flex-direction: column; gap: 4px; }
+  .rod__id i { display: none; }
+  .rod__cred { padding-bottom: 64px; }
+}
