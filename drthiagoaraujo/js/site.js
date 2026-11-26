@@ -222,6 +222,20 @@
     atualiza();
   })();
 
+  /* pilha de tratamentos: todos os cards com a mesma altura, para encaixarem certinho */
+  (function () {
+    var cards = [].slice.call(doc.querySelectorAll("[data-fundo] .ts__card"));
+    if (!cards.length) return;
+    var iguala = function () {
+      cards.forEach(function (c) { c.style.minHeight = ""; });
+      var max = cards.reduce(function (m, c) { return Math.max(m, c.offsetHeight); }, 0);
+      cards.forEach(function (c) { c.style.minHeight = max + "px"; });
+    };
+    var t; addEventListener("resize", function () { clearTimeout(t); t = setTimeout(iguala, 120); });
+    (doc.fonts && doc.fonts.ready ? doc.fonts.ready : Promise.resolve()).then(iguala);
+    addEventListener("load", iguala);
+  })();
+
   /* abas da página de tratamentos */
   var abas = doc.querySelector(".abas__in");
   if (abas) {
