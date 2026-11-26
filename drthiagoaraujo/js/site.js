@@ -144,9 +144,7 @@
     rootEl.addEventListener("pointercancel", fim);
     rootEl.addEventListener("lostpointercapture", fim);
     rootEl.addEventListener("dragstart", function (e) { e.preventDefault(); });
-    rootEl.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") sobre = true; });
-    rootEl.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") sobre = false; });
-    new IntersectionObserver(function (es) { visivel = es[0].isIntersecting; }).observe(rootEl);
+        new IntersectionObserver(function (es) { visivel = es[0].isIntersecting; }).observe(rootEl);
     monta();
     var largura = rootEl.clientWidth;
     new ResizeObserver(function () { if (Math.abs(rootEl.clientWidth - largura) > 2) { largura = rootEl.clientWidth; var p = x / setW; monta(); x = p * setW; } }).observe(rootEl);
