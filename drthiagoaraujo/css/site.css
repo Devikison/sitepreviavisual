@@ -110,8 +110,8 @@ svg { flex: none; }
 .btn:active { transform: scale(.98); }
 
 /* barra superior solta, em vidro, some ao descer e volta ao subir */
-.topo { position: sticky; top: 12px; z-index: 60; padding-inline: var(--gut); margin-top: 12px; transition: transform 1s var(--ease), opacity 1s var(--ease); }
-.topo.is-hidden { transform: translateY(calc(-100% - 28px)); opacity: 0; }
+.topo { position: sticky; top: 12px; z-index: 60; padding-inline: var(--gut); margin-top: 12px; transition: transform .9s var(--ease); }
+.topo.is-hidden { transform: translateY(calc(-100% - 40px)); }
 .topo__in { position: relative; max-width: 1200px; height: var(--th); margin-inline: auto; display: flex; align-items: center; gap: 22px; padding: 0 8px 0 18px; border-radius: 22px; transition: box-shadow .6s var(--ease), background .6s var(--ease); }
 .topo.is-scrolled .topo__in { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .95), inset 0 -1px 0 rgba(196, 152, 73, .2), 0 4px 10px rgba(53, 14, 3, .06), 0 24px 50px -20px rgba(53, 14, 3, .4); }
 .marca { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--tx); font: 400 19px/1.1 var(--tit); white-space: nowrap; min-height: 48px; margin-right: auto; }
@@ -517,3 +517,9 @@ body.topo-oculto .abas { transform: translateY(calc(-1 * (var(--th) + 12px))); }
 .foto-vaga .tile { margin-bottom: 6px; }
 .foto-vaga__t { color: var(--tx); font: 400 clamp(1.15rem, 1rem + .5vw, 1.4rem)/1.2 var(--tit); }
 .foto-vaga p:last-child { font-size: 15px; max-width: 30ch; }
+
+/* barra superior: vidro sempre firme, sem ficar transparente ao voltar */
+.topo__in.vidro { background: linear-gradient(180deg, rgba(255, 253, 248, .94), rgba(251, 243, 230, .9)); }
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .topo__in.vidro { background: linear-gradient(180deg, rgba(255, 253, 248, .86), rgba(251, 243, 230, .8)); -webkit-backdrop-filter: blur(24px) saturate(180%); backdrop-filter: blur(24px) saturate(180%); }
+}
