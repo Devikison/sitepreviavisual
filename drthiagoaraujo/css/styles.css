@@ -1089,3 +1089,8 @@ html { scroll-padding-top: calc(var(--faixa) + var(--head) + 16px); }
 .dif p { font-size: 16.5px; margin: 0; }
 @media (max-width: 1080px) { .dif { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .dif { grid-template-columns: 1fr; } .dif li { padding: 26px 22px 28px; } }
+
+/* Logo monograma TA */
+.marca__logo { flex: none; height: 40px; width: auto; display: block; }
+.rod .marca__logo { height: 56px; }
+@media (max-width: 560px) { .marca__logo { height: 34px; } }
