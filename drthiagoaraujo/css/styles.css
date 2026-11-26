@@ -1079,3 +1079,13 @@ html { scroll-padding-top: calc(var(--faixa) + var(--head) + 16px); }
 
 .faixa{position:fixed;top:0;left:0;right:0;z-index:70;min-height:var(--faixa);display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0 6px;padding:4px 12px;background:#0B57D0;color:#FFFFFF;font:600 12.5px/1.3 "Source Sans 3","Segoe UI",system-ui,sans-serif;letter-spacing:.02em;text-align:center}
 .faixa b{font-weight:700}.faixa i{font-style:normal;opacity:.7}.faixa a{color:#FFFFFF;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+
+/* Diferenciais (home) */
+.dif { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(16px, 2vw, 24px); }
+.dif li { position: relative; padding: 30px 26px 32px; border-radius: 12px; background: linear-gradient(180deg, #FFFFFF 0%, #F4EFE7 100%); box-shadow: inset 0 0 0 1px var(--fio), 0 18px 36px -26px rgba(22, 16, 13, .45); }
+.dif li::before { content: ""; position: absolute; left: 26px; top: 0; width: 44px; height: 3px; background: linear-gradient(90deg, var(--ouro-esc), var(--ouro-2)); border-radius: 0 0 3px 3px; }
+.dif__n { display: block; font: italic 600 40px/1 var(--serif); color: var(--ouro-esc); margin-bottom: 18px; }
+.dif h3 { font-size: 22px; margin-bottom: 10px; color: var(--texto); }
+.dif p { font-size: 16.5px; margin: 0; }
+@media (max-width: 1080px) { .dif { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .dif { grid-template-columns: 1fr; } .dif li { padding: 26px 22px 28px; } }
