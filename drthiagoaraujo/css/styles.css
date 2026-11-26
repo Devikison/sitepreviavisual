@@ -1094,3 +1094,7 @@ html { scroll-padding-top: calc(var(--faixa) + var(--head) + 16px); }
 .marca__logo { flex: none; height: 40px; width: auto; display: block; }
 .rod .marca__logo { height: 56px; }
 @media (max-width: 560px) { .marca__logo { height: 34px; } }
+/* Rodapé: logo em cima, nome embaixo, proporção original */
+.rod .rod__marca .marca { flex-direction: column; align-items: flex-start; gap: 14px; }
+.rod .rod__marca img.marca__logo { width: auto; height: 64px; margin: 0; }
+.rod .rod__marca .marca__n { flex: none; white-space: nowrap; font-size: 22px; }
