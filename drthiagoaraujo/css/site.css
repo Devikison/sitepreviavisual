@@ -511,3 +511,9 @@ html:not(.js) [data-reveal] { opacity: 1; translate: none; }
 body.topo-oculto .abas { transform: translateY(calc(-1 * (var(--th) + 12px))); }
 .sec--abas { padding-top: 0; }
 .sec--abas .blocos { margin-top: clamp(28px, 4vw, 48px); }
+
+/* espaço reservado para foto do cliente */
+.foto-vaga { aspect-ratio: 4 / 3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 24px; text-align: center; border-radius: var(--r-in); border: 1.5px dashed rgba(196, 152, 73, .65); background: radial-gradient(70% 70% at 50% 40%, rgba(239, 193, 108, .18), transparent 70%), repeating-linear-gradient(135deg, rgba(196, 152, 73, .05) 0 12px, transparent 12px 24px), #FFFBF3; }
+.foto-vaga .tile { margin-bottom: 6px; }
+.foto-vaga__t { color: var(--tx); font: 400 clamp(1.15rem, 1rem + .5vw, 1.4rem)/1.2 var(--tit); }
+.foto-vaga p:last-child { font-size: 15px; max-width: 30ch; }
