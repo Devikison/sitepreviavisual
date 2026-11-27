@@ -1,0 +1,112 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biquini System | Relatório pós-jogo de CS2</title>
+<meta name="description" content="Solte a demo do CS2 e veja clutches, quem carregou e quem ficou devendo. Tudo roda no navegador.">
+<meta property="og:title" content="Biquini System | Relatório pós-jogo de CS2">
+<meta property="og:description" content="Clutches, fichas dos jogadores e rodada a rodada, direto da demo.">
+<meta name="format-detection" content="telephone=no">
+<link rel="canonical" href="https://sitepreviavisual.site/biquinisystem/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://sitepreviavisual.site/biquinisystem/">
+<meta property="og:image" content="https://sitepreviavisual.site/biquinisystem/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Biquini System","url":"https://sitepreviavisual.site/biquinisystem/","applicationCategory":"GameApplication","operatingSystem":"Navegador","description":"Relatório pós-jogo de CS2: clutches, fichas dos jogadores e rodada a rodada, direto da demo.","inLanguage":"pt-BR","offers":{"@type":"Offer","price":"0","priceCurrency":"BRL"}}</script><meta name="theme-color" content="#111316">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M6 2h22v22l-6 6H4V8z' fill='%23C6F24E'/%3E%3Cpath d='M10 9h6v6h-6zm6 6h6v6h-6z' fill='%23111316'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Chakra+Petch:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<header class="topo">
+  <a class="marca" href="./" aria-label="Biquini System, início">
+    <span class="marca__selo" aria-hidden="true"></span>
+    <span class="marca__nome">Biquini<b>System</b></span>
+  </a>
+  <span class="topo__desc">relatório pós-jogo de CS2</span>
+  <button class="btn btn--linha topo__nova" id="btnNova" hidden><i class="ph-bold ph-arrow-counter-clockwise" aria-hidden="true"></i>Nova demo</button>
+</header>
+
+<!-- ENTRADA -->
+<section class="entrada" id="entrada">
+  <div class="entrada__texto">
+    <p class="rotulo">Solte a demo, saia com a resenha</p>
+    <h1>Quem carregou, quem amarelou e todos os clutches da partida.</h1>
+    <p class="entrada__sub">Números tirados direto da demo do CS2. A leitura acontece no seu navegador, o arquivo não é enviado para lugar nenhum.</p>
+  </div>
+
+  <label class="soltar" id="soltar" for="arquivo">
+    <input type="file" id="arquivo" accept=".dem,.json" hidden>
+    <i class="ph-bold ph-file-arrow-up soltar__icone" aria-hidden="true"></i>
+    <span class="soltar__titulo">Arraste a demo aqui</span>
+    <span class="soltar__dica">arquivo .dem do CS2, ou um relatório .json salvo</span>
+    <span class="btn btn--cheio">Escolher demo</span>
+  </label>
+
+  <div class="entrada__extra">
+    <button class="link" id="btnExemplo"><i class="ph-bold ph-play" aria-hidden="true"></i>Ver uma partida de exemplo</button>
+    <details class="ajuda">
+      <summary><i class="ph-bold ph-folder-open" aria-hidden="true"></i>Onde fica a demo no meu PC?</summary>
+      <ol>
+        <li>No CS2, abra <b>Assistir</b> e depois <b>Suas partidas</b>. Clique em baixar na partida que você quer.</li>
+        <li>O arquivo vai para esta pasta:
+          <code id="caminho">C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\game\csgo\replays</code>
+          <button class="link link--pequeno" id="btnCopiar"><i class="ph-bold ph-copy" aria-hidden="true"></i>Copiar caminho</button>
+        </li>
+        <li>Cole o caminho na barra do Explorador de Arquivos e arraste o <b>.dem</b> para cá.</li>
+      </ol>
+      <p class="ajuda__nota">Demo de servidor próprio: peça o <b>.dem</b> para quem administra. Se vier compactada (.zip, .gz, .zst), descompacte antes.</p>
+      <p class="ajuda__nota">No celular a demo é pesada demais (300 MB ou mais). Leia no PC, clique em <b>Salvar relatório</b> e mande o arquivo .json no grupo: ele abre em qualquer celular.</p>
+    </details>
+  </div>
+</section>
+
+<!-- PROCESSANDO -->
+<section class="processando" id="processando" hidden aria-live="polite">
+  <div class="processando__barra"><span id="barra"></span></div>
+  <p class="processando__titulo" id="procTitulo">Lendo a demo</p>
+  <ul class="processando__passos" id="passos"></ul>
+  <p class="processando__nota">Uma partida completa leva de 10 a 40 segundos, depende do PC.</p>
+</section>
+
+<!-- ERRO -->
+<section class="erro" id="erro" hidden role="alert">
+  <i class="ph-bold ph-warning-octagon" aria-hidden="true"></i>
+  <p class="erro__titulo">Não deu para ler esse arquivo</p>
+  <p class="erro__msg" id="erroMsg"></p>
+  <button class="btn btn--cheio" id="btnTentar">Tentar outro arquivo</button>
+</section>
+
+<!-- RELATORIO -->
+<main class="relatorio" id="relatorio" hidden>
+  <section class="placar" id="placar"></section>
+  <nav class="abas" role="tablist" aria-label="Partes do relatório">
+    <button role="tab" class="aba" data-aba="tabela" aria-selected="true">Placar</button>
+    <button role="tab" class="aba" data-aba="clutches" aria-selected="false">Clutches</button>
+    <button role="tab" class="aba" data-aba="fichas" aria-selected="false">Fichas</button>
+    <button role="tab" class="aba" data-aba="rodadas" aria-selected="false">Rodadas</button>
+  </nav>
+  <section class="painel" id="aba-tabela" role="tabpanel"></section>
+  <section class="painel" id="aba-clutches" role="tabpanel" hidden></section>
+  <section class="painel" id="aba-fichas" role="tabpanel" hidden></section>
+  <section class="painel" id="aba-rodadas" role="tabpanel" hidden></section>
+  <div class="acoes">
+    <button class="btn btn--linha" id="btnSalvar"><i class="ph-bold ph-download-simple" aria-hidden="true"></i>Salvar relatório</button>
+    <p class="acoes__nota">Gera um arquivo leve (.json) para mandar no grupo. Quem receber abre aqui mesmo, até pelo celular.</p>
+  </div>
+</main>
+
+<footer class="rodape">
+  <p>Biquini System. Lê demos de CS2 no navegador, nada sai do seu computador.</p>
+  <p>Rating no modelo HLTV 1.0. Clutch conta toda situação 1vX, inclusive 1v1.</p>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>
